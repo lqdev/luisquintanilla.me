@@ -100,6 +100,7 @@ let textOnlyContentTypePage (contentType: string) (content: UnifiedFeedItem list
         | "ai-memex" -> "AI Memex"
         | "bookmarks" -> "Bookmarks"
         | "media" -> "Media & Files"
+        | "marketplace" -> "Marketplace"
         | _ -> $"{contentType} Content"
     
     let contentHtml =

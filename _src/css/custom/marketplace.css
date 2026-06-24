@@ -1,0 +1,204 @@
+/* Marketplace — personal classifieds ("for sale") styling
+ * Integrates with the Desert theme (light + dark) via shared CSS variables.
+ * Status badges, price typography, card grid, sold dimming, contact CTA.
+ */
+
+/* ---- Index page ---------------------------------------------------------- */
+.marketplace-index .marketplace-intro {
+  color: var(--text-color);
+  opacity: 0.85;
+  margin-bottom: 1.5rem;
+}
+
+.marketplace-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin: 1rem 0 2rem;
+}
+
+.marketplace-sold-heading {
+  margin-top: 2rem;
+  border-top: 1px solid var(--card-border);
+  padding-top: 1rem;
+  opacity: 0.8;
+}
+
+.marketplace-empty {
+  font-style: italic;
+  opacity: 0.75;
+}
+
+/* ---- Cards --------------------------------------------------------------- */
+.marketplace-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-lg, 12px);
+  background: var(--card-background);
+  overflow: hidden;
+  transition: transform var(--transition-normal, 0.2s ease),
+              box-shadow var(--transition-normal, 0.2s ease);
+}
+
+.marketplace-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.marketplace-card-media {
+  display: block;
+  aspect-ratio: 4 / 3;
+  background: rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.marketplace-card-media-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+}
+
+.marketplace-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  display: block;
+}
+
+.marketplace-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.75rem 0.9rem 1rem;
+}
+
+.marketplace-card-title {
+  font-size: 1.05rem;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.marketplace-card-title a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.marketplace-card-title a:hover {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.marketplace-card-price {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--accent-color);
+}
+
+/* Dim sold cards but keep them legible (URL permanence: sold items stay live) */
+.marketplace-grid-sold .marketplace-card,
+.marketplace-card.marketplace-status-sold {
+  opacity: 0.6;
+}
+
+.marketplace-card.marketplace-status-sold:hover {
+  opacity: 0.85;
+}
+
+/* ---- Status badges ------------------------------------------------------- */
+.marketplace-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.5rem;
+  border-radius: var(--border-radius-sm, 4px);
+  color: #fff;
+}
+
+.marketplace-badge-available {
+  background: #2e7d32; /* green */
+}
+
+.marketplace-badge-pending {
+  background: #b8860b; /* amber */
+}
+
+.marketplace-badge-sold {
+  background: #7a3b3b; /* muted maroon */
+}
+
+/* ---- Listing (individual) page ------------------------------------------ */
+.marketplace-listing .marketplace-listing-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0.5rem 0;
+}
+
+.marketplace-listing .marketplace-price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.marketplace-listing .marketplace-price-note {
+  font-size: 0.9rem;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.marketplace-listing-attrs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin: 0.35rem 0 0.5rem;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.marketplace-attr {
+  white-space: nowrap;
+}
+
+/* ---- Contact CTA --------------------------------------------------------- */
+.marketplace-interested {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-md, 8px);
+  background: var(--card-background);
+}
+
+.marketplace-interested-btn {
+  font-weight: 600;
+}
+
+.marketplace-contact-note {
+  margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.marketplace-sold-note {
+  margin: 0;
+  font-weight: 600;
+  font-style: italic;
+}
+
+/* ---- Responsive ---------------------------------------------------------- */
+@media (max-width: 480px) {
+  .marketplace-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0.85rem;
+  }
+
+  .marketplace-listing .marketplace-price {
+    font-size: 1.35rem;
+  }
+}

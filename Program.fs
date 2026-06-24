@@ -76,6 +76,7 @@ let main argv =
     let mediaFeedData = buildMedia()
     let albumCollectionsFeedData = buildAlbumCollections()
     let playlistCollectionsFeedData = buildPlaylistCollections()
+    let marketplaceFeedData = buildMarketplace()
     
     // Convert each content type to unified feed items exactly once (F3: these pure
     // projections were previously re-run up to 3x across the feed lists below).
@@ -91,6 +92,7 @@ let main argv =
     let albumsUnified = UnifiedFeeds.convertAlbumsToUnified mediaFeedData
     let albumCollectionsUnified = UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData
     let playlistCollectionsUnified = UnifiedFeeds.convertPlaylistCollectionsToUnified playlistCollectionsFeedData
+    let marketplaceUnified = UnifiedFeeds.convertMarketplaceToUnified marketplaceFeedData
     
     // Content-type roster (B1): one declarative row per type describing its
     // unified-feed participation. The three membership lists below derive from
@@ -112,6 +114,7 @@ let main argv =
         { Identity = ContentTypes.ContentType.Media;              Unified = albumsUnified;             InTimeline = true;  InAllFeeds = true; InBlogArchive = false }
         { Identity = ContentTypes.ContentType.AlbumCollection;    Unified = albumCollectionsUnified;   InTimeline = true;  InAllFeeds = true; InBlogArchive = false }
         { Identity = ContentTypes.ContentType.PlaylistCollection; Unified = playlistCollectionsUnified; InTimeline = false; InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.Marketplace;        Unified = marketplaceUnified;        InTimeline = false; InAllFeeds = true; InBlogArchive = false }
     ]
 
     // Convert to unified feed items - Timeline feed (main content)
@@ -155,7 +158,7 @@ let main argv =
     // =============================================================================
     
     printfn "🎭 Building ActivityPub content..."
-    let activityPubContent = allUnifiedContent |> List.filter (fun item -> item.ContentType <> ContentTypes.AiMemex)
+    let activityPubContent = allUnifiedContent |> List.filter (fun item -> item.ContentType <> ContentTypes.AiMemex && item.ContentType <> ContentTypes.Marketplace)
     ActivityPubBuilder.buildActivities activityPubContent "_public"
     ActivityPubBuilder.buildOutbox activityPubContent "_public"
     ActivityPubBuilder.queueRecentPostsForDelivery activityPubContent "_public"
@@ -232,6 +235,7 @@ let main argv =
         ("ai-memex", aiMemexFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun a -> a :> ITaggable))
         ("presentations", presentationsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun p -> p :> ITaggable))
         ("media", mediaFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun a -> a :> ITaggable))
+        ("marketplace", marketplaceFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun l -> l :> ITaggable))
     ]
     buildUnifiedTagsPages allTaggableContent
 

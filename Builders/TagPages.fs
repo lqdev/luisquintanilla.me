@@ -86,6 +86,7 @@ module TagPagesBuilder
                             | "ai-memex" -> ("resources/ai-memex", "AI Memex")
                             | "presentations" -> ("resources/presentations", "Presentations")
                             | "albums" -> ("media/albums", "Albums")
+                            | "marketplace" -> ("marketplace", "Marketplace")
                             | _ -> (contentType, contentType)
                         [|(items, prefix, displayName)|]
                     )

@@ -55,6 +55,8 @@ let AiMemex = "ai-memex"
 let AlbumCollection = "album-collection"
 [<Literal>]
 let PlaylistCollection = "playlist-collection"
+[<Literal>]
+let Marketplace = "marketplace"
 
 /// Response subtypes carried in `UnifiedFeedItem.ContentType` instead of the
 /// generic `Responses` (see AI Memex `pattern-content-type-taxonomy-mismatch`).
@@ -94,6 +96,7 @@ type ContentType =
     | AiMemex
     | AlbumCollection
     | PlaylistCollection
+    | Marketplace
 
 /// Identity -> wire string. Exhaustive over the DU (no wildcard): adding a case
 /// will not compile until its wire string is chosen here. This is the forward
@@ -113,6 +116,7 @@ let serialize (ct: ContentType) =
     | ContentType.AiMemex -> AiMemex
     | ContentType.AlbumCollection -> AlbumCollection
     | ContentType.PlaylistCollection -> PlaylistCollection
+    | ContentType.Marketplace -> Marketplace
 
 /// Wire string -> identity. The intake boundary: returns `None` for response
 /// subtypes and any value outside the closed set. Matching on an arbitrary
@@ -133,6 +137,7 @@ let parse (s: string) : ContentType option =
     | AiMemex -> Some ContentType.AiMemex
     | AlbumCollection -> Some ContentType.AlbumCollection
     | PlaylistCollection -> Some ContentType.PlaylistCollection
+    | Marketplace -> Some ContentType.Marketplace
     | _ -> None
 
 /// Permalink directory prefix per canonical content type. Exhaustive over the
@@ -154,6 +159,7 @@ let urlPrefix (ct: ContentType) =
     | ContentType.AiMemex -> "/resources/ai-memex/"
     | ContentType.AlbumCollection -> "/album-collection/"
     | ContentType.PlaylistCollection -> "/playlist-collection/"
+    | ContentType.Marketplace -> "/marketplace/"
 
 /// String-boundary shim for URL prefixing. Parses the wire string; response
 /// subtypes carry their subtype as the key but their detail pages live under the

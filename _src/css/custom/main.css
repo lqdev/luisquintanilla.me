@@ -19,6 +19,7 @@
 @import url('./timeline.css');
 @import url('./cursor.css');
 @import url('./ai-memex.css');
+@import url('./marketplace.css');
 
 /* Global body setup */
 body {

@@ -333,6 +333,40 @@ module Domain
             member this.FileName = this.FileName
             member this.ContentType = "album"
 
+    // Marketplace listing - personal classifieds / "for sale" items.
+    // Photos live in :::media blocks in the body (CDN-hosted, same as albums).
+    // Mutable facts (price, status) stay in frontmatter, never the URL.
+    [<CLIMutable>]
+    type MarketplaceDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="description")>] Description: string
+        [<YamlMember(Alias="published_date")>] Date: string
+        [<YamlMember(Alias="price")>] Price: decimal
+        [<YamlMember(Alias="currency")>] Currency: string
+        [<YamlMember(Alias="price_note")>] PriceNote: string
+        [<YamlMember(Alias="status")>] Status: string
+        [<YamlMember(Alias="condition")>] Condition: string
+        [<YamlMember(Alias="category")>] Category: string
+        [<YamlMember(Alias="location")>] Location: string
+        [<YamlMember(Alias="tags")>] Tags: string array
+    }
+
+    type MarketplaceListing = {
+        FileName: string
+        Metadata: MarketplaceDetails
+        Content: string
+        MarkdownSource: string option
+    }
+    with
+        interface ITaggable with
+            member this.Tags =
+                if isNull this.Metadata.Tags then [||]
+                else this.Metadata.Tags
+            member this.Title = this.Metadata.Title
+            member this.Date = this.Metadata.Date
+            member this.FileName = this.FileName
+            member this.ContentType = "marketplace"
+
     // Album Collection - Curated media groupings (events, themes, projects)
     [<CLIMutable>]
     type AlbumCollectionLocation = {

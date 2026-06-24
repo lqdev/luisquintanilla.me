@@ -42,6 +42,9 @@ let private searchIcon =
 let private subscribeIcon =
     navIcon [ "M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z" ]
 
+let private marketplaceIcon =
+    navIcon [ "M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1H2zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" ]
+
 let private collectionsIcon =
     navIcon [ "M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"
               "M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" ]
@@ -90,6 +93,7 @@ let desktopSections : NavSection list =
             link "/" "Home" (Some homeIcon)
             link "/about" "About" (Some aboutIcon)
             link "/contact" "Contact" (Some contactIcon)
+            link "/marketplace" "Marketplace" (Some marketplaceIcon)
             link "/search" "Search" (Some searchIcon)
             link "/feed" "Subscribe" (Some subscribeIcon)
         ]

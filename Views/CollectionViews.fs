@@ -307,6 +307,52 @@ let albumsPageView (albums:Album array) =
         ]
     ]
 
+let private marketplaceCard (listing: MarketplaceListing) =
+    let m = listing.Metadata
+    let url = $"/marketplace/{listing.FileName}/"
+    let status = MarketplaceProcessor.normalizeStatus m.Status
+    let priceText = MarketplaceProcessor.formatPrice m.Price m.Currency
+    let thumb =
+        match MediaExtractor.extractPrimaryMedia listing.Content with
+        | Some media ->
+            a [ _href url; _class "marketplace-card-media" ] [
+                img [ _src media.MediaUrl; _alt (media.AltText |> Option.defaultValue m.Title); _class "marketplace-card-img"; attr "loading" "lazy" ]
+            ]
+        | None -> a [ _href url; _class "marketplace-card-media marketplace-card-media-empty" ] []
+    article [ _class (sprintf "marketplace-card h-entry marketplace-status-%s" status) ] [
+        thumb
+        div [ _class "marketplace-card-body" ] [
+            span [ _class (sprintf "marketplace-badge marketplace-badge-%s" status) ] [ Text (MarketplaceProcessor.statusLabel status) ]
+            h2 [ _class "marketplace-card-title p-name" ] [ a [ _href url; _class "u-url" ] [ Text m.Title ] ]
+            div [ _class "marketplace-card-price" ] [
+                Text priceText
+                if not (String.IsNullOrWhiteSpace m.PriceNote) then
+                    Text (sprintf " %s" m.PriceNote)
+            ]
+        ]
+    ]
+
+let marketplaceIndexView (listings: MarketplaceListing array) =
+    let available = listings |> Array.filter (fun l -> MarketplaceProcessor.normalizeStatus l.Metadata.Status <> "sold")
+    let sold = listings |> Array.filter (fun l -> MarketplaceProcessor.normalizeStatus l.Metadata.Status = "sold")
+    div [ _class "marketplace-index" ] [
+        h1 [] [ Text "Marketplace" ]
+        p [ _class "marketplace-intro" ] [
+            Text "Personal items I'm offering for sale \u2014 my own little corner store. Email to inquire; first to commit gets it."
+        ]
+        if available.Length > 0 then
+            div [ _class "marketplace-grid" ] [
+                for listing in available do marketplaceCard listing
+            ]
+        else
+            p [ _class "marketplace-empty" ] [ Text "Nothing available right now. Check back soon." ]
+        if sold.Length > 0 then
+            h2 [ _class "marketplace-sold-heading" ] [ Text "Sold" ]
+            div [ _class "marketplace-grid marketplace-grid-sold" ] [
+                for listing in sold do marketplaceCard listing
+            ]
+    ]
+
 let albumPageView (images:AlbumImage array) = 
     let imgGroups = images |> Array.chunkBySize 3
     div [_class "mr-auto"] [

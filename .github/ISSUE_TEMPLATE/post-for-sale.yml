@@ -1,0 +1,168 @@
+name: 🏷️ Post For Sale Item
+description: List an item for sale in the marketplace (your personal classifieds)
+title: "[For Sale] "
+labels: ["marketplace"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## List an Item for Sale
+
+        Use this form to create a marketplace listing. The system will upload your
+        photos to permanent CDN storage and open a pull request with a formatted
+        markdown file in `_src/marketplace/`.
+
+        **Photos**: Drag and drop images directly into the **Content and Attachments**
+        field — GitHub generates attachment links that are automatically converted to
+        `:::media` blocks with permanent CDN URLs.
+
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: Name of the item for sale
+      placeholder: "e.g., Herman Miller Aeron Chair (Size B)"
+    validations:
+      required: true
+
+  - type: input
+    id: description
+    attributes:
+      label: Short Description
+      description: One-line summary shown on the listing card and in metadata
+      placeholder: "e.g., Lightly used Aeron, fully adjustable with lumbar support"
+    validations:
+      required: true
+
+  - type: input
+    id: price
+    attributes:
+      label: Price
+      description: Numeric price only (currency symbols and commas are stripped automatically). Use 0 for free items.
+      placeholder: "e.g., 350"
+    validations:
+      required: true
+
+  - type: input
+    id: currency
+    attributes:
+      label: Currency (Optional)
+      description: ISO currency code. Defaults to USD if left blank.
+      placeholder: "USD"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: price_note
+    attributes:
+      label: Price Note (Optional)
+      description: Optional qualifier shown next to the price
+      options:
+        - obo
+        - firm
+        - negotiable
+        - free
+    validations:
+      required: false
+
+  - type: dropdown
+    id: condition
+    attributes:
+      label: Condition (Optional)
+      description: General condition of the item
+      options:
+        - new
+        - like-new
+        - good
+        - fair
+        - for-parts
+    validations:
+      required: false
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      description: Availability of the item (you can update this later via a PR)
+      default: 0
+      options:
+        - available
+        - pending
+        - sold
+    validations:
+      required: true
+
+  - type: input
+    id: category
+    attributes:
+      label: Category (Optional)
+      description: Free-text grouping (e.g., furniture, electronics, outdoors)
+      placeholder: "e.g., furniture"
+    validations:
+      required: false
+
+  - type: input
+    id: location
+    attributes:
+      label: Location (Optional)
+      description: General area only — never a full address
+      placeholder: "e.g., Austin, TX"
+    validations:
+      required: false
+
+  - type: textarea
+    id: content
+    attributes:
+      label: Content and Attachments
+      description: Describe the item. Drag and drop photos directly into this field.
+      placeholder: |
+        Describe the item here. You can use Markdown formatting.
+
+        - Drag and drop photos directly into this field
+        - GitHub will automatically create ![filename](URL) markdown for attachments
+        - Mention condition details, reason for selling, pickup/shipping, etc.
+
+        Example:
+        Selling my Aeron chair — work-from-home chair for a few years, no rips or stains.
+
+        ![Front view](https://github.com/user/repo/assets/12345/aeron-1.jpg)
+        ![Side view](https://github.com/user/repo/assets/12345/aeron-2.jpg)
+    validations:
+      required: true
+
+  - type: input
+    id: slug
+    attributes:
+      label: Slug (Optional)
+      description: Custom URL slug. Keep it descriptive and price/status-free. Auto-generated from the title if blank.
+      placeholder: "e.g., herman-miller-aeron-chair (leave blank to auto-generate)"
+    validations:
+      required: false
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags (Optional)
+      description: Comma-separated tags for categorizing your listing
+      placeholder: "e.g., furniture, office"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        **What happens next?**
+
+        1. 🤖 A GitHub Action will process this issue
+        2. 📦 Download your photos from GitHub's temporary storage
+        3. 📤 Upload them to permanent Linode S3 / CDN storage
+        4. 📄 Generate a formatted markdown file in `_src/marketplace/` with `:::media` blocks
+        5. 🔀 Create a pull request with your listing
+        6. ✅ The issue will be closed automatically
+        7. 🚀 After PR review and merge, your listing will be live at `/marketplace/`
+
+        Your contact button on the published listing emails **sales+contact@lqdev.me**
+        with a pre-filled subject. A sold item keeps its permalink forever (just shows a
+        SOLD badge), so URLs never break.
