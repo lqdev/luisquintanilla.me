@@ -53,3 +53,12 @@ module LegacyFeedsBuilder
             printfn "✅ Created all.rss (unified feed alias)"
         else
             printfn "❌ Source unified feed not found: %s" sourceUnifiedFeed
+
+        // Marketplace feed alias (/marketplace/feed.xml -> /marketplace.rss)
+        let sourceMarketplaceFeed = Path.GetFullPath(Path.Join(outputDir, "marketplace", "feed.xml"))
+        let targetMarketplaceRss = Path.GetFullPath(Path.Join(outputDir, "marketplace.rss"))
+        if File.Exists(sourceMarketplaceFeed) then
+            File.Copy(sourceMarketplaceFeed, targetMarketplaceRss, true)
+            printfn "✅ Created marketplace.rss"
+        else
+            printfn "❌ Source marketplace feed not found: %s" sourceMarketplaceFeed

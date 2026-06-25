@@ -172,6 +172,22 @@ module ContentTypePagesBuilder
             Index = Some { View = albumsPageView; Title = "Media | Luis Quintanilla"; Sort = Some (Array.sortByDescending (fun x -> DateTimeOffset.Parse(x.Metadata.Date))) }
         }
 
+    // AST-based marketplace processing using GenericBuilder infrastructure
+    let buildMarketplace() =
+        let processor = MarketplaceProcessor.create()
+        BuildDriver.buildContentType srcDir outputDir {
+            Name = ContentTypes.Marketplace
+            SourceDir = [ "marketplace" ]
+            OutputDir = [ "marketplace" ]
+            Processor = processor
+            Slug = fun listing -> listing.FileName
+            ItemView = fun listing _ ->
+                marketplaceListingView listing (processor.Render listing |> convertMdToHtml)
+            ItemTitle = fun listing -> $"{listing.Metadata.Title} | Marketplace | Luis Quintanilla"
+            Layout = "defaultindex"
+            Index = Some { View = marketplaceIndexView; Title = "Marketplace | Luis Quintanilla"; Sort = Some (Array.sortByDescending (fun x -> DateTimeOffset.Parse(x.Metadata.Date))) }
+        }
+
     let buildAlbumCollections() =
         let processor = AlbumCollectionProcessor.create()
         BuildDriver.buildContentType srcDir outputDir {

@@ -103,6 +103,82 @@ let mediaPageView (title:string) (content:string) (date:string) (fileName:string
         ]
     ]
 
+let marketplaceListingView (listing: MarketplaceListing) (contentHtml: string) =
+    let m = listing.Metadata
+    let slug = listing.FileName
+    let permalink = $"/marketplace/{slug}/"
+    let status = MarketplaceProcessor.normalizeStatus m.Status
+    let priceText = MarketplaceProcessor.formatPrice m.Price m.Currency
+    let publishDate = DateTimeOffset.Parse(m.Date)
+    let condLabel = MarketplaceProcessor.conditionLabel m.Condition
+    let tags = if isNull m.Tags then [||] else m.Tags
+    let mailtoHref =
+        let subject = System.Uri.EscapeDataString("Inquiry: " + m.Title)
+        let body = System.Uri.EscapeDataString(sprintf "Hi Luis,\n\nI'm interested in \"%s\" (%s). Is it still available?\n\nThanks!" m.Title priceText)
+        $"mailto:sales+contact@lqdev.me?subject={subject}&body={body}"
+    let jsonLd = MarketplaceProcessor.buildJsonLd listing
+    div [ _class "mr-auto" ] [
+        article [ _class "h-entry individual-post marketplace-listing" ] [
+            header [ _class "post-header" ] [
+                h1 [ _class "p-name post-title" ] [ Text m.Title ]
+                div [ _class "marketplace-listing-meta" ] [
+                    span [ _class (sprintf "marketplace-badge marketplace-badge-%s" status) ] [ Text (MarketplaceProcessor.statusLabel status) ]
+                    span [ _class "marketplace-price p-price" ] [ Text priceText ]
+                    if not (String.IsNullOrWhiteSpace m.PriceNote) then
+                        span [ _class "marketplace-price-note" ] [ Text m.PriceNote ]
+                ]
+                div [ _class "marketplace-listing-attrs" ] [
+                    if condLabel <> "" then
+                        span [ _class "marketplace-attr marketplace-condition" ] [ Text (sprintf "Condition: %s" condLabel) ]
+                    if not (String.IsNullOrWhiteSpace m.Category) then
+                        span [ _class "marketplace-attr marketplace-category" ] [ Text (sprintf "Category: %s" m.Category) ]
+                    if not (String.IsNullOrWhiteSpace m.Location) then
+                        span [ _class "marketplace-attr marketplace-location" ] [ Text (sprintf "Location: %s" m.Location) ]
+                ]
+                div [ _class "post-meta" ] [
+                    time [ _class "dt-published"; attr "datetime" m.Date ] [
+                        Text (publishDate.ToString("MMMM d, yyyy"))
+                    ]
+                ]
+                // Hidden IndieWeb author information for microformats compliance
+                div [ _class "u-author h-card microformat-hidden" ] [
+                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
+                ]
+            ]
+
+            div [ _class "e-content post-content" ] [
+                rawText contentHtml
+            ]
+
+            div [ _class "marketplace-interested" ] [
+                if status = "sold" then
+                    p [ _class "marketplace-sold-note" ] [ Text "This item has been sold." ]
+                else
+                    a [ _href mailtoHref; _class "btn btn-primary marketplace-interested-btn" ] [ Text "I'm interested \u2192" ]
+                    p [ _class "marketplace-contact-note" ] [
+                        Text "Email "
+                        a [ _href mailtoHref ] [ Text "sales+contact@lqdev.me" ]
+                        Text " with any questions."
+                    ]
+            ]
+
+            footer [ _class "post-footer" ] [
+                div [ _class "permalink-info d-flex align-items-center" ] [
+                    Text "Permalink: "
+                    a [ _class "u-url permalink-link"; _href permalink ] [ Text permalink ]
+                    copyPermalinkButton permalink
+                    webShareButton permalink
+                    qrCodeButton permalink
+                ]
+                postTagsSection tags
+                webmentionForm
+            ]
+
+            script [ _type "application/ld+json" ] [ rawText jsonLd ]
+        ]
+    ]
+
 let snippetPageView (title:string) (content:string) (date:string) (fileName:string) (tags: string array) (relatedSnippets: Snippet array) = 
     let publishDate = DateTimeOffset.Parse(date)
     div [ _class "mr-auto" ] [

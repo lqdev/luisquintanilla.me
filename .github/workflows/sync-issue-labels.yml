@@ -30,6 +30,7 @@ jobs:
             //   - post-bookmark.yml: ["bookmark"]
             //   - post-response.yml: ["response"]
             //   - post-media.yml: ["media"]
+            //   - post-for-sale.yml: ["marketplace"]
             //   - post-playlist.yml: ["playlist"]
             //   - post-review-book.yml: ["review", "book"]
             //   - post-review-movie.yml: ["review", "movie"]
@@ -42,6 +43,7 @@ jobs:
               { name: 'bookmark', description: 'Bookmark post', color: '1D76DB' },
               { name: 'response', description: 'Response post (reply, like, repost)', color: 'FBCA04' },
               { name: 'media', description: 'Media post (photo, video)', color: 'D93F0B' },
+              { name: 'marketplace', description: 'For-sale marketplace listing', color: '006B75' },
               { name: 'playlist', description: 'Playlist content creation and management', color: '1D76DB' },
               { name: 'review', description: 'Review post', color: '5319E7' },
               { name: 'book', description: 'Book review', color: 'B60205' },
@@ -106,6 +108,7 @@ jobs:
           echo "- \`bookmark\` - Bookmark posts" >> $GITHUB_STEP_SUMMARY
           echo "- \`response\` - Response posts (reply, like, repost)" >> $GITHUB_STEP_SUMMARY
           echo "- \`media\` - Media posts (photo, video)" >> $GITHUB_STEP_SUMMARY
+          echo "- \`marketplace\` - For-sale marketplace listings" >> $GITHUB_STEP_SUMMARY
           echo "- \`playlist\` - Playlist content creation and management" >> $GITHUB_STEP_SUMMARY
           echo "- \`review\` - Review posts" >> $GITHUB_STEP_SUMMARY
           echo "- \`read-later\` - Read later list additions" >> $GITHUB_STEP_SUMMARY

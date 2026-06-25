@@ -272,6 +272,9 @@ let parseBookFromFile (filePath: string) : Result<ParsedDocument<BookDetails>, P
 let parseAlbumFromFile (filePath: string) : Result<ParsedDocument<AlbumDetails>, ParseError> =
     parseDocumentFromFile<AlbumDetails> filePath
 
+let parseMarketplaceFromFile (filePath: string) : Result<ParsedDocument<MarketplaceDetails>, ParseError> =
+    parseDocumentFromFile<MarketplaceDetails> filePath
+
 let parseAlbumCollectionFromFile (filePath: string) : Result<ParsedDocument<AlbumCollectionDetails>, ParseError> =
     parseDocumentFromFile<AlbumCollectionDetails> filePath
 

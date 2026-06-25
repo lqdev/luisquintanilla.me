@@ -555,38 +555,22 @@ jobs:
           
       - name: Build F# project
         run: dotnet build --no-restore
-        
-      - name: Install uv (Python package manager)
-        uses: astral-sh/setup-uv@v4
-        with:
-          version: "latest"
-          
-      - name: Setup Python environment
-        run: uv venv
-        
-      - name: Install Python dependencies
-        run: uv pip install boto3==1.34.0 botocore==1.34.0 requests
-        
-      - name: Upload media to Linode S3
-        id: upload-media
-        env:
-          LINODE_STORAGE_ACCESS_KEY_ID: ${{ secrets.LINODE_STORAGE_ACCESS_KEY_ID }}
-          LINODE_STORAGE_SECRET_ACCESS_KEY: ${{ secrets.LINODE_STORAGE_SECRET_ACCESS_KEY }}
-          LINODE_STORAGE_ENDPOINT_URL: ${{ secrets.LINODE_STORAGE_ENDPOINT_URL }}
-          LINODE_STORAGE_BUCKET_NAME: ${{ secrets.LINODE_STORAGE_BUCKET_NAME }}
-          LINODE_STORAGE_CUSTOM_DOMAIN: ${{ secrets.LINODE_STORAGE_CUSTOM_DOMAIN }}
+
+      - name: Write media content to file
         run: |
           # Save content to temporary file using printf to preserve special characters
           printf '%s' "${{ steps.extract-data.outputs.content }}" > /tmp/media_content.txt
-          
-          # Run upload script using uv (transforms content in place)
-          # The script modifies /tmp/media_content.txt directly
-          uv run python .github/scripts/upload_media.py /tmp/media_content.txt
-          
-          # No need to read and pass through GitHub Actions output
-          # The F# script will read directly from /tmp/media_content.txt
-          # to avoid issues with secret masking in multi-line content
-        
+
+      - name: Upload media to CDN
+        uses: ./.github/actions/upload-to-cdn
+        with:
+          content-file: /tmp/media_content.txt
+          access-key-id: ${{ secrets.LINODE_STORAGE_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.LINODE_STORAGE_SECRET_ACCESS_KEY }}
+          endpoint-url: ${{ secrets.LINODE_STORAGE_ENDPOINT_URL }}
+          bucket-name: ${{ secrets.LINODE_STORAGE_BUCKET_NAME }}
+          custom-domain: ${{ secrets.LINODE_STORAGE_CUSTOM_DOMAIN }}
+
       - name: Process issue with F# script
         id: process-issue
         env:
@@ -684,6 +668,210 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.payload.issue.number,
               body: `❌ **Error processing media request with F# script**\n\n${steps.process-issue.outputs.error}\n\nPlease check your issue format and try again. The issue will remain open for you to edit and resubmit.`
+            });
+  process-marketplace:
+    # Only run if issue has "marketplace" label AND issue author is @lqdev
+    if: contains(github.event.issue.labels.*.name, 'marketplace') && github.event.issue.user.login == 'lqdev'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          cache: false
+
+      - name: Restore dependencies
+        run: dotnet restore --force-evaluate
+
+      - name: Parse issue and extract form data
+        id: extract-data
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              // Extract form responses using regex patterns
+              function extractFormValue(body, label) {
+                // GitHub issue forms format: ### Label\n\nValue
+                const regex = new RegExp(`### ${label}\\s*\\n\\s*\\n([\\s\\S]*?)(?=\\n\\n###|\\n\\n---|$)`, 'i');
+                const match = body.match(regex);
+                const value = (match && match[1]) ? match[1].trim() : '';
+
+                // Remove common artifacts from GitHub issue forms
+                return value.replace(/^_No response_$/i, '').trim();
+              }
+
+              const issueBody = context.payload.issue.body;
+              const title = extractFormValue(issueBody, 'Title');
+              const description = extractFormValue(issueBody, 'Short Description');
+              const price = extractFormValue(issueBody, 'Price');
+              const currency = extractFormValue(issueBody, 'Currency \\(Optional\\)');
+              const priceNote = extractFormValue(issueBody, 'Price Note \\(Optional\\)');
+              const condition = extractFormValue(issueBody, 'Condition \\(Optional\\)');
+              const status = extractFormValue(issueBody, 'Status');
+              const category = extractFormValue(issueBody, 'Category \\(Optional\\)');
+              const location = extractFormValue(issueBody, 'Location \\(Optional\\)');
+              const content = extractFormValue(issueBody, 'Content and Attachments');
+              const customSlug = extractFormValue(issueBody, 'Slug \\(Optional\\)');
+              const tagsInput = extractFormValue(issueBody, 'Tags \\(Optional\\)');
+
+              console.log('Extracted title:', title);
+              console.log('Extracted price:', price);
+              console.log('Extracted status:', status);
+              console.log('Extracted condition:', condition);
+              console.log('Extracted custom slug:', customSlug);
+
+              core.setOutput('title', title);
+              core.setOutput('description', description);
+              core.setOutput('price', price);
+              core.setOutput('currency', currency || '');
+              core.setOutput('price_note', priceNote || '');
+              core.setOutput('condition', condition || '');
+              core.setOutput('status', status || 'available');
+              core.setOutput('category', category || '');
+              core.setOutput('location', location || '');
+              core.setOutput('content', content);
+              core.setOutput('slug', customSlug || '');
+              core.setOutput('tags', tagsInput || '');
+
+            } catch (error) {
+              console.error('Error extracting issue data:', error);
+              throw error;
+            }
+
+      - name: Build F# project
+        run: dotnet build --no-restore
+
+      - name: Write listing content to file
+        run: |
+          # Save content to temporary file using printf to preserve special characters
+          printf '%s' "${{ steps.extract-data.outputs.content }}" > /tmp/marketplace_content.txt
+
+      - name: Upload media to CDN
+        uses: ./.github/actions/upload-to-cdn
+        with:
+          content-file: /tmp/marketplace_content.txt
+          access-key-id: ${{ secrets.LINODE_STORAGE_ACCESS_KEY_ID }}
+          secret-access-key: ${{ secrets.LINODE_STORAGE_SECRET_ACCESS_KEY }}
+          endpoint-url: ${{ secrets.LINODE_STORAGE_ENDPOINT_URL }}
+          bucket-name: ${{ secrets.LINODE_STORAGE_BUCKET_NAME }}
+          custom-domain: ${{ secrets.LINODE_STORAGE_CUSTOM_DOMAIN }}
+
+      - name: Process issue with F# script
+        id: process-issue
+        env:
+          ISSUE_TITLE: ${{ steps.extract-data.outputs.title }}
+          ISSUE_DESCRIPTION: ${{ steps.extract-data.outputs.description }}
+          ISSUE_PRICE: ${{ steps.extract-data.outputs.price }}
+          ISSUE_CURRENCY: ${{ steps.extract-data.outputs.currency }}
+          ISSUE_PRICE_NOTE: ${{ steps.extract-data.outputs.price_note }}
+          ISSUE_CONDITION: ${{ steps.extract-data.outputs.condition }}
+          ISSUE_STATUS: ${{ steps.extract-data.outputs.status }}
+          ISSUE_CATEGORY: ${{ steps.extract-data.outputs.category }}
+          ISSUE_LOCATION: ${{ steps.extract-data.outputs.location }}
+          ISSUE_SLUG: ${{ steps.extract-data.outputs.slug }}
+          ISSUE_TAGS: ${{ steps.extract-data.outputs.tags }}
+        run: |
+          # Create temporary files for safe parameter passing
+          # Content is already in /tmp/marketplace_content.txt from the upload step
+          echo "$ISSUE_TITLE" > /tmp/mp_title.txt
+          echo "$ISSUE_DESCRIPTION" > /tmp/mp_description.txt
+          echo "$ISSUE_PRICE" > /tmp/mp_price.txt
+          echo "$ISSUE_CURRENCY" > /tmp/mp_currency.txt
+          echo "$ISSUE_PRICE_NOTE" > /tmp/mp_price_note.txt
+          echo "$ISSUE_CONDITION" > /tmp/mp_condition.txt
+          echo "$ISSUE_STATUS" > /tmp/mp_status.txt
+          echo "$ISSUE_CATEGORY" > /tmp/mp_category.txt
+          echo "$ISSUE_LOCATION" > /tmp/mp_location.txt
+          echo "$ISSUE_SLUG" > /tmp/mp_slug.txt
+          echo "$ISSUE_TAGS" > /tmp/mp_tags.txt
+
+          # Run F# script with file-based parameters
+          # Read content directly from /tmp/marketplace_content.txt to avoid secret masking issues
+          OUTPUT=$(dotnet fsi Scripts/process-marketplace-issue.fsx -- "$(cat /tmp/mp_title.txt)" "$(cat /tmp/mp_description.txt)" "$(cat /tmp/mp_price.txt)" "$(cat /tmp/mp_currency.txt)" "$(cat /tmp/mp_price_note.txt)" "$(cat /tmp/mp_condition.txt)" "$(cat /tmp/mp_status.txt)" "$(cat /tmp/mp_category.txt)" "$(cat /tmp/mp_location.txt)" "$(cat /tmp/marketplace_content.txt)" "$(cat /tmp/mp_slug.txt)" "$(cat /tmp/mp_tags.txt)" 2>&1)
+          EXIT_CODE=$?
+
+          # Clean up temporary files (keep marketplace_content.txt for debugging if needed)
+          rm -f /tmp/mp_title.txt /tmp/mp_description.txt /tmp/mp_price.txt /tmp/mp_currency.txt /tmp/mp_price_note.txt /tmp/mp_condition.txt /tmp/mp_status.txt /tmp/mp_category.txt /tmp/mp_location.txt /tmp/mp_slug.txt /tmp/mp_tags.txt
+
+          echo "Script output:"
+          echo "$OUTPUT"
+
+          if [ $EXIT_CODE -eq 0 ]; then
+            echo "success=true" >> $GITHUB_OUTPUT
+            # Extract filename from output
+            FILENAME=$(echo "$OUTPUT" | grep "📁 File:" | sed 's/.*📁 File: _src\/marketplace\///' | sed 's/ .*//')
+            echo "filename=$FILENAME" >> $GITHUB_OUTPUT
+          else
+            echo "success=false" >> $GITHUB_OUTPUT
+            echo "error=$OUTPUT" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+
+      - name: Create Pull Request
+        if: steps.process-issue.outputs.success == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Add marketplace listing: ${{ steps.extract-data.outputs.title }}"
+          title: "Add marketplace listing: ${{ steps.extract-data.outputs.title }}"
+          body: |
+            ## New Marketplace Listing
+
+            **Title:** ${{ steps.extract-data.outputs.title }}
+            **Price:** ${{ steps.extract-data.outputs.currency }} ${{ steps.extract-data.outputs.price }}
+            **Status:** ${{ steps.extract-data.outputs.status }}
+            **Condition:** ${{ steps.extract-data.outputs.condition }}
+            **File:** `_src/marketplace/${{ steps.process-issue.outputs.filename }}`
+
+            ### Processing Details
+            - ✅ Title: ${{ steps.extract-data.outputs.title }}
+            - ✅ Photos uploaded to Linode S3 storage
+            - ✅ Content transformed to use permanent CDN URLs
+            - ✅ Media blocks created with proper metadata
+            - ✅ Status: ${{ steps.extract-data.outputs.status }}
+            - ✅ Custom Slug: ${{ steps.extract-data.outputs.slug }}
+            - ✅ Tags: ${{ steps.extract-data.outputs.tags }}
+
+            **Created via GitHub Issue Template #${{ github.event.issue.number }}**
+            **Processed by Python upload script + F# markdown generator**
+          branch: content/issue-${{ github.event.issue.number }}/marketplace/fsharp-processed
+          delete-branch: true
+
+      - name: Close issue on success
+        if: steps.process-issue.outputs.success == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              state: 'closed'
+            });
+
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: '🎉 Your marketplace listing has been processed successfully!\n\n**What happened:**\n- ✅ Photos downloaded from GitHub\n- ✅ Files uploaded to Linode S3 storage with permanent URLs\n- ✅ Markdown file created with proper :::media blocks\n- ✅ Pull request created for review\n\nYou can track the progress in the pull requests tab.'
+            });
+
+      - name: Handle processing errors
+        if: steps.process-issue.outputs.success == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: `❌ **Error processing marketplace request with F# script**\n\n${steps.process-issue.outputs.error}\n\nPlease check your issue format and try again. The issue will remain open for you to edit and resubmit.`
             });
   process-review:
     # Only run if issue has "review" label AND issue author is @lqdev

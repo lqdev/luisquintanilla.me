@@ -160,6 +160,7 @@ module UnifiedFeeds
         | Some ContentTypes.ContentType.Streams
         | Some ContentTypes.ContentType.AlbumCollection
         | Some ContentTypes.ContentType.PlaylistCollection
+        | Some ContentTypes.ContentType.Marketplace
         | None -> item.Content
 
     let private toIso8601Date (value: string) =
@@ -294,8 +295,8 @@ module UnifiedFeeds
             ContentType = None
         }
         
-        // Generate fire-hose feed (exclude AI Memex from public syndication)
-        let publicItems = allUnifiedItems |> List.filter (fun item -> item.ContentType <> ContentTypes.AiMemex)
+        // Generate fire-hose feed (exclude AI Memex and Marketplace from public syndication)
+        let publicItems = allUnifiedItems |> List.filter (fun item -> item.ContentType <> ContentTypes.AiMemex && item.ContentType <> ContentTypes.Marketplace)
         let fireHoseFeed = generateRssFeed (publicItems |> List.take (min 20 publicItems.Length)) fireHoseConfig
         let fireHoseDir = Path.Combine(outputDirectory, "feed")
         Directory.CreateDirectory(fireHoseDir) |> ignore
@@ -397,6 +398,13 @@ module UnifiedFeeds
                 OutputPath = "resources/ai-memex/feed.xml"
                 ContentType = Some ContentTypes.AiMemex
             })
+            (ContentTypes.Marketplace, {
+                Title = "Luis Quintanilla - Marketplace"
+                Link = "https://www.lqdev.me/marketplace"
+                Description = "Items for sale by Luis Quintanilla"
+                OutputPath = "marketplace/feed.xml"
+                ContentType = Some ContentTypes.Marketplace
+            })
         ]
         
         // Generate type-specific feeds
@@ -444,11 +452,11 @@ module UnifiedFeeds
 
     /// Generate RSS feeds for individual tags
     let buildTagFeeds (feedDataSets: (string * (UnifiedFeedItem list)) list) (outputDirectory: string) =
-        // Flatten all feed items (exclude AI Memex from tag syndication feeds)
+        // Flatten all feed items (exclude AI Memex and Marketplace from tag syndication feeds)
         let allUnifiedItems = 
             feedDataSets
             |> List.collect snd
-            |> List.filter (fun item -> item.ContentType <> ContentTypes.AiMemex)
+            |> List.filter (fun item -> item.ContentType <> ContentTypes.AiMemex && item.ContentType <> ContentTypes.Marketplace)
             |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
         
         // Extract all canonical tags (processTagName consolidates plurals, gerunds, etc.)
@@ -640,6 +648,19 @@ module UnifiedFeeds
                 // Phase 5D: Extract media data for media-primary content
                 let mediaData = MediaExtractor.extractPrimaryMedia content
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Media; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = mediaData; BodyHtml = lazy (MarkdownService.convertMdToCardHtml content) }
+            | None -> None)
+    
+    let convertMarketplaceToUnified (feedDataList: FeedData<MarketplaceListing> list) : UnifiedFeedItem list =
+        feedDataList |> List.choose (fun feedData ->
+            match feedData.RssXml with
+            | Some rssXml ->
+                let title = feedData.Content.Metadata.Title
+                let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
+                let content = feedData.Content.Content
+                let date = feedData.Content.Metadata.Date
+                let tags = if isNull feedData.Content.Metadata.Tags then [||] else feedData.Content.Metadata.Tags
+                let mediaData = MediaExtractor.extractPrimaryMedia content
+                Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Marketplace; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = None; MediaData = mediaData; BodyHtml = lazy (MarkdownService.convertMdToCardHtml content) }
             | None -> None)
     
     let convertAlbumCollectionsToUnified (feedDataList: FeedData<AlbumCollection> list) : UnifiedFeedItem list =

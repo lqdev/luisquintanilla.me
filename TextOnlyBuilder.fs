@@ -136,7 +136,7 @@ let buildTextOnlyContentTypePages (outputDir: string) (unifiedContent: UnifiedFe
     let contentTypes = [
         "posts"; "notes"; "responses"; "snippets"; 
         "wiki"; "presentations"; "reviews"; "bookmarks";
-        "media"; "ai-memex"; "album-collection"; "playlist-collection"
+        "media"; "ai-memex"; "album-collection"; "playlist-collection"; "marketplace"
     ]
     
     for contentType in contentTypes do

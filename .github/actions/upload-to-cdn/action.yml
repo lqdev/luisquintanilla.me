@@ -1,0 +1,55 @@
+name: "Upload media to CDN"
+description: >
+  Download attachments referenced in a content file, upload them to Linode S3
+  (the lqdev CDN), and rewrite the content file in place into :::media blocks
+  with permanent CDN URLs. Wraps .github/scripts/upload_media.py so the upload
+  mechanism can be shared across content types (media, marketplace, ...).
+
+inputs:
+  content-file:
+    description: "Path to the content file with attachment URLs; rewritten in place with CDN :::media blocks."
+    required: true
+  access-key-id:
+    description: "Linode S3 access key id."
+    required: true
+  secret-access-key:
+    description: "Linode S3 secret access key."
+    required: true
+  endpoint-url:
+    description: "Linode S3 endpoint URL."
+    required: true
+  bucket-name:
+    description: "Linode S3 bucket name."
+    required: true
+  custom-domain:
+    description: "CDN custom domain used for public URLs."
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install uv (Python package manager)
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+
+    - name: Setup Python environment
+      shell: bash
+      run: uv venv
+
+    - name: Install Python dependencies
+      shell: bash
+      run: uv pip install boto3==1.34.0 botocore==1.34.0 requests
+
+    - name: Upload media to Linode S3
+      shell: bash
+      env:
+        LINODE_STORAGE_ACCESS_KEY_ID: ${{ inputs.access-key-id }}
+        LINODE_STORAGE_SECRET_ACCESS_KEY: ${{ inputs.secret-access-key }}
+        LINODE_STORAGE_ENDPOINT_URL: ${{ inputs.endpoint-url }}
+        LINODE_STORAGE_BUCKET_NAME: ${{ inputs.bucket-name }}
+        LINODE_STORAGE_CUSTOM_DOMAIN: ${{ inputs.custom-domain }}
+      run: |
+        # Run the upload script (transforms the content file in place,
+        # rewriting attachment URLs into :::media blocks with CDN URLs).
+        uv run python .github/scripts/upload_media.py "${{ inputs.content-file }}"
