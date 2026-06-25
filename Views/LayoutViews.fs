@@ -105,7 +105,7 @@ let mediaPageView (title:string) (content:string) (date:string) (fileName:string
 
 let marketplaceListingView (listing: MarketplaceListing) (contentHtml: string) =
     let m = listing.Metadata
-    let slug = Path.GetFileNameWithoutExtension(listing.FileName)
+    let slug = listing.FileName
     let permalink = $"/marketplace/{slug}/"
     let status = MarketplaceProcessor.normalizeStatus m.Status
     let priceText = MarketplaceProcessor.formatPrice m.Price m.Currency

@@ -11,22 +11,6 @@ module MarketplaceProcessor
     open System.Text.Json
     open System.Text.Json.Nodes
 
-    /// Helper to extract markdown content without frontmatter
-    let private extractContentWithoutFrontMatter (rawMarkdown: string) : string =
-        let lines = rawMarkdown.Split([|'\n'|], StringSplitOptions.None)
-        if lines.Length > 0 && lines.[0].Trim() = "---" then
-            // Find the closing ---
-            let closingIndex =
-                lines
-                |> Array.skip 1
-                |> Array.findIndex (fun line -> line.Trim() = "---")
-            // Return everything after the second ---
-            lines
-            |> Array.skip (closingIndex + 2)
-            |> String.concat "\n"
-        else
-            rawMarkdown
-
     /// Currency symbol for common currencies, otherwise "CODE ".
     let currencySymbol (currency: string) : string =
         let code = if String.IsNullOrWhiteSpace currency then "USD" else currency.Trim().ToUpperInvariant()
@@ -138,7 +122,7 @@ module MarketplaceProcessor
                 match parsedDoc.Metadata with
                 | Some metadata ->
                     let fileName = Path.GetFileNameWithoutExtension(filePath)
-                    let body = extractContentWithoutFrontMatter parsedDoc.RawMarkdown
+                    let body = stripFrontMatter parsedDoc.RawMarkdown
                     Ok {
                         FileName = fileName
                         Metadata = metadata

@@ -160,7 +160,7 @@ condition |> Option.iter (fun c -> sb.AppendLine(sprintf "condition: \"%s\"" c) 
 category |> Option.iter (fun c -> sb.AppendLine(sprintf "category: \"%s\"" (yamlEscape c)) |> ignore)
 location |> Option.iter (fun l -> sb.AppendLine(sprintf "location: \"%s\"" (yamlEscape l)) |> ignore)
 if tags.Length > 0 then
-    let tagsString = tags |> Array.map (sprintf "\"%s\"") |> String.concat ", "
+    let tagsString = tags |> Array.map (fun t -> sprintf "\"%s\"" (yamlEscape t)) |> String.concat ", "
     sb.AppendLine(sprintf "tags: [%s]" tagsString) |> ignore
 sb.Append("---") |> ignore
 let frontmatter = sb.ToString()
