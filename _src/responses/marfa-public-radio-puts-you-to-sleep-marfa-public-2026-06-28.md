@@ -1,5 +1,5 @@
 ---
-title: "Marfa Public Radio Puts You to Sleep | Marfa Public Radio, radio for a wide range."
+title: "Marfa Public Radio Puts You to Sleep"
 targeturl: https://www.marfapublicradio.org/podcast/marfa-public-radio-puts-you-to-sleep
 response_type: star
 dt_published: "2026-06-28 12:07 -05:00"
