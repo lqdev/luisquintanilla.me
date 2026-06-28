@@ -1,5 +1,5 @@
 ---
-title: "The Case for Physical Media Ownership | Cem Dervis"
+title: "The Case for Physical Media Ownership"
 targeturl: https://dervis.de/physical/
 response_type: reshare
 dt_published: "2026-06-28 12:10 -05:00"
