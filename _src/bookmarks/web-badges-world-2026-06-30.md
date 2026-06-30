@@ -1,5 +1,5 @@
 ---
-title: "web-badges-world"
+title: "Web Badges World"
 targeturl: https://web.badges.world/
 response_type: bookmark
 dt_published: "2026-06-30 11:25 -05:00"
