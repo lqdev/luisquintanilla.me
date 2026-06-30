@@ -1,5 +1,5 @@
 ---
-title: "Age verification for social media – the beginning of the end for a free internet? | Mullvad VPN"
+title: "Age verification for social media – the beginning of the end for a free internet?"
 targeturl: https://mullvad.net/en/blog/age-verification-for-social-media-the-beginning-of-the-end-for-a-free-internet
 response_type: reshare
 dt_published: "2026-06-30 15:38 -05:00"
