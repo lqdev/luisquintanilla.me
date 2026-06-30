@@ -1,5 +1,5 @@
 ---
-title: "Find Nearby ALPRs | DeFlock"
+title: "DeFlock - Find Nearby ALPRs"
 targeturl: https://deflock.org/
 response_type: reshare
 dt_published: "2026-06-30 14:08 -05:00"
