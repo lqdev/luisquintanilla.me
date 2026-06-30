@@ -1,5 +1,5 @@
 ---
-title: "Introducing MAI-Code-1-Flash  | Microsoft AI"
+title: "Introducing MAI-Code-1-Flash"
 targeturl: https://microsoft.ai/news/introducingmai-code-1-flash/
 response_type: reshare
 dt_published: "2026-06-30 15:38 -05:00"
