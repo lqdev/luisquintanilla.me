@@ -1,5 +1,5 @@
 ---
-title: "Emacs Appearances in Pop Culture | Ian Y.E. Pan"
+title: "Emacs Appearances in Pop Culture"
 targeturl: https://ianyepan.github.io/posts/emacs-in-pop-culture/
 response_type: star
 dt_published: "2026-06-30 22:19 -05:00"
