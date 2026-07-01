@@ -1,5 +1,5 @@
 ---
-title: "MacBook Neo is So Popular That Apple Reportedly Doubled Production - MacRumors"
+title: "MacBook Neo is So Popular That Apple Reportedly Doubled Production"
 targeturl: https://www.macrumors.com/2026/06/03/macbook-neo-production-doubled-says-kuo/
 response_type: reshare
 dt_published: "2026-06-30 21:14 -05:00"
