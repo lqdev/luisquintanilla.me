@@ -1,5 +1,5 @@
 ---
-title: "Haven Blog: Retro-Tech Parenting"
+title: "Retro-Tech Parenting"
 targeturl: https://havenweb.org/2026/05/28/retro-tech.html
 response_type: star
 dt_published: "2026-06-30 21:40 -05:00"
