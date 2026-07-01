@@ -1,5 +1,5 @@
 ---
-title: "Home - GeoLibre"
+title: "GeoLibre"
 targeturl: https://geolibre.app/
 response_type: bookmark
 dt_published: "2026-06-30 22:39 -05:00"
