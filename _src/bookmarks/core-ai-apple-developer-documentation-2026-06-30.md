@@ -1,5 +1,5 @@
 ---
-title: "Core AI | Apple Developer Documentation"
+title: "Core AI - Apple Developer Documentation"
 targeturl: https://developer.apple.com/documentation/coreai/
 response_type: bookmark
 dt_published: "2026-06-30 22:14 -05:00"
