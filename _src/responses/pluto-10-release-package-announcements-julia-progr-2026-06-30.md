@@ -1,5 +1,5 @@
 ---
-title: "Pluto 1.0 release! - Package Announcements - Julia Programming Language"
+title: "Pluto 1.0 release!"
 targeturl: https://discourse.julialang.org/t/pluto-1-0-release/137296
 response_type: reshare
 dt_published: "2026-06-30 15:42 -05:00"
