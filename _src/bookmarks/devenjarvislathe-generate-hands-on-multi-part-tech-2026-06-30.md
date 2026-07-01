@@ -1,5 +1,5 @@
 ---
-title: "devenjarvis/lathe: Generate hands-on, multi-part technical tutorials on demand, with LLM skills tuned to make content approachable. Then you work through them yourself, by hand ✋"
+title: "devenjarvis/lathe: Generate hands-on, multi-part technical tutorials on demand with LLM skills"
 targeturl: https://github.com/devenjarvis/lathe
 response_type: bookmark
 dt_published: "2026-06-30 21:59 -05:00"
