@@ -4,7 +4,9 @@
 Proposed
 
 Tracked in [issue #2574](https://github.com/lqdev/luisquintanilla.me/issues/2574) (shovel-ready spec,
-not yet implemented).
+not yet implemented). Amended 2026-07-02 after a live-protocol validation round: deterministic TID
+derivation adopted as the primary record-key design; Track B constraints (truncation, immutability,
+forward-only backfill) and the app-password → OAuth trajectory added.
 
 ## Context
 
@@ -57,16 +59,30 @@ type (mirroring `convertToActivity`) → static JSON generation during the norma
 standalone `dotnet fsi` sync script (mirroring `Scripts/send-webmentions.fsx`) invoked from GitHub
 Actions, feature-flagged for safe rollout.
 
-**Content-hash extension field instead of a computed record key.** Unlike ActivityPub — where
-`generateActivityId` freely mints any URI as an Activity ID from an MD5 content hash — AT Protocol's
-`site.standard.document`, `site.standard.publication`, and `app.bsky.feed.post` Lexicons all mandate
-`"key": "tid"` (verified directly against the live Lexicon schema records and the official
-`app.bsky.feed.post` Lexicon JSON). A Timestamp Identifier can't be precomputed client-side the way a
-content hash can, so the AT-URI for a given piece of content is only known *after* the PDS creates the
-record. Since Standard.site Lexicons are explicitly documented as extensible, the same stable,
-content-addressed idempotency check the ActivityPub implementation already relies on is preserved by
-embedding the hash as an additional `sourceHash` field on the record, rather than as the record key
-itself.
+**Deterministic TIDs derived from stable metadata, with a content-hash extension field for change
+detection.** Unlike ActivityPub — where `generateActivityId` freely mints any URI as an Activity ID
+from an MD5 content hash — AT Protocol's `site.standard.document`, `site.standard.publication`, and
+`app.bsky.feed.post` Lexicons all mandate `"key": "tid"` (verified directly against the live Lexicon
+schema records and the official `app.bsky.feed.post` Lexicon JSON). So the record key cannot be a
+content hash. It can, however, still be deterministic: a TID is just a 64-bit integer (53 bits of
+microseconds since the epoch + a 10-bit clock identifier) that is normally clock-derived but is
+client-generatable, so deriving it from each item's original `published_date` plus a slug-hash
+(sub-minute offset + clock ID) yields a spec-valid, rebuild-stable record key. That makes AT-URIs
+precomputable at build time — verification `<link>` tags render in the same build, and
+`putRecord` becomes a stateless idempotent upsert. A `sourceHash` extension field (Standard.site
+Lexicons are explicitly documented as extensible; Bridgy Fed sets extension fields on
+`app.bsky.feed.post` in production) carries the same MD5 content hash the ActivityPub implementation
+already uses, enabling cheap skip-if-unchanged checks against `listRecords` output. Fallback, should
+strict TID-monotonicity enforcement ever appear: omit the rkey, let the PDS mint it, and persist a
+`sourceHash → AT-URI` map with a one-build-cycle lag for verification tags.
+
+**Native-lexicon limits shape Track B's publishing semantics.** `app.bsky.feed.post` caps text at 300
+graphemes (224 of 292 existing notes exceed it), Bluesky posts are effectively immutable (updates
+change the CID and orphan engagement references), and feeds sort by `indexedAt` so bulk backfill would
+flood followers' timelines. Notes therefore publish POSSE-style — truncated excerpt plus an
+`app.bsky.embed.external` card linking the canonical note URL — as create-only records, forward-only
+from the feature's activation date. Long-form documents (Track A) carry none of these constraints and
+backfill fully.
 
 ## Consequences
 
@@ -85,13 +101,17 @@ itself.
   schema, matching how ActivityPub already handles this.
 
 **More difficult:**
-- The verification `<link rel="site.standard.document">` tag can't be computed in the same build pass
-  that creates the record (TIDs aren't known until after creation) — requires a persisted
-  hash-to-AT-URI map read back into the next build's ViewEngine rendering, a one-build-cycle lag for
-  brand-new posts. This is an inherent protocol constraint, not something ownership avoids.
-- No off-the-shelf tooling to lean on for edge cases (blob/image upload, rate limits, Lexicon schema
-  drift) that a maintained third-party CLI would otherwise absorb — this repo now owns tracking AT
-  Protocol/Lexicon changes directly.
-- Two independent sync/idempotency strategies are needed: `path`-based matching for Track A (Standard.site
-  documents have a natural `path` field) versus a small committed state file for Track B (native
-  `app.bsky.feed.post` has no equivalent field).
+- The deterministic-TID design rests on PDSes continuing to accept client-supplied, spec-valid TID
+  record keys (true today; vanity and imported rkeys exist in production). If strict monotonic-TID
+  enforcement ever lands, the documented fallback (server-minted keys + a persisted `sourceHash →
+  AT-URI` map, with a one-build-cycle lag for verification `<link>` tags) must be activated — more
+  state, same architecture.
+- No off-the-shelf tooling to lean on for edge cases (blob/image upload, rate limits — 5,000
+  write-points/hour per DID, Lexicon schema drift) that a maintained third-party CLI would otherwise
+  absorb — this repo now owns tracking AT Protocol/Lexicon changes directly.
+- App passwords are deprecated (though still functional) in favor of atproto OAuth; the sync script's
+  auth must eventually migrate to an OAuth confidential client, so authentication is isolated to a
+  single swappable function.
+- Track B's published form is lossy by protocol design: notes longer than 300 graphemes appear on
+  Bluesky as excerpts with a link-out card, edits after publication are not propagated, and
+  pre-activation notes never appear at all.

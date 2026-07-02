@@ -16,6 +16,8 @@ An ADR is a short document capturing an important architectural decision along w
 | [0004](0004-progressive-loading.md) | Progressive Loading for Large Content Sets | Accepted |
 | [0005](0005-desert-theme-design-system.md) | Desert Theme Design System | Accepted |
 | [0006](0006-generic-build-driver.md) | Generic Build Driver for Content-Type Page Generation | Accepted |
+| [0007](0007-content-type-roster-registry.md) | Content-Type Roster Registry for Unified-Feed Membership | Accepted |
+| [0008](0008-structured-render-product.md) | Structured Render Product for the Timeline | Accepted |
 | [0009](0009-at-protocol-integration.md) | AT Protocol Integration Architecture | Proposed |
 
 ## Creating a New ADR

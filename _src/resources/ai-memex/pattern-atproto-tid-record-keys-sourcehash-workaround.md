@@ -3,7 +3,7 @@ title: "Pattern: AT Protocol Record Keys Must Be TIDs — Use a sourceHash Exten
 description: "AT Protocol Lexicons mandate specific record-key types per collection; deterministic content-hash IDs (the ActivityPub trick) can't become the rkey itself, but can be embedded as an extension field."
 entry_type: pattern
 published_date: "2026-07-02 15:00 -05:00"
-last_updated_date: "2026-07-02 15:00 -05:00"
+last_updated_date: "2026-07-02 16:30 -05:00"
 tags: "atproto, bluesky, lexicon, activitypub, architecture, patterns"
 related_skill: ""
 source_project: "lqdev-me"
@@ -46,9 +46,27 @@ $json.value.defs.main.key   # -> "tid"
 Result: **`site.standard.document`, `site.standard.publication`, and `app.bsky.feed.post` all declare
 `"key": "tid"`.** A TID (Timestamp Identifier) is a specific base32-sortable, clock-derived format —
 not an arbitrary string. Unlike ActivityPub (where any dereferenceable URI can be an object's `id`),
-these AT Protocol record types' identifiers are minted by the client/PDS at creation time and **cannot
-be precomputed** from content. The AT-URI for a given piece of content is only known *after* the record
-is created.
+the record key here cannot be a *content hash*.
+
+**Correction (2026-07-02, same-day validation round):** an earlier version of this entry claimed the
+identifier is "only known after the record is created." That's wrong in the strong form. TIDs are
+client-generatable — the spec's layout is just a 64-bit integer (top bit 0, 53 bits of microseconds
+since the UNIX epoch, 10-bit clock identifier, base32-sortable, 13 chars). Nothing requires the
+timestamp to come from a wall clock at creation time, so a TID **can be derived deterministically from
+stable metadata**:
+
+```fsharp
+// Deterministic, spec-valid, rebuild-stable TID:
+let deriveTid (publishedAt: DateTimeOffset) (slug: string) =
+    let micros  = unixMicros publishedAt + (stableHash slug % 60_000_000L) // spread within minute
+    let clockId = stableHash slug &&& 0x3FFL                                // 10 bits
+    encodeBase32Sortable ((micros <<< 10) ||| clockId)
+```
+
+This restores precomputable AT-URIs (same-build verification `<link>` tags, stateless `putRecord`
+upserts) — derive from the *original* publish date only, and assert rkey uniqueness at build time.
+What remains true: the key can never be content-addressed, so content-change detection still needs the
+extension-field approach below.
 
 An earlier AI-generated web search result had claimed a different (also incorrect) restriction — that
 App Passwords can't write custom Lexicon collections at all. Real-world evidence (two independent
@@ -102,10 +120,11 @@ identifier constraints directly**:
   collection (rkey = the lexicon's own NSID), or by reading the raw Lexicon JSON in the defining
   project's source repo (`"key": "tid" | "any" | "literal:<value>"` in the `record` definition's
   `defs.main`).
-- If the required key type doesn't support deterministic/precomputed values (`tid` does not; `any`
-  does), design around a **content-hash extension field for idempotency** instead of a
-  content-hash-as-identifier scheme, and accept that the real identifier/URI is only knowable after a
-  create/write call completes.
+- If the required key type is `tid`, remember TIDs are *client-generatable*: a deterministic TID
+  derived from stable metadata (original publish timestamp + a hash-derived clock ID) is spec-valid
+  and restores precomputable identifiers. What `tid` rules out is *content-addressed* keys — so pair
+  the deterministic key with a **content-hash extension field** for change detection, rather than a
+  content-hash-as-identifier scheme.
 - Don't trust an AI-generated web search summary for protocol-level permission/constraint claims when a
   direct query against the live system (or a working production example) is available — it's fast and
   authoritative.
