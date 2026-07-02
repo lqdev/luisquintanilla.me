@@ -50,6 +50,7 @@ These are deliberately **deferred** until the listening/privacy primitives (γ a
 ### Tools & automation
 - **`/tools` evolution** — v1 is a curated directory of links (read-it-later extension, github-post PWA, rss extension, playlist-creator). Could grow into richer per-tool pages, install instructions, or hosted demos.
 - **Cross-posting / syndication** — WebSub support or POSSE automation building on the live ActivityPub layer.
+- **AT Protocol (ATmosphere) integration** — shovel-ready spec in [issue #2574](https://github.com/lqdev/luisquintanilla.me/issues/2574) and [ADR-0009](../docs/adr/0009-at-protocol-integration.md): hand-built (no third-party CLI) Standard.site documents for Posts + native `app.bsky.feed.post` for Notes, reusing the existing `lqdev.me` Bluesky identity, zero self-hosted PDS/relay/AppView.
 - **Build performance** — profile build/feed-generation if times regress.
 
 ### Platform (discuss before acting)
