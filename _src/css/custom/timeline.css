@@ -342,6 +342,24 @@ details.avatar-flip .avatar-flip-image:hover {
   position: static; /* Don't contain the badge, let it position relative to card */
 }
 
+/* Inline item-type pill for individual review pages and the /reviews/ landing page.
+   Mirrors the timeline .content-type-badge look but flows inline (position:static)
+   with a right margin so it never bunches against the date/rating. */
+.review-type-badge {
+  display: inline-block;
+  background-color: #CD853F; /* Barrel Cactus — matches timeline reviews badge */
+  color: var(--button-text);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 50px; /* pill */
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: var(--spacing-sm);
+  vertical-align: middle;
+  box-shadow: var(--shadow-sm);
+}
+
 /* Content Type Badge Colors - inherit positioning from components.css */
 
 .content-type-badge[data-type="posts"] {

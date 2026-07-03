@@ -32,6 +32,7 @@ type ProgressiveContentItem =
       url: string
       content: string
       rsvpStatus: string
+      reviewItemType: string
       tags: string[] }
 
 /// Extract item type from review content for badge display
@@ -314,6 +315,10 @@ let timelineHomeViewStratified (initialItems: UnifiedFeeds.UnifiedFeedItem array
                                   url = properPermalink
                                   content = item.BodyHtml.Value
                                   rsvpStatus = (match item.RsvpStatus with Some s -> s | None -> "")
+                                  reviewItemType =
+                                      (if item.ContentType = "reviews" then
+                                           extractReviewItemType item.Content |> Option.defaultValue ""
+                                       else "")
                                   tags = item.Tags })
                             |> List.toArray
                             |> JsonSerializer.Serialize

@@ -395,29 +395,6 @@ const TimelineProgressiveLoader = {
         return html;
     },
     
-    // Extract review item type from review content HTML (JavaScript version of F# extractReviewItemType)
-    extractReviewItemType(content) {
-        try {
-            if (content && content.includes('item-type-badge')) {
-                const startTag = 'item-type-badge badge bg-secondary">';
-                const endTag = '</span>';
-                const startIndex = content.indexOf(startTag);
-                if (startIndex >= 0) {
-                    const contentStart = startIndex + startTag.length;
-                    const endIndex = content.indexOf(endTag, contentStart);
-                    if (endIndex > contentStart) {
-                        const itemType = content.substring(contentStart, endIndex).trim();
-                        // Convert from uppercase back to proper case
-                        return itemType.charAt(0).toUpperCase() + itemType.slice(1).toLowerCase();
-                    }
-                }
-            }
-            return null;
-        } catch (ex) {
-            return null;
-        }
-    },
-
     generateContentCard(item) {
         const date = new Date(item.date);
         const formattedDate = date.toLocaleDateString('en-US', { 
@@ -428,9 +405,8 @@ const TimelineProgressiveLoader = {
         
         const contentTypeBadge = (() => {
             if (item.contentType === 'reviews') {
-                // For reviews, try to extract the specific item type (Book, Movie, etc.)
-                const itemType = this.extractReviewItemType(item.content);
-                return itemType || 'Review';  // Fallback to generic "Review"
+                // Structured field emitted server-side (see ProgressiveContentItem)
+                return item.reviewItemType || 'Review';
             }
 
             if (item.contentType === 'rsvp') {
