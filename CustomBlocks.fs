@@ -55,7 +55,7 @@ type BaseReviewData = {
     
     // Type-specific metadata (movie director/year/genre, music artist/label, etc.)
     [<YamlDotNet.Serialization.YamlMember(Alias="additionalFields")>]
-    additional_fields: System.Collections.Generic.Dictionary<string, string> option
+    additional_fields: System.Collections.Generic.Dictionary<string, string>
 }
 with
     member this.GetScale() = 
@@ -65,10 +65,12 @@ with
     member this.GetImageUrl() =
         this.image_url |> Option.defaultValue ""
     member this.GetAdditionalFields() =
-        match this.additional_fields with
-        | Some dict when not (isNull dict) ->
-            dict |> Seq.map (fun kvp -> kvp.Key, kvp.Value) |> Map.ofSeq
-        | _ -> Map.empty
+        if isNull this.additional_fields then
+            Map.empty
+        else
+            this.additional_fields
+            |> Seq.map (fun kvp -> kvp.Key, kvp.Value)
+            |> Map.ofSeq
 
 // Book-specific review data
 [<CLIMutable>]
@@ -251,6 +253,23 @@ and RsvpBlock(parser: BlockParser) =
 
 // Block parsers implementing Markdig parser patterns
 
+/// Reconstruct the current line's text INCLUDING its leading indentation.
+/// Markdig advances Line.Start past indentation it consumes, so slice.Start points
+/// *after* the indent, which flattens nested YAML maps like additionalFields.
+/// CurrentLineStartPosition is the line's true start offset in the underlying buffer
+/// (before indent stripping), so we can recover the original source indentation.
+let captureOriginalLine (processor: BlockProcessor) : string =
+    let slice = processor.Line
+    if not (isNull slice.Text) then
+        let lineStart = processor.CurrentLineStartPosition
+        let lineEnd = slice.End
+        if lineEnd >= lineStart then
+            slice.Text.Substring(lineStart, lineEnd - lineStart + 1)
+        else
+            ""
+    else
+        slice.ToString()
+
 /// Base parser class for custom block parsing
 type CustomBlockParser(blockType: string, createBlock: BlockParser -> ContainerBlock) =
     inherit BlockParser()
@@ -282,13 +301,7 @@ type CustomBlockParser(blockType: string, createBlock: BlockParser -> ContainerB
             BlockState.BreakDiscard
         else
             // Continue collecting content - preserve original indentation
-            let originalLine = 
-                // Try to preserve original indentation by accessing the full slice
-                let slice = processor.Line
-                if slice.Text <> null then
-                    slice.Text.Substring(slice.Start, slice.Length)
-                else
-                    slice.ToString()
+            let originalLine = captureOriginalLine processor
             match block with
             | :? MediaBlock as mediaBlock ->
                 mediaBlock.RawContent <- mediaBlock.RawContent + originalLine + "\n"
@@ -910,12 +923,7 @@ type ResumeBlockParser<'T when 'T :> ContainerBlock and 'T :> ICustomBlock>(bloc
             elif block'.RawContent <> "" then
                 let currentContent = block'.RawContent
                 // Preserve original indentation by accessing the full slice
-                let originalLineText = 
-                    let slice = processor.Line
-                    if slice.Text <> null then
-                        slice.Text.Substring(slice.Start, slice.Length)
-                    else
-                        slice.ToString()
+                let originalLineText = captureOriginalLine processor
                 let newContent = if currentContent = " " then originalLineText else currentContent + "\n" + originalLineText
                 setContent block' newContent
                 BlockState.Continue
