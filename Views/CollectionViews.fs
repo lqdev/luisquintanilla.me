@@ -8,7 +8,7 @@ open ContentViews
 open ComponentViews
 
 let recentPostsView (posts: Post array) =
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         for post in posts do
             let date =
                 DateTime
@@ -30,7 +30,7 @@ let recentPostsView (posts: Post array) =
     ]
 
 let feedView (posts: Post array) =
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         h2[] [Text "Posts"]
         p [] [Text "Long-form articles and blog posts"]
         ul [] [
@@ -44,7 +44,7 @@ let feedView (posts: Post array) =
     ]
 
 let notesView (posts: Post array) =
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         h2[] [Text "Notes"]
         p [] [Text "Personal notes and short-form thoughts"]
         ul [] [
@@ -71,7 +71,7 @@ let private responseSubtypeLabel (r: Response) =
     | _ -> "Response"
 
 let responseView (posts: Response array) =
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         h2[] [Text "Responses"]
         p [] [Text "Replies, bookmarks, and reactions to other content"]
         ul [] [
@@ -87,7 +87,7 @@ let responseView (posts: Response array) =
     ]    
 
 let bookmarkView (bookmarks: Bookmark array) =
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         h2[] [Text "Bookmarks"]
         p [] [Text "Links to interesting articles, tools, and resources"]
         ul [] [
@@ -102,7 +102,7 @@ let bookmarkView (bookmarks: Bookmark array) =
 
 // View for bookmark responses (Response objects with bookmark type)
 let bookmarkResponseView (posts: Response array) =
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         h2[] [Text "Bookmarks"]
         p [] [Text "Links to interesting articles, tools, and resources"]
         ul [] [
@@ -118,7 +118,7 @@ let bookmarkResponseView (posts: Response array) =
 // View for RSVP responses (Response objects with rsvp type) — a temporal facet of
 // responses, mirroring the bookmarks landing page. Detail pages stay at /responses/{file}/.
 let rsvpView (posts: Response array) =
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         h2[] [Text "RSVPs"]
         p [] [Text "Events I've responded to — yes, no, maybe, or interested"]
         ul [] [
@@ -134,19 +134,19 @@ let rsvpView (posts: Response array) =
     ]
 
 let libraryView (books:Book array) = 
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         for book in books do
             bookPostView book
     ]
 
 let reviewsView (reviews: Review array) =
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         for review in reviews do
             reviewPostView review
     ]
 
 let snippetsView (snippets: Snippet array) = 
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         h2[] [Text "Snippets"]
         p [] [Text "Code snippets and scripts"]
         ul [] [
@@ -161,7 +161,7 @@ let snippetsView (snippets: Snippet array) =
     ]
 
 let wikisView (wikis: Wiki array) = 
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         h2[] [Text "Wiki"]
         p [] [Text "Personal knowledge base and notes"]
         ul [] [
@@ -185,7 +185,7 @@ let aiMemexView (entries: AiMemex array) (collectionJsonLd: string) =
         | "blog-post" -> "bi bi-pen"
         | _ -> "bi bi-robot"
     
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         h2 [] [ Text "AI Memex" ]
         p [] [ Text "Project reports, research, patterns, and reflections from Copilot — an AI coding assistant." ]
         div [ _class "ai-memex-filter" ] [
@@ -222,7 +222,7 @@ let aiMemexView (entries: AiMemex array) (collectionJsonLd: string) =
     ]
 
 let aiMemexGraphView (entryCount: int) =
-    div [ _class "d-grip gap-3 ai-memex-graph-page" ] [
+    div [ _class "d-grid gap-3 ai-memex-graph-page" ] [
         nav [ attr "aria-label" "breadcrumb" ] [
             a [ _href "/resources/ai-memex/" ] [ Text "← AI Memex" ]
         ]
@@ -260,7 +260,7 @@ let aiMemexGraphView (entryCount: int) =
     ]
 
 let presentationsView (presentations: Presentation array) = 
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         h2[] [Text "Presentations"]
         p [] [Text "List of presentations and associated resources"]
         ul [] [
@@ -272,7 +272,7 @@ let presentationsView (presentations: Presentation array) =
     ]
 
 let readLaterView (links: ReadLaterLink array) = 
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         h2[] [Text "Read Later"]
         p [] [Text "Links saved for later reading, displayed chronologically"]
         ul [] [
@@ -287,7 +287,7 @@ let readLaterView (links: ReadLaterLink array) =
     ]
 
 let liveStreamsView (livestreams: Livestream array) = 
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         h2[] [Text "Live Stream Recordings"]
         p [] [Text "List of live stream recordings and associated resources"]
         ul [] [
@@ -299,7 +299,7 @@ let liveStreamsView (livestreams: Livestream array) =
     ]
 
 let albumsPageView (albums:Album array) = 
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         h2[] [Text "Media"]
         p [] [Text "Photo albums and media collections"]
         ul [] [
@@ -378,7 +378,7 @@ let albumPageView (images:AlbumImage array) =
 
 // Album Collections listing page
 let albumCollectionsPageView (albumCollections: AlbumCollection array) = 
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         h2[] [Text "Albums"]
         p [] [Text "Curated photo and media collections from events, trips, and themes"]
         ul [] [
@@ -397,7 +397,7 @@ let albumCollectionsPageView (albumCollections: AlbumCollection array) =
 
 // Playlist Collections page (collection index)
 let playlistCollectionsPageView (playlistCollections: PlaylistCollection array) = 
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         h2[] [Text "Playlists"]
         p [] [Text "Monthly music discoveries and favorites. Crate Finds features music I've discovered for the first time or listened to consistently throughout the month - like digging through records at your local record store. Each playlist includes YouTube and Spotify links for maximum accessibility."]
         ul [] [
@@ -800,7 +800,7 @@ let unifiedFeedView (items: UnifiedFeeds.UnifiedFeedItem array) =
             ]
         ]
     
-    div [ _class "d-grip gap-3" ] [
+    div [ _class "d-grid gap-3" ] [
         for item in items do
             renderUnifiedCard item
     ]

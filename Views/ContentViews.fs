@@ -64,7 +64,8 @@ let reviewPostView (review: Review) =
         | Some rm when rm.Rating > 0.0 -> (rm.Rating, rm.Scale)
         | _ when review.Metadata.Rating > 0.0 -> (review.Metadata.Rating, 5.0)
         | _ -> (0.0, 5.0)
-    let displayRating = $"Rating: {ratingValue:F1}/{ratingScaleValue:F1}"
+
+    let typeLabel = review.ItemType.Substring(0, 1).ToUpper() + review.ItemType.Substring(1)
 
     // Type-specific subtitle (author for books, director for movies, etc.)
     let subtitle =
@@ -80,24 +81,21 @@ let reviewPostView (review: Review) =
             if String.IsNullOrWhiteSpace(artist) then None else Some $"Artist: {artist}"
         | _ -> None
 
-    div [_class "card mb-4 mx-auto"] [
-        div [_class "row"] [
-            div [_class "col-md-4"] [
-                img [_src imageUrl; _class "img-fluid"; _alt review.Metadata.Title]
+    div [ _class "review-card h-review" ] [
+        div [ _class "review-card-media" ] [
+            img [ _src imageUrl; _class "review-card-cover"; _alt review.Metadata.Title; attr "loading" "lazy" ]
+        ]
+        div [ _class "review-card-body" ] [
+            a [ _href $"/reviews/{review.FileName}"; _class "review-card-title-link" ] [
+                h3 [ _class "review-card-title p-name" ] [ Text review.Metadata.Title ]
             ]
-            div [_class "col-md-8"] [
-                div [_class "card-body"] [
-                    a [_href $"/reviews/{review.FileName}"] [
-                        h5 [_class "card-title"] [Text review.Metadata.Title]
-                    ]
-                    match subtitle with
-                    | Some text -> p [_class "card-text"] [Text text]
-                    | None -> ()
-                    p [_class "card-text"] [
-                        span [_class "badge bg-secondary me-2"] [Text (review.ItemType.Substring(0, 1).ToUpper() + review.ItemType.Substring(1))]
-                        Text displayRating
-                    ]
-                ]
+            match subtitle with
+            | Some text -> p [ _class "review-card-subtitle" ] [ Text text ]
+            | None -> ()
+            div [ _class "review-card-meta" ] [
+                span [ _class "review-type-badge"; attr "data-type" review.ItemType ] [ Text typeLabel ]
+                if ratingValue > 0.0 then
+                    rawText (SvgStarRating.render ratingValue ratingScaleValue)
             ]
         ]
     ]
