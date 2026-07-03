@@ -20,6 +20,7 @@
 @import url('./cursor.css');
 @import url('./ai-memex.css');
 @import url('./marketplace.css');
+@import url('./utilities.css');
 
 /* Global body setup */
 body {

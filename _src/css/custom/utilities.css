@@ -1,0 +1,100 @@
+/* Bootstrap-compat utility layer
+ * Bootstrap CSS was removed in the desert-theme migration, but these Bootstrap
+ * utility/component classes remain in F# markup. This shim styles them with desert
+ * tokens so markup renders correctly without a site-wide markup rewrite.
+ * Keep in sync with audit_css.js output. */
+
+/* Display */
+.d-grid { display: grid !important; }
+.d-block { display: block !important; }
+.d-inline { display: inline !important; }
+.d-inline-block { display: inline-block !important; }
+.d-none { display: none !important; }
+.hidden { display: none; } /* NO !important: JS reveals via inline style */
+
+/* Grid / flex gaps (Bootstrap scale) */
+.gap-1 { gap: var(--spacing-xs) !important; }
+.gap-2 { gap: var(--spacing-sm) !important; }
+.gap-3 { gap: var(--spacing-md) !important; }
+.gap-4 { gap: var(--spacing-lg) !important; }
+.gap-5 { gap: var(--spacing-xl) !important; }
+
+/* Margin-end / margin-start (LTR) */
+.me-1 { margin-right: var(--spacing-xs) !important; }
+.me-2 { margin-right: var(--spacing-sm) !important; }
+.me-3 { margin-right: var(--spacing-md) !important; }
+.me-4 { margin-right: var(--spacing-lg) !important; }
+.ms-1 { margin-left: var(--spacing-xs) !important; }
+.ms-2 { margin-left: var(--spacing-sm) !important; }
+.ms-3 { margin-left: var(--spacing-md) !important; }
+
+/* Vertical alignment */
+.align-self-center { align-self: center !important; }
+.align-top { vertical-align: top !important; }
+.align-middle { vertical-align: middle !important; }
+
+/* Float (legacy) */
+.float-right, .float-end { float: right !important; }
+.float-left, .float-start { float: left !important; }
+
+/* Text helpers */
+.text-muted { color: var(--text-color) !important; opacity: 0.7; }
+.text-primary { color: var(--accent-color) !important; }
+.text-warning { color: #DAA520 !important; }
+.text-decoration-none { text-decoration: none !important; }
+.text-center { text-align: center !important; }
+.small, small { font-size: 0.875em; }
+.lead { font-size: 1.15rem; font-weight: 400; line-height: 1.6; }
+.display-4 { font-size: 2.5rem; font-weight: 300; line-height: 1.2; }
+
+/* Images */
+.img-fluid { max-width: 100%; height: auto; }
+.img-thumbnail {
+  max-width: 100%; height: auto; padding: var(--spacing-xs);
+  background-color: var(--card-background); border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-sm);
+}
+.rounded-circle { border-radius: 50% !important; }
+
+/* Borders */
+.border { border: 1px solid var(--card-border) !important; }
+.border-top { border-top: 1px solid var(--card-border) !important; }
+
+/* Backgrounds */
+.bg-primary { background-color: var(--accent-color) !important; color: var(--button-text) !important; }
+.bg-secondary { background-color: var(--card-border); color: var(--card-background); }
+.bg-light { background-color: var(--card-background) !important; }
+
+/* Badges (pill) */
+.badge {
+  display: inline-block; padding: 0.25em 0.6em; font-size: 0.78em; font-weight: 600;
+  line-height: 1; color: var(--button-text); text-align: center; white-space: nowrap;
+  vertical-align: baseline; border-radius: var(--border-radius-sm);
+  background-color: var(--accent-color);
+}
+.badge.bg-secondary { background-color: var(--card-border); color: var(--card-background); }
+.badge.bg-primary { background-color: var(--accent-color); color: var(--button-text); }
+.badge-light { background-color: var(--card-background); color: var(--text-color); border: 1px solid var(--card-border); }
+
+/* Outline buttons → desert look */
+.btn-outline-primary,
+.btn-outline-secondary {
+  display: inline-block; padding: var(--spacing-sm) var(--spacing-md);
+  font-weight: 600; line-height: 1.5; text-align: center; text-decoration: none;
+  border-radius: var(--border-radius-md); cursor: pointer; background-color: transparent;
+  transition: all var(--transition-normal, 0.2s);
+}
+.btn-outline-primary { color: var(--accent-color); border: 2px solid var(--accent-color); }
+.btn-outline-primary:hover { background-color: var(--accent-color); color: var(--button-text); }
+.btn-outline-secondary { color: var(--text-color); border: 2px solid var(--card-border); }
+.btn-outline-secondary:hover { background-color: var(--card-border); color: var(--card-background); }
+
+/* Button group */
+.btn-group { display: inline-flex; gap: var(--spacing-xs); flex-wrap: wrap; }
+
+/* Card text remnant */
+.card-text { margin-bottom: var(--spacing-sm); color: var(--text-color); }
+
+/* Minimal table */
+.table { width: 100%; border-collapse: collapse; margin-bottom: var(--spacing-md); }
+.table th, .table td { padding: var(--spacing-sm); border-top: 1px solid var(--card-border); text-align: left; }

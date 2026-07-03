@@ -465,9 +465,7 @@ let reviewPageView (review: Review) =
     
     // Type-specific metadata rows for the page header.
     let metadataRows =
-        let itemName = review.AdditionalFields |> Map.tryFind "item" |> Option.defaultValue title
         let rows = ResizeArray<XmlNode>()
-        rows.Add(p [ _class "review-item-name p-item" ] [ Text itemName ])
         match review.ItemType with
         | "book" ->
             let author = review.AdditionalFields |> Map.tryFind "author" |> Option.defaultValue review.Metadata.Author
@@ -500,22 +498,12 @@ let reviewPageView (review: Review) =
                     rows.Add(p [] [ Text $"{kvp.Key.Substring(0, 1).ToUpper()}{kvp.Key.Substring(1)}: {kvp.Value}" ])
         rows |> Seq.toList
 
-    // Tags
-    let tagLinks =
-        if isNull review.Metadata.Tags || review.Metadata.Tags.Length = 0 then []
-        else
-            [ div [ _class "post-tags mt-3" ] [
-                for tag in review.Metadata.Tags do
-                    a [ _href $"/tags/{TagService.processTagName tag}/"; _class "badge bg-secondary me-1" ] [ Text tag ]
-              ]
-            ]
-
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post review-page" ] [
             header [ _class "post-header" ] [
                 h1 [ _class "p-name post-title" ] [ Text title ]
                 div [ _class "post-meta" ] [
-                    span [ _class "badge bg-primary me-2" ] [ Text (review.ItemType.Substring(0, 1).ToUpper() + review.ItemType.Substring(1)) ]
+                    span [ _class "review-type-badge"; attr "data-type" review.ItemType ] [ Text (review.ItemType.Substring(0, 1).ToUpper() + review.ItemType.Substring(1)) ]
                     time [ _class "dt-published"; attr "datetime" dateTimeStr ] [
                         Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
@@ -538,7 +526,7 @@ let reviewPageView (review: Review) =
                 rawText cleanedContent
             ]
 
-            yield! tagLinks
+            postTagsSection review.Metadata.Tags
             
             footer [ _class "post-footer" ] [
                 div [ _class "permalink-info d-flex align-items-center" ] [
