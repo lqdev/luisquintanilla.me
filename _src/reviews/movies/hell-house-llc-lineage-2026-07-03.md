@@ -20,7 +20,7 @@ additionalFields:
   genre: "horror,mystery"
 :::
 
-This movie is a perfect example why you should go into movies blind. I'm a big fan of the Hell House franchise. However, after reading reviews for Lineage, I was hesitant to watch it because I didn't want to be disappointed. I can understand the criticism from folks going in and expecting something similar to the original Hell House. Lineage has its scares, but it is departure from the main Hell House plot and fount footage style. To be fair though, it's hard to capture the magic of that first film and none of the sequels prior to Lineage did that.
+This movie is a perfect example why you should go into movies blind. I'm a big fan of the Hell House franchise. However, after reading reviews for Lineage, I was hesitant to watch it because I didn't want to be disappointed. I can understand the criticism from folks going in and expecting something similar to the original Hell House. Lineage has its scares, but it is a departure from the main Hell House plot and found footage style. To be fair though, it's hard to capture the magic of that first film and none of the sequels prior to Lineage did that.
 
 That said, I finally had a chance to watch Lineage and I really enjoyed it! I think the plot and lore were really well done. It's been a long time since I've watched the original films, so I had a tough time connecting a few of the references made throughout the film. However, a few searches after the film cleared things up and refreshed my memory making me like the film even more.
 
