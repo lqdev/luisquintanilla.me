@@ -289,3 +289,9 @@ let parseBookmarkFromFile (filePath: string) : Result<ParsedDocument<BookmarkDet
 
 let parseAiMemexFromFile (filePath: string) : Result<ParsedDocument<AiMemexDetails>, ParseError> =
     parseDocumentFromFile<AiMemexDetails> filePath
+
+let parseReview (content: string) : Result<ParsedDocument<ReviewDetails>, ParseError> =
+    parseDocumentFromAst<ReviewDetails> content
+
+let parseReviewFromFile (filePath: string) : Result<ParsedDocument<ReviewDetails>, ParseError> =
+    parseDocumentFromFile<ReviewDetails> filePath

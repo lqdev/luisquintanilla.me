@@ -440,7 +440,14 @@ let aiMemexPageView (title:string) (content:string) (publishedDate:string) (last
             script [ _type "application/ld+json" ] [ rawText jsonLd ]
     ]
 
-let reviewPageView (title:string) (content:string) (date:string) (fileName:string) = 
+let reviewPageView (review: Review) = 
+    let title = review.Metadata.Title
+    let content = review.Content |> convertMdToHtml
+    let date =
+        if String.IsNullOrWhiteSpace(review.Metadata.PublishedDate) then review.Metadata.DatePublished
+        else review.Metadata.PublishedDate
+    let fileName = review.FileName
+
     // Handle null/empty dates gracefully - use current date as fallback
     let (publishDate, dateTimeStr) = 
         if String.IsNullOrWhiteSpace(date) then
@@ -456,15 +463,64 @@ let reviewPageView (title:string) (content:string) (date:string) (fileName:strin
                 let now = DateTimeOffset.Now
                 (now, now.ToString("yyyy-MM-dd HH:mm zzz"))
     
+    // Type-specific metadata rows for the page header.
+    let metadataRows =
+        let itemName = review.AdditionalFields |> Map.tryFind "item" |> Option.defaultValue title
+        let rows = ResizeArray<XmlNode>()
+        rows.Add(p [ _class "review-item-name p-item" ] [ Text itemName ])
+        match review.ItemType with
+        | "book" ->
+            let author = review.AdditionalFields |> Map.tryFind "author" |> Option.defaultValue review.Metadata.Author
+            if not (String.IsNullOrWhiteSpace(author)) then
+                rows.Add(p [ _class "review-author" ] [ Text $"Author: {author}" ])
+            let isbn = review.AdditionalFields |> Map.tryFind "isbn" |> Option.defaultValue review.Metadata.Isbn
+            if not (String.IsNullOrWhiteSpace(isbn)) then
+                rows.Add(p [ _class "review-isbn" ] [ Text $"ISBN: {isbn}" ])
+        | "movie" ->
+            match review.AdditionalFields |> Map.tryFind "director" with
+            | Some d when not (String.IsNullOrWhiteSpace(d)) -> rows.Add(p [] [ Text $"Director: {d}" ])
+            | _ -> ()
+            match review.AdditionalFields |> Map.tryFind "year" with
+            | Some y when not (String.IsNullOrWhiteSpace(y)) -> rows.Add(p [] [ Text $"Year: {y}" ])
+            | _ -> ()
+            match review.AdditionalFields |> Map.tryFind "genre" with
+            | Some g when not (String.IsNullOrWhiteSpace(g)) -> rows.Add(p [] [ Text $"Genre: {g}" ])
+            | _ -> ()
+        | "music" ->
+            match review.AdditionalFields |> Map.tryFind "artist" with
+            | Some a when not (String.IsNullOrWhiteSpace(a)) -> rows.Add(p [] [ Text $"Artist: {a}" ])
+            | _ -> ()
+            match review.AdditionalFields |> Map.tryFind "genre" with
+            | Some g when not (String.IsNullOrWhiteSpace(g)) -> rows.Add(p [] [ Text $"Genre: {g}" ])
+            | _ -> ()
+        | _ ->
+            // For business/product, render any additional fields as key/value pairs.
+            for kvp in review.AdditionalFields do
+                if kvp.Key <> "item" then
+                    rows.Add(p [] [ Text $"{kvp.Key.Substring(0, 1).ToUpper()}{kvp.Key.Substring(1)}: {kvp.Value}" ])
+        rows |> Seq.toList
+
+    // Tags
+    let tagLinks =
+        if isNull review.Metadata.Tags || review.Metadata.Tags.Length = 0 then []
+        else
+            [ div [ _class "post-tags mt-3" ] [
+                for tag in review.Metadata.Tags do
+                    a [ _href $"/tags/{TagService.processTagName tag}/"; _class "badge bg-secondary me-1" ] [ Text tag ]
+              ]
+            ]
+
     div [ _class "mr-auto" ] [
         article [ _class "h-entry individual-post review-page" ] [
             header [ _class "post-header" ] [
                 h1 [ _class "p-name post-title" ] [ Text title ]
                 div [ _class "post-meta" ] [
+                    span [ _class "badge bg-primary me-2" ] [ Text (review.ItemType.Substring(0, 1).ToUpper() + review.ItemType.Substring(1)) ]
                     time [ _class "dt-published"; attr "datetime" dateTimeStr ] [
                         Text (publishDate.ToString("MMMM d, yyyy"))
                     ]
                 ]
+                div [ _class "review-metadata" ] metadataRows
                 // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
                     img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
@@ -475,12 +531,14 @@ let reviewPageView (title:string) (content:string) (date:string) (fileName:strin
             div [ _class "e-content post-content" ] [
                 // For reviews, remove duplicate H1 titles from content to prevent duplication with page header
                 let cleanedContent = 
-                    let htmlContent = convertMdToHtml content
+                    let htmlContent = content
                     // Remove H1 titles that would duplicate the page title
                     let removeTitles = System.Text.RegularExpressions.Regex.Replace(htmlContent, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
                     removeTitles
                 rawText cleanedContent
             ]
+
+            yield! tagLinks
             
             footer [ _class "post-footer" ] [
                 div [ _class "permalink-info d-flex align-items-center" ] [

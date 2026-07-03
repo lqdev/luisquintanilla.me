@@ -38,6 +38,7 @@
     <Compile Include="Processors\ReviewDataExtractor.fs" />
     <Compile Include="Processors\MediaExtractor.fs" />
     <Compile Include="Processors\BookProcessor.fs" />
+    <Compile Include="Processors\ReviewProcessor.fs" />
     <Compile Include="Processors\ResponseProcessor.fs" />
     <Compile Include="Processors\MediaDataExtractor.fs" />
     <Compile Include="Processors\AlbumProcessor.fs" />

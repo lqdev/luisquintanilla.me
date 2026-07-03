@@ -301,6 +301,48 @@ module Domain
             member this.FileName = this.FileName
             member this.ContentType = "book"
 
+    /// Frontmatter for the unified review content type. Supports both the legacy
+    /// book schema (title/author/isbn/cover/rating/source/date_published) and the
+    /// new polymorphic review schema (title/published_date/tags).
+    [<CLIMutable>]
+    type ReviewDetails = {
+        [<YamlMember(Alias="title")>] Title: string
+        [<YamlMember(Alias="published_date")>] PublishedDate: string
+        [<YamlMember(Alias="tags")>] Tags: string array
+        // Legacy book fields — kept optional so old reviews keep parsing.
+        [<YamlMember(Alias="author")>] Author: string
+        [<YamlMember(Alias="isbn")>] Isbn: string
+        [<YamlMember(Alias="cover")>] Cover: string
+        [<YamlMember(Alias="source")>] Source: string
+        [<YamlMember(Alias="rating")>] Rating: float
+        [<YamlMember(Alias="date_published")>] DatePublished: string
+    }
+
+    /// Unified review content type. One record covers books, movies, music,
+    /// businesses, and products. Type-specific metadata lives in AdditionalFields
+    /// (populated from the :::review block's additionalFields or book fields).
+    type Review = {
+        FileName: string
+        Metadata: ReviewDetails
+        Content: string
+        MarkdownSource: string option
+        ItemType: string
+        AdditionalFields: Map<string, string>
+    }
+    with
+        interface ITaggable with
+            member this.Tags =
+                if isNull this.Metadata.Tags then [||]
+                else this.Metadata.Tags
+            member this.Title = this.Metadata.Title
+            member this.Date =
+                if String.IsNullOrWhiteSpace(this.Metadata.PublishedDate) then
+                    this.Metadata.DatePublished
+                else
+                    this.Metadata.PublishedDate
+            member this.FileName = this.FileName
+            member this.ContentType = "review"
+
     [<CLIMutable>]
     type AlbumImage = {
         [<YamlMember(Alias="imagepath")>] ImagePath: string

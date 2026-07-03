@@ -139,6 +139,12 @@ let libraryView (books:Book array) =
             bookPostView book
     ]
 
+let reviewsView (reviews: Review array) =
+    div [ _class "d-grip gap-3" ] [
+        for review in reviews do
+            reviewPostView review
+    ]
+
 let snippetsView (snippets: Snippet array) = 
     div [ _class "d-grip gap-3" ] [
         h2[] [Text "Snippets"]
@@ -578,7 +584,7 @@ let enhancedSubscriptionHubView (items: UnifiedFeeds.UnifiedFeedItem array) =
             
             // Reviews Feed
             h3 [] [ a [ _href "/reviews/" ] [ Text "Reviews" ] ]
-            p [] [ Text "Book reviews and other content critiques." ]
+            p [] [ Text "Reviews of books, movies, music, businesses, and products." ]
             p [] [
                 Text "Feed URL: "
                 a [ _href "/reviews.rss" ] [ Text "/reviews.rss" ]

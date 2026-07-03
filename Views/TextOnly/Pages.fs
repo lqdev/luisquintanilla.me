@@ -58,7 +58,7 @@ let textOnlyHomepage (recentContent: UnifiedFeedItem list) =
                 li [] [a [_href "/text/content/snippets/"] [Text "Code Snippets"]]
                 li [] [a [_href "/text/content/wiki/"] [Text "Wiki & Knowledge Base"]]
                 li [] [a [_href "/text/content/presentations/"] [Text "Presentations"]]
-                li [] [a [_href "/text/content/reviews/"] [Text "Book Reviews"]]
+                li [] [a [_href "/text/content/reviews/"] [Text "Reviews"]]
                 li [] [a [_href "/text/content/album-collection/"] [Text "Albums"]]
                 li [] [a [_href "/text/content/playlist-collection/"] [Text "Playlists"]]
                 li [] [a [_href "/text/content/ai-memex/"] [Text "AI Memex"]]
@@ -94,7 +94,7 @@ let textOnlyContentTypePage (contentType: string) (content: UnifiedFeedItem list
         | "snippets" -> "Code Snippets"
         | "wiki" -> "Wiki & Knowledge Base"
         | "presentations" -> "Presentations"
-        | "reviews" -> "Book Reviews"
+        | "reviews" -> "Reviews"
         | "album-collection" -> "Albums"
         | "playlist-collection" -> "Playlists"
         | "ai-memex" -> "AI Memex"
@@ -373,7 +373,7 @@ let textOnlyHelpPage =
                 li [] [Text "Snippets: Code examples and technical notes"]
                 li [] [Text "Wiki: Knowledge base and reference material"]
                 li [] [Text "Presentations: Slides and presentation materials"]
-                li [] [Text "Reviews: Book reviews and recommendations"]
+                li [] [Text "Reviews: Book, movie, music, business, and product reviews"]
                 li [] [Text "Albums: Photo collections and visual content"]
             ]
             
@@ -485,7 +485,7 @@ let textOnlyFeedsPage =
             ]
             
             h3 [] [Text "Reviews"]
-            p [] [Text "Book reviews and other content critiques."]
+            p [] [Text "Reviews of books, movies, music, businesses, and products."]
             p [] [
                 Text "Feed URL: "
                 a [_href "/reviews.rss"] [Text "/reviews.rss"]

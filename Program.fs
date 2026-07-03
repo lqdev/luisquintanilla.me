@@ -35,7 +35,6 @@ let main argv =
     // Data
     let liveStreams = loadLiveStreams (srcDir)
     let feedLinks = loadFeedLinks (srcDir)
-    let books = loadBooks (srcDir)
     let albums = loadAlbums (srcDir)
 
     // Build static pages
@@ -72,7 +71,7 @@ let main argv =
     let wikisFeedData = buildWikis()
     let aiMemexFeedData = loadAiMemexFeedData()
     let presentationsFeedData = buildPresentations()
-    let booksFeedData = buildBooks()
+    let reviewsFeedData = buildReviews()
     let mediaFeedData = buildMedia()
     let albumCollectionsFeedData = buildAlbumCollections()
     let playlistCollectionsFeedData = buildPlaylistCollections()
@@ -88,7 +87,7 @@ let main argv =
     let wikisUnified = UnifiedFeeds.convertWikisToUnified wikisFeedData
     let aiMemexUnified = UnifiedFeeds.convertAiMemexToUnified aiMemexFeedData
     let presentationsUnified = UnifiedFeeds.convertPresentationsToUnified presentationsFeedData
-    let booksUnified = UnifiedFeeds.convertBooksToUnified booksFeedData
+    let reviewsUnified = UnifiedFeeds.convertReviewsToUnified reviewsFeedData
     let albumsUnified = UnifiedFeeds.convertAlbumsToUnified mediaFeedData
     let albumCollectionsUnified = UnifiedFeeds.convertAlbumCollectionsToUnified albumCollectionsFeedData
     let playlistCollectionsUnified = UnifiedFeeds.convertPlaylistCollectionsToUnified playlistCollectionsFeedData
@@ -110,7 +109,7 @@ let main argv =
         { Identity = ContentTypes.ContentType.Wiki;               Unified = wikisUnified;              InTimeline = false; InAllFeeds = true; InBlogArchive = false }
         { Identity = ContentTypes.ContentType.AiMemex;            Unified = aiMemexUnified;            InTimeline = false; InAllFeeds = true; InBlogArchive = false }
         { Identity = ContentTypes.ContentType.Presentations;      Unified = presentationsUnified;      InTimeline = false; InAllFeeds = true; InBlogArchive = false }
-        { Identity = ContentTypes.ContentType.Reviews;            Unified = booksUnified;              InTimeline = true;  InAllFeeds = true; InBlogArchive = false }
+        { Identity = ContentTypes.ContentType.Reviews;            Unified = reviewsUnified;            InTimeline = true;  InAllFeeds = true; InBlogArchive = false }
         { Identity = ContentTypes.ContentType.Media;              Unified = albumsUnified;             InTimeline = true;  InAllFeeds = true; InBlogArchive = false }
         { Identity = ContentTypes.ContentType.AlbumCollection;    Unified = albumCollectionsUnified;   InTimeline = true;  InAllFeeds = true; InBlogArchive = false }
         { Identity = ContentTypes.ContentType.PlaylistCollection; Unified = playlistCollectionsUnified; InTimeline = false; InAllFeeds = true; InBlogArchive = false }
@@ -206,14 +205,8 @@ let main argv =
     let readLaterLinks = loadReadLaterLinks()
     buildReadLaterPage readLaterLinks
 
-    // Build Books — NOTE (F3): this second buildBooks() run is intentionally retained.
-    // The StarRating SVG gradient IDs (BlockRenderers.fs:85) come from a *global* mutable
-    // counter, so the shipped review pages' gradient IDs depend on this being the last render
-    // pass. Removing it is cosmetic-only but breaks byte-identical output. Eliminating this
-    // last duplicate requires making those gradient IDs page-local/deterministic first
-    // (logged for the StarRating cleanup / F7-B2).
-    let _ = buildBooks()
-    ()
+    // Reviews are built once above via buildReviews(); no second pass is needed
+    // because the review pipeline now produces the final pages directly.
 
     // Build tags page - unified tag system across all content types
     let notesFromFeedData = notesFeedData |> List.map (fun item -> item.Content) |> List.toArray
@@ -226,6 +219,8 @@ let main argv =
     let bookmarkResponses = bookmarksFeedData |> List.map (fun item -> item.Content) |> List.toArray
     let allResponses = Array.append responses bookmarkResponses
 
+    let reviews = reviewsFeedData |> List.map (fun item -> item.Content) |> List.toArray
+
     let allTaggableContent = [
         ("posts", posts |> Array.map (fun p -> p :> ITaggable))
         ("notes", notesFromFeedData |> Array.map (fun n -> n :> ITaggable))
@@ -234,6 +229,7 @@ let main argv =
         ("wikis", wikisFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun w -> w :> ITaggable))
         ("ai-memex", aiMemexFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun a -> a :> ITaggable))
         ("presentations", presentationsFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun p -> p :> ITaggable))
+        ("reviews", reviews |> Array.map (fun r -> r :> ITaggable))
         ("media", mediaFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun a -> a :> ITaggable))
         ("marketplace", marketplaceFeedData |> List.map (fun item -> item.Content) |> List.toArray |> Array.map (fun l -> l :> ITaggable))
     ]

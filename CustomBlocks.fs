@@ -52,6 +52,10 @@ type BaseReviewData = {
     item_url: string option  // Link to the item's website or URL for reference
     [<YamlDotNet.Serialization.YamlMember(Alias="imageUrl")>]
     image_url: string option  // Thumbnail/cover image URL for display
+    
+    // Type-specific metadata (movie director/year/genre, music artist/label, etc.)
+    [<YamlDotNet.Serialization.YamlMember(Alias="additionalFields")>]
+    additional_fields: System.Collections.Generic.Dictionary<string, string> option
 }
 with
     member this.GetScale() = 
@@ -60,6 +64,11 @@ with
         this.summary |> Option.defaultValue ""
     member this.GetImageUrl() =
         this.image_url |> Option.defaultValue ""
+    member this.GetAdditionalFields() =
+        match this.additional_fields with
+        | Some dict when not (isNull dict) ->
+            dict |> Seq.map (fun kvp -> kvp.Key, kvp.Value) |> Map.ofSeq
+        | _ -> Map.empty
 
 // Book-specific review data
 [<CLIMutable>]
@@ -168,6 +177,21 @@ with
         match this with
         | BookReview b -> b.GetDatePublished()
         | GenericReview _ -> ""
+    member this.GetAdditionalFields() =
+        match this with
+        | BookReview b ->
+            // Surface book-specific fields as additional fields for uniform rendering
+            let mutable map = Map.empty
+            if not (String.IsNullOrWhiteSpace(b.author)) then
+                map <- map.Add("author", b.author)
+            match b.isbn with
+            | Some isbn when not (String.IsNullOrWhiteSpace(isbn)) -> map <- map.Add("isbn", isbn)
+            | _ -> ()
+            match b.date_published with
+            | Some dp when not (String.IsNullOrWhiteSpace(dp)) -> map <- map.Add("year", dp)
+            | _ -> ()
+            map
+        | GenericReview g -> g.GetAdditionalFields()
 
 [<CLIMutable>]
 type VenueData = {
@@ -281,6 +305,34 @@ type CustomBlockParser(blockType: string, createBlock: BlockParser -> ContainerB
         CustomBlockParser.parseBlockContent block
         true
     
+    /// Remove common leading whitespace from YAML block content while preserving
+    /// relative indentation, so nested maps (e.g. additionalFields) deserialize
+    /// correctly. Empty/whitespace-only lines are ignored for indentation calculation.
+    static member dedentYamlBlock (rawContent: string) : string =
+        let lines = rawContent.Split([|'\n'|], StringSplitOptions.None)
+        let nonEmptyLines =
+            lines
+            |> Array.filter (fun line -> not (String.IsNullOrWhiteSpace(line)))
+        if nonEmptyLines.Length = 0 then ""
+        else
+            let minIndent =
+                nonEmptyLines
+                |> Array.map (fun line ->
+                    let mutable count = 0
+                    while count < line.Length && line.[count] = ' ' do
+                        count <- count + 1
+                    count)
+                |> Array.min
+            lines
+            |> Array.choose (fun line ->
+                if String.IsNullOrWhiteSpace(line) then None
+                else
+                    let dedented =
+                        if line.Length <= minIndent then line.Trim()
+                        else line.Substring(minIndent).TrimEnd()
+                    Some dedented)
+            |> String.concat "\n"
+
     /// Parse YAML content within custom blocks
     static member parseBlockContent (block: Block) =
         try
@@ -312,22 +364,8 @@ type CustomBlockParser(blockType: string, createBlock: BlockParser -> ContainerB
                     mediaBlock.MediaItems <- mediaItems
             | :? ReviewBlock as reviewBlock ->
                 if not (String.IsNullOrWhiteSpace(reviewBlock.RawContent)) then
-                    // Fix indentation for YAML parsing (same as MediaBlock approach)
-                    let lines = reviewBlock.RawContent.Split([|'\n'|], StringSplitOptions.None)
-                    let fixedLines = 
-                        lines
-                        |> Array.filter (fun line -> not (String.IsNullOrWhiteSpace(line)))
-                        |> Array.map (fun line ->
-                            let trimmed = line.Trim()
-                            if trimmed.StartsWith("- ") then
-                                trimmed  // Keep list items at the beginning
-                            elif trimmed.Contains(":") && not (trimmed.StartsWith("- ")) then
-                                "  " + trimmed  // Indent properties with 2 spaces
-                            else
-                                trimmed
-                        )
-                    
-                    let cleanContent = String.concat "\n" fixedLines
+                    // Dedent while preserving nested structure so additionalFields maps parse correctly.
+                    let cleanContent = CustomBlockParser.dedentYamlBlock reviewBlock.RawContent
                     
                     // Polymorphic deserialization: first deserialize to get itemType
                     let baseData = deserializer.Deserialize<BaseReviewData>(cleanContent)

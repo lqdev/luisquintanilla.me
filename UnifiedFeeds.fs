@@ -366,7 +366,7 @@ module UnifiedFeeds
             (ContentTypes.Reviews, {
                 Title = "Luis Quintanilla - Reviews"
                 Link = "https://www.lqdev.me/reviews"
-                Description = "Book reviews by Luis Quintanilla"
+                Description = "Reviews by Luis Quintanilla"
                 OutputPath = "reviews/feed.xml"
                 ContentType = Some ContentTypes.Reviews
             })
@@ -620,7 +620,7 @@ module UnifiedFeeds
             (fun _ -> defaultExtras)
             feedDataList
     
-    let convertBooksToUnified (feedDataList: FeedData<Book> list) : UnifiedFeedItem list =
+    let convertReviewsToUnified (feedDataList: FeedData<Review> list) : UnifiedFeedItem list =
         feedDataList |> List.choose (fun feedData ->
             match feedData.RssXml with
             | Some rssXml ->
@@ -629,10 +629,16 @@ module UnifiedFeeds
                 let url = match rssXml.Element(XName.Get "link") with | null -> "" | e -> e.Value
                 // For reviews timeline display, use simplified CardHtml instead of full content
                 let content = feedData.CardHtml
-                let date = feedData.Content.Metadata.DatePublished
-                let tags = [||]  // Books don't have explicit tags
+                let date =
+                    if String.IsNullOrWhiteSpace(feedData.Content.Metadata.PublishedDate) then
+                        feedData.Content.Metadata.DatePublished
+                    else
+                        feedData.Content.Metadata.PublishedDate
+                let tags =
+                    if isNull feedData.Content.Metadata.Tags then [||]
+                    else feedData.Content.Metadata.Tags
                 // Phase 5C: Get review metadata from cache for Schema.org integration in ActivityPub
-                let reviewData = BookProcessor.getReviewMetadata feedData.Content.FileName
+                let reviewData = ReviewProcessor.getReviewMetadata feedData.Content.FileName
                 Some { Title = title; Content = content; Url = url; Date = date; ContentType = ContentTypes.Reviews; Tags = tags; RssXml = rssXml; ResponseType = None; TargetUrl = None; UpdatedDate = None; RsvpStatus = None; ReviewData = reviewData; MediaData = None; BodyHtml = lazy content }
             | None -> None)
     

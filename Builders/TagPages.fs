@@ -85,6 +85,7 @@ module TagPagesBuilder
                             | "wikis" -> ("resources/wiki", "Wiki")
                             | "ai-memex" -> ("resources/ai-memex", "AI Memex")
                             | "presentations" -> ("resources/presentations", "Presentations")
+                            | "reviews" -> ("reviews", "Reviews")
                             | "albums" -> ("media/albums", "Albums")
                             | "marketplace" -> ("marketplace", "Marketplace")
                             | _ -> (contentType, contentType)

@@ -61,19 +61,53 @@ module ContentTypePagesBuilder
             Index = Some { View = presentationsView; Title = "Presentations | Luis Quintanilla"; Sort = None }
         }
 
-    // AST-based book processing using GenericBuilder infrastructure
-    let buildBooks() =
-        BuildDriver.buildContentType srcDir outputDir {
-            Name = ContentTypes.Reviews
-            SourceDir = [ "reviews"; "library" ]
-            OutputDir = [ "reviews" ]
-            Processor = BookProcessor.create()
-            Slug = fun book -> book.FileName
-            ItemView = fun book _ -> reviewPageView book.Metadata.Title (book.Content |> convertMdToHtml) book.Metadata.DatePublished book.FileName
-            ItemTitle = fun book -> $"{book.Metadata.Title} | Reviews | Luis Quintanilla"
-            Layout = "defaultindex"
-            Index = Some { View = libraryView; Title = "Reviews | Luis Quintanilla"; Sort = None }
-        }
+    // AST-based review processing using GenericBuilder infrastructure.
+    // Scans all review subdirectories (library, movies, music, business, products)
+    // and builds a combined /reviews/ index plus individual pages.
+    let buildReviews() =
+        let processor = ReviewProcessor.create()
+
+        let reviewFiles =
+            let reviewsDir = Path.Join(srcDir, "reviews")
+            if Directory.Exists(reviewsDir) then
+                Directory.GetFiles(reviewsDir, "*.md", SearchOption.AllDirectories)
+                |> Array.filter (fun f -> not (f.EndsWith(".gitkeep")))
+                |> Array.toList
+            else
+                []
+
+        let feedData = GenericBuilder.buildContentWithFeeds processor reviewFiles
+        let reviews = feedData |> List.map (fun item -> item.Content) |> List.toArray
+
+        // Individual pages
+        feedData
+        |> List.iter (fun item ->
+            let review = item.Content
+            let saveDir = Path.Join(outputDir, "reviews", review.FileName)
+            Directory.CreateDirectory(saveDir) |> ignore
+            let html = ViewGenerator.generate (reviewPageView review) "defaultindex" $"{review.Metadata.Title} | Reviews | Luis Quintanilla"
+            File.WriteAllText(Path.Join(saveDir, "index.html"), html))
+
+        // Combined /reviews/ index, sorted by date descending.
+        let sortedReviews =
+            reviews
+            |> Array.sortByDescending (fun review ->
+                let dateStr =
+                    if String.IsNullOrWhiteSpace(review.Metadata.PublishedDate) then review.Metadata.DatePublished
+                    else review.Metadata.PublishedDate
+                try
+                    DateTimeOffset.Parse(dateStr)
+                with
+                | _ -> DateTimeOffset.MinValue)
+
+        let indexHtml = ViewGenerator.generate (reviewsView sortedReviews) "defaultindex" "Reviews | Luis Quintanilla"
+        let indexSaveDir = Path.Join(outputDir, "reviews")
+        Directory.CreateDirectory(indexSaveDir) |> ignore
+        File.WriteAllText(Path.Join(indexSaveDir, "index.html"), indexHtml)
+
+        printfn "✅ Reviews built: %d reviews across all types" reviews.Length
+
+        feedData
 
     // AST-based post processing using GenericBuilder infrastructure
     let buildPosts() =

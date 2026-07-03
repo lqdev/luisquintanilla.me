@@ -49,6 +49,60 @@ let bookmarkPostView (bookmark: Bookmark) =
         footer
     ] 
 
+let reviewPostView (review: Review) =
+    let reviewMetadataOpt = ReviewProcessor.getReviewMetadata review.FileName
+    let imageUrl =
+        match reviewMetadataOpt with
+        | Some rm when rm.ImageUrl.IsSome && not (String.IsNullOrWhiteSpace(rm.ImageUrl.Value)) -> rm.ImageUrl.Value
+        | _ ->
+            if String.IsNullOrWhiteSpace(review.Metadata.Cover) then
+                "/assets/img/book-placeholder.png"
+            else
+                review.Metadata.Cover
+    let (ratingValue, ratingScaleValue) =
+        match reviewMetadataOpt with
+        | Some rm when rm.Rating > 0.0 -> (rm.Rating, rm.Scale)
+        | _ when review.Metadata.Rating > 0.0 -> (review.Metadata.Rating, 5.0)
+        | _ -> (0.0, 5.0)
+    let displayRating = $"Rating: {ratingValue:F1}/{ratingScaleValue:F1}"
+
+    // Type-specific subtitle (author for books, director for movies, etc.)
+    let subtitle =
+        match review.ItemType with
+        | "book" ->
+            let author = review.AdditionalFields |> Map.tryFind "author" |> Option.defaultValue review.Metadata.Author
+            if String.IsNullOrWhiteSpace(author) then None else Some $"Author: {author}"
+        | "movie" ->
+            let director = review.AdditionalFields |> Map.tryFind "director" |> Option.defaultValue ""
+            if String.IsNullOrWhiteSpace(director) then None else Some $"Director: {director}"
+        | "music" ->
+            let artist = review.AdditionalFields |> Map.tryFind "artist" |> Option.defaultValue ""
+            if String.IsNullOrWhiteSpace(artist) then None else Some $"Artist: {artist}"
+        | _ -> None
+
+    div [_class "card mb-4 mx-auto"] [
+        div [_class "row"] [
+            div [_class "col-md-4"] [
+                img [_src imageUrl; _class "img-fluid"; _alt review.Metadata.Title]
+            ]
+            div [_class "col-md-8"] [
+                div [_class "card-body"] [
+                    a [_href $"/reviews/{review.FileName}"] [
+                        h5 [_class "card-title"] [Text review.Metadata.Title]
+                    ]
+                    match subtitle with
+                    | Some text -> p [_class "card-text"] [Text text]
+                    | None -> ()
+                    p [_class "card-text"] [
+                        span [_class "badge bg-secondary me-2"] [Text (review.ItemType.Substring(0, 1).ToUpper() + review.ItemType.Substring(1))]
+                        Text displayRating
+                    ]
+                ]
+            ]
+        ]
+    ]
+
+// Deprecated: kept for any lingering references; prefer reviewPostView.
 let bookPostView (book: Book) = 
     div [_class "card mb-4 mx-auto"] [
         div [_class "row"] [
