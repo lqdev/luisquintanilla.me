@@ -230,6 +230,19 @@
                 "phone": "+17737547729",
                 "website": "https://jtsgenuine.com/"
             }
+        },
+        {
+            "id": "milli-metric",
+            "name": "Milli by Metric",
+            "lat": 41.9379773,
+            "lon": -87.7077989,
+            "category": "restaurant",
+            "description": "Milli is an all day cafe concept",
+            "personalNote": "Good place to work from. The ambiance is nice. After 2 PM, there's a no laptop rule which is cool.",
+            "practicalInfo": {
+                "phone": "+17739042900",
+                "website": "https://milliallday.com/"
+            }
         }
     ],
     "routes": [
