@@ -61,6 +61,6 @@ for file in Directory.GetFiles(dir, "*.md") do
         let newText =
             let prefix = m.Groups.[1].Value
             let suffix = m.Groups.[3].Value
-            text.Substring(0, m.Index) + prefix + newBlock + suffix
+            text.Substring(0, m.Index) + prefix + newBlock + suffix + text.Substring(m.Index + m.Length)
         File.WriteAllText(file, newText)
         printfn "migrated %s" (Path.GetFileName file)

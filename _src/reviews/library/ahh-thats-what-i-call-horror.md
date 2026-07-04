@@ -21,3 +21,17 @@ additionalFields:
   datePublished: "06/18/2023 19:04 -05:00"
 
 :::
+
+## Description
+
+> With fourteen horror stories set during the decade of flannel shirts and neon dolphin Trapper Keepers, Ahh! That's What I Call Horror features a PHAT (pretty horrific and terrifying) collection of totally rad horror and weird fiction authors exploring the darker side of what many consider a time of relative peace and prosperity. With Communism falling and Clear Channel rising, the horror of the 1990s requires peeling back layers of safe, sanitized media to reveal the nightmares waiting beneath. When it comes to '90s horror, this is one anthology guaranteed to be all that and a bag of haunted chips.  
+> <br>
+> You won't need a dial-up connection to reach the beyond in this time-warp to the '90s. With undead grunge rock icons, menacing action figures, family sitcoms gone very wrong, and more: these terror tales will return you to the end of the old millennium.  
+> <br>
+> How will you get back?  
+> <br>
+> Like, who says you will?
+
+## Review
+
+A blast from the past. Overall a fun read filled with 90's references. I preferred the first half of the book. *The Grunge* and *Return to Gray Springs: Blockbuster Blues* were my favorite. *Who In The World Is The Hat Man?* was gut-wrenching.

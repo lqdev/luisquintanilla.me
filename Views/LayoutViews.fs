@@ -495,6 +495,7 @@ let reviewPageView (review: Review) =
     let itemUrl = reviewMetadata |> Option.bind (fun rm -> rm.ItemUrl)
     let pros = reviewMetadata |> Option.bind (fun rm -> rm.Pros) |> Option.defaultValue [||]
     let cons = reviewMetadata |> Option.bind (fun rm -> rm.Cons) |> Option.defaultValue [||]
+    let readingTime = ReadingTimeService.calculateReadingTime review.Content
     let typeLabel =
         if String.IsNullOrWhiteSpace review.ItemType then "Review"
         else review.ItemType.Substring(0, 1).ToUpperInvariant() + review.ItemType.Substring(1)
@@ -506,18 +507,25 @@ let reviewPageView (review: Review) =
     div [ _class "mr-auto" ] [
         article [ _class "h-entry h-review individual-post review-page" ] [
             header [ _class "post-header" ] [
+                span [ _class "review-type-badge"; attr "data-type" review.ItemType ] [ Text typeLabel ]
+                h1 [ _class "p-name post-title" ] [ Text title ]
+                div [ _class "post-meta" ] [
+                    time [ _class "dt-published"; attr "datetime" dateTimeStr ] [
+                        Text (publishDate.ToString("MMMM d, yyyy"))
+                    ]
+                    match readingTime with
+                    | Some minutes when minutes >= 1 ->
+                        span [ _class "reading-time" ] [
+                            span [ _class "bi bi-clock" ] []
+                            Text $"{minutes} min read"
+                        ]
+                    | _ -> ()
+                ]
                 div [ _class "review-hero" ] [
                     (match imageUrl with
                      | Some url -> div [ _class "review-hero-media" ] [ img [ _src url; _class "review-hero-cover u-photo"; _alt title; attr "loading" "lazy" ] ]
                      | None -> Text "")
                     div [ _class "review-hero-body" ] [
-                        h1 [ _class "p-name post-title" ] [ Text title ]
-                        div [ _class "post-meta review-hero-meta" ] [
-                            span [ _class "review-type-badge"; attr "data-type" review.ItemType ] [ Text typeLabel ]
-                            time [ _class "dt-published"; attr "datetime" dateTimeStr ] [
-                                Text (publishDate.ToString("MMMM d, yyyy"))
-                            ]
-                        ]
                         (if ratingValue > 0.0 then div [ _class "review-hero-rating p-rating" ] [ rawText (SvgStarRating.render ratingValue ratingScale) ] else Text "")
                         (if List.isEmpty metaPairs then Text ""
                          else dl [ _class "review-meta-list" ] [ for (label, value) in metaPairs do dt [] [ Text label ]; dd [] [ Text value ] ])
