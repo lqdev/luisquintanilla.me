@@ -12,6 +12,7 @@ item: "Hell House LLC: Lineage"
 itemType: "movie"
 rating: 4.00
 scale: 5.0
+description: After a near-death experience, Vanessa Shepherd faces nightmares in Abaddon. As mysterious deaths occur around her, she discovers her connection to the Abaddon Hotel, Carmichael Manor, and decades of unexplained murders.
 itemUrl: "https://www.themoviedb.org/movie/1202306-hell-house-llc-lineage"
 imageUrl: "https://media.themoviedb.org/t/p/w600_and_h900_face/vFZo2cUEF16gsY5lhewOLFA7CBC.jpg"
 additionalFields:
