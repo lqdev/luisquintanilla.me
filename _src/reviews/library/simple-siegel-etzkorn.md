@@ -12,7 +12,7 @@ item: "Simple: Conquering the Crisis of Complexity"
 itemType: "book"
 rating: 3.3
 scale: 5.0
-summary: "Coming Soon."
+description: "Coming Soon."
 itemUrl: "https://www.hachettebookgroup.com/titles/alan-siegel/simple/9781455509683/?lens=twelve"
 imageUrl: "https://www.hachettebookgroup.com/wp-content/uploads/2024/01/9781455509683.jpg?resize=759,1024"
 additionalFields:

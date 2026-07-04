@@ -12,7 +12,7 @@ item: "Keep Going: 10 Ways to Stay Creative in Good Times and Bad"
 itemType: "book"
 rating: 4.0
 scale: 5.0
-summary: "Solid listicle book."
+description: "Solid listicle book."
 itemUrl: "https://austinkleon.com/keepgoing/"
 imageUrl: "https://images-us.bookshop.org/ingram/9781523506644.jpg?v=enc-v1"
 additionalFields:

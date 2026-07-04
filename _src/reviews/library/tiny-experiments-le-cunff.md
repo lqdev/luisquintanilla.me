@@ -12,7 +12,7 @@ item: "Tiny Experiments"
 itemType: "book"
 rating: 4.9
 scale: 5.0
-summary: "I really enjoyed this book and resonated with a lot of points."
+description: "I really enjoyed this book and resonated with a lot of points."
 itemUrl: "https://nesslabs.com/book"
 imageUrl: "https://nesslabs.com/wp-content/uploads/elementor/thumbs/mockup-book-qt6t57zfl9fs7xs8jt0an9tnh7z3zp7kwb5vrc6oxc.png"
 additionalFields:

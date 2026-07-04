@@ -64,11 +64,11 @@ body:
       required: true
 
   - type: textarea
-    id: summary
+    id: description
     attributes:
-      label: Review Summary (Optional)
-      description: A brief summary of your review
-      placeholder: "A concise summary of your thoughts on this movie..."
+      label: Description (Optional)
+      description: A short description of the movie — e.g. its plot synopsis. Your own opinion goes in the review content below.
+      placeholder: "e.g. the plot synopsis or a one-line description of the movie..."
     validations:
       required: false
 

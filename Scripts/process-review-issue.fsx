@@ -2,7 +2,7 @@
     Process GitHub Issue Template for Review Creation
     
     This script processes GitHub issue template data to create a review post.
-    Usage: dotnet fsi process-review-issue.fsx -- "review_type" "item_name" "rating" "summary" "content" "pros" "cons" "item_url" "image_url" "additional_fields_json" "tags" "slug"
+    Usage: dotnet fsi process-review-issue.fsx -- "review_type" "item_name" "rating" "description" "content" "pros" "cons" "item_url" "image_url" "additional_fields_json" "tags" "slug"
 *)
 
 #r "../bin/Debug/net10.0/PersonalSite.dll"
@@ -18,13 +18,13 @@ let args = fsi.CommandLineArgs |> Array.skip 1
 // Validate arguments
 if args.Length < 5 then
     printfn "❌ Error: Missing required arguments"
-    printfn "Usage: dotnet fsi process-review-issue.fsx -- \"review_type\" \"item_name\" \"rating\" \"summary\" \"content\" \"pros\" \"cons\" \"item_url\" \"image_url\" \"additional_fields_json\" \"tags\" \"slug\""
+    printfn "Usage: dotnet fsi process-review-issue.fsx -- \"review_type\" \"item_name\" \"rating\" \"description\" \"content\" \"pros\" \"cons\" \"item_url\" \"image_url\" \"additional_fields_json\" \"tags\" \"slug\""
     exit 1
 
 let reviewType = args.[0].Trim()
 let itemName = args.[1].Trim()
 let ratingStr = args.[2].Trim()
-let summary = args.[3].Trim()
+let description = args.[3].Trim()
 let content = args.[4].Trim()
 let prosInput = if args.Length > 5 && not (String.IsNullOrWhiteSpace(args.[5])) then Some(args.[5].Trim()) else None
 let consInput = if args.Length > 6 && not (String.IsNullOrWhiteSpace(args.[6])) then Some(args.[6].Trim()) else None
@@ -147,8 +147,8 @@ let generateReviewBlock () =
     lines.Add(sprintf "rating: %.2f" rating)
     lines.Add("scale: 5.0")
 
-    if not (String.IsNullOrWhiteSpace(summary)) then
-        lines.Add(sprintf "summary: \"%s\"" (summary.Replace("\"", "\\\"" ).Replace("\n", " ")))
+    if not (String.IsNullOrWhiteSpace(description)) then
+        lines.Add(sprintf "description: \"%s\"" (description.Replace("\"", "\\\"" ).Replace("\n", " ")))
 
     if pros.Length > 0 then
         lines.Add("pros:")

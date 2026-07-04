@@ -94,6 +94,9 @@ type SchemaItemReviewed = {
     
     [<JsonPropertyName("schema:name")>]
     Name: string
+
+    [<JsonPropertyName("schema:description")>]
+    Description: string option
     
     [<JsonPropertyName("schema:author")>]
     Author: string option
@@ -625,6 +628,7 @@ let convertToNote (item: UnifiedFeeds.UnifiedFeedItem) : ActivityPubNote =
             let reviewed : SchemaItemReviewed = {
                 Type = schemaItemType
                 Name = reviewData.ItemName
+                Description = reviewData.Description
                 Author = reviewData.Author
                 Isbn = reviewData.Isbn
                 Url = reviewData.ItemUrl

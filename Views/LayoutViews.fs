@@ -491,7 +491,7 @@ let reviewPageView (review: Review) =
         | Some rm when rm.Rating > 0.0 -> (rm.Rating, rm.Scale)
         | _ when review.Metadata.Rating > 0.0 -> (review.Metadata.Rating, 5.0)
         | _ -> (0.0, 5.0)
-    let summary = reviewMetadata |> Option.bind (fun rm -> rm.Summary)
+    let description = reviewMetadata |> Option.bind (fun rm -> rm.Description)
     let itemUrl = reviewMetadata |> Option.bind (fun rm -> rm.ItemUrl)
     let pros = reviewMetadata |> Option.bind (fun rm -> rm.Pros) |> Option.defaultValue [||]
     let cons = reviewMetadata |> Option.bind (fun rm -> rm.Cons) |> Option.defaultValue [||]
@@ -529,7 +529,7 @@ let reviewPageView (review: Review) =
                         (if ratingValue > 0.0 then div [ _class "review-hero-rating p-rating" ] [ rawText (SvgStarRating.render ratingValue ratingScale) ] else Text "")
                         (if List.isEmpty metaPairs then Text ""
                          else dl [ _class "review-meta-list" ] [ for (label, value) in metaPairs do dt [] [ Text label ]; dd [] [ Text value ] ])
-                        (match summary with Some s -> p [ _class "review-hero-summary p-summary" ] [ Text s ] | None -> Text "")
+                        (match description with Some s -> p [ _class "review-hero-description p-summary" ] [ Text s ] | None -> Text "")
                         (match itemUrl with
                          | Some url -> p [ _class "review-hero-actions" ] [ a [ _href url; _class "u-url review-view-item"; _target "_blank"; attr "rel" "noopener" ] [ Text "View item ↗" ] ]
                          | None -> Text "")

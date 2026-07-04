@@ -161,7 +161,7 @@ module ReviewRenderer =
             else ""
         
         let summaryElement =
-            let summary = review.GetSummary()
+            let summary = review.GetDescription()
             if not (String.IsNullOrWhiteSpace(summary)) then
                 Html.element "div"
                     (Html.attribute "class" ("review-summary " + Microformats.pSummary))

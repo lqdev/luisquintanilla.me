@@ -102,7 +102,7 @@ type ReviewMetadata = {
     ItemType: string          // Type of item: "book", "movie", "music", "product", "business"
     Rating: float             // Rating value (e.g., 4.5)
     Scale: float              // Rating scale max (e.g., 5.0)
-    Summary: string option    // Brief review summary
+    Description: string option // Short description of the item
     ItemUrl: string option    // URL of the reviewed item
     ImageUrl: string option   // Cover/thumbnail image URL
     Author: string option     // For books: author name

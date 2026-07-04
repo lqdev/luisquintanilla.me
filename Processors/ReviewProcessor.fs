@@ -117,7 +117,7 @@ module ReviewProcessor
                                 ItemType = itemTypeNorm
                                 Rating = reviewData.rating
                                 Scale = reviewData.GetScale()
-                                Summary = if String.IsNullOrWhiteSpace(reviewData.GetSummary()) then None else Some (reviewData.GetSummary())
+                                        Description = if String.IsNullOrWhiteSpace(reviewData.GetDescription()) then None else Some (reviewData.GetDescription())
                                 ItemUrl = reviewData.item_url
                                 ImageUrl = reviewData.image_url
                                 Author = ReviewSchema.roleValue itemTypeNorm ReviewSchema.SchemaAuthor additionalFields
@@ -133,7 +133,7 @@ module ReviewProcessor
                                     ItemType = "book"
                                     Rating = metadata.Rating
                                     Scale = 5.0
-                                    Summary = None
+                                    Description = None
                                     ItemUrl = if String.IsNullOrWhiteSpace(metadata.Source) then None else Some metadata.Source
                                     ImageUrl = if String.IsNullOrWhiteSpace(metadata.Cover) then None else Some metadata.Cover
                                     Author = if String.IsNullOrWhiteSpace(metadata.Author) then None else Some metadata.Author

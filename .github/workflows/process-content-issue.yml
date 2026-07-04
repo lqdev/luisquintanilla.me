@@ -960,7 +960,7 @@ jobs:
               
               // Common fields
               const rating = extractFormValue(issueBody, 'Rating');
-              const summary = extractFormValue(issueBody, 'Review Summary \\(Optional\\)');
+              const description = extractFormValue(issueBody, 'Description \\(Optional\\)');
               const content = extractFormValue(issueBody, 'Detailed Review Content \\(Optional\\)|Detailed Review \\(Optional\\)');
               const pros = extractFormValue(issueBody, 'Pros \\(Optional\\)|What Worked Well');
               const cons = extractFormValue(issueBody, 'Cons \\(Optional\\)|Areas for Improvement|What Could Be Better');
@@ -1026,13 +1026,13 @@ jobs:
                   break;
               }
               
-              console.log('Extracted data:', { reviewType, itemName, rating, summary });
+              console.log('Extracted data:', { reviewType, itemName, rating, description });
               
               // Set outputs for F# script
               core.setOutput('review_type', reviewType);
               core.setOutput('item_name', itemName);
               core.setOutput('rating', rating);
-              core.setOutput('summary', summary);
+              core.setOutput('description', description);
               core.setOutput('content', content);
               core.setOutput('pros', pros);
               core.setOutput('cons', cons);
@@ -1058,7 +1058,7 @@ jobs:
           ISSUE_REVIEW_TYPE: ${{ steps.extract-data.outputs.review_type }}
           ISSUE_ITEM_NAME: ${{ steps.extract-data.outputs.item_name }}
           ISSUE_RATING: ${{ steps.extract-data.outputs.rating }}
-          ISSUE_SUMMARY: ${{ steps.extract-data.outputs.summary }}
+          ISSUE_DESCRIPTION: ${{ steps.extract-data.outputs.description }}
           ISSUE_CONTENT: ${{ steps.extract-data.outputs.content }}
           ISSUE_PROS: ${{ steps.extract-data.outputs.pros }}
           ISSUE_CONS: ${{ steps.extract-data.outputs.cons }}
@@ -1072,7 +1072,7 @@ jobs:
           echo "$ISSUE_REVIEW_TYPE" > /tmp/review_type.txt
           echo "$ISSUE_ITEM_NAME" > /tmp/item_name.txt
           echo "$ISSUE_RATING" > /tmp/rating.txt
-          echo "$ISSUE_SUMMARY" > /tmp/summary.txt
+          echo "$ISSUE_DESCRIPTION" > /tmp/description.txt
           echo "$ISSUE_CONTENT" > /tmp/content.txt
           echo "$ISSUE_PROS" > /tmp/pros.txt
           echo "$ISSUE_CONS" > /tmp/cons.txt
@@ -1087,7 +1087,7 @@ jobs:
             "$(cat /tmp/review_type.txt)" \
             "$(cat /tmp/item_name.txt)" \
             "$(cat /tmp/rating.txt)" \
-            "$(cat /tmp/summary.txt)" \
+            "$(cat /tmp/description.txt)" \
             "$(cat /tmp/content.txt)" \
             "$(cat /tmp/pros.txt)" \
             "$(cat /tmp/cons.txt)" \
@@ -1099,7 +1099,7 @@ jobs:
           EXIT_CODE=$?
           
           # Clean up temporary files
-          rm -f /tmp/review_type.txt /tmp/item_name.txt /tmp/rating.txt /tmp/summary.txt /tmp/content.txt /tmp/pros.txt /tmp/cons.txt /tmp/item_url.txt /tmp/image_url.txt /tmp/additional_fields.txt /tmp/tags.txt /tmp/slug.txt
+          rm -f /tmp/review_type.txt /tmp/item_name.txt /tmp/rating.txt /tmp/description.txt /tmp/content.txt /tmp/pros.txt /tmp/cons.txt /tmp/item_url.txt /tmp/image_url.txt /tmp/additional_fields.txt /tmp/tags.txt /tmp/slug.txt
           
           echo "Script output:"
           echo "$OUTPUT"

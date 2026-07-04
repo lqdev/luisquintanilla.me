@@ -91,7 +91,7 @@ module BookProcessor
                                 ItemType = reviewData.item_type
                                 Rating = reviewData.rating
                                 Scale = reviewData.GetScale()
-                                Summary = reviewData.GetSummary()
+                                Description = reviewData.GetDescription()
                                 ItemUrl = reviewData.item_url
                                 ImageUrl = reviewData.image_url
                                 Author = additionalFields |> Map.tryFind "author"
@@ -108,7 +108,7 @@ module BookProcessor
                                     ItemType = reviewItemType |> Option.defaultValue "book"
                                     Rating = reviewRating
                                     Scale = reviewScale
-                                    Summary = None
+                                    Description = None
                                     ItemUrl = None
                                     ImageUrl = reviewImageUrl
                                     Author = if String.IsNullOrWhiteSpace(metadata.Author) then None else Some metadata.Author

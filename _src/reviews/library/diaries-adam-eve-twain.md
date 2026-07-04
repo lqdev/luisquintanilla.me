@@ -12,7 +12,7 @@ item: "The Diaries of Adam and Eve"
 itemType: "book"
 rating: 4.7
 scale: 5.0
-summary: "This was a short and fun read."
+description: "This was a short and fun read."
 itemUrl: "https://www.barnesandnoble.com/w/the-diaries-of-adam-and-eve-mark-twain/1101238514"
 imageUrl: "https://prodimage.images-bn.com/pimages/9781420963748_p0_v1_s600x595.jpg"
 additionalFields:

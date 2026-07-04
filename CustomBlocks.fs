@@ -38,8 +38,8 @@ type BaseReviewData = {
     rating: float
     [<YamlDotNet.Serialization.YamlMember(Alias="scale")>]
     scale: float option  // Rating scale (defaults to 5.0)
-    [<YamlDotNet.Serialization.YamlMember(Alias="summary")>]
-    summary: string option  // Brief review summary
+    [<YamlDotNet.Serialization.YamlMember(Alias="description")>]
+    description: string option  // Short description of the item
     
     // Optional structured feedback
     [<YamlDotNet.Serialization.YamlMember(Alias="pros")>]
@@ -60,8 +60,8 @@ type BaseReviewData = {
 with
     member this.GetScale() = 
         this.scale |> Option.defaultValue 5.0
-    member this.GetSummary() = 
-        this.summary |> Option.defaultValue ""
+    member this.GetDescription() = 
+        this.description |> Option.defaultValue ""
     member this.GetImageUrl() =
         this.image_url |> Option.defaultValue ""
     member this.GetAdditionalFields() =
@@ -270,7 +270,7 @@ type CustomBlockParser(blockType: string, createBlock: BlockParser -> ContainerB
                                 | "itemtype"
                                 | "rating"
                                 | "scale"
-                                | "summary"
+                                | "description"
                                 | "pros"
                                 | "cons"
                                 | "itemurl"
@@ -468,7 +468,7 @@ type ReviewBlockHtmlRenderer() =
         match block.ReviewData with
         | Some reviewData ->
             let scale = reviewData.GetScale()
-            let summary = reviewData.GetSummary()
+            let summary = reviewData.GetDescription()
             
             // Start review block container
             renderer.Write("<div class=\"custom-review-block h-review\">") |> ignore

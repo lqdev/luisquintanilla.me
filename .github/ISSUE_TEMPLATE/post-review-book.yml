@@ -57,11 +57,11 @@ body:
       required: true
 
   - type: textarea
-    id: summary
+    id: description
     attributes:
-      label: Review Summary (Optional)
-      description: A brief summary of your review (will appear in the review block)
-      placeholder: "A concise summary of your thoughts on this book..."
+      label: Description (Optional)
+      description: A short description of the book — e.g. the back-cover blurb or synopsis. Your own opinion goes in the review content below.
+      placeholder: "e.g. the publisher's synopsis or a one-line description of the book..."
     validations:
       required: false
 

@@ -12,7 +12,7 @@ item: "We"
 itemType: "book"
 rating: 4.25
 scale: 5.0
-summary: "Before George Orwell's 1984, there was We. The first-person accounts of this dystopian, which at first the narrator perceives as utopian society really paint the picture of how soulless this society is. Throughout the book you can feel the narrator's internal conflict and the slow \"descent\" towards personal freedom and humanity."
+description: "Before George Orwell's 1984, there was We. The first-person accounts of this dystopian, which at first the narrator perceives as utopian society really paint the picture of how soulless this society is. Throughout the book you can feel the narrator's internal conflict and the slow \"descent\" towards personal freedom and humanity."
 itemUrl: "https://openlibrary.org/books/OL9304433M/We"
 imageUrl: "https://covers.openlibrary.org/b/id/12873301-L.jpg"
 additionalFields:

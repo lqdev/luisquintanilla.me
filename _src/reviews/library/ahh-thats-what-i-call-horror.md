@@ -12,7 +12,7 @@ item: "AHH! That's What I Call Horror: An Anthology of '90s Horror"
 itemType: "book"
 rating: 4.1
 scale: 5.0
-summary: "A blast from the past."
+description: "A blast from the past."
 itemUrl: "https://www.chelseapumpkins.com/ahh-thats-what-i-call-horror"
 imageUrl: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1665505215i/62883181.jpg"
 additionalFields:

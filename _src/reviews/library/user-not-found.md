@@ -12,7 +12,7 @@ item: "User Not Found"
 itemType: "book"
 rating: 4.0
 scale: 5.0
-summary: "Quick read but very personal introspection into relationships with technology and connectedness."
+description: "Quick read but very personal introspection into relationships with technology and connectedness."
 itemUrl: "https://futuretensebooks.com/product/user-not-found-felicity-fenton/"
 imageUrl: "https://futuretensebooks.com/wp-content/uploads/2018/10/cover4.png"
 additionalFields:

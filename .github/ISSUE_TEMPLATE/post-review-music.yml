@@ -78,11 +78,11 @@ body:
       required: true
 
   - type: textarea
-    id: summary
+    id: description
     attributes:
-      label: Review Summary (Optional)
-      description: Brief summary of your review
-      placeholder: "Your concise thoughts on this music..."
+      label: Description (Optional)
+      description: A short description of the album/song — e.g. what it is and who made it. Your opinion goes in the review content below.
+      placeholder: "e.g. a one-line description of the album, artist, or style..."
     validations:
       required: false
 

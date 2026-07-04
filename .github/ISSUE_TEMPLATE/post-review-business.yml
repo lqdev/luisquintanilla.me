@@ -71,11 +71,11 @@ body:
       required: true
 
   - type: textarea
-    id: summary
+    id: description
     attributes:
-      label: Review Summary (Optional)
-      description: Brief summary of your experience
-      placeholder: "Quick summary of your visit and overall impression..."
+      label: Description (Optional)
+      description: A short description of the business — what it is / what it offers. Your opinion goes in the review content below.
+      placeholder: "e.g. a one-line description of the business and what it offers..."
     validations:
       required: false
 

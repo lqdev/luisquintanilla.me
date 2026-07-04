@@ -12,7 +12,7 @@ item: "Unfuck Your Writing: Write Better, Reach Readers, & Share Your Inner Worl
 itemType: "book"
 rating: 3.0
 scale: 5.0
-summary: "Short and easy read."
+description: "Short and easy read."
 itemUrl: "https://microcosmpublishing.com/catalog/books/9262"
 imageUrl: "https://microcosmpublishing.com/previews/unfuck-your-writing_lg.jpg"
 additionalFields:

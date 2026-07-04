@@ -12,7 +12,7 @@ item: "Thrill Switch"
 itemType: "book"
 rating: 4.2
 scale: 5.0
-summary: "Really fun read."
+description: "Really fun read."
 itemUrl: "https://www.timhawken.com/thrill-switch"
 imageUrl: "https://images.squarespace-cdn.com/content/v1/5875f6a815d5dba00bbed0ea/1671223905780-BSJU33CS2HOQO8MIPRDB/thrillswitch+cover.jpg?format=1000w"
 additionalFields:

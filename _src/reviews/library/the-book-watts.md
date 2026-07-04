@@ -12,7 +12,7 @@ item: "The Book: On the Taboo Against Knowing Who You Are"
 itemType: "book"
 rating: 4.7
 scale: 5.0
-summary: "Short read and great book."
+description: "Short read and great book."
 itemUrl: "https://alanwatts.com/products/the-book-on-the-taboo-against-knowing-who-you-are"
 imageUrl: "https://alanwatts.com/cdn/shop/products/41LZO0pUN7L_1024x1024@2x.jpg?v=1616268408"
 additionalFields:

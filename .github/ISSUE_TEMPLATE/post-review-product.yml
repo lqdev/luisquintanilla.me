@@ -71,11 +71,11 @@ body:
       required: true
 
   - type: textarea
-    id: summary
+    id: description
     attributes:
-      label: Review Summary (Optional)
-      description: Brief summary of your experience with the product
-      placeholder: "Quick overview of the product and your main impressions..."
+      label: Description (Optional)
+      description: A short description of the product — what it is / what it does. Your opinion goes in the review content below.
+      placeholder: "e.g. a one-line description of the product and what it does..."
     validations:
       required: false
 

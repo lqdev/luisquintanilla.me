@@ -12,7 +12,7 @@ item: "The Creative Act: A Way of Being"
 itemType: "book"
 rating: 4.8
 scale: 5.0
-summary: "I really enjoyed this book."
+description: "I really enjoyed this book."
 itemUrl: "https://www.penguinrandomhouse.com/books/717356/the-creative-act-by-rick-rubin/"
 imageUrl: "https://images2.penguinrandomhouse.com/cover/9780593653425"
 additionalFields:

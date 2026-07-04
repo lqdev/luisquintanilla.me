@@ -12,7 +12,7 @@ item: "Jung: A Very Short Introduction"
 itemType: "book"
 rating: 4.8
 scale: 5.0
-summary: "Anthony Stevens tries to capture Jung's complex work and distill it into less than 200 pages."
+description: "Anthony Stevens tries to capture Jung's complex work and distill it into less than 200 pages."
 itemUrl: "http://anthonystevens.co.uk/jung.htm"
 imageUrl: "https://covers.powells.com/9780192854582.jpg"
 additionalFields:

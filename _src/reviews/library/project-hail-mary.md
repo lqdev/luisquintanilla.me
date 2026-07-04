@@ -12,7 +12,7 @@ item: "Project Hail Mary"
 itemType: "book"
 rating: 5.0
 scale: 5.0
-summary: "Amazing book."
+description: "Amazing book."
 itemUrl: "https://www.penguinrandomhouse.com/books/611060/project-hail-mary-by-andy-weir/"
 imageUrl: "https://images2.penguinrandomhouse.com/cover/9780593135211"
 additionalFields:

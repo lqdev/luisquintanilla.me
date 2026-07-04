@@ -12,7 +12,7 @@ item: "The Doors of Perception"
 itemType: "book"
 rating: 4.2
 scale: 5.0
-summary: "The version I read only covered the first part of this essay, The Doors of Perception."
+description: "The version I read only covered the first part of this essay, The Doors of Perception."
 itemUrl: "https://www.barnesandnoble.com/w/the-doors-of-perception-and-heaven-and-hell-aldous-huxley/1017728672"
 imageUrl: "https://prodimage.images-bn.com/pimages/9780061729072_p0_v4_s600x595.jpg"
 additionalFields:

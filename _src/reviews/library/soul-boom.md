@@ -12,7 +12,7 @@ item: "Soul Boom: Why We Need a Spiritual Revolution"
 itemType: "book"
 rating: 4.6
 scale: 5.0
-summary: "In this book, Rainn explores the impact of society's distancing from the spiritual and religion."
+description: "In this book, Rainn explores the impact of society's distancing from the spiritual and religion."
 itemUrl: "https://www.hachettebookgroup.com/titles/rainn-wilson/soul-boom/9780306828270/?lens=hachette-go"
 imageUrl: "https://www.hachettebookgroup.com/wp-content/uploads/2023/10/9780306828270.jpg?resize=683,1024"
 additionalFields:
