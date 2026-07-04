@@ -1,5 +1,5 @@
 ---
-title: "Argentina vs Cabo Verde | Resumen y Goles | Copa Mundial de la FIFA 2026 | Telemundo Deportes"
+title: "Argentina vs Cabo Verde - Resumen y Goles"
 targeturl: https://www.youtube.com/watch?v=hWlz2o8KPL0
 response_type: reshare
 dt_published: "2026-07-03 22:48 -05:00"
