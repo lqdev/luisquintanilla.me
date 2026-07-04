@@ -440,16 +440,35 @@ let aiMemexPageView (title:string) (content:string) (publishedDate:string) (last
             script [ _type "application/ld+json" ] [ rawText jsonLd ]
     ]
 
+let private stripReviewBlock (html: string) =
+    let marker = "<div class=\"custom-review-block"
+    let idx = html.IndexOf(marker, StringComparison.Ordinal)
+    if idx < 0 then html
+    else
+        let mutable i = idx
+        let mutable depth = 0
+        let mutable endIdx = -1
+        while i < html.Length && endIdx < 0 do
+            if i + 4 <= html.Length && html.Substring(i, 4) = "<div" then
+                depth <- depth + 1
+                i <- i + 4
+            elif i + 6 <= html.Length && html.Substring(i, 6) = "</div>" then
+                depth <- depth - 1
+                i <- i + 6
+                if depth = 0 then endIdx <- i
+            else
+                i <- i + 1
+        if endIdx < 0 then html else html.Remove(idx, endIdx - idx)
+
 let reviewPageView (review: Review) = 
     let title = review.Metadata.Title
     let content = review.Content |> convertMdToHtml
+    let fileName = review.FileName
     let date =
         if String.IsNullOrWhiteSpace(review.Metadata.PublishedDate) then review.Metadata.DatePublished
         else review.Metadata.PublishedDate
-    let fileName = review.FileName
 
-    // Handle null/empty dates gracefully - use current date as fallback
-    let (publishDate, dateTimeStr) = 
+    let (publishDate, dateTimeStr) =
         if String.IsNullOrWhiteSpace(date) then
             let now = DateTimeOffset.Now
             (now, now.ToString("yyyy-MM-dd HH:mm zzz"))
@@ -459,72 +478,67 @@ let reviewPageView (review: Review) =
                 (parsed, date)
             with
             | _ ->
-                // If date parsing fails, use current date
                 let now = DateTimeOffset.Now
                 (now, now.ToString("yyyy-MM-dd HH:mm zzz"))
-    
-    // Type-specific metadata rows for the page header.
-    let metadataRows =
-        let rows = ResizeArray<XmlNode>()
-        match review.ItemType with
-        | "book" ->
-            let author = review.AdditionalFields |> Map.tryFind "author" |> Option.defaultValue review.Metadata.Author
-            if not (String.IsNullOrWhiteSpace(author)) then
-                rows.Add(p [ _class "review-author" ] [ Text $"Author: {author}" ])
-            let isbn = review.AdditionalFields |> Map.tryFind "isbn" |> Option.defaultValue review.Metadata.Isbn
-            if not (String.IsNullOrWhiteSpace(isbn)) then
-                rows.Add(p [ _class "review-isbn" ] [ Text $"ISBN: {isbn}" ])
-        | "movie" ->
-            match review.AdditionalFields |> Map.tryFind "director" with
-            | Some d when not (String.IsNullOrWhiteSpace(d)) -> rows.Add(p [] [ Text $"Director: {d}" ])
-            | _ -> ()
-            match review.AdditionalFields |> Map.tryFind "year" with
-            | Some y when not (String.IsNullOrWhiteSpace(y)) -> rows.Add(p [] [ Text $"Year: {y}" ])
-            | _ -> ()
-            match review.AdditionalFields |> Map.tryFind "genre" with
-            | Some g when not (String.IsNullOrWhiteSpace(g)) -> rows.Add(p [] [ Text $"Genre: {g}" ])
-            | _ -> ()
-        | "music" ->
-            match review.AdditionalFields |> Map.tryFind "artist" with
-            | Some a when not (String.IsNullOrWhiteSpace(a)) -> rows.Add(p [] [ Text $"Artist: {a}" ])
-            | _ -> ()
-            match review.AdditionalFields |> Map.tryFind "genre" with
-            | Some g when not (String.IsNullOrWhiteSpace(g)) -> rows.Add(p [] [ Text $"Genre: {g}" ])
-            | _ -> ()
-        | _ ->
-            // For business/product, render any additional fields as key/value pairs.
-            for kvp in review.AdditionalFields do
-                if kvp.Key <> "item" then
-                    rows.Add(p [] [ Text $"{kvp.Key.Substring(0, 1).ToUpper()}{kvp.Key.Substring(1)}: {kvp.Value}" ])
-        rows |> Seq.toList
+
+    let reviewMetadata = ReviewProcessor.getReviewMetadata fileName
+    let imageUrl =
+        match reviewMetadata with
+        | Some rm when rm.ImageUrl.IsSome && not (String.IsNullOrWhiteSpace rm.ImageUrl.Value) -> Some rm.ImageUrl.Value
+        | _ -> if String.IsNullOrWhiteSpace review.Metadata.Cover then None else Some review.Metadata.Cover
+    let (ratingValue, ratingScale) =
+        match reviewMetadata with
+        | Some rm when rm.Rating > 0.0 -> (rm.Rating, rm.Scale)
+        | _ when review.Metadata.Rating > 0.0 -> (review.Metadata.Rating, 5.0)
+        | _ -> (0.0, 5.0)
+    let summary = reviewMetadata |> Option.bind (fun rm -> rm.Summary)
+    let itemUrl = reviewMetadata |> Option.bind (fun rm -> rm.ItemUrl)
+    let pros = reviewMetadata |> Option.bind (fun rm -> rm.Pros) |> Option.defaultValue [||]
+    let cons = reviewMetadata |> Option.bind (fun rm -> rm.Cons) |> Option.defaultValue [||]
+    let typeLabel =
+        if String.IsNullOrWhiteSpace review.ItemType then "Review"
+        else review.ItemType.Substring(0, 1).ToUpperInvariant() + review.ItemType.Substring(1)
+    let metaPairs = ReviewSchema.displayFields review.ItemType review.AdditionalFields
+    let cleanedContent =
+        let noBlock = stripReviewBlock content
+        System.Text.RegularExpressions.Regex.Replace(noBlock, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
 
     div [ _class "mr-auto" ] [
-        article [ _class "h-entry individual-post review-page" ] [
+        article [ _class "h-entry h-review individual-post review-page" ] [
             header [ _class "post-header" ] [
-                h1 [ _class "p-name post-title" ] [ Text title ]
-                div [ _class "post-meta" ] [
-                    span [ _class "review-type-badge"; attr "data-type" review.ItemType ] [ Text (review.ItemType.Substring(0, 1).ToUpper() + review.ItemType.Substring(1)) ]
-                    time [ _class "dt-published"; attr "datetime" dateTimeStr ] [
-                        Text (publishDate.ToString("MMMM d, yyyy"))
+                div [ _class "review-hero" ] [
+                    (match imageUrl with
+                     | Some url -> div [ _class "review-hero-media" ] [ img [ _src url; _class "review-hero-cover u-photo"; _alt title; attr "loading" "lazy" ] ]
+                     | None -> Text "")
+                    div [ _class "review-hero-body" ] [
+                        h1 [ _class "p-name post-title" ] [ Text title ]
+                        div [ _class "post-meta review-hero-meta" ] [
+                            span [ _class "review-type-badge"; attr "data-type" review.ItemType ] [ Text typeLabel ]
+                            time [ _class "dt-published"; attr "datetime" dateTimeStr ] [
+                                Text (publishDate.ToString("MMMM d, yyyy"))
+                            ]
+                        ]
+                        (if ratingValue > 0.0 then div [ _class "review-hero-rating p-rating" ] [ rawText (SvgStarRating.render ratingValue ratingScale) ] else Text "")
+                        (if List.isEmpty metaPairs then Text ""
+                         else dl [ _class "review-meta-list" ] [ for (label, value) in metaPairs do dt [] [ Text label ]; dd [] [ Text value ] ])
+                        (match summary with Some s -> p [ _class "review-hero-summary p-summary" ] [ Text s ] | None -> Text "")
+                        (match itemUrl with
+                         | Some url -> p [ _class "review-hero-actions" ] [ a [ _href url; _class "u-url review-view-item"; _target "_blank"; attr "rel" "noopener" ] [ Text "View item ↗" ] ]
+                         | None -> Text "")
                     ]
                 ]
-                div [ _class "review-metadata" ] metadataRows
-                // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
                     img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
                     a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
                 ]
             ]
-            
-            div [ _class "e-content post-content" ] [
-                // For reviews, remove duplicate H1 titles from content to prevent duplication with page header
-                let cleanedContent = 
-                    let htmlContent = content
-                    // Remove H1 titles that would duplicate the page title
-                    let removeTitles = System.Text.RegularExpressions.Regex.Replace(htmlContent, @"<h1[^>]*>.*?</h1>", "", System.Text.RegularExpressions.RegexOptions.IgnoreCase)
-                    removeTitles
-                rawText cleanedContent
-            ]
+            (if pros.Length > 0 || cons.Length > 0 then
+                div [ _class "review-proscons" ] [
+                    (if pros.Length > 0 then div [ _class "review-pros" ] [ h2 [] [ Text "Pros" ]; ul [] [ for p in pros -> li [] [ Text p ] ] ] else Text "")
+                    (if cons.Length > 0 then div [ _class "review-cons" ] [ h2 [] [ Text "Cons" ]; ul [] [ for c in cons -> li [] [ Text c ] ] ] else Text "")
+                ]
+             else Text "")
+            div [ _class "e-content post-content" ] [ rawText cleanedContent ]
 
             postTagsSection review.Metadata.Tags
             

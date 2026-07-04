@@ -72,129 +72,6 @@ with
             |> Seq.map (fun kvp -> kvp.Key, kvp.Value)
             |> Map.ofSeq
 
-// Book-specific review data
-[<CLIMutable>]
-type BookReviewData = {
-    // Inherit base fields
-    [<YamlDotNet.Serialization.YamlMember(Alias="item")>]
-    item: string
-    [<YamlDotNet.Serialization.YamlMember(Alias="itemType")>]
-    item_type: string
-    [<YamlDotNet.Serialization.YamlMember(Alias="rating")>]
-    rating: float
-    [<YamlDotNet.Serialization.YamlMember(Alias="scale")>]
-    scale: float option
-    [<YamlDotNet.Serialization.YamlMember(Alias="summary")>]
-    summary: string option
-    [<YamlDotNet.Serialization.YamlMember(Alias="pros")>]
-    pros: string array option
-    [<YamlDotNet.Serialization.YamlMember(Alias="cons")>]
-    cons: string array option
-    [<YamlDotNet.Serialization.YamlMember(Alias="itemUrl")>]
-    item_url: string option
-    [<YamlDotNet.Serialization.YamlMember(Alias="imageUrl")>]
-    image_url: string option
-    
-    // Book-specific fields
-    [<YamlDotNet.Serialization.YamlMember(Alias="author")>]
-    author: string
-    [<YamlDotNet.Serialization.YamlMember(Alias="isbn")>]
-    isbn: string option
-    [<YamlDotNet.Serialization.YamlMember(Alias="cover")>]
-    cover: string option
-    [<YamlDotNet.Serialization.YamlMember(Alias="datePublished")>]
-    date_published: string option
-}
-with
-    member this.GetScale() = this.scale |> Option.defaultValue 5.0
-    member this.GetSummary() = this.summary |> Option.defaultValue ""
-    member this.GetIsbn() = this.isbn |> Option.defaultValue ""
-    member this.GetCover() = 
-        match this.cover with
-        | Some c -> c
-        | None -> this.image_url |> Option.defaultValue ""
-    member this.GetDatePublished() = this.date_published |> Option.defaultValue ""
-
-// Union type for different review data types
-type ReviewData =
-    | BookReview of BookReviewData
-    | GenericReview of BaseReviewData
-with
-    // Common accessor methods
-    member this.Item = 
-        match this with
-        | BookReview b -> b.item
-        | GenericReview g -> g.item
-    member this.ItemType =
-        match this with
-        | BookReview b -> b.item_type
-        | GenericReview g -> g.item_type
-    member this.Rating =
-        match this with
-        | BookReview b -> b.rating
-        | GenericReview g -> g.rating
-    member this.Scale =
-        match this with
-        | BookReview b -> b.GetScale()
-        | GenericReview g -> g.GetScale()
-    member this.Summary =
-        match this with
-        | BookReview b -> b.GetSummary()
-        | GenericReview g -> g.GetSummary()
-    member this.Pros =
-        match this with
-        | BookReview b -> b.pros
-        | GenericReview g -> g.pros
-    member this.Cons =
-        match this with
-        | BookReview b -> b.cons
-        | GenericReview g -> g.cons
-    member this.ItemUrl =
-        match this with
-        | BookReview b -> b.item_url
-        | GenericReview g -> g.item_url
-    member this.ImageUrl =
-        match this with
-        | BookReview b -> 
-            // For books, prefer 'cover' field, fall back to 'image_url'
-            match b.cover with
-            | Some c when not (String.IsNullOrWhiteSpace(c)) -> Some c
-            | _ -> b.image_url
-        | GenericReview g -> g.image_url
-    
-    // Book-specific accessors
-    member this.GetAuthor() =
-        match this with
-        | BookReview b -> b.author
-        | GenericReview _ -> "Unknown"
-    member this.GetIsbn() =
-        match this with
-        | BookReview b -> b.GetIsbn()
-        | GenericReview _ -> ""
-    member this.GetCover() =
-        match this with
-        | BookReview b -> b.GetCover()
-        | GenericReview g -> g.GetImageUrl()
-    member this.GetDatePublished() =
-        match this with
-        | BookReview b -> b.GetDatePublished()
-        | GenericReview _ -> ""
-    member this.GetAdditionalFields() =
-        match this with
-        | BookReview b ->
-            // Surface book-specific fields as additional fields for uniform rendering
-            let mutable map = Map.empty
-            if not (String.IsNullOrWhiteSpace(b.author)) then
-                map <- map.Add("author", b.author)
-            match b.isbn with
-            | Some isbn when not (String.IsNullOrWhiteSpace(isbn)) -> map <- map.Add("isbn", isbn)
-            | _ -> ()
-            match b.date_published with
-            | Some dp when not (String.IsNullOrWhiteSpace(dp)) -> map <- map.Add("year", dp)
-            | _ -> ()
-            map
-        | GenericReview g -> g.GetAdditionalFields()
-
 [<CLIMutable>]
 type VenueData = {
     venue_name: string
@@ -231,7 +108,7 @@ type MediaBlock(parser: BlockParser) =
         member this.RawContent = this.RawContent
 and ReviewBlock(parser: BlockParser) =
     inherit ContainerBlock(parser)
-    member val ReviewData: ReviewData option = None with get, set
+    member val ReviewData: BaseReviewData option = None with get, set
     member val RawContent: string = "" with get, set
     interface ICustomBlock with
         member _.BlockType = "review"
@@ -379,20 +256,44 @@ type CustomBlockParser(blockType: string, createBlock: BlockParser -> ContainerB
                 if not (String.IsNullOrWhiteSpace(reviewBlock.RawContent)) then
                     // Dedent while preserving nested structure so additionalFields maps parse correctly.
                     let cleanContent = CustomBlockParser.dedentYamlBlock reviewBlock.RawContent
-                    
-                    // Polymorphic deserialization: first deserialize to get itemType
-                    let baseData = deserializer.Deserialize<BaseReviewData>(cleanContent)
-                    
-                    // Then deserialize to specific type based on itemType
-                    let reviewData =
-                        match baseData.item_type.ToLowerInvariant() with
-                        | "book" ->
-                            let bookData = deserializer.Deserialize<BookReviewData>(cleanContent)
-                            BookReview bookData
+                    let reviewData = deserializer.Deserialize<BaseReviewData>(cleanContent)
+                    let legacyFields =
+                        try
+                            let rawMap = deserializer.Deserialize<System.Collections.Generic.Dictionary<string, obj>>(cleanContent)
+                            let mutable merged = Map.empty<string, string>
+                            if not (isNull reviewData.additional_fields) then
+                                merged <- reviewData.additional_fields |> Seq.map (fun kvp -> kvp.Key, kvp.Value) |> Map.ofSeq
+                            for kvp in rawMap do
+                                let lowerKey = kvp.Key.ToLowerInvariant()
+                                match lowerKey with
+                                | "item"
+                                | "itemtype"
+                                | "rating"
+                                | "scale"
+                                | "summary"
+                                | "pros"
+                                | "cons"
+                                | "itemurl"
+                                | "imageurl"
+                                | "additionalfields" -> ()
+                                | _ ->
+                                    match kvp.Value with
+                                    | :? string as value when not (String.IsNullOrWhiteSpace value) ->
+                                        merged <- merged.Add(kvp.Key, value)
+                                    | _ -> ()
+                            merged
+                        with
                         | _ ->
-                            GenericReview baseData
-                    
-                    reviewBlock.ReviewData <- Some reviewData
+                            if isNull reviewData.additional_fields then Map.empty else reviewData.additional_fields |> Seq.map (fun kvp -> kvp.Key, kvp.Value) |> Map.ofSeq
+
+                    let normalizedFields =
+                        let dict = System.Collections.Generic.Dictionary<string, string>()
+                        for kvp in legacyFields do
+                            dict.[kvp.Key] <- kvp.Value
+                        dict
+
+                    let normalizedReviewData = { reviewData with additional_fields = normalizedFields }
+                    reviewBlock.ReviewData <- Some normalizedReviewData
             | :? VenueBlock as venueBlock ->
                 if not (String.IsNullOrWhiteSpace(venueBlock.RawContent)) then
                     let venueData = deserializer.Deserialize<VenueData>(venueBlock.RawContent)
@@ -566,28 +467,26 @@ type ReviewBlockHtmlRenderer() =
     override _.Write(renderer: HtmlRenderer, block: ReviewBlock) : unit =
         match block.ReviewData with
         | Some reviewData ->
-            // Enhanced HTML rendering with proper structure
-            let itemType = reviewData.ItemType
-            let scale = reviewData.Scale
-            let summary = reviewData.Summary
+            let scale = reviewData.GetScale()
+            let summary = reviewData.GetSummary()
             
             // Start review block container
             renderer.Write("<div class=\"custom-review-block h-review\">") |> ignore
             
             // Item title
             renderer.Write($"<div class=\"review-header\">") |> ignore
-            renderer.Write($"<h3 class=\"review-title p-name\">{HtmlHelpers.escapeHtml reviewData.Item}</h3>") |> ignore
+            renderer.Write($"<h3 class=\"review-title p-name\">{HtmlHelpers.escapeHtml reviewData.item}</h3>") |> ignore
             renderer.Write("</div>") |> ignore
             
             // Image if available
-            match reviewData.ImageUrl with
+            match reviewData.image_url with
             | Some imageUrl when not (String.IsNullOrWhiteSpace(imageUrl)) ->
-                renderer.Write($"<div class=\"review-image\"><img src=\"{HtmlHelpers.escapeHtml imageUrl}\" alt=\"{HtmlHelpers.escapeHtml reviewData.Item}\" class=\"review-thumbnail img-fluid\" /></div>") |> ignore
+                renderer.Write($"<div class=\"review-image\"><img src=\"{HtmlHelpers.escapeHtml imageUrl}\" alt=\"{HtmlHelpers.escapeHtml reviewData.item}\" class=\"review-thumbnail img-fluid\" /></div>") |> ignore
             | _ -> ()
             
             // Rating display with SVG stars
-            if reviewData.Rating > 0.0 then
-                let svgStars = SvgStarRating.render reviewData.Rating scale
+            if reviewData.rating > 0.0 then
+                let svgStars = SvgStarRating.render reviewData.rating scale
                 renderer.Write($"<div class=\"review-rating p-rating\">{svgStars}</div>") |> ignore
             
             // Summary
@@ -595,7 +494,7 @@ type ReviewBlockHtmlRenderer() =
                 renderer.Write($"<div class=\"review-summary p-summary\">{HtmlHelpers.escapeHtml summary}</div>") |> ignore
             
             // Pros and cons
-            match reviewData.Pros with
+            match reviewData.pros with
             | Some prosArray when prosArray.Length > 0 ->
                 renderer.Write("<div class=\"review-pros\"><h4>Pros:</h4><ul>") |> ignore
                 for pro in prosArray do
@@ -603,7 +502,7 @@ type ReviewBlockHtmlRenderer() =
                 renderer.Write("</ul></div>") |> ignore
             | _ -> ()
             
-            match reviewData.Cons with
+            match reviewData.cons with
             | Some consArray when consArray.Length > 0 ->
                 renderer.Write("<div class=\"review-cons\"><h4>Cons:</h4><ul>") |> ignore
                 for con in consArray do
@@ -612,7 +511,7 @@ type ReviewBlockHtmlRenderer() =
             | _ -> ()
             
             // Item URL
-            match reviewData.ItemUrl with
+            match reviewData.item_url with
             | Some url when not (String.IsNullOrWhiteSpace(url)) ->
                 renderer.Write($"<div class=\"review-url\"><a href=\"{HtmlHelpers.escapeHtml url}\" class=\"u-url\" target=\"_blank\">View Item</a></div>") |> ignore
             | _ -> ()
@@ -627,7 +526,7 @@ type ReviewBlockHtmlRenderer() =
 /// Union type for all custom blocks
 type CustomBlock =
     | Media of MediaItem list
-    | Review of ReviewData
+    | Review of BaseReviewData
     | Venue of VenueData
     | Rsvp of RsvpData
 
@@ -772,7 +671,7 @@ let extractReviewImageUrl (content: string) : string option =
         match customBlocks.TryGetValue("review") with
         | true, reviewList when reviewList.Length > 0 ->
             match reviewList.[0] with
-            | :? ReviewData as reviewData -> reviewData.ImageUrl
+            | :? BaseReviewData as reviewData -> reviewData.image_url
             | _ -> None
         | _ -> None
     with

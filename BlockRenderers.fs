@@ -150,18 +150,18 @@ module StarRating =
                 <span class="rating-text">%.1f/%.1f</span>
             </div>""" ariaLabel starsHtml rating scale
 
-/// Renderer for ReviewData
+/// Renderer for BaseReviewData
 module ReviewRenderer =
-    let render (review: ReviewData) =
+    let render (review: BaseReviewData) =
         let ratingElement =
-            if review.Rating > 0.0 then
+            if review.rating > 0.0 then
                 Html.element "div" 
                     (Html.attribute "class" ("review-rating " + Microformats.pRating))
-                    (StarRating.render review.Rating review.Scale)
+                    ((StarRating.render review.rating (review.GetScale())))
             else ""
         
         let summaryElement =
-            let summary = review.Summary
+            let summary = review.GetSummary()
             if not (String.IsNullOrWhiteSpace(summary)) then
                 Html.element "div"
                     (Html.attribute "class" ("review-summary " + Microformats.pSummary))
@@ -171,21 +171,21 @@ module ReviewRenderer =
         let titleElement =
             Html.element "h3"
                 (Html.attribute "class" ("review-title " + Microformats.pName))
-                (Html.escapeHtml review.Item)
+                (Html.escapeHtml review.item)
         
         let imageElement =
-            match review.ImageUrl with
+            match review.image_url with
             | Some imageUrl when not (String.IsNullOrWhiteSpace(imageUrl)) ->
                 Html.element "div" (Html.attribute "class" "review-image")
                     (Html.element "img" 
                         (Html.attribute "src" imageUrl + 
-                         Html.attribute "alt" review.Item + 
+                         Html.attribute "alt" review.item + 
                          Html.attribute "class" "review-thumbnail")
                         "")
             | _ -> ""
         
         let prosElement =
-            match review.Pros with
+            match review.pros with
             | Some (prosArray: string array) when prosArray.Length > 0 ->
                 let prosItems = 
                     prosArray 
@@ -198,7 +198,7 @@ module ReviewRenderer =
             | _ -> ""
         
         let consElement =
-            match review.Cons with
+            match review.cons with
             | Some (consArray: string array) when consArray.Length > 0 ->
                 let consItems = 
                     consArray 
@@ -211,7 +211,7 @@ module ReviewRenderer =
             | _ -> ""
         
         let urlElement =
-            match review.ItemUrl with
+            match review.item_url with
             | Some url when not (String.IsNullOrWhiteSpace(url)) ->
                 Html.element "div" (Html.attribute "class" "review-url")
                     (Html.element "a" 

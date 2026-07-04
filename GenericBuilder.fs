@@ -107,6 +107,8 @@ type ReviewMetadata = {
     ImageUrl: string option   // Cover/thumbnail image URL
     Author: string option     // For books: author name
     Isbn: string option       // For books: ISBN
+    Pros: string array option
+    Cons: string array option
 }
 
 /// Phase 5D: Media metadata for ActivityPub Image/Video/Audio objects

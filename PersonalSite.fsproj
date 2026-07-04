@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Compile Include="Domain.fs" />
+    <Compile Include="ReviewSchema.fs" />
     <Compile Include="ContentTypes.fs" />
     <Compile Include="CustomBlocks.fs" />
     <Compile Include="MediaTypes.fs" />
@@ -35,9 +36,7 @@
     <Compile Include="Processors\WikiProcessor.fs" />
     <Compile Include="Processors\AiMemexProcessor.fs" />
     <Compile Include="Processors\PresentationProcessor.fs" />
-    <Compile Include="Processors\ReviewDataExtractor.fs" />
     <Compile Include="Processors\MediaExtractor.fs" />
-    <Compile Include="Processors\BookProcessor.fs" />
     <Compile Include="Processors\ReviewProcessor.fs" />
     <Compile Include="Processors\ResponseProcessor.fs" />
     <Compile Include="Processors\MediaDataExtractor.fs" />

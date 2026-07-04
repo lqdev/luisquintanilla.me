@@ -226,8 +226,10 @@
             "imageUrl: \"${8:Album art URL}\"",
             "additionalFields:",
             "  artist: \"${9:Artist Name}\"",
-            "  album: \"${10:Album Name}\"",
-            "  year: ${11:2024}",
+            "  music_type: \"${10:Album/Song}\"",
+            "  release_year: ${11:2024}",
+            "  genre: \"${12:Genre}\"",
+            "  label: \"${13:Label}\"",
             ":::"
         ]
     },
@@ -250,9 +252,9 @@
             "itemUrl: \"${7:Business website URL}\"",
             "imageUrl: \"${8:Business image URL}\"",
             "additionalFields:",
-            "  location: \"${9:Location}\"",
-            "  category: \"${10:Business category}\"",
-            "  visited: \"${11:Visit date}\"",
+            "  business_type: \"${9:Business type}\"",
+            "  location: \"${10:Location}\"",
+            "  price_range: \"${11:Price range}\"",
             ":::"
         ]
     },
@@ -275,9 +277,10 @@
             "itemUrl: \"${7:Product URL}\"",
             "imageUrl: \"${8:Product image URL}\"",
             "additionalFields:",
-            "  brand: \"${9:Brand Name}\"",
-            "  model: \"${10:Model}\"",
-            "  price: \"${11:Price}\"",
+            "  manufacturer: \"${9:Manufacturer}\"",
+            "  product_category: \"${10:Category}\"",
+            "  model_version: \"${11:Model}\"",
+            "  price: \"${12:Price}\"",
             ":::"
         ]
     },

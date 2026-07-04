@@ -76,7 +76,7 @@ module ReviewProcessor
                         match parsedDoc.CustomBlocks.TryGetValue("review") with
                         | true, reviewList when reviewList.Length > 0 ->
                             match reviewList.[0] with
-                            | :? CustomBlocks.ReviewData as reviewData -> Some reviewData
+                            | :? CustomBlocks.BaseReviewData as reviewData -> Some reviewData
                             | _ -> None
                         | _ -> None
 
@@ -84,10 +84,11 @@ module ReviewProcessor
                     let (itemType, additionalFields) =
                         match reviewDataOpt with
                         | Some reviewData ->
+                            let itemTypeNorm = normalizeItemType reviewData.item_type
                             let fields = reviewData.GetAdditionalFields()
                             // Also surface the core item name from the review block.
-                            let fieldsWithItem = fields.Add("item", reviewData.Item)
-                            (normalizeItemType reviewData.ItemType, fieldsWithItem)
+                            let fieldsWithItem = fields.Add("item", reviewData.item)
+                            (itemTypeNorm, fieldsWithItem)
                         | None ->
                             // Legacy book review: synthesize fields from frontmatter.
                             let mutable fields = Map.empty
@@ -109,20 +110,20 @@ module ReviewProcessor
                     let reviewMetadata : ReviewMetadata option =
                         match reviewDataOpt with
                         | Some reviewData ->
+                            let itemTypeNorm = normalizeItemType reviewData.item_type
+                            let additionalFields = reviewData.GetAdditionalFields()
                             Some {
-                                ItemName = reviewData.Item
-                                ItemType = reviewData.ItemType
-                                Rating = reviewData.Rating
-                                Scale = reviewData.Scale
-                                Summary = if String.IsNullOrWhiteSpace(reviewData.Summary) then None else Some reviewData.Summary
-                                ItemUrl = reviewData.ItemUrl
-                                ImageUrl = reviewData.ImageUrl
-                                Author =
-                                    let author = reviewData.GetAuthor()
-                                    if String.IsNullOrWhiteSpace(author) then None else Some author
-                                Isbn =
-                                    let isbn = reviewData.GetIsbn()
-                                    if String.IsNullOrWhiteSpace(isbn) then None else Some isbn
+                                ItemName = reviewData.item
+                                ItemType = itemTypeNorm
+                                Rating = reviewData.rating
+                                Scale = reviewData.GetScale()
+                                Summary = if String.IsNullOrWhiteSpace(reviewData.GetSummary()) then None else Some (reviewData.GetSummary())
+                                ItemUrl = reviewData.item_url
+                                ImageUrl = reviewData.image_url
+                                Author = ReviewSchema.roleValue itemTypeNorm ReviewSchema.SchemaAuthor additionalFields
+                                Isbn = ReviewSchema.roleValue itemTypeNorm ReviewSchema.SchemaIsbn additionalFields
+                                Pros = reviewData.pros
+                                Cons = reviewData.cons
                             }
                         | None ->
                             // Fallback to frontmatter data for legacy book reviews.
@@ -137,6 +138,8 @@ module ReviewProcessor
                                     ImageUrl = if String.IsNullOrWhiteSpace(metadata.Cover) then None else Some metadata.Cover
                                     Author = if String.IsNullOrWhiteSpace(metadata.Author) then None else Some metadata.Author
                                     Isbn = if String.IsNullOrWhiteSpace(metadata.Isbn) then None else Some metadata.Isbn
+                                    Pros = None
+                                    Cons = None
                                 }
                             else None
 

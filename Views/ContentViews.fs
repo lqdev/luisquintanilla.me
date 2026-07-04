@@ -65,28 +65,21 @@ let reviewPostView (review: Review) =
         | _ when review.Metadata.Rating > 0.0 -> (review.Metadata.Rating, 5.0)
         | _ -> (0.0, 5.0)
 
-    let typeLabel = review.ItemType.Substring(0, 1).ToUpper() + review.ItemType.Substring(1)
+    let typeLabel =
+        if String.IsNullOrWhiteSpace review.ItemType then "Review"
+        else review.ItemType.Substring(0, 1).ToUpperInvariant() + review.ItemType.Substring(1)
 
-    // Type-specific subtitle (author for books, director for movies, etc.)
     let subtitle =
-        match review.ItemType with
-        | "book" ->
-            let author = review.AdditionalFields |> Map.tryFind "author" |> Option.defaultValue review.Metadata.Author
-            if String.IsNullOrWhiteSpace(author) then None else Some $"Author: {author}"
-        | "movie" ->
-            let director = review.AdditionalFields |> Map.tryFind "director" |> Option.defaultValue ""
-            if String.IsNullOrWhiteSpace(director) then None else Some $"Director: {director}"
-        | "music" ->
-            let artist = review.AdditionalFields |> Map.tryFind "artist" |> Option.defaultValue ""
-            if String.IsNullOrWhiteSpace(artist) then None else Some $"Artist: {artist}"
-        | _ -> None
+        ReviewSchema.displayFields review.ItemType review.AdditionalFields
+        |> List.tryHead
+        |> Option.map (fun (label, value) -> $"{label}: {value}")
 
     div [ _class "review-card h-review" ] [
         div [ _class "review-card-media" ] [
             img [ _src imageUrl; _class "review-card-cover"; _alt review.Metadata.Title; attr "loading" "lazy" ]
         ]
         div [ _class "review-card-body" ] [
-            a [ _href $"/reviews/{review.FileName}"; _class "review-card-title-link" ] [
+            a [ _href $"/reviews/{review.FileName}/"; _class "review-card-title-link" ] [
                 h3 [ _class "review-card-title p-name" ] [ Text review.Metadata.Title ]
             ]
             match subtitle with
@@ -102,47 +95,26 @@ let reviewPostView (review: Review) =
 
 // Deprecated: kept for any lingering references; prefer reviewPostView.
 let bookPostView (book: Book) = 
+    let imageUrl =
+        if String.IsNullOrWhiteSpace(book.Metadata.Cover) then
+            "/assets/img/book-placeholder.png"
+        else
+            book.Metadata.Cover
+
     div [_class "card mb-4 mx-auto"] [
         div [_class "row"] [
             div [_class "col-md-4"] [
-                // B2.3: cover image URL from structured ReviewData.ImageUrl; same
-                // metadata.Cover -> placeholder fallback.
-                let structuredImage =
-                    match book.MarkdownSource with
-                    | Some md -> let (img, _, _, _) = ReviewDataExtractor.extractReviewData md in img
-                    | None -> None
-                let imageUrl = 
-                    match structuredImage with
-                    | Some reviewImageUrl -> reviewImageUrl
-                    | None -> 
-                        if String.IsNullOrWhiteSpace(book.Metadata.Cover) then
-                            "/assets/img/book-placeholder.png"  // Default book placeholder
-                        else
-                            book.Metadata.Cover
                 img [_src imageUrl; _class "img-fluid"; _alt book.Metadata.Title]
             ]
             div [_class "col-md-8"] [
                 div [_class "card-body"] [
-                    a [_href $"/reviews/{book.FileName}"] [
+                    a [_href $"/reviews/{book.FileName}/"] [
                         h5 [_class "card-title"] [Text book.Metadata.Title]
                     ]
                     p [_class "card-text"] [Text $"Author: {book.Metadata.Author}"]
-                    // Rating should now come from updated metadata (includes custom block rating)
-                    let displayRating = $"Rating: {book.Metadata.Rating:F1}/5"
-                    
-                    // Check if we have a custom review by looking for review HTML content
-                    if book.Content.Contains("custom-review-block") then
-                        p [_class "card-text"] [
-                            Text displayRating
-                            Text " - "
-                            a [_href $"/reviews/{book.FileName}"; _class "text-decoration-none"] [
-                                Text "View Review"
-                                span [_class "ms-1"] [Text "→"]
-                            ]
-                        ]
-                    else
-                        p [_class "card-text"] [Text displayRating]
-                ]                
+                    if book.Metadata.Rating > 0.0 then
+                        p [_class "card-text"] [Text $"Rating: {book.Metadata.Rating:F1}/5"]
+                ]
             ]
         ]
     ]

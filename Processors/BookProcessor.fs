@@ -57,7 +57,7 @@ module BookProcessor
                         match parsedDoc.CustomBlocks.TryGetValue("review") with
                         | true, reviewList when reviewList.Length > 0 ->
                             match reviewList.[0] with
-                            | :? CustomBlocks.ReviewData as reviewData -> Some reviewData
+                            | :? CustomBlocks.BaseReviewData as reviewData -> Some reviewData
                             | _ -> None
                         | _ -> None
                     
@@ -65,15 +65,17 @@ module BookProcessor
                     let finalMetadata = 
                         match reviewDataOpt with
                         | Some reviewData ->
-                            // Use review block as source of truth
-                            // Note: Keep existing title from frontmatter to maintain consistency with views
-                            // that expect "Book Title Review" format rather than just "Book Title"
+                            let additionalFields = reviewData.GetAdditionalFields()
+                            let author = additionalFields |> Map.tryFind "author" |> Option.defaultValue ""
+                            let isbn = additionalFields |> Map.tryFind "isbn" |> Option.defaultValue ""
+                            let cover = reviewData.image_url |> Option.defaultValue ""
+                            let datePublished = additionalFields |> Map.tryFind "datePublished" |> Option.defaultValue ""
                             { metadata with
-                                Author = reviewData.GetAuthor()
-                                Isbn = reviewData.GetIsbn()
-                                Cover = reviewData.GetCover()
-                                Rating = reviewData.Rating
-                                DatePublished = reviewData.GetDatePublished()
+                                Author = author
+                                Isbn = isbn
+                                Cover = cover
+                                Rating = reviewData.rating
+                                DatePublished = datePublished
                             }
                         | None ->
                             // Fallback to frontmatter (backward compatibility)
@@ -83,16 +85,19 @@ module BookProcessor
                     let reviewMetadata : ReviewMetadata option =
                         match reviewDataOpt with
                         | Some reviewData ->
+                            let additionalFields = reviewData.GetAdditionalFields()
                             Some {
-                                ItemName = reviewData.Item  // The actual item name (book title)
-                                ItemType = reviewData.ItemType  // "book", "movie", etc.
-                                Rating = reviewData.Rating
-                                Scale = reviewData.Scale
-                                Summary = if String.IsNullOrWhiteSpace(reviewData.Summary) then None else Some reviewData.Summary
-                                ItemUrl = reviewData.ItemUrl
-                                ImageUrl = reviewData.ImageUrl
-                                Author = Some (reviewData.GetAuthor())  // For books
-                                Isbn = let isbn = reviewData.GetIsbn() in if String.IsNullOrWhiteSpace(isbn) then None else Some isbn
+                                ItemName = reviewData.item
+                                ItemType = reviewData.item_type
+                                Rating = reviewData.rating
+                                Scale = reviewData.GetScale()
+                                Summary = reviewData.GetSummary()
+                                ItemUrl = reviewData.item_url
+                                ImageUrl = reviewData.image_url
+                                Author = additionalFields |> Map.tryFind "author"
+                                Isbn = additionalFields |> Map.tryFind "isbn"
+                                Pros = reviewData.pros
+                                Cons = reviewData.cons
                             }
                         | None ->
                             // Fallback to frontmatter data (backward compatibility)

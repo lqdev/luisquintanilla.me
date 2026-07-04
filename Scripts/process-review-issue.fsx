@@ -137,70 +137,42 @@ let frontmatter =
     let titleEsc = itemName.Replace("\"", "\\\"")
     sprintf "---\ntitle: \"%s Review\"\npost_type: \"review\"\npublished_date: \"%s\"\ntags: %s\n---" titleEsc timestamp tagsString
 
-// Generate review block YAML with top-level book fields
+// Generate review block YAML with a uniform schema for all review types.
 let generateReviewBlock () =
     let lines = ResizeArray<string>()
-    
+
     lines.Add(":::review")
     lines.Add(sprintf "item: \"%s\"" (itemName.Replace("\"", "\\\"")))
     lines.Add(sprintf "itemType: \"%s\"" reviewType)
-    
-    // Add book-specific fields at top level (not in additionalFields)
-    if reviewType.ToLower() = "book" then
-        let author = 
-            match additionalFields |> List.tryFind (fun (k, _) -> k.ToLower() = "author") with
-            | Some (_, v) -> v
-            | None -> "Unknown"
-        let isbn = 
-            match additionalFields |> List.tryFind (fun (k, _) -> k.ToLower() = "isbn") with
-            | Some (_, v) -> v
-            | None -> ""
-        
-        lines.Add(sprintf "author: \"%s\"" (author.Replace("\"", "\\\"")))
-        if not (String.IsNullOrWhiteSpace(isbn)) then
-            lines.Add(sprintf "isbn: \"%s\"" (isbn.Replace("\"", "\\\"")))
-        
-        // Add cover field if imageUrl provided for books
-        match imageUrl with
-        | Some url -> lines.Add(sprintf "cover: \"%s\"" url)
-        | None -> ()
-        
-        // Add datePublished for books
-        lines.Add(sprintf "datePublished: \"%s\"" timestamp)
-    
     lines.Add(sprintf "rating: %.2f" rating)
     lines.Add("scale: 5.0")
-    
+
     if not (String.IsNullOrWhiteSpace(summary)) then
-        lines.Add(sprintf "summary: \"%s\"" (summary.Replace("\"", "\\\"").Replace("\n", " ")))
-    
+        lines.Add(sprintf "summary: \"%s\"" (summary.Replace("\"", "\\\"" ).Replace("\n", " ")))
+
     if pros.Length > 0 then
         lines.Add("pros:")
         for pro in pros do
             lines.Add(sprintf "  - \"%s\"" (pro.Replace("\"", "\\\"")))
-    
+
     if cons.Length > 0 then
         lines.Add("cons:")
         for con in cons do
             lines.Add(sprintf "  - \"%s\"" (con.Replace("\"", "\\\"")))
-    
+
     match itemUrl with
     | Some url -> lines.Add(sprintf "itemUrl: \"%s\"" url)
     | None -> ()
-    
-    // Note: Books use 'cover' field (added above) for consistency with BookDetails schema
-    // Other review types use 'imageUrl' for thumbnail/cover images
-    if reviewType.ToLower() <> "book" then
-        match imageUrl with
-        | Some url -> lines.Add(sprintf "imageUrl: \"%s\"" url)
-        | None -> ()
-    
-    // Keep non-book additionalFields for other review types
-    if reviewType.ToLower() <> "book" && additionalFields.Length > 0 then
+
+    match imageUrl with
+    | Some url -> lines.Add(sprintf "imageUrl: \"%s\"" url)
+    | None -> ()
+
+    if additionalFields.Length > 0 then
         lines.Add("additionalFields:")
         for (key, value) in additionalFields do
             lines.Add(sprintf "  %s: \"%s\"" key (value.Replace("\"", "\\\"")))
-    
+
     lines.Add(":::")
     String.concat "\n" lines
 

@@ -32,8 +32,8 @@ module ReviewDataExtractor
                 match customBlocks.TryGetValue("review") with
                 | true, reviewList when reviewList.Length > 0 ->
                     match reviewList.[0] with
-                    | :? CustomBlocks.ReviewData as reviewData -> 
-                        (reviewData.ImageUrl, reviewData.Rating, reviewData.Scale, Some reviewData.ItemType)
+                    | :? CustomBlocks.BaseReviewData as reviewData -> 
+                        (reviewData.image_url, reviewData.rating, reviewData.GetScale(), Some reviewData.item_type)
                     | _ -> (None, 0.0, 5.0, None)
                 | _ -> (None, 0.0, 5.0, None)
             with
