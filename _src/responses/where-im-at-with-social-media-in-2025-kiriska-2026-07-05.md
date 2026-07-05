@@ -1,5 +1,5 @@
 ---
-title: "Where I'm At With Social Media in 2025 | KIRISKA"
+title: "Where I'm At With Social Media in 2025"
 targeturl: https://kiriska.com/blog/2025/where-im-at-with-social-media-in-2025/
 response_type: reshare
 dt_published: "2026-07-05 09:27 -05:00"
