@@ -1,5 +1,5 @@
 ---
-title: "PROMOTE THE THINGS WE LOVE – HELLO, I'M SETH WERKHEISER"
+title: "PROMOTE THE THINGS WE LOVE"
 targeturl: https://sethw.xyz/blog/2026/07/05/promote-the-things-we-love/
 response_type: star
 dt_published: "2026-07-05 10:16 -05:00"
