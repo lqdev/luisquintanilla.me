@@ -69,7 +69,7 @@ module BookmarkProcessor
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", bookmark.Metadata.Title),
-                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedDescription),
+                    rssDescriptionElement normalizedDescription,
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url),
                     XElement(XName.Get "pubDate", bookmark.Metadata.DatePublished))

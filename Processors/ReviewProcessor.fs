@@ -196,7 +196,7 @@ module ReviewProcessor
             let item =
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", rssTitle review),
-                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" (normalizeUrlsForRss review.Content "https://www.lqdev.me")),
+                    rssDescriptionElement (normalizeUrlsForRss review.Content "https://www.lqdev.me"),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
 
