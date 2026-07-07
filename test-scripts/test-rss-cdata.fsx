@@ -1,9 +1,9 @@
 // Regression guard for issue #2497.
 // RSS <description> must contain a REAL CDATA section (not an XML-escaped literal)
-// and must escape any embedded "]]>" so feeds stay well-formed.
+// and must stay well-formed even when the content contains "]]>".
 //
 // Run from the project ROOT, AFTER `dotnet build` (Debug):
-//   dotnet fsi test-scripts\test-rss-cdata.fsx
+//   dotnet fsi test-scripts/test-rss-cdata.fsx
 // Exits 0 on success, 1 on any failure (CI-gateable).
 
 #r "../bin/Debug/net10.0/PersonalSite.dll"
