@@ -57,6 +57,15 @@ let generateSourceMarkdown (markdownSource: string option) : XElement option =
         Some (XElement(sourceNs + "markdown", XCData(escaped)))
     | _ -> None
 
+/// Build an RSS <description> element containing a genuine CDATA section.
+/// Passing a plain string to XElement would XML-escape it (emitting the literal
+/// "&lt;![CDATA[...]]&gt;"); an XCData node emits a real "<![CDATA[ ... ]]>" section.
+/// When serialized, XmlWriter.WriteCData auto-splits any embedded "]]>" across CDATA
+/// sections (e.g. "]]]]><![CDATA[>"), so the feed stays well-formed (verified on .NET 10).
+let rssDescriptionElement (content: string) : XElement =
+    let safe = if isNull content then "" else content
+    XElement(XName.Get "description", XCData(safe))
+
 /// Generic content processor pattern for consistent content handling
 type ContentProcessor<'T> = {
     /// Parse content from file path to domain type, transporting a typed

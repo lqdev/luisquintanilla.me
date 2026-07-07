@@ -200,7 +200,7 @@ module BookProcessor
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", sprintf "%s by %s" book.Metadata.Title book.Metadata.Author),
-                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" (normalizeUrlsForRss book.Content "https://www.lqdev.me")),
+                    rssDescriptionElement (normalizeUrlsForRss book.Content "https://www.lqdev.me"),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
             

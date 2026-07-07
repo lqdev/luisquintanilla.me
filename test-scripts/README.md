@@ -23,6 +23,7 @@ dotnet fsi test-scripts\test-wiki-migration.fsx     # Wiki migration validation
 
 # Feature Flag Tests
 dotnet fsi test-scripts\test-feature-flags.fsx      # Feature flag system validation
+dotnet fsi test-scripts\test-rss-cdata.fsx          # RSS CDATA regression guard
 ```
 
 ## Core Infrastructure Tests

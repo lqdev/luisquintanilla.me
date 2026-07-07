@@ -81,7 +81,7 @@ module NoteProcessor
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", note.Metadata.Title),
-                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedContent),
+                    rssDescriptionElement normalizedContent,
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url),
                     XElement(XName.Get "pubDate", note.Metadata.Date))

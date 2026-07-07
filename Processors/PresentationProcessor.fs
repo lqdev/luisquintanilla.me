@@ -93,7 +93,7 @@ module PresentationProcessor
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", presentation.Metadata.Title),
-                    XElement(XName.Get "description", sprintf "<![CDATA[%s]]>" normalizedContent),
+                    rssDescriptionElement normalizedContent,
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
             
