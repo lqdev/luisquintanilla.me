@@ -1,5 +1,5 @@
 ---
-title: "The great digital fatigue: How digital burnout is changing social media use [2026] | Incogni"
+title: "The great digital fatigue: How digital burnout is changing social media use"
 targeturl: https://blog.incogni.com/digital-fatigue-and-burnout/
 response_type: reshare
 dt_published: "2026-07-14 12:38 -05:00"
