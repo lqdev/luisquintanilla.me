@@ -96,6 +96,7 @@ module AssetsBuilder
         // offline.html has no identity strings and is still copied verbatim.
         GeneratedConfig.generateManifest ()
         GeneratedConfig.generateServiceWorker ()
+        GeneratedConfig.generateRobots ()
         File.Copy(Path.Join(srcDir,"offline.html"),Path.Join(outputDir,"offline.html"),true)
 
         // Verify the federation actor document (api/data/actor.json) is still

@@ -378,7 +378,7 @@ let generateEntryJsonLd (entry: AiMemex) (graph: KnowledgeGraph) (extractions: M
         match Map.tryFind entry.FileName graph.RelatedEntries with
         | Some related -> 
             related 
-            |> Array.map (fun r -> sprintf "\"https://www.lqdev.me/resources/ai-memex/%s/\"" r.Slug)
+            |> Array.map (fun r -> sprintf "\"https://lqdev.me/resources/ai-memex/%s/\"" r.Slug)
         | None -> [||]
 
     let tags = splitCsv entry.Metadata.Tags
@@ -429,16 +429,16 @@ let generateEntryJsonLd (entry: AiMemex) (graph: KnowledgeGraph) (extractions: M
     sprintf """{
   "@context":"https://schema.org",
   "@type":"%s",
-  "@id":"https://www.lqdev.me/resources/ai-memex/%s/",
+  "@id":"https://lqdev.me/resources/ai-memex/%s/",
   "headline":"%s",
   "description":"%s",
   "author":{"@type":"SoftwareApplication","name":"GitHub Copilot","url":"https://github.com/features/copilot","applicationCategory":"AI Coding Assistant"},
-  "publisher":{"@type":"Person","name":"Luis Quintanilla","url":"https://www.lqdev.me"},
+  "publisher":{"@id":"https://lqdev.me/#person"},
   "datePublished":"%s",
   "dateModified":"%s",
   "keywords":"%s",
-  "isPartOf":{"@type":"Collection","@id":"https://www.lqdev.me/resources/ai-memex/","name":"AI Memex"}%s%s%s,
-  "mainEntityOfPage":{"@type":"WebPage","@id":"https://www.lqdev.me/resources/ai-memex/%s/"}
+  "isPartOf":[{"@type":"Collection","@id":"https://lqdev.me/resources/ai-memex/","name":"AI Memex"},{"@id":"https://lqdev.me/#website"}]%s%s%s,
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://lqdev.me/resources/ai-memex/%s/"}
 }"""     (schemaOrgType entry.Metadata.EntryType)
          entry.FileName
          (jsonEscape entry.Metadata.Title)
@@ -466,7 +466,7 @@ let generateCollectionJsonLd (entries: AiMemex array) : string =
             let listItems = 
                 items 
                 |> Array.mapi (fun i item ->
-                    sprintf """{"@type":"ListItem","position":%d,"url":"https://www.lqdev.me/resources/ai-memex/%s/","name":"%s"}"""
+                    sprintf """{"@type":"ListItem","position":%d,"url":"https://lqdev.me/resources/ai-memex/%s/","name":"%s"}"""
                         (i + 1) item.FileName (jsonEscape item.Metadata.Title))
             sprintf """{"@type":"ItemList","name":"%s","numberOfItems":%d,"itemListElement":[%s]}"""
                 label items.Length (String.Join(",", listItems)))
@@ -474,10 +474,12 @@ let generateCollectionJsonLd (entries: AiMemex array) : string =
     sprintf """{
   "@context":"https://schema.org",
   "@type":"CollectionPage",
-  "@id":"https://www.lqdev.me/resources/ai-memex/",
+  "@id":"https://lqdev.me/resources/ai-memex/",
   "name":"AI Memex",
   "description":"A distributed knowledge capture system — patterns, research, references, and project outcomes authored by AI coding assistants.",
-  "url":"https://www.lqdev.me/resources/ai-memex/",
+  "url":"https://lqdev.me/resources/ai-memex/",
+  "isPartOf":{"@id":"https://lqdev.me/#website"},
+  "author":{"@id":"https://lqdev.me/#person"},
   "collectionSize":%d,
   "hasPart":[%s]
 }"""     entries.Length (String.Join(",", itemLists))

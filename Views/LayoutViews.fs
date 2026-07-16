@@ -215,6 +215,11 @@ let snippetPageView (title:string) (content:string) (date:string) (fileName:stri
                 relatedSnippetsSection relatedSnippets
                 webmentionForm
             ]
+
+            let snippetUrl = $"/resources/snippets/{Path.GetFileNameWithoutExtension(fileName)}/"
+            script [ _type "application/ld+json" ] [
+                rawText (StructuredData.contentPageJson "SoftwareSourceCode" "Snippets" "/resources/snippets/" snippetUrl title (publishDate.ToString("yyyy-MM-dd")) "" tags [])
+            ]
         ]
     ]
 
@@ -254,10 +259,15 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
                 relatedWikisSection relatedWikis
                 webmentionForm
             ]
+
+            let wikiUrl = $"/resources/wiki/{Path.GetFileNameWithoutExtension(fileName)}/"
+            script [ _type "application/ld+json" ] [
+                rawText (StructuredData.contentPageJson "Article" "Wiki" "/resources/wiki/" wikiUrl title (publishDate.ToString("yyyy-MM-dd")) "" tags [])
+            ]
         ]
     ]
 
-let aiMemexPageView (title:string) (content:string) (publishedDate:string) (lastUpdatedDate:string) (fileName:string) (tags: string array) (entryType: string) (description: string) (relatedSkill: string) (sourceProject: string) (backlinks: KnowledgeGraph.BacklinkData array) (relatedEntries: KnowledgeGraph.RelatedEntryData array) (jsonLd: string) (crossContent: KnowledgeGraph.CrossContentItem array) (entityNodes: KnowledgeGraph.EntityNode array) = 
+let aiMemexPageView (title:string) (content:string) (publishedDate:string) (lastUpdatedDate:string) (fileName:string) (tags: string array) (entryType: string) (description: string) (relatedSkill: string) (sourceProject: string) (backlinks: KnowledgeGraph.BacklinkData array) (relatedEntries: KnowledgeGraph.RelatedEntryData array) (jsonLd: string) (crossContent: KnowledgeGraph.CrossContentItem array) (entityNodes: KnowledgeGraph.EntityNode array) =
     let publishDate = DateTimeOffset.Parse(publishedDate)
     let entryTypeIcon = 
         match entryType with
@@ -618,6 +628,11 @@ let presentationPageView (presentation:Presentation) =
                 ]
                 webmentionForm
             ]
+
+            script [ _type "application/ld+json" ] [
+                let presUrl = $"/resources/presentations/{Path.GetFileNameWithoutExtension(presentation.FileName)}/"
+                rawText (StructuredData.contentPageJson "PresentationDigitalDocument" "Presentations" "/resources/presentations/" presUrl presentation.Metadata.Title (publishDate.ToString("yyyy-MM-dd")) "" [||] [])
+            ]
         ]
     ]
 
@@ -678,6 +693,12 @@ let blogPostView (title:string) (content:string) (date:string) (fileName:string)
                 relatedPostsSection relatedPosts "posts"
                 webmentionForm
             ]
+
+            let postUrl = $"/posts/{Path.GetFileNameWithoutExtension(fileName)}/"
+            let isoDate = publishDate.ToString("yyyy-MM-dd")
+            script [ _type "application/ld+json" ] [
+                rawText (StructuredData.blogPostingJson postUrl title isoDate "" tags)
+            ]
         ]
     ]
 
@@ -723,6 +744,11 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
                 postTagsSection tags
                 relatedPostsSection relatedPosts "notes"
                 webmentionForm
+            ]
+
+            let noteUrl = $"/notes/{Path.GetFileNameWithoutExtension(fileName)}/"
+            script [ _type "application/ld+json" ] [
+                rawText (StructuredData.contentPageJson "SocialMediaPosting" "Notes" "/notes/" noteUrl title (publishDate.ToString("yyyy-MM-dd")) "" tags [])
             ]
         ]
     ]
@@ -804,6 +830,11 @@ let responsePostView (title:string) (content:string) (date:string) (fileName:str
                 ]
                 postTagsSection tags
                 webmentionForm
+            ]
+
+            let respUrl = $"/responses/{Path.GetFileNameWithoutExtension(fileName)}/"
+            script [ _type "application/ld+json" ] [
+                rawText (StructuredData.responsePageJson "Responses" "/responses/" respUrl title (publishDate.ToString("yyyy-MM-dd")) tags responseType targetUrl)
             ]
         ]
     ]

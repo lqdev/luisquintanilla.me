@@ -161,6 +161,10 @@ module Layouts
                 // Robots
                 meta [_name "robots"; _content "nosnippet"]
                 title [] [Text pageTitle]
+
+                // Site-wide schema.org identity graph (WebSite + Person).
+                // Per-page nodes reference these via stable @id (#website / #person).
+                script [ _type "application/ld+json" ] [ rawText (StructuredData.siteIdentityGraphJson ()) ]
             ]
             body [] [
                 // Desert theme navigation
@@ -304,6 +308,9 @@ module Layouts
                 meta [_name "robots"; _content "nosnippet"]
                 
                 title [] [Text pageTitle]
+
+                // Site-wide schema.org identity graph (WebSite + Person).
+                script [ _type "application/ld+json" ] [ rawText (StructuredData.siteIdentityGraphJson ()) ]
             ]
             body [] [
                 // Desert theme navigation (consistent with other content types)

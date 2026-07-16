@@ -90,7 +90,21 @@ let buildContentType<'T> (srcDir: string) (outputDir: string) (cfg: ContentTypeB
             match index.Sort with
             | Some sort -> sort items
             | None -> items
-        let indexHtml = ViewGenerator.generate (index.View indexItems) cfg.Layout index.Title
+        // Phase 4: emit a list-page node (Blog for the posts index, else
+        // CollectionPage) + Home -> section breadcrumb, linked to the shared
+        // identity graph. Section URL derives from the output path so it always
+        // matches where this index is written; section name from the index title.
+        let indexUrl = "/" + (joinPath cfg.OutputDir).Replace("\\", "/") + "/"
+        let sectionTitle = index.Title.Split([| '|'; '-' |]).[0].Trim()
+        let schemaType = if cfg.Name = ContentTypes.Posts then "Blog" else "CollectionPage"
+        let indexContent =
+            div [] [
+                index.View indexItems
+                script [ _type "application/ld+json" ] [
+                    rawText (StructuredData.listPageJson schemaType indexUrl sectionTitle)
+                ]
+            ]
+        let indexHtml = ViewGenerator.generate indexContent cfg.Layout index.Title
         let indexSaveDir = joinPath (outputDir :: cfg.OutputDir)
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), indexHtml)

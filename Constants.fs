@@ -42,6 +42,21 @@ module Author =
     /// Mastodon profile (ActivityPub `alsoKnownAs`).
     let mastodonProfile = "https://toot.lqdev.tech/users/lqdev"
     let github = "https://github.com/lqdev"
+    let twitter = "https://twitter.com/ljquintanilla"
+    let linkedin = "https://www.linkedin.com/in/lquintanilla01/"
+    let email = "mailto:lqdev@outlook.com"
+
+    /// Job/role title used in schema.org `Person.jobTitle`.
+    let jobTitle = "Software Engineer"
+
+    /// Canonical external profiles for schema.org `Person.sameAs` (identity
+    /// disambiguation for crawlers/LLMs). Mirrors the footer `rel="me"` links.
+    let sameAs =
+        [ github
+          mastodonProfile
+          twitter
+          linkedin
+          email ]
 
 module Site =
     /// `og:site_name` / general site title.
@@ -108,3 +123,46 @@ module Pwa =
           "/assets/js/lazy-images.js"
           Avatar.displayPath
           "/manifest.json" ]
+
+module Crawlers =
+    // Crawler policy (single source of truth for the generated robots.txt).
+    //
+    // Goal: keep the site fully indexable by classic search engines and
+    // citable by AI *answer/retrieval* bots, while opting OUT of AI *training*
+    // / dataset-collection crawlers. Blocking the "-Extended"/training tokens
+    // does NOT affect the vendors' normal search indexing (e.g. blocking
+    // `Google-Extended` does not affect Googlebot). robots.txt is honored by
+    // reputable/documented bots only — it is a policy signal, not enforcement.
+
+    /// AI training / dataset-collection user agents to `Disallow: /`.
+    let blockedAiTrainingBots =
+        [ "GPTBot"              // OpenAI model training
+          "Google-Extended"    // Google Gemini/Vertex model training (not Search)
+          "anthropic-ai"       // Anthropic (legacy token)
+          "ClaudeBot"          // Anthropic crawler
+          "Claude-Web"         // Anthropic (legacy token)
+          "CCBot"              // Common Crawl (feeds many training corpora)
+          "Bytespider"         // ByteDance/TikTok training
+          "Applebot-Extended"  // Apple AI training opt-out (not Applebot Search)
+          "Meta-ExternalAgent" // Meta AI training
+          "meta-externalagent"
+          "FacebookBot"        // Meta training
+          "Amazonbot"          // Amazon (commonly training/corpus)
+          "Google-CloudVertexBot"  // Vertex AI enterprise fetch
+          "Diffbot"            // Knowledge-graph/dataset scraper
+          "Omgilibot"          // Dataset resale
+          "ImagesiftBot"       // The Hive dataset crawler
+          "PanguBot"
+          "Timpibot"
+          "cohere-ai"
+          "cohere-training-data-crawler"
+          "Kangaroo Bot"
+          "PetalBot"           // Huawei/Petal training
+          "YouBot"             // You.com crawler (training)
+          "Scrapy" ]
+
+    /// AI answer / live-retrieval bots we intentionally ALLOW (so the site can
+    /// be cited in AI answers). Documented here for intent; not emitted as
+    /// rules since the default is allow.
+    let allowedAiAnswerBots =
+        [ "OAI-SearchBot"; "ChatGPT-User"; "PerplexityBot"; "Perplexity-User" ]

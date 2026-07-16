@@ -3,6 +3,7 @@ module StaticPagesBuilder
     open System
     open System.IO
     open System.Text.Json
+    open Giraffe.ViewEngine
     open Domain
     open MarkdownService
     open ViewGenerator
@@ -10,7 +11,16 @@ module StaticPagesBuilder
     open BuilderCommon
 
     let buildAboutPage () = 
-        let aboutContent = convertFileToHtml (Path.Join(srcDir,"about.md")) |> contentView
+        let aboutHtml = convertFileToHtml (Path.Join(srcDir,"about.md"))
+        // Wrap the standard content view and append a ProfilePage @graph whose
+        // mainEntity is the shared #person node (site-wide identity graph).
+        let aboutContent =
+            div [ _class "mr-auto" ] [
+                rawText aboutHtml
+                script [ _type "application/ld+json" ] [
+                    rawText (StructuredData.profilePageJson "/about/")
+                ]
+            ]
         let aboutPage = generate aboutContent "default" "About - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"about")
         writePageToDir saveDir "index.html" aboutPage

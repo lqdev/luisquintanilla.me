@@ -2,6 +2,7 @@ module TagPagesBuilder
 
     open System
     open System.IO
+    open Giraffe.ViewEngine
     open Domain
     open ViewGenerator
     open TagViews
@@ -93,12 +94,28 @@ module TagPagesBuilder
                     )
                 |> Array.toList
             
-            let individualTagPage = generate (individualTagViewUnified tag taggedContentForView) "default" $"{tag} - Tags - Luis Quintanilla"
+            let tagUrl = $"/tags/{sanitizedTag}/"
+            let tagJsonLd =
+                StructuredData.collectionPageJson tagUrl $"Tagged: {tag}"
+                    [ ("Home", "/"); ("Tags", "/tags/"); (tag, tagUrl) ]
+            let individualTagContent =
+                div [] [
+                    individualTagViewUnified tag taggedContentForView
+                    script [ _type "application/ld+json" ] [ rawText tagJsonLd ]
+                ]
+            let individualTagPage = generate individualTagContent "default" $"{tag} - Tags - Luis Quintanilla"
             File.WriteAllText(Path.Join(individualTagSaveDir, "index.html"), individualTagPage))
 
         // Generate main tags index page
         let allTagNames = groupedByTag |> Array.map fst
-        let tagPage = generate (allTagsView allTagNames) "default" "Tags - Luis Quintanilla"
+        let tagsIndexContent =
+            div [] [
+                allTagsView allTagNames
+                script [ _type "application/ld+json" ] [
+                    rawText (StructuredData.collectionPageJson "/tags/" "Tags" [ ("Home", "/"); ("Tags", "/tags/") ])
+                ]
+            ]
+        let tagPage = generate tagsIndexContent "default" "Tags - Luis Quintanilla"
         File.WriteAllText(Path.Join(saveDir, "index.html"), tagPage)
 
         printfn "✅ Unified tags pages created for %d tags across %d content types" allTagNames.Length contentArrays.Length

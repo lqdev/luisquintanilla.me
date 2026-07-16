@@ -86,7 +86,10 @@ module MarketplaceProcessor
 
     /// Build schema.org Product/Offer JSON-LD for a listing (safe escaping via System.Text.Json).
     let buildJsonLd (listing: MarketplaceListing) : string =
-        let pageUrl = sprintf "https://www.lqdev.me/marketplace/%s/" listing.FileName
+        let pageUrl = sprintf "https://lqdev.me/marketplace/%s/" listing.FileName
+
+        let seller = JsonObject()
+        seller.Add("@id", JsonValue.Create("https://lqdev.me/#person"))
 
         let offer = JsonObject()
         offer.Add("@type", JsonValue.Create("Offer"))
@@ -94,6 +97,7 @@ module MarketplaceProcessor
         offer.Add("priceCurrency", JsonValue.Create(currencyCode listing.Metadata.Currency))
         offer.Add("availability", JsonValue.Create(schemaAvailability listing.Metadata.Status))
         offer.Add("url", JsonValue.Create(pageUrl))
+        offer.Add("seller", seller)
         match schemaItemCondition listing.Metadata.Condition with
         | Some c -> offer.Add("itemCondition", JsonValue.Create(c))
         | None -> ()
@@ -101,6 +105,8 @@ module MarketplaceProcessor
         let product = JsonObject()
         product.Add("@context", JsonValue.Create("https://schema.org"))
         product.Add("@type", JsonValue.Create("Product"))
+        product.Add("@id", JsonValue.Create(pageUrl + "#product"))
+        product.Add("url", JsonValue.Create(pageUrl))
         product.Add("name", JsonValue.Create(listing.Metadata.Title))
         if not (String.IsNullOrWhiteSpace listing.Metadata.Description) then
             product.Add("description", JsonValue.Create(listing.Metadata.Description))

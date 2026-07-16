@@ -85,6 +85,31 @@ let generateServiceWorker () =
 
     File.WriteAllText(Path.Join(outputDir, "service-worker.js"), generated)
 
+/// Generate `_public/robots.txt` from Constants.Crawlers. Classic search bots
+/// and AI answer/retrieval bots are allowed (default); AI training crawlers are
+/// disallowed. See Constants.Crawlers for the policy rationale.
+let generateRobots () =
+    let sb = System.Text.StringBuilder()
+    let line (s: string) = sb.AppendLine(s) |> ignore
+
+    line "# robots.txt — generated at build time from Constants.Crawlers."
+    line "# Policy: allow classic search indexing + AI answer/retrieval (citation)"
+    line "#         bots; disallow AI training / dataset-collection crawlers."
+    line "# Blocking a training token (e.g. Google-Extended) does NOT affect that"
+    line "# vendor's normal Search crawler (e.g. Googlebot)."
+    line ""
+    line "# Default: everything else may crawl the whole site."
+    line "User-agent: *"
+    line "Disallow:"
+    line ""
+    line "# --- Disallowed: AI training / dataset-collection crawlers ---"
+    for bot in Constants.Crawlers.blockedAiTrainingBots do
+        line (sprintf "User-agent: %s" bot)
+        line "Disallow: /"
+        line ""
+
+    File.WriteAllText(Path.Join(outputDir, "robots.txt"), sb.ToString())
+
 /// Verify `api/data/actor.json` stays consistent with Constants. This does NOT
 /// rewrite the federation document (it is byte-coupled to the `api/` Functions
 /// deploy); it fails the build if identity has drifted so the two are updated
