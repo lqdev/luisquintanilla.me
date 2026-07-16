@@ -1,0 +1,37 @@
+name: "AT Proto — Create Publication (one-time)"
+
+# Manual-only bootstrap for the AT Protocol integration (issue #2574, Part A / A3).
+#
+# Creates the singleton `site.standard.publication` record for lqdev.me using the
+# ATPROTO_APP_PASSWORD secret, then prints the resulting AT-URI (public, non-secret)
+# to the run log. SAFE TO RE-RUN: the script refuses to create a duplicate and just
+# re-prints the existing AT-URI.
+#
+# This workflow lives on `main` only because `workflow_dispatch` must be on the
+# default branch to be dispatchable. It never runs automatically.
+
+on:
+  workflow_dispatch:
+
+# Least privilege: this job only reads the repo + talks to the PDS. It needs no
+# write access to repo contents.
+permissions:
+  contents: read
+
+jobs:
+  create-publication:
+    name: Create site.standard.publication
+    runs-on: ubuntu-latest
+    env:
+      ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET SDK 10.x
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          cache: false
+
+      - name: Create publication record
+        run: dotnet fsi Scripts/create-atproto-publication.fsx
