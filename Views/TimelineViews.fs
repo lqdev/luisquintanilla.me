@@ -133,7 +133,7 @@ let avatarFlipCard (altText: string) (flipUrl: string) (ariaLabel: string) (dest
             div [ _class "avatar-flip-inner" ] [
                 // Front face: the avatar image
                 div [ _class "avatar-flip-front" ] [
-                    img [ _src "/avatar.png"
+                    img [ _src Constants.Avatar.displayPath
                           _alt altText
                           _class "rounded-circle avatar-flip-image"
                           _height "150"

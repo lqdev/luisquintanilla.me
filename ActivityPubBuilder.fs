@@ -391,7 +391,7 @@ type ActivityPubOutboxPage = {
 
 /// Configuration constants for ActivityPub generation
 module Config =
-    let baseUrl = "https://lqdev.me"
+    let baseUrl = Constants.Urls.canonical
     let activityPubBase = sprintf "%s/api/activitypub" baseUrl
     let actorUri = sprintf "%s/actor" activityPubBase
     let followersCollection = sprintf "%s/followers" activityPubBase

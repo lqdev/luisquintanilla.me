@@ -17,7 +17,7 @@ let homeView (blog:Post) (microblog:Post) (response:Response) =
         div [_class "row mx-auto p-2"] [
             div [_class "col d-flex align-self-center justify-content-center"] [
                 div [_class "p-2"] [
-                    img [_src "/avatar.png"; _alt "Luis Quintanilla Avatar Image"; _class "rounded-circle"; _height "200"; _width "200" ]
+                    img [_src Constants.Avatar.displayPath; _alt "Luis Quintanilla Avatar Image"; _class "rounded-circle"; _height "200"; _width "200" ]
                     div [_class "mt-2 align-self-center text-center"] [
                         h2 [] [
                             str "Hi, I'm "
@@ -78,7 +78,7 @@ let mediaPageView (title:string) (content:string) (date:string) (fileName:string
                 ]
                 // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
-                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    img [ _src Constants.Avatar.displayPath; _class "u-photo"; _alt Constants.Author.name ]
                     a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
                 ]
             ]
@@ -142,7 +142,7 @@ let marketplaceListingView (listing: MarketplaceListing) (contentHtml: string) =
                 ]
                 // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
-                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    img [ _src Constants.Avatar.displayPath; _class "u-photo"; _alt Constants.Author.name ]
                     a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
                 ]
             ]
@@ -192,7 +192,7 @@ let snippetPageView (title:string) (content:string) (date:string) (fileName:stri
                 ]
                 // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
-                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    img [ _src Constants.Avatar.displayPath; _class "u-photo"; _alt Constants.Author.name ]
                     a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
                 ]
             ]
@@ -231,7 +231,7 @@ let wikiPageView (title:string) (content:string) (date:string) (fileName:string)
                 ]
                 // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
-                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    img [ _src Constants.Avatar.displayPath; _class "u-photo"; _alt Constants.Author.name ]
                     a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
                 ]
             ]
@@ -536,7 +536,7 @@ let reviewPageView (review: Review) =
                     ]
                 ]
                 div [ _class "u-author h-card microformat-hidden" ] [
-                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    img [ _src Constants.Avatar.displayPath; _class "u-photo"; _alt Constants.Author.name ]
                     a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
                 ]
             ]
@@ -578,7 +578,7 @@ let presentationPageView (presentation:Presentation) =
                 ]
                 // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
-                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    img [ _src Constants.Avatar.displayPath; _class "u-photo"; _alt Constants.Author.name ]
                     a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
                 ]
             ]
@@ -655,7 +655,7 @@ let blogPostView (title:string) (content:string) (date:string) (fileName:string)
                 ]
                 // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
-                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    img [ _src Constants.Avatar.displayPath; _class "u-photo"; _alt Constants.Author.name ]
                     a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
                 ]
             ]
@@ -701,7 +701,7 @@ let notePostView (title:string) (content:string) (date:string) (fileName:string)
                 ]
                 // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
-                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    img [ _src Constants.Avatar.displayPath; _class "u-photo"; _alt Constants.Author.name ]
                     a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
                 ]
             ]
@@ -766,7 +766,7 @@ let responsePostView (title:string) (content:string) (date:string) (fileName:str
                 ]
                 // Hidden IndieWeb author information for microformats compliance
                 div [ _class "u-author h-card microformat-hidden" ] [
-                    img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+                    img [ _src Constants.Avatar.displayPath; _class "u-photo"; _alt Constants.Author.name ]
                     a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
                 ]
             ]

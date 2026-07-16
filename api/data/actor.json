@@ -30,12 +30,12 @@
   "icon": {
     "type": "Image",
     "mediaType": "image/png",
-    "url": "https://lqdev.me/avatar.png"
+    "url": "https://lqdev.me/avatar-doom.png"
   },
   "image": {
     "type": "Image",
     "mediaType": "image/png",
-    "url": "https://lqdev.me/avatar.png"
+    "url": "https://lqdev.me/avatar-doom.png"
   },
   "publicKey": {
     "@type": "Key",

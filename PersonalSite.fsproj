@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Compile Include="Domain.fs" />
+    <Compile Include="Constants.fs" />
     <Compile Include="ReviewSchema.fs" />
     <Compile Include="ContentTypes.fs" />
     <Compile Include="CustomBlocks.fs" />
@@ -29,6 +30,7 @@
     <Compile Include="Services\RelatedContent.fs" />
     <Compile Include="Services\FollowersSync.fs" /> 
     <Compile Include="Services\QRStyled.fs" />
+    <Compile Include="Services\RetroAvatar.fs" />
     <Compile Include="GenericBuilder.fs" />
     <Compile Include="Processors\PostProcessor.fs" />
     <Compile Include="Processors\NoteProcessor.fs" />
@@ -71,6 +73,7 @@
     <Compile Include="Loaders.fs" />
     <Compile Include="TextOnlyBuilder.fs" />
     <Compile Include="Builders\Common.fs" />
+    <Compile Include="Builders\GeneratedConfig.fs" />
     <Compile Include="Builders\Assets.fs" />
     <Compile Include="Builders\AiMemexPages.fs" />
     <Compile Include="Builders\ResumePage.fs" />

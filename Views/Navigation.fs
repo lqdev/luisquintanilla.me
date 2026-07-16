@@ -186,7 +186,7 @@ let desertNavigation : XmlNode list =
                 // Brand/Header
                 div [_class "nav-brand"] [
                     a [_href "/"; _class "brand-text"] [
-                        img [_src "/avatar.png"; _alt "Luis Quintanilla avatar"; attr "loading" "lazy"]
+                        img [_src Constants.Avatar.displayPath; _alt "Luis Quintanilla avatar"; attr "loading" "lazy"]
                         Text "Luis Quintanilla"
                     ]
                 ]

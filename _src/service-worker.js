@@ -10,7 +10,7 @@
 // page that still references the deleted script). Per-page QR SVGs live at
 // `/assets/images/qr/<type>/<slug>.svg` and match the existing `images`
 // cache-first pattern below.
-const CACHE_VERSION = 'v1.0.3';
+const CACHE_VERSION = '__CACHE_VERSION__';
 const CACHE_NAME = `luisquintanilla-${CACHE_VERSION}`;
 
 // Cache strategies
@@ -25,23 +25,10 @@ const CACHE_STRATEGIES = {
     API: 'api'
 };
 
-// Files to cache immediately on install
-const STATIC_CACHE_URLS = [
-    '/',
-    '/about',
-    '/contact',
-    '/search',
-    '/feed',
-    '/offline.html', // Fallback page for offline
-    '/assets/css/main.css',
-    '/assets/js/main.js',
-    '/assets/js/timeline.js',
-    '/assets/js/clipboard.js',
-    '/assets/js/share.js',
-    '/assets/js/lazy-images.js',
-    '/avatar.png',
-    '/manifest.json'
-];
+// Files to cache immediately on install.
+// NOTE: this list is INJECTED at build time from `Constants.Pwa.precache`
+// (see Builders/GeneratedConfig.fs). Edit the F# source, not this token.
+const STATIC_CACHE_URLS = __PRECACHE_URLS__;
 
 // URL patterns for different cache strategies
 const URL_PATTERNS = {

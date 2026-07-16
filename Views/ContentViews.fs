@@ -152,7 +152,7 @@ let presentationPageView (presentation:Presentation) =
     div [_class "presentation-container"] [
         // Hidden IndieWeb author information for microformats compliance
         div [ _class "u-author h-card microformat-hidden" ] [
-            img [ _src "/avatar.png"; _class "u-photo"; _alt "Luis Quintanilla" ]
+            img [ _src Constants.Avatar.displayPath; _class "u-photo"; _alt Constants.Author.name ]
             a [ _href "/about"; _class "u-url p-name" ] [ Text "Luis Quintanilla" ]
         ]
         

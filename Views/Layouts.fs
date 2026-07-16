@@ -32,35 +32,35 @@ module Layouts
         let ogElements = [
                 meta [_property "og:title"; _content pageTitle]
                 meta [_property "og:type"; _content "website"]
-                meta [_property "og:image"; _content "https://www.lqdev.me/avatar.png"]
-                meta [_property "og:image:secure_url"; _content "https://www.lqdev.me/avatar.png"]
+                meta [_property "og:image"; _content Constants.Avatar.displayUrl]
+                meta [_property "og:image:secure_url"; _content Constants.Avatar.displayUrl]
                 meta [_property "og:image:type"; _content "image/png"]
                 meta [_property "og:image:width"; _content "200"]
                 meta [_property "og:image:height"; _content "200"] 
-                meta [_property "og:site_name"; _content "Luis Quintanilla Personal Website"]
+                meta [_property "og:site_name"; _content Constants.Site.title]
                 meta [_property "og:locale"; _content "en_US"]
-                meta [_property "twitter:image"; _content "https://www.lqdev.me/avatar.png"]
-                meta [_property "fediverse:creator"; _content "@lqdev@toot.lqdev.tech"]
+                meta [_property "twitter:image"; _content Constants.Avatar.displayUrl]
+                meta [_property "fediverse:creator"; _content Constants.Author.fediverseHandle]
             
         ]
 
         ogElements
 
     let rssFeeds = [
-        link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Blog RSS Feed"; _href "/blog.rss"]
-        link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Microblog RSS Feed"; _href "/microblog.rss"]
-        link [_rel "alternate"; _type "application/rss+xml" ; _title "Luis Quintanilla Response RSS Feed"; _href "/responses.rss"]
+        link [_rel "alternate"; _type "application/rss+xml" ; _title (sprintf "%s Blog RSS Feed" Constants.Author.name); _href "/blog.rss"]
+        link [_rel "alternate"; _type "application/rss+xml" ; _title (sprintf "%s Microblog RSS Feed" Constants.Author.name); _href "/microblog.rss"]
+        link [_rel "alternate"; _type "application/rss+xml" ; _title (sprintf "%s Response RSS Feed" Constants.Author.name); _href "/responses.rss"]
     ]
 
     let webmentionLink = 
-        link [_rel "webmention"; _title "Luis Quintanilla Webmention Endpoint"; _href "https://webmentions.lqdev.tech/api/inbox"]
+        link [_rel "webmention"; _title (sprintf "%s Webmention Endpoint" Constants.Author.name); _href Constants.Urls.webmentionInbox]
 
 
     let rollLinks = [
-        link [_rel "feeds"; _type "text/xml" ; _title "Luis Quintanilla's Feeds"; _href "/feed/index.opml"]
-        link [_rel "blogroll"; _type "text/xml" ; _title "Luis Quintanilla's Blogroll"; _href "/collections/blogroll/index.opml"]
-        link [_rel "podroll"; _type "text/xml" ; _title "Luis Quintanilla's Podroll"; _href "/collections/podroll/index.opml"]
-        link [_rel "youtuberoll"; _type "text/xml" ; _title "Luis Quintanilla's YouTube Roll"; _href "/collections/youtube/index.opml"]
+        link [_rel "feeds"; _type "text/xml" ; _title (sprintf "%s's Feeds" Constants.Author.name); _href "/feed/index.opml"]
+        link [_rel "blogroll"; _type "text/xml" ; _title (sprintf "%s's Blogroll" Constants.Author.name); _href "/collections/blogroll/index.opml"]
+        link [_rel "podroll"; _type "text/xml" ; _title (sprintf "%s's Podroll" Constants.Author.name); _href "/collections/podroll/index.opml"]
+        link [_rel "youtuberoll"; _type "text/xml" ; _title (sprintf "%s's YouTube Roll" Constants.Author.name); _href "/collections/youtube/index.opml"]
     ]
 
     let scripts = [
@@ -153,10 +153,10 @@ module Layouts
                 
                 // PWA Manifest
                 link [_rel "manifest"; _href "/manifest.json"]
-                meta [_name "theme-color"; _content "#2d4a5c"]
+                meta [_name "theme-color"; _content Constants.Theme.color]
                 meta [_name "apple-mobile-web-app-capable"; _content "yes"]
                 meta [_name "apple-mobile-web-app-status-bar-style"; _content "black-translucent"]
-                meta [_name "apple-mobile-web-app-title"; _content "Luis Quintanilla"]
+                meta [_name "apple-mobile-web-app-title"; _content Constants.Author.name]
 
                 // Robots
                 meta [_name "robots"; _content "nosnippet"]
@@ -225,7 +225,7 @@ module Layouts
                 link [_rel "stylesheet"; _href "/text/assets/text-only.css"]
                 
                 // Essential metadata
-                meta [_name "description"; _content "Text-only accessible version of Luis Quintanilla's website"]
+                meta [_name "description"; _content (sprintf "Text-only accessible version of %s's website" Constants.Author.name)]
                 meta [_name "robots"; _content "noindex, nofollow"]
                 
                 title [] [Text $"{pageTitle} - Text-Only Site"]
@@ -237,7 +237,7 @@ module Layouts
                 // Text-only navigation header
                 header [attr "role" "banner"] [
                     h1 [] [
-                        a [_href "/text/"] [Text "Luis Quintanilla"]
+                        a [_href "/text/"] [Text Constants.Author.name]
                     ]
                     p [] [Text "Text-Only Accessible Website"]
                 ]
@@ -295,10 +295,10 @@ module Layouts
                 
                 // PWA Manifest
                 link [_rel "manifest"; _href "/manifest.json"]
-                meta [_name "theme-color"; _content "#2d4a5c"]
+                meta [_name "theme-color"; _content Constants.Theme.color]
                 meta [_name "apple-mobile-web-app-capable"; _content "yes"]
                 meta [_name "apple-mobile-web-app-status-bar-style"; _content "black-translucent"]
-                meta [_name "apple-mobile-web-app-title"; _content "Luis Quintanilla"]
+                meta [_name "apple-mobile-web-app-title"; _content Constants.Author.name]
 
                 // Robots                
                 meta [_name "robots"; _content "nosnippet"]

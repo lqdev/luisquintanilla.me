@@ -67,17 +67,42 @@ module AssetsBuilder
         
         // Copy favicon & avatar
         File.Copy(Path.Join(srcDir,"favicon.ico"),Path.Join(outputDir,"favicon.ico"),true)
-        File.Copy(Path.Join(srcDir,"avatar.png"),Path.Join(outputDir,"avatar.png"),true)
+        File.Copy(Path.Join(srcDir,Constants.Avatar.sourceFileName),Path.Join(outputDir,Constants.Avatar.sourceFileName),true)
         File.Copy(Path.Join(srcDir,"art-profile.png"),Path.Join(outputDir,"art-profile.png"),true)
+
+        // Generate the Doom-style retro avatar from the just-copied full-color
+        // avatar. This is the site's *displayed* avatar (all UI, u-photo,
+        // og:image, ActivityPub icon, PWA icon and QR center reference
+        // Constants.Avatar.displayFileName); the original source avatar stays served
+        // untouched. See Services/RetroAvatar.fs. Runs before the QR
+        // generators below so they can embed the retro face.
+        Services.RetroAvatar.generateDoomAvatar
+            (Path.Join(outputDir, Constants.Avatar.sourceFileName))
+            (Path.Join(outputDir, Constants.Avatar.displayFileName))
+            Services.RetroAvatar.defaultOptions
+        |> ignore
 
         // Copy contact cards
         File.Copy(Path.Join(srcDir,"vcard.vcf"),Path.Join(outputDir,"vcard.vcf"),true)
         File.Copy(Path.Join(srcDir,"mecard.txt"),Path.Join(outputDir,"mecard.txt"),true)
         
-        // Copy PWA files
-        File.Copy(Path.Join(srcDir,"service-worker.js"),Path.Join(outputDir,"service-worker.js"),true)
-        File.Copy(Path.Join(srcDir,"manifest.json"),Path.Join(outputDir,"manifest.json"),true)
+        // Copy PWA files.
+        //
+        // manifest.json and service-worker.js are DERIVED from Constants at
+        // build time (see Builders/GeneratedConfig.fs) rather than copied:
+        //   - manifest.json is generated in full from Constants.Pwa/Theme/Avatar.
+        //   - service-worker.js is `_src/service-worker.js` (a template) with
+        //     __CACHE_VERSION__ / __PRECACHE_URLS__ injected from Constants.Pwa.
+        // offline.html has no identity strings and is still copied verbatim.
+        GeneratedConfig.generateManifest ()
+        GeneratedConfig.generateServiceWorker ()
         File.Copy(Path.Join(srcDir,"offline.html"),Path.Join(outputDir,"offline.html"),true)
+
+        // Verify the federation actor document (api/data/actor.json) is still
+        // consistent with Constants. It is deployed with the `api/` Functions
+        // app and byte-coupled to that deploy, so we verify rather than rewrite;
+        // this fails the build loudly if site identity has drifted.
+        GeneratedConfig.verifyActor ()
 
         // Generate the homepage avatar flip-card QR. Emits a fully styled
         // SVG (slate rounded dots, orange rounded finder corners, embedded
@@ -89,7 +114,7 @@ module AssetsBuilder
         let qrOpts =
             Services.QRStyled.defaultOptions
                 "https://lqdev.me/"
-                (Some (Path.Join(outputDir, "avatar.png")))
+                (Some (Path.Join(outputDir, Constants.Avatar.displayFileName)))
         let qrOutPath = Path.Join(outputDir, "assets", "images", "contact", "qr-home.svg")
         Services.QRStyled.renderToFile qrOpts qrOutPath |> ignore
 
@@ -125,7 +150,7 @@ module AssetsBuilder
     // OS file cache absorbs the repeated reads. See
     // `Services/QRStyled.fs:ensureSmallAvatar`.
     let buildPerPageQRs (outputDir: string) (items: UnifiedFeeds.UnifiedFeedItem list) =
-        let avatarSrc = Path.Join(outputDir, "avatar.png")
+        let avatarSrc = Path.Join(outputDir, Constants.Avatar.displayFileName)
         let smallAvatarPath = Path.Join(outputDir, "assets", "images", "qr", "_avatar-sm.png")
         Services.QRStyled.ensureSmallAvatar avatarSrc smallAvatarPath |> ignore
 
