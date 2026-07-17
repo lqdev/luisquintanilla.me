@@ -27,6 +27,10 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
+    outputs:
+      # Whether the build produced AT Protocol POSSE staging (AtProtoBuilder.useAtProtoSync).
+      # Off by default → 'false' → sync_atproto_job is skipped entirely. See docs/atproto/.
+      atproto_staged: ${{ steps.atproto_check.outputs.staged }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -47,6 +51,22 @@ jobs:
       
       - name: Generate website
         run: dotnet run
+
+      # AT Protocol POSSE (#2574 / ADR-0009). AtProtoBuilder.useAtProtoSync is off by default, so
+      # no staging is produced and this reports staged=false → the downstream sync job is skipped
+      # and _public stays byte-identical to the pre-integration baseline. When the flag is flipped
+      # on, staging appears here and the sync job runs. This step never fails the build.
+      - name: Check for AT Protocol staging
+        id: atproto_check
+        run: |
+          if ls _public/api/data/atproto/documents/*.json >/dev/null 2>&1; then
+            COUNT=$(ls _public/api/data/atproto/documents/*.json | wc -l)
+            echo "staged=true" >> "$GITHUB_OUTPUT"
+            echo "🌐 AT Protocol staging present ($COUNT document record(s)) — sync job will run."
+          else
+            echo "staged=false" >> "$GITHUB_OUTPUT"
+            echo "AT Protocol staging absent (useAtProtoSync is off) — sync job will be skipped."
+          fi
 
       - name: Identify webmentions to send
         run: dotnet fsi Scripts/identify-webmentions.fsx
@@ -111,6 +131,16 @@ jobs:
           name: blog-archive-artifacts
           path: _public/archive/*.bar
           retention-days: 7
+
+      # AT Protocol POSSE staging for the sync job. Only present when useAtProtoSync is on;
+      # guarded on the check step so nothing is uploaded (and no warning) while the flag is off.
+      - name: Upload AT Protocol staging for sync job
+        if: steps.atproto_check.outputs.staged == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: atproto-staging
+          path: _public/api/data/atproto/documents/
+          retention-days: 1
 
   # ============================================================================
   # Webmention Notification Job (Independent)
@@ -229,6 +259,52 @@ jobs:
           done
           
           echo "📦 Queued posts will be delivered by scheduled worker (every 5 minutes)"
+
+  # ============================================================================
+  # AT Protocol POSSE Sync Job (Independent)
+  # Upserts site.standard.document records into the site's Bluesky-hosted PDS so
+  # Posts become first-class ATmosphere / Standard.site documents (#2574 / ADR-0009).
+  # Depends on: build_and_deploy_job (for the atproto-staging artifact)
+  # Gated on build_and_deploy_job.outputs.atproto_staged, so it is SKIPPED entirely
+  # while AtProtoBuilder.useAtProtoSync is off (the committed default) — zero cost,
+  # no confusing no-op runs. Only executes on main-branch pushes.
+  # Runs in DRY-RUN mode (no --commit) until deliberately activated.
+  # Activation runbook: docs/atproto/README.md
+  # ============================================================================
+  sync_atproto_job:
+    needs: build_and_deploy_job
+    if: needs.build_and_deploy_job.outputs.atproto_staged == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    name: Sync AT Protocol Documents
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          lfs: false
+
+      - name: Setup .NET SDK 10.x
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          cache: false
+
+      - name: Download AT Protocol staging
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: atproto-staging
+          path: atproto-staging
+
+      # DRY RUN until activated. Without --commit the script is READ-ONLY: it resolves the PDS,
+      # lists existing records, prints the create/update/skip plan, and writes NOTHING (no auth,
+      # no secret needed). To go live with POSSE, in this order:
+      #   1) set AtProtoBuilder.useAtProtoSync = true  (staging is produced → this job starts running)
+      #   2) add the ATPROTO_APP_PASSWORD repository secret
+      #   3) append `--commit` to the command below
+      # See docs/atproto/README.md for the full runbook and safety model.
+      - name: Sync AT Protocol documents (dry run until activated)
+        env:
+          ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
+        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-staging
 
   # close_pull_request_job:
   #   if: github.event_name == 'pull_request' && github.event.action == 'closed'
