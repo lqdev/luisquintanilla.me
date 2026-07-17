@@ -1,8 +1,15 @@
 // Validates AtProtoBuilder's deterministic TID derivation (Part B Phase 1, issue #2574).
 // Run: dotnet fsi test-scripts/test-atproto-tid.fsx
-// Constants.fs is self-contained (no repo deps), so the #load chain is just Constants + AtProtoBuilder.
+// AtProtoBuilder.fs's Phase 2 processor references Domain, ContentTypes, TagService, and
+// Giraffe.ViewEngine, so the #load chain must mirror the .fsproj compile order:
+//   Domain -> Constants -> ContentTypes -> Services/Tag -> AtProtoBuilder.
 
+#r "nuget: YamlDotNet, 16.3.0"
+#r "nuget: Giraffe.ViewEngine, 1.4.0"
+#load "../Domain.fs"
 #load "../Constants.fs"
+#load "../ContentTypes.fs"
+#load "../Services/Tag.fs"
 #load "../AtProtoBuilder.fs"
 
 open System
