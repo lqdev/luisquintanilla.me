@@ -59,7 +59,7 @@ let private joinPath (segments: string list) =
 /// Build all individual pages (+ the index, if configured) for one content type.
 /// Returns the FeedData for downstream feed/RSS aggregation (same contract as the
 /// old buildX functions).
-let buildContentType<'T> (srcDir: string) (outputDir: string) (cfg: ContentTypeBuild<'T>)
+let buildContentTypeWithHead<'T> (extraHeadOf: 'T -> XmlNode list) (srcDir: string) (outputDir: string) (cfg: ContentTypeBuild<'T>)
     : GenericBuilder.FeedData<'T> list =
 
     let files =
@@ -80,7 +80,7 @@ let buildContentType<'T> (srcDir: string) (outputDir: string) (cfg: ContentTypeB
         let content = item.Content
         let saveDir = joinPath (outputDir :: (cfg.OutputDir @ [ cfg.Slug content ]))
         Directory.CreateDirectory(saveDir) |> ignore
-        let html = ViewGenerator.generate (cfg.ItemView content items) cfg.Layout (cfg.ItemTitle content)
+        let html = ViewGenerator.generateWithHead (extraHeadOf content) (cfg.ItemView content items) cfg.Layout (cfg.ItemTitle content)
         File.WriteAllText(Path.Join(saveDir, "index.html"), html))
 
     // Index page (only when configured)
@@ -111,3 +111,9 @@ let buildContentType<'T> (srcDir: string) (outputDir: string) (cfg: ContentTypeB
     | None -> ()
 
     feedData
+
+/// buildContentTypeWithHead with no per-item <head> injection — the default for every content
+/// type except those that opt in (e.g. posts' AT Protocol site.standard.document verification link).
+let buildContentType<'T> (srcDir: string) (outputDir: string) (cfg: ContentTypeBuild<'T>)
+    : GenericBuilder.FeedData<'T> list =
+    buildContentTypeWithHead (fun _ -> []) srcDir outputDir cfg

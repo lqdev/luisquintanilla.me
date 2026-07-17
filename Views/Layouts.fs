@@ -116,7 +116,7 @@ module Layouts
     // scripts + init in body); everything else is shared. Both variants emit the same
     // `<meta name="robots" content="nosnippet">` — nosnippet permits indexing but suppresses
     // search-result snippets; the only real difference between the two is the Reveal.js bundle.
-    let private layoutCore (includeReveal: bool) (pageTitle:string) (content:string) =
+    let private layoutCore (includeReveal: bool) (extraHead: XmlNode list) (pageTitle:string) (content:string) =
         html [_lang "en"] [
             head [] [
                 meta [_charset "UTF-8"]    
@@ -157,6 +157,11 @@ module Layouts
                 meta [_name "apple-mobile-web-app-capable"; _content "yes"]
                 meta [_name "apple-mobile-web-app-status-bar-style"; _content "black-translucent"]
                 meta [_name "apple-mobile-web-app-title"; _content Constants.Author.name]
+
+                // Per-page injected head nodes (e.g. the AT Protocol site.standard.document
+                // verification <link>). Empty for virtually every page -> byte-identical output.
+                for el in extraHead do
+                    el
 
                 // Robots
                 meta [_name "robots"; _content "nosnippet"]
@@ -209,11 +214,19 @@ module Layouts
         ]
 
     let defaultLayout (pageTitle:string) (content:string) =
-        layoutCore false pageTitle content
+        layoutCore false [] pageTitle content
+
+    /// defaultLayout with extra per-page <head> nodes injected.
+    let defaultLayoutWithHead (extraHead: XmlNode list) (pageTitle:string) (content:string) =
+        layoutCore false extraHead pageTitle content
 
     // Same as defaultLayout plus the Reveal.js presentation assets (see layoutCore note).
     let defaultIndexedLayout (pageTitle:string) (content:string) =
-        layoutCore true pageTitle content
+        layoutCore true [] pageTitle content
+
+    /// defaultIndexedLayout with extra per-page <head> nodes injected.
+    let defaultIndexedLayoutWithHead (extraHead: XmlNode list) (pageTitle:string) (content:string) =
+        layoutCore true extraHead pageTitle content
 
 
 

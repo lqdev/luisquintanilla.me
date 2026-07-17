@@ -7,9 +7,14 @@
 module AtProtoBuilder
 
 open System
+open System.Globalization
+open System.IO
 open System.Security.Cryptography
 open System.Text
+open System.Text.Json
+open System.Text.Json.Nodes
 open System.Text.RegularExpressions
+open Giraffe.ViewEngine
 
 // ---------------------------------------------------------------------------
 // Record types (one per lexicon we write)
@@ -184,3 +189,136 @@ let assertNoTidCollisions (items: (DateTimeOffset * string) list) : unit =
                 sprintf "%s <- [%s]" tid (pairs |> List.map fmt |> String.concat ", "))
             |> String.concat "; "
         failwithf "AtProtoBuilder.deriveTid produced colliding rkeys: %s" detail
+
+// ---------------------------------------------------------------------------
+// Phase 2 — Processor: feature flag, plaintext extraction, document record
+// construction, verification <link> tags, and staged-record generation.
+// ---------------------------------------------------------------------------
+
+/// Master feature flag for AT Protocol Part B. While false (the committed default), NO staging
+/// records are written and NO verification <link> tags are emitted, so generated _public output
+/// stays byte-identical to the pre-integration baseline. Flip to true (with the app-password
+/// secret wired into CI) to activate document staging + per-post verification tags.
+let useAtProtoSync = false
+
+/// Grapheme-safe truncation (AT Proto/lexicon length caps are counted in graphemes, not chars).
+let private truncateGraphemes (maxGraphemes: int) (value: string) : string =
+    if String.IsNullOrEmpty value then value
+    else
+        let si = StringInfo value
+        if si.LengthInTextElements <= maxGraphemes then value
+        else si.SubstringByTextElements(0, maxGraphemes)
+
+/// Best-effort, dependency-free Markdown -> plaintext for the document's `textContent`
+/// (the lexicon asks for plaintext with no markdown/formatting).
+let stripToPlainText (markdown: string) : string =
+    if String.IsNullOrWhiteSpace markdown then ""
+    else
+        let mutable t = markdown
+        t <- Regex.Replace(t, @"```[\s\S]*?```", " ")          // fenced code blocks
+        t <- Regex.Replace(t, @"`([^`]*)`", "$1")               // inline code
+        t <- Regex.Replace(t, @"!\[([^\]]*)\]\([^)]*\)", "$1")  // images -> alt text
+        t <- Regex.Replace(t, @"\[([^\]]*)\]\([^)]*\)", "$1")   // links -> link text
+        t <- Regex.Replace(t, @"(?m)^\s{0,3}(#{1,6}|>|[-*+]|\d+\.)\s+", "")  // block markers
+        t <- Regex.Replace(t, @"[*_]{1,3}([^*_]+)[*_]{1,3}", "$1")           // emphasis
+        t <- Regex.Replace(t, @"<[^>]+>", "")                   // stray HTML tags
+        t <- Regex.Replace(t, @"\s+", " ")                       // collapse whitespace
+        t.Trim()
+
+/// Canonical `path` for a post's site.standard.document record (leading + trailing slash,
+/// matching the real site URL structure). Derives the prefix from `ContentTypes.urlPrefix` — the
+/// single authority for permalink prefixes — so the staged `path` can never drift from the actual
+/// published URL (Standard.site verification fetches `{publication.url}{path}` and looks for the
+/// matching `<link>`, so any drift would silently break verification).
+let postPath (slug: string) : string =
+    sprintf "%s%s/" (ContentTypes.urlPrefix ContentTypes.ContentType.Posts) slug
+
+/// AT-URI of the site.standard.document record for a given (published date, slug) pair.
+/// Deterministic: identical inputs always yield the identical AT-URI, so the verification
+/// <link> tag rendered into the page matches the record the sync script writes.
+let documentAtUri (published: DateTimeOffset) (slug: string) : string =
+    sprintf "at://%s/site.standard.document/%s" Config.did (deriveTid published slug)
+
+/// AT-URI from a frontmatter date string; None when the date can't be parsed (the tag is
+/// skipped rather than crashing the build).
+let documentAtUriFromDateString (dateStr: string) (slug: string) : string option =
+    match DateTimeOffset.TryParse dateStr with
+    | true, d -> Some(documentAtUri d slug)
+    | _ -> None
+
+/// Per-post <head> nodes: the site.standard.document verification <link> tag. Flag-gated and
+/// returns [] when disabled or when the date is unparseable, so callers stay byte-identical
+/// with the feature off. Returns Giraffe ViewEngine nodes for injection via the layout.
+let documentLinkHead (dateStr: string) (slug: string) : XmlNode list =
+    if not useAtProtoSync then []
+    else
+        match documentAtUriFromDateString dateStr slug with
+        | Some atUri -> [ link [ _rel "site.standard.document"; _href atUri ] ]
+        | None -> []
+
+/// Build the site.standard.document record JSON for one post. Optional lexicon fields are
+/// omitted when empty; `sourceHash` is our extension field (change detection + write-scope guard).
+let buildDocumentRecordJson (post: Domain.Post) (published: DateTimeOffset) (slug: string) : JsonObject =
+    let o = JsonObject()
+    o.Add("$type", JsonValue.Create "site.standard.document")
+    o.Add("site", JsonValue.Create Config.publicationAtUri)          // no trailing slash (lexicon)
+    o.Add("title", JsonValue.Create(truncateGraphemes 500 post.Metadata.Title))
+    o.Add("path", JsonValue.Create(postPath slug))
+    if not (String.IsNullOrWhiteSpace post.Metadata.Description) then
+        o.Add("description", JsonValue.Create(truncateGraphemes 3000 (post.Metadata.Description.Trim())))
+    let text = stripToPlainText post.Content
+    if not (String.IsNullOrWhiteSpace text) then
+        o.Add("textContent", JsonValue.Create text)
+    let tags =
+        if isNull post.Metadata.Tags then [||]
+        else
+            post.Metadata.Tags
+            // Normalize through the site's single tag authority so the record's tags match the
+            // canonical taxonomy the rest of the site publishes (tag pages, RSS tag feeds): e.g.
+            // ".net"->"dotnet", "c#"->"csharp", spaces->hyphens, plural/variant consolidation.
+            |> Array.map TagService.processTagName
+            // Drop the internal "untagged" sentinel (processTagName returns it for empty input) and
+            // any residual blanks — the lexicon's tags field is optional, so omit rather than inject.
+            |> Array.filter (fun t -> not (String.IsNullOrWhiteSpace t) && t <> "untagged")
+            // Normalization can collapse several distinct frontmatter tags onto one canonical tag
+            // (e.g. "machine learning" and "machinelearning" both -> "machinelearning").
+            |> Array.distinct
+            |> Array.map (truncateGraphemes 128)
+    if tags.Length > 0 then
+        let arr = JsonArray()
+        tags |> Array.iter (fun t -> arr.Add(JsonValue.Create t))
+        o.Add("tags", arr)
+    o.Add("publishedAt", JsonValue.Create(published.ToString("yyyy-MM-ddTHH:mm:ss.fffzzz", CultureInfo.InvariantCulture)))
+    o.Add("sourceHash", JsonValue.Create(generateHash (Config.canonicalUrl + postPath slug + "\u0000" + post.Content)))
+    o
+
+/// Generate AT Protocol staging records for Posts (Track A -> site.standard.document).
+/// Pure/local: writes one self-describing JSON file (collection + rkey + record) per post under
+/// {outputDir}/api/data/atproto/documents/{rkey}.json. The sync script consumes these; nothing
+/// here touches the network. Fails the build loudly if two posts would derive the same rkey.
+let buildAtProtoStaging (posts: Domain.Post list) (outputDir: string) : unit =
+    printfn "  🌐 Generating AT Protocol staging records (site.standard.document)..."
+    let docsDir = Path.Combine(outputDir, "api", "data", "atproto", "documents")
+    Directory.CreateDirectory docsDir |> ignore
+    let dated =
+        posts
+        |> List.choose (fun p ->
+            match DateTimeOffset.TryParse p.Metadata.Date with
+            | true, d -> Some(d, p.FileName, p)
+            | _ ->
+                eprintfn "  ⚠️  AtProto: skipping post with unparseable date '%s' (%s)" p.Metadata.Date p.FileName
+                None)
+    // Build-time invariant: no two posts may derive the same record key.
+    assertNoTidCollisions (dated |> List.map (fun (d, s, _) -> d, s))
+    let opts = JsonSerializerOptions()
+    opts.WriteIndented <- true
+    let mutable count = 0
+    for (d, slug, post) in dated do
+        let rkey = deriveTid d slug
+        let wrapper = JsonObject()
+        wrapper.Add("collection", JsonValue.Create "site.standard.document")
+        wrapper.Add("rkey", JsonValue.Create rkey)
+        wrapper.Add("record", buildDocumentRecordJson post d slug)
+        File.WriteAllText(Path.Combine(docsDir, sprintf "%s.json" rkey), wrapper.ToJsonString opts)
+        count <- count + 1
+    printfn "  ✅ Generated %d AT Protocol document staging records" count
