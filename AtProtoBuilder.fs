@@ -199,7 +199,7 @@ let assertNoTidCollisions (items: (DateTimeOffset * string) list) : unit =
 /// records are written and NO verification <link> tags are emitted, so generated _public output
 /// stays byte-identical to the pre-integration baseline. Flip to true (with the app-password
 /// secret wired into CI) to activate document staging + per-post verification tags.
-let useAtProtoSync = false
+let useAtProtoSync = true
 
 /// Grapheme-safe truncation (AT Proto/lexicon length caps are counted in graphemes, not chars).
 let private truncateGraphemes (maxGraphemes: int) (value: string) : string =

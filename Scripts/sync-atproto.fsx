@@ -26,6 +26,7 @@
 // Usage:
 //   dotnet fsi Scripts/sync-atproto.fsx                 # dry run (read-only, no secret needed)
 //   dotnet fsi Scripts/sync-atproto.fsx --commit        # live upsert (needs ATPROTO_APP_PASSWORD)
+//   dotnet fsi Scripts/sync-atproto.fsx --commit --limit 3   # write only the first 3 pending (cautious first run)
 //   dotnet fsi Scripts/sync-atproto.fsx --dir <path>    # override staging dir (default _public/...)
 
 open System
@@ -46,6 +47,14 @@ let argValue name =
 
 let commit    = hasFlag "--commit"
 let stagingDir = argValue "--dir" |> Option.defaultValue (Path.Combine("_public", "api", "data", "atproto", "documents"))
+// Optional cap on how many records a single run will write (create+update). Used for a cautious
+// first activation: write a small batch, verify end-to-end, then re-run without --limit to backfill.
+let limitOpt =
+    argValue "--limit"
+    |> Option.bind (fun v ->
+        match Int32.TryParse v with
+        | true, n when n > 0 -> Some n
+        | _ -> eprintfn "WARN: ignoring invalid --limit '%s' (expected a positive integer)." v; None)
 
 // ---- Configuration (public, non-secret) — mirrors AtProtoBuilder.Config -----
 let handle      = "lqdev.me"
@@ -196,13 +205,25 @@ if unmanaged.Count > 0 then
     printfn "      UNTOUCHED to honour the write-scope invariant (only records bearing our sourceHash are ours):"
     for rk in unmanaged do printfn "        · %s" rk
 
-let planned = Seq.append creates updates |> Seq.toArray
-if planned.Length = 0 then
+let plannedAll =
+    Seq.append (creates |> Seq.map (fun s -> "CREATE", s)) (updates |> Seq.map (fun s -> "UPDATE", s))
+    |> Seq.toArray
+if plannedAll.Length = 0 then
     printfn "Nothing to do — remote is already in sync."
     exit 0
 
-for s in creates do printfn "  + CREATE %s" s.Rkey
-for s in updates do printfn "  ~ UPDATE %s" s.Rkey
+// --limit caps how many records this run writes (create+update). Cautious first activation:
+// write a small batch, verify, then re-run WITHOUT --limit to backfill the rest — the already
+// written records skip idempotently via their matching sourceHash, so nothing is written twice.
+let planned =
+    match limitOpt with
+    | Some n when n < plannedAll.Length ->
+        printfn "  ⚠️  --limit %d: writing only the first %d of %d pending record(s) this run." n n plannedAll.Length
+        Array.truncate n plannedAll
+    | _ -> plannedAll
+
+for (op, s) in planned do
+    printfn "  %s %s" (if op = "CREATE" then "+ CREATE" else "~ UPDATE") s.Rkey
 
 // ---- 4) Dry-run gate --------------------------------------------------------
 if not commit then
@@ -231,7 +252,7 @@ let accessJwt = session.["accessJwt"].GetValue<string>()   // NEVER printed
 // validate:false → custom lexicon stored with validationStatus "unknown" regardless
 // of whether the PDS can resolve the site.standard.* schema.
 let mutable ok = 0
-for s in planned do
+for (_op, s) in planned do
     // JsonNode instances have a parent; detach a fresh copy before re-parenting into the body.
     let recordCopy = JsonNode.Parse(s.Record.ToJsonString())
     let body = JsonObject()
