@@ -13,6 +13,15 @@ open System.Text.RegularExpressions
 
 // ---------------------------------------------------------------------------
 // Record types (one per lexicon we write)
+//
+// These are F# DOMAIN MODELS, not System.Text.Json DTOs. The on-the-wire records are built
+// explicitly as JsonObject nodes — see `buildDocumentRecordJson` (Phase 2 processor) and
+// `Scripts/create-atproto-publication.fsx` (the live Part A bootstrap) — which is what emits the
+// lexicon-required "$type" discriminator, uses camelCase wire keys, nests fields correctly (e.g.
+// preferences.showInDiscover), and omits absent optionals. Do NOT hand these records to
+// `JsonSerializer.Serialize` as-is: they carry F#-friendly names (`Type`, not `$type`) and a flat
+// shape that does not match the wire format. Finalizing a single serialization strategy (typed
+// DTOs vs. these explicit builders) is tracked in issue #2639.
 // ---------------------------------------------------------------------------
 
 /// site.standard.publication — the blog/site itself. Created exactly once during the
@@ -122,14 +131,23 @@ let private stableHash64 (s: string) : uint64 =
     acc
 
 /// Derive a deterministic, spec-valid TID rkey from an item's published date + slug.
-/// The timestamp anchors the TID (so records sort by publish time); a slug-derived sub-minute
-/// microsecond offset plus a 10-bit clock identifier make same-minute items collision-resistant
-/// while remaining rebuild-stable.
+/// The published minute anchors the TID (so records sort by publish time); a slug-derived
+/// sub-minute microsecond offset plus a 10-bit clock identifier make same-minute items
+/// collision-resistant while remaining rebuild-stable.
+///
+/// The anchor is FLOORED to the minute before the sub-minute offset is added. Source dates carry
+/// varying precision (some minute-only, some with seconds), and the offset spans a full minute;
+/// without flooring, a post at e.g. :27s plus an up-to-60s offset could bleed past the next minute
+/// boundary and invert order relative to a later post. Flooring keeps every derived instant inside
+/// its own minute — [minute, minute+60s) — so chronological/string order can never cross-invert
+/// between minutes. Within a shared minute the sub-minute position is intentionally hash-ordered
+/// (no real sub-minute signal exists to preserve, and the rkey is an identifier, not a sort key).
 let deriveTid (publishedDate: DateTimeOffset) (slug: string) : string =
     let ms = publishedDate.ToUnixTimeMilliseconds()
-    let epochMicros = (if ms < 0L then 0UL else uint64 ms) * 1000UL
+    let minuteMs = if ms < 0L then 0L else (ms / 60_000L) * 60_000L   // floor to minute; clamp pre-epoch
+    let epochMicros = uint64 minuteMs * 1000UL
     let h = stableHash64 slug
-    let subMinuteMicros = h % 60_000_000UL            // deterministic spread within the minute
+    let subMinuteMicros = h % 60_000_000UL            // in [0,60s): stays inside the floored minute
     let clockId = (h >>> 20) &&& 1023UL               // 10-bit clock identifier
     let micros53 = (epochMicros + subMinuteMicros) &&& 0x1FFFFFFFFFFFFFUL   // clamp to 53 bits
     let tidInt = (micros53 <<< 10) ||| clockId
@@ -148,14 +166,21 @@ let isValidTid (s: string) : bool = not (isNull s) && tidRegex.IsMatch s
 let assertNoTidCollisions (items: (DateTimeOffset * string) list) : unit =
     let collisions =
         items
-        |> List.map (fun (date, slug) -> deriveTid date slug, slug)
+        |> List.map (fun (date, slug) -> deriveTid date slug, (date, slug))
         |> List.groupBy fst
         |> List.choose (fun (tid, group) ->
-            let slugs = group |> List.map snd
-            if List.length slugs > 1 then Some(tid, slugs) else None)
+            let pairs = group |> List.map snd
+            if List.length pairs > 1 then Some(tid, pairs) else None)
     if not (List.isEmpty collisions) then
+        // Include the source date alongside each slug: the derivation domain is (date, slug), so a
+        // diagnostic that named only slugs would be ambiguous when the same slug appears under
+        // different dates (or when distinct slugs collide, the dates pinpoint which posts to fix).
+        let fmt (date: DateTimeOffset, slug: string) =
+            sprintf "%s@%s" slug
+                (date.ToString("yyyy-MM-dd HH:mmzzz", System.Globalization.CultureInfo.InvariantCulture))
         let detail =
             collisions
-            |> List.map (fun (tid, slugs) -> sprintf "%s <- [%s]" tid (String.concat ", " slugs))
+            |> List.map (fun (tid, pairs) ->
+                sprintf "%s <- [%s]" tid (pairs |> List.map fmt |> String.concat ", "))
             |> String.concat "; "
         failwithf "AtProtoBuilder.deriveTid produced colliding rkeys: %s" detail
