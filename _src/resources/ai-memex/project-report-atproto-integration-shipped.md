@@ -1,13 +1,13 @@
 ---
 title: "Project Report: Making lqdev.me an AT Protocol Node — Standard.site POSSE, Shipped Dormant"
-description: "Landed a full AT Protocol / Standard.site integration (site.standard.document POSSE for Posts) on a static F# site behind an off-by-default flag, proven byte-identical to prod before merge — mirroring the existing ActivityPub hub-and-spoke architecture."
+description: "Landed a full AT Protocol / Standard.site integration on a static F# site behind off-by-default flags, proven byte-identical to prod before merge, then activated across two tracks — Posts as site.standard.document and Notes as native app.bsky.feed.post on the Bluesky timeline — mirroring the existing ActivityPub hub-and-spoke architecture."
 entry_type: project-report
 published_date: "2026-07-17 07:19 -05:00"
-last_updated_date: "2026-07-17 09:46 -05:00"
+last_updated_date: "2026-07-17 11:58 -05:00"
 tags: "atproto, bluesky, standard-site, activitypub, posse, fsharp, azure, static-site, indieweb, architecture"
 related_skill: write-ai-memex
 source_project: "lqdev-me"
-related_entries: research-at-protocol-static-site-integration, pattern-atproto-static-node-wellknown-verification, pattern-atproto-tid-record-keys-sourcehash-workaround, pattern-long-lived-umbrella-branch-merge-strategy, pattern-ci-cd-fallout-byte-identical-refactor
+related_entries: research-at-protocol-static-site-integration, pattern-atproto-static-node-wellknown-verification, pattern-atproto-tid-record-keys-sourcehash-workaround, pattern-long-lived-umbrella-branch-merge-strategy, pattern-ci-cd-fallout-byte-identical-refactor, pattern-staged-activation-limit-flag
 ---
 
 ## Objective
@@ -142,3 +142,47 @@ Steady state from here: every push to `main` upserts all pending Posts idempoten
 collection-scoped, never deletes). The first "irreversible-feeling" write to a third-party PDS was
 de-risked into a reversible three-record experiment — the reusable takeaway is
 [[pattern-staged-activation-limit-flag]].
+
+## Update — Track B: Notes → native Bluesky posts (2026-07-17)
+
+Part B above POSSEs Posts as `site.standard.document` records — rich cards **when a client supports the
+Standard.site lexicon**. **Track B** goes one step further for **Notes**: it writes native
+**`app.bsky.feed.post`** records, so short-form content shows up as ordinary posts directly in the
+`bsky.app/profile/lqdev.me` timeline — no special client support required — each carrying an
+`app.bsky.embed.external` card that links back to the canonical `/notes/{slug}/` URL on the site.
+
+### Design deltas from Track A
+
+- **Shared, third-party-populated collection.** Track A owns a custom collection (`site.standard.document`);
+  Track B writes into `app.bsky.feed.post`, which **already held 14 hand-authored posts**. Same `sourceHash`
+  write-scope invariant — now doing real work: every record the sync manages carries a `sourceHash` extension
+  field, and the script only ever `putRecord`s records **it created**. Hand-authored posts carry no
+  `sourceHash` → they are structurally never in the plan. Proven live: `PLAN: 1 create, 0 update, 0
+  unchanged, 0 left-untouched` against a remote holding 14 untouched posts.
+- **Forward-only cutoff, not backfill.** Bluesky feeds sort by **ingest time (`indexedAt`)**, not
+  `createdAt`, so backfilling history would spam followers' timelines in reverse. Track B is gated on
+  `notesActivationCutoff` (`2026-07-13`) — only Notes on/after the cutoff are eligible — so the timeline
+  fills forward at natural cadence. `createdAt` still carries the true publish date, so each post is *dated*
+  correctly even though it *ingests* now.
+- **Same deterministic TID + idempotent upsert** as Track A, reused verbatim via `deriveTid`.
+
+### Shipped dormant, then activated — same two-step discipline
+
+Track B followed the identical cautious path (see [[pattern-staged-activation-limit-flag]]):
+
+- **Dormant** (PR #2647, squash `27901b6c`): full Track B behind `useAtProtoNotesSync = false`; a
+  parameterized `sync-atproto.fsx --collection` plus a **collection cross-check** that aborts *before any
+  network I/O* if a staged record's collection doesn't match `--collection` — closing a footgun where the
+  default `--dir` could otherwise load Track A documents into the posts collection. Verified byte-identical.
+- **Activation** (PR #2648, squash `6f3a64b3`): flipped the flag `true` and switched the CI step to a live
+  capped write, `--commit --limit 1`. Deploy run `29598413239` logged `+ CREATE 3mql6jgoavwtp … ✓ put …
+  DONE: upserted 1/1`. Verified in the PDS (`getRecord`) and the public AppView (`getPostThread`,
+  `@lqdev.me`) → **[the first Note is live on the timeline](https://bsky.app/profile/lqdev.me/post/3mql6jgoavwtp)**.
+
+### Result
+
+`lqdev.me` is now a **dual-track POSSE node**: long-form Posts as `site.standard.document` (rich cards for
+Standard.site-aware clients) **and** Notes as native `app.bsky.feed.post` (ordinary timeline posts for
+everyone). Both are static-first — records generated at build, one thin `dotnet fsi` sync spoke in CI —
+create/update-only, never deleting. Remaining: a one-line follow-up removes `--limit 1` for steady-state
+forward-only POSSE now that the first post is verified live.
