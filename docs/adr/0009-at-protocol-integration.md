@@ -3,10 +3,14 @@
 ## Status
 Proposed
 
-Tracked in [issue #2574](https://github.com/lqdev/luisquintanilla.me/issues/2574) (shovel-ready spec,
-not yet implemented). Amended 2026-07-02 after a live-protocol validation round: deterministic TID
-derivation adopted as the primary record-key design; Track B constraints (truncation, immutability,
-forward-only backfill) and the app-password → OAuth trajectory added.
+Tracked in [issue #2574](https://github.com/lqdev/luisquintanilla.me/issues/2574) (shovel-ready spec;
+**Part A shipped**, Part B not yet implemented). Amended 2026-07-02 after a live-protocol validation
+round: deterministic TID derivation adopted as the primary record-key design; Track B constraints
+(truncation, immutability, forward-only backfill) and the app-password → OAuth trajectory added.
+Amended 2026-07-16: **Part A (the `site.standard.publication` node) is now live** —
+`at://did:plc:pme7qquljcdx6i4zyawoxypd/site.standard.publication/3mqs7sgylil2w`, verified at
+`/.well-known/site.standard.publication` (PRs #2631/#2632); added the Track B **write-scope safety
+invariant** to the Decision below.
 
 ## Context
 
@@ -84,6 +88,18 @@ flood followers' timelines. Notes therefore publish POSSE-style — truncated ex
 from the feature's activation date. Long-form documents (Track A) carry none of these constraints and
 backfill fully.
 
+**The sync path only ever touches records it created.** Because the integration reuses the existing
+identity, the automation writes into the *same* repo that holds the owner's hand-authored Bluesky
+activity (~14 `app.bsky.feed.post` records today, plus replies/reposts). Every record the integration
+writes carries a `sourceHash` extension field; the sync script filters `com.atproto.repo.listRecords`
+output to records bearing that field *before* any create/`putRecord`/delete and never issues a blind,
+collection-wide delete. This makes it structurally impossible for the automation to modify or remove a
+manually-authored post — the single most important safety property of Track B, and a direct consequence
+of sharing an AT Proto identity with the human account (unlike ActivityPub, whose actor
+`acct:lqdev@lqdev.me` is a wholly separate identity that carries no such risk). Custom `site.standard.*`
+writes additionally pass `validate: false` (the record stores with `validationStatus: "unknown"`, since
+the Bluesky PDS cannot resolve the community lexicon — confirmed in Part A's publication create).
+
 ## Consequences
 
 **Easier:**
@@ -115,3 +131,6 @@ backfill fully.
 - Track B's published form is lossy by protocol design: notes longer than 300 graphemes appear on
   Bluesky as excerpts with a link-out card, edits after publication are not propagated, and
   pre-activation notes never appear at all.
+- Reusing the personal identity means the write path shares a repo with hand-authored posts, so the
+  `sourceHash`-filter invariant (see Decision) is load-bearing safety rather than a nicety: any write
+  code that skips it risks clobbering real posts. A dry-run diff must gate the first real sync.
