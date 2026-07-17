@@ -50,7 +50,10 @@ These are deliberately **deferred** until the listening/privacy primitives (γ a
 ### Tools & automation
 - **`/tools` evolution** — v1 is a curated directory of links (read-it-later extension, github-post PWA, rss extension, playlist-creator). Could grow into richer per-tool pages, install instructions, or hosted demos.
 - **Cross-posting / syndication** — WebSub support or POSSE automation building on the live ActivityPub layer.
-- **AT Protocol (ATmosphere) integration** — shovel-ready spec in [issue #2574](https://github.com/lqdev/luisquintanilla.me/issues/2574) and [ADR-0009](../docs/adr/0009-at-protocol-integration.md): hand-built (no third-party CLI) Standard.site documents for Posts + native `app.bsky.feed.post` for Notes, reusing the existing `lqdev.me` Bluesky identity, zero self-hosted PDS/relay/AppView.
+- **AT Protocol (ATmosphere) integration** — [issue #2574](https://github.com/lqdev/luisquintanilla.me/issues/2574) and [ADR-0009](../docs/adr/0009-at-protocol-integration.md): hand-built (no third-party CLI) Standard.site documents for Posts + native `app.bsky.feed.post` for Notes, reusing the existing `lqdev.me` Bluesky identity, zero self-hosted PDS/relay/AppView.
+  - **Part A — SHIPPED** ✅: `site.standard.publication` node live at `/.well-known/site.standard.publication` (`at://did:plc:pme7qquljcdx6i4zyawoxypd/site.standard.publication/3mqs7sgylil2w`); PRs #2631/#2632/#2634.
+  - **Part B — in flight** on umbrella `feature/atproto-integration`: per-post `site.standard.document` records + `<link>` verification tags + `Scripts/sync-atproto.fsx`, behind a `useAtProtoSync` flag, forward-only, `sourceHash`-scoped writes.
+  - **Deferred — PESOS / backfeed** *(parked 2026-07-16)*: whether to also pull existing Bluesky posts back into the site as an archive (distinct from Part B's site→AT-Proto POSSE). Revisit after Part B; would warrant its own issue + ADR-0010.
 - **Build performance** — profile build/feed-generation if times regress.
 
 ### Platform (discuss before acting)
