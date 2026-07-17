@@ -54,7 +54,14 @@ let published = DateTimeOffset(2026, 1, 31, 22, 14, 0, TimeSpan.FromHours -5.0)
 let slug = "fosdem-2026-social-web-thoughts"
 
 let has (o: JsonObject) (k: string) = o.ContainsKey k
-let str (o: JsonObject) (k: string) = o.[k].GetValue<string>()
+// Null-safe on a missing key: JsonObject's indexer returns null for an absent key, and calling
+// .GetValue on that null throws NullReferenceException. A wire-contract test should report drift as a
+// clean FAIL, not an unhandled stack trace, so an absent key yields a sentinel that no real value can
+// equal. (Guarded call sites still gate on `has` first; unguarded equality checks now FAIL cleanly.)
+let str (o: JsonObject) (k: string) =
+    match o.[k] with
+    | null -> "<MISSING>"
+    | n -> n.GetValue<string>()
 let tagList (o: JsonObject) =
     match o.[ "tags" ] with
     | :? JsonArray as a -> a |> Seq.map (fun n -> n.GetValue<string>()) |> List.ofSeq
