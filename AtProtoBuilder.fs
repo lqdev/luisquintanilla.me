@@ -195,16 +195,16 @@ let assertNoTidCollisions (items: (DateTimeOffset * string) list) : unit =
 // construction, verification <link> tags, and staged-record generation.
 // ---------------------------------------------------------------------------
 
-/// Master feature flag for AT Protocol Part B. While false (the committed default), NO staging
-/// records are written and NO verification <link> tags are emitted, so generated _public output
-/// stays byte-identical to the pre-integration baseline. Flip to true (with the app-password
-/// secret wired into CI) to activate document staging + per-post verification tags.
+/// Master feature flag for AT Protocol Track A (Posts -> site.standard.document). When false, NO
+/// staging records are written and NO verification <link> tags are emitted, so generated _public
+/// output stays byte-identical to the pre-integration baseline; when true (with the app-password
+/// secret wired into CI), document staging + per-post verification tags are produced.
 let useAtProtoSync = true
 
 /// Track B feature flag — native Bluesky posts for Notes (app.bsky.feed.post). Independent of
-/// useAtProtoSync (Track A / documents). While false (the committed default) NO note staging
-/// records are written, so generated _public output stays byte-identical to the baseline. Flip to
-/// true (with ATPROTO_APP_PASSWORD wired into CI) to POSSE Notes to the real bsky.app timeline.
+/// useAtProtoSync (Track A / documents). When false, NO note staging records are written, so
+/// generated _public output stays byte-identical to the baseline; when true (with
+/// ATPROTO_APP_PASSWORD wired into CI), post-cutoff Notes are POSSE'd to the real bsky.app timeline.
 let useAtProtoNotesSync = false
 
 /// Forward-only activation cutoff for Track B. Only Notes published on/after this instant are

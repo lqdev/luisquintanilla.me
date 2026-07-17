@@ -29,8 +29,8 @@ jobs:
     name: Build and Deploy Job
     outputs:
       # Whether the build produced AT Protocol POSSE staging (AtProtoBuilder.useAtProtoSync /
-      # useAtProtoNotesSync). Off by default → 'false' → sync_atproto_job is skipped entirely.
-      # See docs/atproto/.
+      # useAtProtoNotesSync). When the relevant flag is off, the check reports 'false' and the
+      # matching sync step is skipped. See docs/atproto/.
       atproto_staged: ${{ steps.atproto_check.outputs.staged }}          # Track A: site.standard.document (Posts)
       notes_staged: ${{ steps.atproto_check.outputs.notes_staged }}      # Track B: app.bsky.feed.post (Notes)
     steps:
@@ -54,10 +54,10 @@ jobs:
       - name: Generate website
         run: dotnet run
 
-      # AT Protocol POSSE (#2574 / ADR-0009). AtProtoBuilder.useAtProtoSync is off by default, so
-      # no staging is produced and this reports staged=false → the downstream sync job is skipped
-      # and _public stays byte-identical to the pre-integration baseline. When the flag is flipped
-      # on, staging appears here and the sync job runs. This step never fails the build.
+      # AT Protocol POSSE (#2574 / ADR-0009). When AtProtoBuilder.useAtProtoSync / useAtProtoNotesSync
+      # are off, no staging is produced and this reports staged/notes_staged=false → the matching sync
+      # step is skipped and _public stays byte-identical to the pre-integration baseline. When a flag
+      # is on, staging appears here and the corresponding sync runs. This step never fails the build.
       - name: Check for AT Protocol staging
         id: atproto_check
         run: |

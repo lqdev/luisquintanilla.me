@@ -53,7 +53,17 @@ let argValue name =
     |> Option.bind (fun i -> if i + 1 < argv.Length then Some argv.[i + 1] else None)
 
 let commit    = hasFlag "--commit"
-let stagingDir = argValue "--dir" |> Option.defaultValue (Path.Combine("_public", "api", "data", "atproto", "documents"))
+// Target collection (Track A default). Track B passes `--collection app.bsky.feed.post`. Resolved
+// here (not in the config block below) because the default staging dir depends on it.
+let collection = argValue "--collection" |> Option.defaultValue "site.standard.document"
+// The default staging dir TRACKS the collection, so `--collection app.bsky.feed.post` on its own
+// can't silently load Track A document staging and try to write it into the posts collection
+// (a footgun). Pass --dir to override.
+let defaultStagingDir =
+    match collection with
+    | "app.bsky.feed.post" -> Path.Combine("_public", "api", "data", "atproto", "posts")
+    | _                    -> Path.Combine("_public", "api", "data", "atproto", "documents")
+let stagingDir = argValue "--dir" |> Option.defaultValue defaultStagingDir
 // Optional cap on how many records a single run will write (create+update). Used for a cautious
 // first activation: write a small batch, verify end-to-end, then re-run without --limit to backfill.
 let limitOpt =
@@ -67,11 +77,10 @@ let limitOpt =
 let handle      = "lqdev.me"
 let did         = "did:plc:pme7qquljcdx6i4zyawoxypd"
 let pdsFallback = "https://amanita.us-east.host.bsky.network"
-// Target collection. Default = Track A (site.standard.document). Track B passes
-// `--collection app.bsky.feed.post` (native Bluesky posts for Notes). Everything below —
-// listRecords, the write-scope plan, and putRecord — reads this variable, so the script is
-// fully collection-agnostic; only the `validate` param (below) differs by collection family.
-let collection  = argValue "--collection" |> Option.defaultValue "site.standard.document"
+// NOTE: `collection` is resolved up in the Args section (the default staging dir depends on it).
+// Everything below — listRecords, the write-scope plan, and putRecord — reads that `collection`
+// variable, so the script is fully collection-agnostic; only the `validate` param (below) differs
+// by collection family.
 
 // ---- HTTP helpers (same shape as create-atproto-publication.fsx) -----------
 let http = new HttpClient()
@@ -122,6 +131,13 @@ let staged =
     Directory.GetFiles(stagingDir, "*.json")
     |> Array.map (fun path ->
         let root = JsonNode.Parse(File.ReadAllText path)
+        // Cross-check the wrapper's collection against --collection: refuse to write records staged
+        // for one collection into another (e.g. document staging + `--collection app.bsky.feed.post`).
+        let stagedCollection =
+            root.["collection"] |> Option.ofObj |> Option.map (fun n -> n.GetValue<string>()) |> Option.defaultValue ""
+        if stagedCollection <> collection then
+            eprintfn "ERROR: staged file '%s' is for collection '%s' but --collection is '%s'. Refusing to write into the wrong collection (check --dir/--collection). Aborting." path stagedCollection collection
+            exit 1
         let rkey = root.["rkey"].GetValue<string>()
         let record = root.["record"]
         let sourceHash =
