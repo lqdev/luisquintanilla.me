@@ -332,19 +332,19 @@ jobs:
           name: atproto-staging-notes
           path: atproto-staging-notes
 
-      # ACTIVE (Track B) — Notes -> native app.bsky.feed.post. Runs only when note staging is present
-      # (AtProtoBuilder.useAtProtoNotesSync = true → notes_staged=true). LIVE WRITE (`--commit`), capped
-      # at `--limit 1`: a belt-and-suspenders cap for the cautious FIRST activation, layered on top of
-      # the forward-only notesActivationCutoff (only notes published on/after the cutoff are eligible).
-      # It bounds the very first live write to a single record regardless of how many are eligible;
-      # remove it in a follow-up PR for steady-state forward-only POSSE once verified on the timeline.
-      # The sourceHash write-scope guard protects the hand-authored posts in the shared
-      # app.bsky.feed.post collection (they carry no sourceHash → never in the plan). See docs/atproto/README.md.
+      # ACTIVE (Track B, steady state) — Notes -> native app.bsky.feed.post. Runs only when note staging
+      # is present (AtProtoBuilder.useAtProtoNotesSync = true → notes_staged=true). LIVE WRITE (`--commit`),
+      # forward-only: eligibility is bounded by notesActivationCutoff (only Notes published on/after the
+      # cutoff are staged), so each push upserts any pending post-cutoff Notes idempotently (create/update-
+      # only, never deletes). The first activation used a `--limit 1` cautious cap; removed here now that
+      # the pipeline is verified end-to-end. The sourceHash write-scope guard protects the hand-authored
+      # posts in the shared app.bsky.feed.post collection (they carry no sourceHash → never in the plan).
+      # See docs/atproto/README.md.
       - name: Sync AT Protocol notes (POSSE, Track B)
         if: needs.build_and_deploy_job.outputs.notes_staged == 'true'
         env:
           ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
-        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-staging-notes --collection app.bsky.feed.post --commit --limit 1
+        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-staging-notes --collection app.bsky.feed.post --commit
 
   # close_pull_request_job:
   #   if: github.event_name == 'pull_request' && github.event.action == 'closed'
