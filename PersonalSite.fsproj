@@ -51,6 +51,7 @@
     <Compile Include="UnifiedFeeds.fs" />
     <Compile Include="ContentRegistry.fs" />
     <Compile Include="ActivityPubBuilder.fs" />
+    <Compile Include="AtProtoBuilder.fs" />
     <Compile Include="EntityExtraction.fs" />
     <Compile Include="KnowledgeGraph.fs" />
     <Compile Include="RdfSerializer.fs" />
