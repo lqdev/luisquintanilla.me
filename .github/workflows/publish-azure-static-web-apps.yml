@@ -332,17 +332,18 @@ jobs:
           name: atproto-staging-notes
           path: atproto-staging-notes
 
-      # DORMANT (Track B) — Notes -> native app.bsky.feed.post. Skipped entirely while
-      # AtProtoBuilder.useAtProtoNotesSync is off (notes_staged=false). Currently DRY-RUN (no
-      # --commit): activation must ADD `--commit` here in the same PR that flips the flag, AFTER a
-      # local dry-run confirms the plan (forward-only from notesActivationCutoff → only post-cutoff
-      # notes are eligible). The sourceHash write-scope guard protects hand-authored posts in the
-      # shared app.bsky.feed.post collection. See docs/atproto/README.md.
+      # ACTIVE (Track B) — Notes -> native app.bsky.feed.post. Runs only when note staging is present
+      # (AtProtoBuilder.useAtProtoNotesSync = true → notes_staged=true). LIVE WRITE (`--commit`), capped
+      # at `--limit 1` as a belt-and-suspenders cautious first activation on top of the forward-only
+      # notesActivationCutoff (only post-cutoff notes are eligible → currently exactly 1: lumpen-radio).
+      # Remove `--limit 1` in a follow-up PR for steady-state forward-only POSSE once verified on the
+      # timeline. The sourceHash write-scope guard protects the hand-authored posts in the shared
+      # app.bsky.feed.post collection (they carry no sourceHash → never in the plan). See docs/atproto/README.md.
       - name: Sync AT Protocol notes (POSSE, Track B)
         if: needs.build_and_deploy_job.outputs.notes_staged == 'true'
         env:
           ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
-        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-staging-notes --collection app.bsky.feed.post
+        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-staging-notes --collection app.bsky.feed.post --commit --limit 1
 
   # close_pull_request_job:
   #   if: github.event_name == 'pull_request' && github.event.action == 'closed'

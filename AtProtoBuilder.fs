@@ -205,7 +205,7 @@ let useAtProtoSync = true
 /// useAtProtoSync (Track A / documents). When false, NO note staging records are written, so
 /// generated _public output stays byte-identical to the baseline; when true (with
 /// ATPROTO_APP_PASSWORD wired into CI), post-cutoff Notes are POSSE'd to the real bsky.app timeline.
-let useAtProtoNotesSync = false
+let useAtProtoNotesSync = true
 
 /// Forward-only activation cutoff for Track B. Only Notes published on/after this instant are
 /// POSSE'd. Bluesky feeds sort by ingest time (indexedAt), not createdAt, so a bulk backfill of
