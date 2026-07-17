@@ -202,10 +202,11 @@ let assertNoTidCollisions (items: (DateTimeOffset * string) list) : unit =
 let useAtProtoSync = true
 
 /// Track B feature flag — native Bluesky posts for Notes (app.bsky.feed.post). Independent of
-/// useAtProtoSync (Track A / documents). When false, NO note staging records are written, so
-/// generated _public output stays byte-identical to the baseline; when true (with
-/// ATPROTO_APP_PASSWORD wired into CI), post-cutoff Notes are POSSE'd to the real bsky.app timeline.
-let useAtProtoNotesSync = false
+/// useAtProtoSync (Track A / documents). When THIS flag (useAtProtoNotesSync) is false, NO note
+/// staging records are written, so generated _public output stays byte-identical to the baseline;
+/// when it is true (with ATPROTO_APP_PASSWORD wired into CI), post-cutoff Notes are POSSE'd to the
+/// real bsky.app timeline.
+let useAtProtoNotesSync = true
 
 /// Forward-only activation cutoff for Track B. Only Notes published on/after this instant are
 /// POSSE'd. Bluesky feeds sort by ingest time (indexedAt), not createdAt, so a bulk backfill of
