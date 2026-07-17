@@ -334,10 +334,11 @@ jobs:
 
       # ACTIVE (Track B) — Notes -> native app.bsky.feed.post. Runs only when note staging is present
       # (AtProtoBuilder.useAtProtoNotesSync = true → notes_staged=true). LIVE WRITE (`--commit`), capped
-      # at `--limit 1` as a belt-and-suspenders cautious first activation on top of the forward-only
-      # notesActivationCutoff (only post-cutoff notes are eligible → currently exactly 1: lumpen-radio).
-      # Remove `--limit 1` in a follow-up PR for steady-state forward-only POSSE once verified on the
-      # timeline. The sourceHash write-scope guard protects the hand-authored posts in the shared
+      # at `--limit 1`: a belt-and-suspenders cap for the cautious FIRST activation, layered on top of
+      # the forward-only notesActivationCutoff (only notes published on/after the cutoff are eligible).
+      # It bounds the very first live write to a single record regardless of how many are eligible;
+      # remove it in a follow-up PR for steady-state forward-only POSSE once verified on the timeline.
+      # The sourceHash write-scope guard protects the hand-authored posts in the shared
       # app.bsky.feed.post collection (they carry no sourceHash → never in the plan). See docs/atproto/README.md.
       - name: Sync AT Protocol notes (POSSE, Track B)
         if: needs.build_and_deploy_job.outputs.notes_staged == 'true'
