@@ -226,8 +226,12 @@ let stripToPlainText (markdown: string) : string =
         t.Trim()
 
 /// Canonical `path` for a post's site.standard.document record (leading + trailing slash,
-/// matching the real site URL structure `/posts/{slug}/`).
-let postPath (slug: string) : string = sprintf "/posts/%s/" slug
+/// matching the real site URL structure). Derives the prefix from `ContentTypes.urlPrefix` — the
+/// single authority for permalink prefixes — so the staged `path` can never drift from the actual
+/// published URL (Standard.site verification fetches `{publication.url}{path}` and looks for the
+/// matching `<link>`, so any drift would silently break verification).
+let postPath (slug: string) : string =
+    sprintf "%s%s/" (ContentTypes.urlPrefix ContentTypes.ContentType.Posts) slug
 
 /// AT-URI of the site.standard.document record for a given (published date, slug) pair.
 /// Deterministic: identical inputs always yield the identical AT-URI, so the verification
@@ -269,8 +273,17 @@ let buildDocumentRecordJson (post: Domain.Post) (published: DateTimeOffset) (slu
         if isNull post.Metadata.Tags then [||]
         else
             post.Metadata.Tags
-            |> Array.filter (fun t -> not (String.IsNullOrWhiteSpace t))
-            |> Array.map (fun t -> truncateGraphemes 128 (t.Trim().TrimStart('#')))
+            // Normalize through the site's single tag authority so the record's tags match the
+            // canonical taxonomy the rest of the site publishes (tag pages, RSS tag feeds): e.g.
+            // ".net"->"dotnet", "c#"->"csharp", spaces->hyphens, plural/variant consolidation.
+            |> Array.map TagService.processTagName
+            // Drop the internal "untagged" sentinel (processTagName returns it for empty input) and
+            // any residual blanks — the lexicon's tags field is optional, so omit rather than inject.
+            |> Array.filter (fun t -> not (String.IsNullOrWhiteSpace t) && t <> "untagged")
+            // Normalization can collapse several distinct frontmatter tags onto one canonical tag
+            // (e.g. "machine learning" and "machinelearning" both -> "machinelearning").
+            |> Array.distinct
+            |> Array.map (truncateGraphemes 128)
     if tags.Length > 0 then
         let arr = JsonArray()
         tags |> Array.iter (fun t -> arr.Add(JsonValue.Create t))
