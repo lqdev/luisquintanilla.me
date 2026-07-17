@@ -111,7 +111,9 @@ module ContentTypePagesBuilder
 
     // AST-based post processing using GenericBuilder infrastructure
     let buildPosts() =
-        BuildDriver.buildContentType srcDir outputDir {
+        BuildDriver.buildContentTypeWithHead
+            (fun (post: Post) -> AtProtoBuilder.documentLinkHead post.Metadata.Date post.FileName)
+            srcDir outputDir {
             Name = ContentTypes.Posts
             SourceDir = [ "posts" ]
             OutputDir = [ "posts" ]

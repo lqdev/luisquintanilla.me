@@ -161,6 +161,16 @@ let main argv =
     ActivityPubBuilder.buildActivities activityPubContent "_public"
     ActivityPubBuilder.buildOutbox activityPubContent "_public"
     ActivityPubBuilder.queueRecentPostsForDelivery activityPubContent "_public"
+
+    // =============================================================================
+    // AT Protocol (ATmosphere) staging — site.standard.document records for Posts (Track A).
+    // Gated behind AtProtoBuilder.useAtProtoSync (default off) so _public stays byte-identical
+    // until the feature is deliberately enabled. The sync script (Scripts/sync-atproto.fsx)
+    // consumes these staged records; nothing here writes to the network.
+    // =============================================================================
+    if AtProtoBuilder.useAtProtoSync then
+        printfn "🌐 Building AT Protocol staging records..."
+        AtProtoBuilder.buildAtProtoStaging (postsFeedData |> List.map (fun fd -> fd.Content)) "_public"
     
     // =============================================================================
     // ActivityPub Followers Collection - Phase 4A Implementation
