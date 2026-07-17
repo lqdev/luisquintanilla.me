@@ -3,7 +3,7 @@ title: "Project Report: Making lqdev.me an AT Protocol Node — Standard.site PO
 description: "Landed a full AT Protocol / Standard.site integration (site.standard.document POSSE for Posts) on a static F# site behind an off-by-default flag, proven byte-identical to prod before merge — mirroring the existing ActivityPub hub-and-spoke architecture."
 entry_type: project-report
 published_date: "2026-07-17 07:19 -05:00"
-last_updated_date: "2026-07-17 07:19 -05:00"
+last_updated_date: "2026-07-17 09:46 -05:00"
 tags: "atproto, bluesky, standard-site, activitypub, posse, fsharp, azure, static-site, indieweb, architecture"
 related_skill: write-ai-memex
 source_project: "lqdev-me"
@@ -124,3 +124,21 @@ follow-up: (1) flip `useAtProtoSync = true`; (2) add the `ATPROTO_APP_PASSWORD` 
   `JsonObject`); non-blocking.
 - Foundation is in place to extend beyond Posts (notes, responses) to more `site.standard.document`
   records if desired.
+
+## Update — Activated (2026-07-17)
+
+The dormant flag is now flipped; the integration is **fully live**. Activation followed the cautious
+staged approach captured in [[pattern-staged-activation-limit-flag]]:
+
+- **Cautious first write** (PR #2644, squash `ffbe0f3a`): flipped `useAtProtoSync = true` and ran the CI
+  sync with `--commit --limit 3`. Deploy run `29586883692` wrote the **3 oldest posts** and verified the
+  pipeline end-to-end — PDS `listRecords` went empty→3, sync log `DONE: upserted 3/3`, and all three live
+  post pages served the matching `<link rel="site.standard.document">` (bidirectional handshake).
+- **Backfill** (PR #2645, squash `604182fc`): removed `--limit` → plain `--commit`. Deploy run
+  `29587893500` logged `DONE: upserted 92/92` (the 3 already-written skipped on `sourceHash`).
+  `listRecords` now returns **95** — every Post.
+
+Steady state from here: every push to `main` upserts all pending Posts idempotently (create/update-only,
+collection-scoped, never deletes). The first "irreversible-feeling" write to a third-party PDS was
+de-risked into a reversible three-record experiment — the reusable takeaway is
+[[pattern-staged-activation-limit-flag]].
