@@ -294,16 +294,16 @@ jobs:
           name: atproto-staging
           path: atproto-staging
 
-      # ACTIVATED — cautious first phase. Runs with `--commit --limit 3`, so each push to main
-      # upserts up to 3 pending site.standard.document records into the PDS (idempotent: records
-      # whose sourceHash already matches are skipped, so nothing is written twice). Remove `--limit`
-      # to backfill every pending record and reach steady-state POSSE. Requires the
-      # ATPROTO_APP_PASSWORD repository secret + AtProtoBuilder.useAtProtoSync = true.
-      # See docs/atproto/README.md for the full runbook and safety model.
-      - name: Sync AT Protocol documents (cautious first activation — first 3 only)
+      # ACTIVATED — steady-state POSSE. Runs with `--commit` (no --limit), so each push to main
+      # upserts every pending site.standard.document record into the PDS. Idempotent: records whose
+      # sourceHash already matches are skipped, so nothing is written twice and unchanged posts are
+      # no-ops. Create/update-only, collection-scoped to site.standard.document (never touches
+      # app.bsky.* posts, never deletes). Requires the ATPROTO_APP_PASSWORD repository secret +
+      # AtProtoBuilder.useAtProtoSync = true. See docs/atproto/README.md for the runbook + safety model.
+      - name: Sync AT Protocol documents (POSSE)
         env:
           ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
-        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-staging --commit --limit 3
+        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-staging --commit
 
   # close_pull_request_job:
   #   if: github.event_name == 'pull_request' && github.event.action == 'closed'
