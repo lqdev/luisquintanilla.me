@@ -28,9 +28,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     outputs:
-      # Whether the build produced AT Protocol POSSE staging (AtProtoBuilder.useAtProtoSync).
-      # Off by default → 'false' → sync_atproto_job is skipped entirely. See docs/atproto/.
-      atproto_staged: ${{ steps.atproto_check.outputs.staged }}
+      # Whether the build produced AT Protocol POSSE staging (AtProtoBuilder.useAtProtoSync /
+      # useAtProtoNotesSync). When the relevant flag is off, the check reports 'false' and the
+      # matching sync step is skipped. See docs/atproto/.
+      atproto_staged: ${{ steps.atproto_check.outputs.staged }}          # Track A: site.standard.document (Posts)
+      notes_staged: ${{ steps.atproto_check.outputs.notes_staged }}      # Track B: app.bsky.feed.post (Notes)
     steps:
       - uses: actions/checkout@v4
         with:
@@ -52,20 +54,28 @@ jobs:
       - name: Generate website
         run: dotnet run
 
-      # AT Protocol POSSE (#2574 / ADR-0009). AtProtoBuilder.useAtProtoSync is off by default, so
-      # no staging is produced and this reports staged=false → the downstream sync job is skipped
-      # and _public stays byte-identical to the pre-integration baseline. When the flag is flipped
-      # on, staging appears here and the sync job runs. This step never fails the build.
+      # AT Protocol POSSE (#2574 / ADR-0009). When AtProtoBuilder.useAtProtoSync / useAtProtoNotesSync
+      # are off, no staging is produced and this reports staged/notes_staged=false → the matching sync
+      # step is skipped and _public stays byte-identical to the pre-integration baseline. When a flag
+      # is on, staging appears here and the corresponding sync runs. This step never fails the build.
       - name: Check for AT Protocol staging
         id: atproto_check
         run: |
           if ls _public/api/data/atproto/documents/*.json >/dev/null 2>&1; then
             COUNT=$(ls _public/api/data/atproto/documents/*.json | wc -l)
             echo "staged=true" >> "$GITHUB_OUTPUT"
-            echo "🌐 AT Protocol staging present ($COUNT document record(s)) — sync job will run."
+            echo "🌐 AT Protocol document staging present ($COUNT record(s)) — Track A sync will run."
           else
             echo "staged=false" >> "$GITHUB_OUTPUT"
-            echo "AT Protocol staging absent (useAtProtoSync is off) — sync job will be skipped."
+            echo "AT Protocol document staging absent (useAtProtoSync is off) — Track A sync skipped."
+          fi
+          if ls _public/api/data/atproto/posts/*.json >/dev/null 2>&1; then
+            NCOUNT=$(ls _public/api/data/atproto/posts/*.json | wc -l)
+            echo "notes_staged=true" >> "$GITHUB_OUTPUT"
+            echo "🌐 AT Protocol note staging present ($NCOUNT record(s)) — Track B sync will run."
+          else
+            echo "notes_staged=false" >> "$GITHUB_OUTPUT"
+            echo "AT Protocol note staging absent (useAtProtoNotesSync is off) — Track B sync skipped."
           fi
 
       - name: Identify webmentions to send
@@ -132,7 +142,7 @@ jobs:
           path: _public/archive/*.bar
           retention-days: 7
 
-      # AT Protocol POSSE staging for the sync job. Only present when useAtProtoSync is on;
+      # AT Protocol POSSE staging for the sync job. Only present when the relevant flag is on;
       # guarded on the check step so nothing is uploaded (and no warning) while the flag is off.
       - name: Upload AT Protocol staging for sync job
         if: steps.atproto_check.outputs.staged == 'true'
@@ -140,6 +150,14 @@ jobs:
         with:
           name: atproto-staging
           path: _public/api/data/atproto/documents/
+          retention-days: 1
+
+      - name: Upload AT Protocol note staging for sync job
+        if: steps.atproto_check.outputs.notes_staged == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: atproto-staging-notes
+          path: _public/api/data/atproto/posts/
           retention-days: 1
 
   # ============================================================================
@@ -273,9 +291,9 @@ jobs:
   # ============================================================================
   sync_atproto_job:
     needs: build_and_deploy_job
-    if: needs.build_and_deploy_job.outputs.atproto_staged == 'true' && github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: (needs.build_and_deploy_job.outputs.atproto_staged == 'true' || needs.build_and_deploy_job.outputs.notes_staged == 'true') && github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    name: Sync AT Protocol Documents
+    name: Sync AT Protocol Records
     steps:
       - uses: actions/checkout@v4
         with:
@@ -288,22 +306,43 @@ jobs:
           dotnet-version: '10.0.x'
           cache: false
 
-      - name: Download AT Protocol staging
+      - name: Download AT Protocol document staging
+        if: needs.build_and_deploy_job.outputs.atproto_staged == 'true'
         uses: actions/download-artifact@v4.1.8
         with:
           name: atproto-staging
           path: atproto-staging
 
-      # ACTIVATED — steady-state POSSE. Runs with `--commit` (no --limit), so each push to main
-      # upserts every pending site.standard.document record into the PDS. Idempotent: records whose
-      # sourceHash already matches are skipped, so nothing is written twice and unchanged posts are
-      # no-ops. Create/update-only, collection-scoped to site.standard.document (never touches
-      # app.bsky.* posts, never deletes). Requires the ATPROTO_APP_PASSWORD repository secret +
-      # AtProtoBuilder.useAtProtoSync = true. See docs/atproto/README.md for the runbook + safety model.
-      - name: Sync AT Protocol documents (POSSE)
+      # ACTIVATED (Track A) — steady-state POSSE. Runs with `--commit` (no --limit), so each push to
+      # main upserts every pending site.standard.document record into the PDS. Idempotent: records
+      # whose sourceHash already matches are skipped. Create/update-only, collection-scoped to
+      # site.standard.document (never touches app.bsky.* posts, never deletes). Requires the
+      # ATPROTO_APP_PASSWORD repository secret + AtProtoBuilder.useAtProtoSync = true.
+      # See docs/atproto/README.md for the runbook + safety model.
+      - name: Sync AT Protocol documents (POSSE, Track A)
+        if: needs.build_and_deploy_job.outputs.atproto_staged == 'true'
         env:
           ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
         run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-staging --commit
+
+      - name: Download AT Protocol note staging
+        if: needs.build_and_deploy_job.outputs.notes_staged == 'true'
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: atproto-staging-notes
+          path: atproto-staging-notes
+
+      # DORMANT (Track B) — Notes -> native app.bsky.feed.post. Skipped entirely while
+      # AtProtoBuilder.useAtProtoNotesSync is off (notes_staged=false). Currently DRY-RUN (no
+      # --commit): activation must ADD `--commit` here in the same PR that flips the flag, AFTER a
+      # local dry-run confirms the plan (forward-only from notesActivationCutoff → only post-cutoff
+      # notes are eligible). The sourceHash write-scope guard protects hand-authored posts in the
+      # shared app.bsky.feed.post collection. See docs/atproto/README.md.
+      - name: Sync AT Protocol notes (POSSE, Track B)
+        if: needs.build_and_deploy_job.outputs.notes_staged == 'true'
+        env:
+          ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
+        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-staging-notes --collection app.bsky.feed.post
 
   # close_pull_request_job:
   #   if: github.event_name == 'pull_request' && github.event.action == 'closed'

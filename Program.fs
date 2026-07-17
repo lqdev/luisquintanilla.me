@@ -171,6 +171,13 @@ let main argv =
     if AtProtoBuilder.useAtProtoSync then
         printfn "🌐 Building AT Protocol staging records..."
         AtProtoBuilder.buildAtProtoStaging (postsFeedData |> List.map (fun fd -> fd.Content)) "_public"
+
+    // Track B — Notes -> native app.bsky.feed.post staging records. Gated behind
+    // AtProtoBuilder.useAtProtoNotesSync (default off) and forward-only from notesActivationCutoff,
+    // so _public stays byte-identical until deliberately activated. The sync script consumes these.
+    if AtProtoBuilder.useAtProtoNotesSync then
+        printfn "🌐 Building AT Protocol note staging records..."
+        AtProtoBuilder.buildAtProtoNotesStaging (notesFeedData |> List.map (fun fd -> fd.Content)) "_public"
     
     // =============================================================================
     // ActivityPub Followers Collection - Phase 4A Implementation

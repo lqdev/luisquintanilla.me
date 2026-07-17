@@ -195,11 +195,23 @@ let assertNoTidCollisions (items: (DateTimeOffset * string) list) : unit =
 // construction, verification <link> tags, and staged-record generation.
 // ---------------------------------------------------------------------------
 
-/// Master feature flag for AT Protocol Part B. While false (the committed default), NO staging
-/// records are written and NO verification <link> tags are emitted, so generated _public output
-/// stays byte-identical to the pre-integration baseline. Flip to true (with the app-password
-/// secret wired into CI) to activate document staging + per-post verification tags.
+/// Master feature flag for AT Protocol Track A (Posts -> site.standard.document). When false, NO
+/// staging records are written and NO verification <link> tags are emitted, so generated _public
+/// output stays byte-identical to the pre-integration baseline; when true (with the app-password
+/// secret wired into CI), document staging + per-post verification tags are produced.
 let useAtProtoSync = true
+
+/// Track B feature flag — native Bluesky posts for Notes (app.bsky.feed.post). Independent of
+/// useAtProtoSync (Track A / documents). When false, NO note staging records are written, so
+/// generated _public output stays byte-identical to the baseline; when true (with
+/// ATPROTO_APP_PASSWORD wired into CI), post-cutoff Notes are POSSE'd to the real bsky.app timeline.
+let useAtProtoNotesSync = false
+
+/// Forward-only activation cutoff for Track B. Only Notes published on/after this instant are
+/// POSSE'd. Bluesky feeds sort by ingest time (indexedAt), not createdAt, so a bulk backfill of
+/// historical notes would flood followers' timelines — hence forward-only from an explicit cutoff
+/// (ADR-0009 / issue #2574). Set to catch the first seed note (lumpen-radio, 2026-07-13) and newer.
+let notesActivationCutoff = DateTimeOffset(2026, 7, 13, 0, 0, 0, TimeSpan.FromHours -5.0)
 
 /// Grapheme-safe truncation (AT Proto/lexicon length caps are counted in graphemes, not chars).
 let private truncateGraphemes (maxGraphemes: int) (value: string) : string =
@@ -322,3 +334,102 @@ let buildAtProtoStaging (posts: Domain.Post list) (outputDir: string) : unit =
         File.WriteAllText(Path.Combine(docsDir, sprintf "%s.json" rkey), wrapper.ToJsonString opts)
         count <- count + 1
     printfn "  ✅ Generated %d AT Protocol document staging records" count
+
+// ---------------------------------------------------------------------------
+// Track B — Notes -> native app.bsky.feed.post (timeline-visible).
+//
+// A Note becomes a real Bluesky post: a plaintext excerpt (<=300 graphemes) plus an
+// app.bsky.embed.external link card pointing back to the canonical note URL on lqdev.me. Records
+// carry our `sourceHash` extension field, so the sync script only ever manages posts IT created —
+// the account's hand-authored app.bsky.feed.post records (no sourceHash) are structurally
+// untouchable. Create-only, forward-only from notesActivationCutoff. rkeys reuse the Track A
+// deterministic-TID derivation (deriveTid = published date + slug hash), keeping AT-URIs
+// precomputable and putRecord a stateless idempotent upsert.
+// ---------------------------------------------------------------------------
+
+/// Canonical `/notes/{slug}/` path (leading + trailing slash) from the single permalink authority,
+/// so the embed link card can never drift from the actual published note URL.
+let notePath (slug: string) : string =
+    sprintf "%s%s/" (ContentTypes.urlPrefix ContentTypes.ContentType.Notes) slug
+
+/// Full canonical URL of a note (what the embed link card points at).
+let noteUrl (slug: string) : string =
+    Config.canonicalUrl + notePath slug
+
+/// POSSE post text: the note body as plaintext, truncated to <=300 graphemes (Bluesky's hard cap),
+/// with a trailing ellipsis when truncated. Falls back to the note title if the body is empty.
+let buildNoteText (note: Domain.Post) : string =
+    let plain = stripToPlainText note.Content
+    let body =
+        if String.IsNullOrWhiteSpace plain then
+            (if isNull note.Metadata.Title then "" else note.Metadata.Title.Trim())
+        else plain
+    let si = StringInfo body
+    if si.LengthInTextElements <= 300 then body
+    else (si.SubstringByTextElements(0, 299)).TrimEnd() + "…"
+
+/// Build the app.bsky.feed.post record JSON for one Note (Track B). Native Bluesky post: excerpt
+/// text + an app.bsky.embed.external link card back to the canonical note. `langs` aids Bluesky's
+/// language filtering; `sourceHash` is our write-scope / change-detection extension field (same
+/// role as on documents). No facets are emitted (plaintext excerpt) — the embed card carries the
+/// canonical link, so no UTF-8 byte-offset facet math is needed for the MVP.
+let buildPostRecordJson (note: Domain.Post) (published: DateTimeOffset) (slug: string) : JsonObject =
+    let o = JsonObject()
+    o.Add("$type", JsonValue.Create "app.bsky.feed.post")
+    o.Add("text", JsonValue.Create(buildNoteText note))
+    o.Add("createdAt", JsonValue.Create(published.ToString("yyyy-MM-ddTHH:mm:ss.fffzzz", CultureInfo.InvariantCulture)))
+    let langs = JsonArray()
+    langs.Add(JsonValue.Create "en")
+    o.Add("langs", langs)
+    // app.bsky.embed.external link card -> canonical note (title/description from frontmatter).
+    let ext = JsonObject()
+    ext.Add("uri", JsonValue.Create(noteUrl slug))
+    let title =
+        if isNull note.Metadata.Title || String.IsNullOrWhiteSpace note.Metadata.Title
+        then Config.publicationName else note.Metadata.Title.Trim()
+    ext.Add("title", JsonValue.Create(truncateGraphemes 300 title))
+    let description =
+        if not (isNull note.Metadata.Description) && not (String.IsNullOrWhiteSpace note.Metadata.Description)
+        then note.Metadata.Description.Trim()
+        else stripToPlainText note.Content
+    ext.Add("description", JsonValue.Create(truncateGraphemes 1000 description))
+    let embed = JsonObject()
+    embed.Add("$type", JsonValue.Create "app.bsky.embed.external")
+    embed.Add("external", ext)
+    o.Add("embed", embed)
+    // Extension field: scopes writes to records we created + detects content changes.
+    o.Add("sourceHash", JsonValue.Create(generateHash (noteUrl slug + "\u0000" + note.Content)))
+    o
+
+/// Generate AT Protocol staging records for Notes (Track B -> app.bsky.feed.post). Flag-gated by the
+/// caller (useAtProtoNotesSync) and forward-only: only notes on/after notesActivationCutoff are
+/// staged. Writes one self-describing JSON file (collection + rkey + record) per eligible note under
+/// {outputDir}/api/data/atproto/posts/{rkey}.json. Pure/local — the sync script does the network I/O.
+/// Fails the build loudly if two notes would derive the same record key.
+let buildAtProtoNotesStaging (notes: Domain.Post list) (outputDir: string) : unit =
+    printfn "  🌐 Generating AT Protocol note staging records (app.bsky.feed.post)..."
+    let postsDir = Path.Combine(outputDir, "api", "data", "atproto", "posts")
+    Directory.CreateDirectory postsDir |> ignore
+    let eligible =
+        notes
+        |> List.choose (fun n ->
+            match DateTimeOffset.TryParse n.Metadata.Date with
+            | true, d when d >= notesActivationCutoff -> Some(d, n.FileName, n)
+            | true, _ -> None                                   // pre-cutoff -> forward-only, skip
+            | _ ->
+                eprintfn "  ⚠️  AtProto: skipping note with unparseable date '%s' (%s)" n.Metadata.Date n.FileName
+                None)
+    // Build-time invariant: no two eligible notes may derive the same record key.
+    assertNoTidCollisions (eligible |> List.map (fun (d, s, _) -> d, s))
+    let opts = JsonSerializerOptions()
+    opts.WriteIndented <- true
+    let mutable count = 0
+    for (d, slug, note) in eligible do
+        let rkey = deriveTid d slug
+        let wrapper = JsonObject()
+        wrapper.Add("collection", JsonValue.Create "app.bsky.feed.post")
+        wrapper.Add("rkey", JsonValue.Create rkey)
+        wrapper.Add("record", buildPostRecordJson note d slug)
+        File.WriteAllText(Path.Combine(postsDir, sprintf "%s.json" rkey), wrapper.ToJsonString opts)
+        count <- count + 1
+    printfn "  ✅ Generated %d AT Protocol note staging records (post-cutoff)" count

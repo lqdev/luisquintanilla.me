@@ -1,10 +1,14 @@
-// Sync AT Protocol Documents (Part B Phase 3 — POSSE, Track A)
+// Sync AT Protocol records (POSSE) — Track A documents + Track B native posts
 //
-// Reads the `site.standard.document` staging records generated during the build
-// (AtProtoBuilder.buildAtProtoStaging -> _public/api/data/atproto/documents/{rkey}.json)
-// and upserts them into the site's Bluesky-hosted repo via com.atproto.repo.putRecord.
+// Reads the staging records generated during the build and upserts them into the site's
+// Bluesky-hosted repo via com.atproto.repo.putRecord. The collection is selected with
+// --collection (default site.standard.document):
+//   * Track A: site.standard.document  <- AtProtoBuilder.buildAtProtoStaging
+//              (_public/api/data/atproto/documents/{rkey}.json)  [Posts]
+//   * Track B: app.bsky.feed.post       <- AtProtoBuilder.buildAtProtoNotesStaging
+//              (_public/api/data/atproto/posts/{rkey}.json)      [Notes]
 //
-// This is the outbound half of #2574 / ADR-0009 for Posts. It mirrors the shape of
+// This is the outbound half of #2574 / ADR-0009. It mirrors the shape of
 // Scripts/send-webmentions.fsx (a small post-build dotnet-fsi side effect, not an Azure
 // Function) and reuses the auth/XRPC pattern proven in Scripts/create-atproto-publication.fsx.
 //
@@ -12,11 +16,12 @@
 //  * DRY RUN BY DEFAULT. Without `--commit`, the script only READS (resolves the PDS,
 //    lists existing records, computes and prints the plan) and NEVER authenticates or
 //    writes. A live write requires BOTH `--commit` AND the ATPROTO_APP_PASSWORD secret.
-//  * COLLECTION-SCOPED. It only ever touches the `site.standard.document` collection.
-//    The ~14 hand-authored posts live in `app.bsky.feed.post`, a DIFFERENT collection
-//    this script never names — so they are structurally untouchable here. (When Track B
-//    later writes to that shared collection, the sourceHash write-scope guard below
-//    becomes load-bearing; for Track A the whole collection is ours.)
+//  * COLLECTION-SCOPED. The target collection is a parameter (--collection, default
+//    `site.standard.document`). Track A owns its entire collection. Track B writes to the
+//    SHARED `app.bsky.feed.post` collection where the ~14 hand-authored posts also live —
+//    there the sourceHash write-scope guard below is load-bearing: any remote record WITHOUT
+//    our sourceHash marker is classified `left-untouched` and is never updated or deleted, so
+//    hand-authored posts are structurally safe even in a shared collection.
 //  * CREATE / UPDATE ONLY, NEVER DELETE. Records are upserted by their deterministic TID
 //    rkey. Orphaned remote records (rkey no longer produced by a build) are left alone.
 //  * IDEMPOTENT. A record whose remote `sourceHash` already matches the staged one is
@@ -28,6 +33,8 @@
 //   dotnet fsi Scripts/sync-atproto.fsx --commit        # live upsert (needs ATPROTO_APP_PASSWORD)
 //   dotnet fsi Scripts/sync-atproto.fsx --commit --limit 3   # write only the first 3 pending (cautious first run)
 //   dotnet fsi Scripts/sync-atproto.fsx --dir <path>    # override staging dir (default _public/...)
+//   dotnet fsi Scripts/sync-atproto.fsx --collection app.bsky.feed.post --dir <notes staging dir>
+//                                                       # Track B: POSSE Notes as native posts
 
 open System
 open System.IO
@@ -46,7 +53,17 @@ let argValue name =
     |> Option.bind (fun i -> if i + 1 < argv.Length then Some argv.[i + 1] else None)
 
 let commit    = hasFlag "--commit"
-let stagingDir = argValue "--dir" |> Option.defaultValue (Path.Combine("_public", "api", "data", "atproto", "documents"))
+// Target collection (Track A default). Track B passes `--collection app.bsky.feed.post`. Resolved
+// here (not in the config block below) because the default staging dir depends on it.
+let collection = argValue "--collection" |> Option.defaultValue "site.standard.document"
+// The default staging dir TRACKS the collection, so `--collection app.bsky.feed.post` on its own
+// can't silently load Track A document staging and try to write it into the posts collection
+// (a footgun). Pass --dir to override.
+let defaultStagingDir =
+    match collection with
+    | "app.bsky.feed.post" -> Path.Combine("_public", "api", "data", "atproto", "posts")
+    | _                    -> Path.Combine("_public", "api", "data", "atproto", "documents")
+let stagingDir = argValue "--dir" |> Option.defaultValue defaultStagingDir
 // Optional cap on how many records a single run will write (create+update). Used for a cautious
 // first activation: write a small batch, verify end-to-end, then re-run without --limit to backfill.
 let limitOpt =
@@ -60,7 +77,10 @@ let limitOpt =
 let handle      = "lqdev.me"
 let did         = "did:plc:pme7qquljcdx6i4zyawoxypd"
 let pdsFallback = "https://amanita.us-east.host.bsky.network"
-let collection  = "site.standard.document"
+// NOTE: `collection` is resolved up in the Args section (the default staging dir depends on it).
+// Everything below — listRecords, the write-scope plan, and putRecord — reads that `collection`
+// variable, so the script is fully collection-agnostic; only the `validate` param (below) differs
+// by collection family.
 
 // ---- HTTP helpers (same shape as create-atproto-publication.fsx) -----------
 let http = new HttpClient()
@@ -111,6 +131,13 @@ let staged =
     Directory.GetFiles(stagingDir, "*.json")
     |> Array.map (fun path ->
         let root = JsonNode.Parse(File.ReadAllText path)
+        // Cross-check the wrapper's collection against --collection: refuse to write records staged
+        // for one collection into another (e.g. document staging + `--collection app.bsky.feed.post`).
+        let stagedCollection =
+            root.["collection"] |> Option.ofObj |> Option.map (fun n -> n.GetValue<string>()) |> Option.defaultValue ""
+        if stagedCollection <> collection then
+            eprintfn "ERROR: staged file '%s' is for collection '%s' but --collection is '%s'. Refusing to write into the wrong collection (check --dir/--collection). Aborting." path stagedCollection collection
+            exit 1
         let rkey = root.["rkey"].GetValue<string>()
         let record = root.["record"]
         let sourceHash =
@@ -259,7 +286,12 @@ for (_op, s) in planned do
     body.["repo"]       <- JsonValue.Create did
     body.["collection"] <- JsonValue.Create collection
     body.["rkey"]       <- JsonValue.Create s.Rkey
-    body.["validate"]   <- JsonValue.Create false
+    // Custom site.standard.* lexicons: the PDS can't resolve the schema, so validate:false stores
+    // the record with validationStatus "unknown". Known lexicons (app.bsky.*, e.g. Track B posts):
+    // OMIT validate so the PDS validates against the real schema and REJECTS a malformed record at
+    // write time (fail-fast) instead of silently failing to index/render on the AppView.
+    if collection.StartsWith("site.standard", StringComparison.Ordinal) then
+        body.["validate"] <- JsonValue.Create false
     body.["record"]     <- recordCopy
     let result = postJson (sprintf "%s/xrpc/com.atproto.repo.putRecord" pds) (Some accessJwt) body
     let cid = result.["cid"] |> Option.ofObj |> Option.map (fun n -> n.GetValue<string>()) |> Option.defaultValue "?"
