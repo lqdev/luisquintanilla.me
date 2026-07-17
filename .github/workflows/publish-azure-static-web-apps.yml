@@ -294,17 +294,16 @@ jobs:
           name: atproto-staging
           path: atproto-staging
 
-      # DRY RUN until activated. Without --commit the script is READ-ONLY: it resolves the PDS,
-      # lists existing records, prints the create/update/skip plan, and writes NOTHING (no auth,
-      # no secret needed). To go live with POSSE, in this order:
-      #   1) set AtProtoBuilder.useAtProtoSync = true  (staging is produced → this job starts running)
-      #   2) add the ATPROTO_APP_PASSWORD repository secret
-      #   3) append `--commit` to the command below
+      # ACTIVATED — cautious first phase. Runs with `--commit --limit 3`, so each push to main
+      # upserts up to 3 pending site.standard.document records into the PDS (idempotent: records
+      # whose sourceHash already matches are skipped, so nothing is written twice). Remove `--limit`
+      # to backfill every pending record and reach steady-state POSSE. Requires the
+      # ATPROTO_APP_PASSWORD repository secret + AtProtoBuilder.useAtProtoSync = true.
       # See docs/atproto/README.md for the full runbook and safety model.
-      - name: Sync AT Protocol documents (dry run until activated)
+      - name: Sync AT Protocol documents (cautious first activation — first 3 only)
         env:
           ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
-        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-staging
+        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-staging --commit --limit 3
 
   # close_pull_request_job:
   #   if: github.event_name == 'pull_request' && github.event.action == 'closed'
