@@ -69,6 +69,19 @@ let getJson (url: string) : JsonNode =
     use req = new HttpRequestMessage(HttpMethod.Get, url)
     JsonNode.Parse(sendReq req)
 
+/// Soft GET for the PDS-resolution path: unlike getJson (which hard-EXITS on any non-2xx via sendReq),
+/// this returns None on ANY failure — network error, non-2xx, or parse error — so resolvePds's
+/// pdsFallback is actually reachable. getJson's `exit 1` calls Environment.Exit, which terminates the
+/// process and bypasses resolvePds's try/with, turning a transient plc.directory blip into a whole-sync
+/// abort. Only used for the (unauthenticated, read-only) DID-document lookup.
+let tryGetJson (url: string) : JsonNode option =
+    try
+        use req = new HttpRequestMessage(HttpMethod.Get, url)
+        let resp = http.SendAsync(req).Result
+        if resp.IsSuccessStatusCode then Some(JsonNode.Parse(resp.Content.ReadAsStringAsync().Result))
+        else None
+    with _ -> None
+
 let postJson (url: string) (bearer: string option) (payload: JsonNode) : JsonNode =
     use req = new HttpRequestMessage(HttpMethod.Post, url)
     req.Content <- new StringContent(payload.ToJsonString(), Encoding.UTF8, "application/json")
@@ -92,8 +105,14 @@ let staged =
         let rkey = root.["rkey"].GetValue<string>()
         let record = root.["record"]
         let sourceHash =
-            record.["sourceHash"] |> Option.ofObj
-            |> Option.map (fun n -> n.GetValue<string>()) |> Option.defaultValue ""
+            match record.["sourceHash"] |> Option.ofObj |> Option.map (fun n -> n.GetValue<string>()) with
+            | Some sh when not (String.IsNullOrWhiteSpace sh) -> sh
+            | _ ->
+                // The builder ALWAYS emits sourceHash (change-detection + write-scope guard). A missing or
+                // blank one means a corrupt staging file — fail loudly rather than default to "" (which
+                // matches no remote hash and would rewrite every record on every run, masking the corruption).
+                eprintfn "ERROR: staged file '%s' has no non-blank 'sourceHash'. Corrupt staging; aborting without syncing." path
+                exit 1
         { Rkey = rkey; SourceHash = sourceHash; Record = record })
     |> Array.sortBy (fun s -> s.Rkey)
 
@@ -103,17 +122,19 @@ if staged.Length = 0 then exit 0
 // ---- 1) Resolve the PDS endpoint from the DID document (no auth) ------------
 let resolvePds () =
     try
-        let doc = getJson (sprintf "https://plc.directory/%s" did)
-        doc.["service"].AsArray()
-        |> Seq.tryPick (fun s ->
-            let isPds =
-                s.["type"] |> Option.ofObj
-                |> Option.map (fun n -> n.GetValue<string>() = "AtprotoPersonalDataServer")
-                |> Option.defaultValue false
-            if isPds then
-                s.["serviceEndpoint"] |> Option.ofObj |> Option.map (fun n -> n.GetValue<string>())
-            else None)
-        |> Option.defaultValue pdsFallback
+        match tryGetJson (sprintf "https://plc.directory/%s" did) with
+        | None -> pdsFallback   // plc.directory unreachable/errored → fall back to the last-known host
+        | Some doc ->
+            doc.["service"].AsArray()
+            |> Seq.tryPick (fun s ->
+                let isPds =
+                    s.["type"] |> Option.ofObj
+                    |> Option.map (fun n -> n.GetValue<string>() = "AtprotoPersonalDataServer")
+                    |> Option.defaultValue false
+                if isPds then
+                    s.["serviceEndpoint"] |> Option.ofObj |> Option.map (fun n -> n.GetValue<string>())
+                else None)
+            |> Option.defaultValue pdsFallback
     with _ -> pdsFallback
 
 let pds = resolvePds ()
@@ -149,23 +170,31 @@ let remote = fetchRemote ()
 printfn "Remote already holds %d %s record(s)." remote.Count collection
 
 // ---- 3) Compute the plan ----------------------------------------------------
-// CREATE  = rkey absent remotely
-// UPDATE  = rkey present, remote sourceHash differs (or remote lacks one)
-// SKIP    = rkey present, remote sourceHash matches the staged one
+// CREATE = rkey absent remotely.
+// UPDATE = rkey present AND the remote record carries OUR sourceHash but it differs from the staged one.
+// SKIP   = rkey present AND remote sourceHash matches the staged one (idempotent no-op).
+// LEAVE  = rkey present but the remote record has NO sourceHash → it does not bear our write-scope
+//          marker, so we never touch it (honours the "only touch records we created" invariant).
 let creates = ResizeArray<Staged>()
 let updates = ResizeArray<Staged>()
+let unmanaged = ResizeArray<string>()   // remote rkey exists but lacks our sourceHash marker → leave alone
 let mutable skips = 0
 for s in staged do
     match remote.TryGetValue s.Rkey with
     | true, remoteSh ->
         match remoteSh with
-        | Some rsh when rsh = s.SourceHash -> skips <- skips + 1
-        | _ -> updates.Add s
+        | Some rsh when rsh = s.SourceHash -> skips <- skips + 1   // unchanged → skip
+        | Some _ -> updates.Add s                                  // ours, changed → update
+        | None -> unmanaged.Add s.Rkey                             // no marker → not ours → never touch
     | false, _ -> creates.Add s
 
 printfn ""
-printfn "PLAN: %d create, %d update, %d unchanged (of %d staged)"
-    creates.Count updates.Count skips staged.Length
+printfn "PLAN: %d create, %d update, %d unchanged, %d left-untouched (of %d staged)"
+    creates.Count updates.Count skips unmanaged.Count staged.Length
+if unmanaged.Count > 0 then
+    printfn "  ⚠️  %d remote record(s) share a staged rkey but carry NO sourceHash marker — leaving them" unmanaged.Count
+    printfn "      UNTOUCHED to honour the write-scope invariant (only records bearing our sourceHash are ours):"
+    for rk in unmanaged do printfn "        · %s" rk
 
 let planned = Seq.append creates updates |> Seq.toArray
 if planned.Length = 0 then
