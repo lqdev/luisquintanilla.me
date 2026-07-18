@@ -1,5 +1,5 @@
 ---
-title: "Manton Reece - Social web disconnect"
+title: "Social web disconnect"
 targeturl: https://www.manton.org/2026/07/18/social-web-disconnect.html
 response_type: star
 dt_published: "2026-07-18 09:38 -05:00"
