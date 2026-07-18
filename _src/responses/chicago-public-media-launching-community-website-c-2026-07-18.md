@@ -1,5 +1,5 @@
 ---
-title: "Chicago Public Media launching community website — chicago.com — in the fall - Chicago Sun-Times"
+title: "Chicago Public Media launching community website — chicago.com — in the fall"
 targeturl: https://chicago.suntimes.com/media/2026/07/08/chicago-public-media-launching-community-website-chicago-com-fall
 response_type: reshare
 dt_published: "2026-07-18 09:59 -05:00"
