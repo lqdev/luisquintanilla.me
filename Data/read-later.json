@@ -193,5 +193,10 @@
     "url": "https://cursor.com/blog/router",
     "title": "Introducing Cursor Router · Cursor",
     "dateAdded": "2026-07-23T18:42:00Z"
+  },
+  {
+    "url": "https://huggingface.co/spaces/webml-community/bonsai-webgpu",
+    "title": "Bonsai 1-bit WebGPU - a Hugging Face Space by webml-community",
+    "dateAdded": "2026-07-23T18:42:47Z"
   }
 ]
