@@ -183,5 +183,10 @@
     "url": "https://www.kimi.com/blog/kimi-k3",
     "title": "Kimi K3 Tech Blog: Open Frontier Intelligence",
     "dateAdded": "2026-07-23T18:34:08Z"
+  },
+  {
+    "url": "https://github.com/open-and-async/mcp",
+    "title": "open-and-async/mcp: Model Context Protocol server for the book Open and Async — async-first method tools plus the book's outline, taglines, and summaries. Ships the method, never the manuscript.",
+    "dateAdded": "2026-07-23T18:39:15Z"
   }
 ]
