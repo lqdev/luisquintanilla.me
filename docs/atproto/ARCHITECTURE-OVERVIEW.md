@@ -6,9 +6,12 @@
 **Status:**
 - **Part A — publication node: LIVE.** lqdev.me is a verified `site.standard.publication` in the
   ATmosphere.
-- **Part B — per-post documents: IMPLEMENTED, flag OFF.** All code is merged behind
-  `AtProtoBuilder.useAtProtoSync = false`, so generated `_public/` output is byte-identical to the
-  pre-integration baseline. No records are written until [activation](#activation-runbook).
+- **Part B — per-post documents: LIVE.** `AtProtoBuilder.useAtProtoSync = true`; every push to `main`
+  upserts one `site.standard.document` record per Post via `Scripts/sync-atproto.fsx --commit`.
+- **Track B — Notes as native posts: LIVE.** `AtProtoBuilder.useAtProtoNotesSync = true`; Notes
+  published on/after `notesActivationCutoff` (2026-07-13) POSSE to the Bluesky timeline as
+  `app.bsky.feed.post` records (forward-only). To roll back, drop `--commit` (dry-run) or set the
+  flag(s) to `false` (fully off, `_public/` byte-identical to the pre-integration baseline).
 
 This mirrors the site's existing [ActivityPub](../activitypub/ARCHITECTURE-OVERVIEW.md) approach: a
 static hub (the F# build) with a thin dynamic spoke (one post-build `dotnet fsi` sync script run from
@@ -31,12 +34,13 @@ Vault, no storage.
 
 ---
 
-## 2. Two tracks (only Track A is built)
+## 2. Two tracks
 
 | Track | Content type | Lexicon | Status |
 |-------|--------------|---------|--------|
-| **A** | Posts | `site.standard.document` (community Standard.site lexicon) | **Built (flag off)** |
-| B | Notes, Media, Responses, RSVP | native `app.bsky.feed.post` + embeds | Deferred to future phases |
+| **A** | Posts | `site.standard.document` (community Standard.site lexicon) | **🟢 Live** (`useAtProtoSync = true`) |
+| **B** | Notes | native `app.bsky.feed.post` | **🟢 Live** (`useAtProtoNotesSync = true`, forward-only from 2026-07-13) |
+| — | Media, Responses, RSVP | native `app.bsky.*` + embeds | Deferred to future phases |
 
 Standard.site fills the "long-form article" gap that AT Protocol itself lacks, and is
 [surfaced in the Bluesky timeline](https://atproto.com/blog/standard-site-bluesky-timeline).
@@ -170,23 +174,25 @@ Plan vocabulary: `create` (rkey absent) · `update` (ours, changed) · `unchange
   sets it from the presence of staged files. Flag off → `false` → **the job is skipped entirely** (zero
   cost, no confusing no-op runs).
 - Runs only on `push` to `main`.
-- Runs **dry-run** (no `--commit`) until activated.
+- Runs **live** (`--commit`) for both Track A (`site.standard.document`) and Track B
+  (`app.bsky.feed.post`) staging.
 
 ---
 
-## 8. Activation runbook
+## 8. Activation runbook — ✅ complete
 
-The three gates, in order. Each is a deliberate, reviewable change:
+All three gates are done; the sync runs **live on every push to `main`**. Retained as the historical
+sequence and the rollback path:
 
-1. **Enable staging:** set `AtProtoBuilder.useAtProtoSync = true`. The next main-branch build produces
-   staging → the `sync_atproto_job` starts running in **dry-run** and prints the create/update plan.
-   Review it in the Actions logs.
-2. **Add the secret:** create repository secret `ATPROTO_APP_PASSWORD` (a dedicated Bluesky App
-   Password — see [ADR-0009](../adr/0009-at-protocol-integration.md) and the one-time-setup notes).
-3. **Go live:** append `--commit` to the sync step in the workflow. The next main-branch push writes
-   records for real.
+1. ✅ **Staging enabled:** `AtProtoBuilder.useAtProtoSync = true` (Track A) and
+   `useAtProtoNotesSync = true` (Track B) → each main-branch build produces staging and the
+   `sync_atproto_job` runs.
+2. ✅ **Secret added:** repository secret `ATPROTO_APP_PASSWORD` (a dedicated Bluesky App Password —
+   see [ADR-0009](../adr/0009-at-protocol-integration.md) and the one-time-setup notes).
+3. ✅ **Live:** the sync steps run with `--commit`, so each main-branch push writes records for real.
 
-To roll back at any point, revert step 3 (dry-run) or step 1 (fully off, byte-identical baseline).
+To roll back at any point, drop `--commit` (dry-run) or set the flag(s) to `false` (fully off,
+byte-identical baseline).
 
 ---
 
@@ -196,7 +202,7 @@ To roll back at any point, revert step 3 (dry-run) or step 1 (fully off, byte-id
 |------|------|
 | `AtProtoBuilder.fs` | Core module: `Config`, `deriveTid`, `buildDocumentRecordJson`, `buildAtProtoStaging`, `documentLinkHead`, `useAtProtoSync` flag |
 | `Program.fs` | Flag-gated call to `buildAtProtoStaging` |
-| `Scripts/sync-atproto.fsx` | Post-build POSSE sync (dry-run by default) |
+| `Scripts/sync-atproto.fsx` | Post-build POSSE sync (dry-run by default; CI runs `--commit`) |
 | `Scripts/create-atproto-publication.fsx` | One-time Part A publication bootstrap |
 | `_src/.well-known/site.standard.publication` | Part A verification file (live) |
 | `.github/workflows/publish-azure-static-web-apps.yml` | `sync_atproto_job` + `atproto_staged` gate |
