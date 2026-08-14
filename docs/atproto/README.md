@@ -4,9 +4,12 @@
 
 **Status:**
 - **Part A (publication node): 🟢 LIVE** — lqdev.me is a verified `site.standard.publication`.
-- **Part B (per-post documents): 🟡 IMPLEMENTED, FLAG OFF** — merged behind
-  `AtProtoBuilder.useAtProtoSync = false`; `_public/` output is byte-identical to the pre-integration
-  baseline until [activated](#-activation-in-3-steps).
+- **Part B (per-post documents): 🟢 LIVE** — `AtProtoBuilder.useAtProtoSync = true`; every push to
+  `main` upserts one `site.standard.document` record per Post via `Scripts/sync-atproto.fsx --commit`.
+- **Track B (Notes → native posts): 🟢 LIVE** — `AtProtoBuilder.useAtProtoNotesSync = true`; Notes
+  published on/after `notesActivationCutoff` (2026-07-13) are POSSE'd to the Bluesky timeline as
+  `app.bsky.feed.post` records (forward-only). Roll back by dropping `--commit` (dry-run) or setting the
+  flag(s) to `false` (fully off, byte-identical baseline).
 
 ---
 
@@ -39,12 +42,14 @@ Reused identity: handle `lqdev.me` / `did:plc:pme7qquljcdx6i4zyawoxypd`, hosted 
 
 ---
 
-## 🔒 Safety model (why this is safe to merge with the flag off)
+## 🔒 Safety model (why the live sync is safe)
 
-- **Dry-run by default.** `sync-atproto.fsx` writes nothing without `--commit` **and** the
-  `ATPROTO_APP_PASSWORD` secret.
-- **Flag-off = no-op.** With `useAtProtoSync = false`, no staging is produced; the CI sync job is
-  **skipped entirely** and `_public/` is byte-identical to baseline.
+- **Dry-run unless `--commit`.** `sync-atproto.fsx` writes nothing without `--commit` **and** the
+  `ATPROTO_APP_PASSWORD` secret, so you can preview the plan read-only. **CI passes `--commit`** on every
+  push to `main` (live).
+- **Flag gates the whole path.** With `useAtProtoSync = false` (and `useAtProtoNotesSync = false`), no
+  staging is produced, the CI sync job is **skipped entirely**, and `_public/` is byte-identical to
+  baseline — the rollback switch.
 - **Collection-scoped + write-scope guard.** Only touches `site.standard.document`, and only manages
   records bearing our `sourceHash` — hand-authored `app.bsky.feed.post` content is untouchable.
 - **Create/update only, never delete. Idempotent. Fail-fast on corrupt staging.**
@@ -53,17 +58,17 @@ Full details in [ARCHITECTURE-OVERVIEW.md §6](ARCHITECTURE-OVERVIEW.md#6-sync-s
 
 ---
 
-## 🚀 Activation in 3 steps
+## 🚀 Activation — ✅ complete (historical runbook)
 
-Each step is a deliberate, reviewable change (details:
+All three steps are done; the sync runs **live on every push to `main`**. Retained as the historical
+sequence and the rollback path (details:
 [ARCHITECTURE-OVERVIEW.md §8](ARCHITECTURE-OVERVIEW.md#8-activation-runbook)):
 
-1. Set `AtProtoBuilder.useAtProtoSync = true` → the CI `sync_atproto_job` starts running in **dry-run**
-   and prints the plan. Review it.
-2. Add the `ATPROTO_APP_PASSWORD` repository secret (a dedicated Bluesky App Password).
-3. Append `--commit` to the sync step in `.github/workflows/publish-azure-static-web-apps.yml`.
+1. ✅ `AtProtoBuilder.useAtProtoSync = true` (Track A) and `useAtProtoNotesSync = true` (Track B).
+2. ✅ `ATPROTO_APP_PASSWORD` repository secret added (a dedicated Bluesky App Password).
+3. ✅ `--commit` on the sync steps in `.github/workflows/publish-azure-static-web-apps.yml`.
 
-Roll back by reverting step 3 (back to dry-run) or step 1 (fully off).
+Roll back by removing `--commit` (back to dry-run) or setting the flag(s) to `false` (fully off).
 
 ---
 

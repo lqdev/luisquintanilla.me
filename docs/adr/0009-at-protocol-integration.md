@@ -11,6 +11,14 @@ Amended 2026-07-16: **Part A (the `site.standard.publication` node) is now live*
 `at://did:plc:pme7qquljcdx6i4zyawoxypd/site.standard.publication/3mqs7sgylil2w`, verified at
 `/.well-known/site.standard.publication` (PRs #2631/#2632); added the Track B **write-scope safety
 invariant** to the Decision below.
+Amended 2026-08-14: reviewed the
+[Bluesky Protocol Services / Jetstream v2 (Network Replay)](https://atproto.com/blog/introducing-bluesky-protocol-services)
+release — **no impact on this decision.** The integration is write-only POSSE via raw XRPC (no SDK, no
+firehose/Jetstream consumption); `putRecord`/`createSession`/`listRecords` and App Passwords are
+unchanged, and no `docs.bsky.app` links exist in source. Jetstream v2 **Network Replay** (stateless HTTP
+archive snapshots) is noted as the likely enabling tech for the **deferred PESOS/backfeed** direction
+(future ADR-0010). App-Password → OAuth remains *tracked, not scheduled* (no ecosystem cutoff date). Full
+impact assessment: `_src/resources/ai-memex/research-bluesky-protocol-services-impact.md`.
 
 ## Context
 
