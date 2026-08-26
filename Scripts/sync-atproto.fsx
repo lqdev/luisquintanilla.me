@@ -35,14 +35,19 @@
 //   dotnet fsi Scripts/sync-atproto.fsx --dir <path>    # override staging dir (default _public/...)
 //   dotnet fsi Scripts/sync-atproto.fsx --collection app.bsky.feed.post --dir <notes staging dir>
 //                                                       # Track B: POSSE Notes as native posts
+//   dotnet fsi Scripts/sync-atproto.fsx --collection app.bsky.feed.post --dir <media staging root>
+//       --media-kind images|videos                         # Track C: select media phase
 
 open System
 open System.IO
 open System.Net.Http
+open System.Net.Http.Headers
 open System.Text
 open System.Text.Json
 open System.Text.Json.Nodes
 open System.Threading
+#load "../Services/AtProtoMediaValidation.fs"
+open AtProtoMediaValidation
 
 // ---- Args ------------------------------------------------------------------
 let argv = Environment.GetCommandLineArgs()
@@ -64,6 +69,7 @@ let defaultStagingDir =
     | "app.bsky.feed.post" -> Path.Combine("_public", "api", "data", "atproto", "posts")
     | _                    -> Path.Combine("_public", "api", "data", "atproto", "documents")
 let stagingDir = argValue "--dir" |> Option.defaultValue defaultStagingDir
+let mediaKindFilter = argValue "--media-kind" |> Option.map (fun value -> value.Trim().ToLowerInvariant())
 // Optional cap on how many records a single run will write (create+update). Used for a cautious
 // first activation: write a small batch, verify end-to-end, then re-run without --limit to backfill.
 let limitOpt =
@@ -121,14 +127,47 @@ let postJson (url: string) (bearer: string option) (payload: JsonNode) : JsonNod
 // ---- 0) Load staged records (this is also the flag-off no-op guard) ---------
 // With useAtProtoSync = false the build writes no staging files, so this list is
 // empty and the script exits without ever touching the network.
-type Staged = { Rkey: string; SourceHash: string; Record: JsonNode }
+type Staged =
+    { Rkey: string
+      SourceHash: string
+      Record: JsonNode
+      Media: JsonArray option
+      MediaKind: string option }
 
-if not (Directory.Exists stagingDir) then
+let mediaStagingDirs =
+    if collection = "app.bsky.feed.post" then
+        // A CI artifact may be downloaded as a media root containing images/,
+        // galleries/, and videos/. The build's default layout keeps media next
+        // to posts/, so support both layouts without making callers rearrange
+        // generated artifacts.
+        let childMediaDirs =
+            [ "images"; "galleries"; "videos" ]
+            |> List.map (fun child -> Path.Combine(stagingDir, child))
+        let mediaRoot =
+            if childMediaDirs |> List.exists Directory.Exists then
+                stagingDir
+            else
+                let parent = Path.GetDirectoryName stagingDir
+                if String.IsNullOrEmpty parent then Path.Combine(stagingDir, "media")
+                else Path.Combine(parent, "media")
+        [ Path.Combine(mediaRoot, "images")
+          Path.Combine(mediaRoot, "galleries")
+          Path.Combine(mediaRoot, "videos") ]
+    else []
+
+let stagingDirs =
+    stagingDir :: mediaStagingDirs
+    |> List.distinct
+
+if not (stagingDirs |> List.exists Directory.Exists) then
     printfn "No staging directory (%s). Nothing to sync (AtProto staging is off)." stagingDir
     exit 0
 
 let staged =
-    Directory.GetFiles(stagingDir, "*.json")
+    stagingDirs
+    |> List.collect (fun dir ->
+        if Directory.Exists dir then Directory.GetFiles(dir, "*.json") |> Array.toList else [])
+    |> List.toArray
     |> Array.map (fun path ->
         let root = JsonNode.Parse(File.ReadAllText path)
         // Cross-check the wrapper's collection against --collection: refuse to write records staged
@@ -149,8 +188,36 @@ let staged =
                 // matches no remote hash and would rewrite every record on every run, masking the corruption).
                 eprintfn "ERROR: staged file '%s' has no non-blank 'sourceHash'. Corrupt staging; aborting without syncing." path
                 exit 1
-        { Rkey = rkey; SourceHash = sourceHash; Record = record })
+        let media =
+            match root.["media"] with
+            | :? JsonArray as values -> Some values
+            | _ -> None
+        let mediaKind =
+            root.["mediaKind"] |> Option.ofObj |> Option.map (fun n -> n.GetValue<string>())
+        { Rkey = rkey; SourceHash = sourceHash; Record = record; Media = media; MediaKind = mediaKind })
+    |> Array.filter (fun s ->
+        match mediaKindFilter, s.MediaKind with
+        | Some "note", None
+        | Some "notes", None -> true
+        | None, _ -> true
+        | Some "image", Some "image"
+        | Some "images", Some "image"
+        | Some "image", Some "gallery"
+        | Some "images", Some "gallery"
+        | Some "gallery", Some "gallery"
+        | Some "galleries", Some "gallery"
+        | Some "video", Some "video"
+        | Some "videos", Some "video" -> true
+        | Some _, _ -> false)
     |> Array.sortBy (fun s -> s.Rkey)
+
+let duplicateRkeys =
+    staged
+    |> Array.groupBy (fun s -> s.Rkey)
+    |> Array.choose (fun (rkey, records) -> if records.Length > 1 then Some rkey else None)
+if duplicateRkeys.Length > 0 then
+    eprintfn "ERROR: duplicate staged native rkey(s): %s. Refusing to write colliding content." (String.concat ", " duplicateRkeys)
+    exit 1
 
 printfn "Loaded %d staged %s record(s) from %s" staged.Length collection stagingDir
 if staged.Length = 0 then exit 0
@@ -275,13 +342,189 @@ let session =
     postJson (sprintf "%s/xrpc/com.atproto.server.createSession" pds) None payload
 let accessJwt = session.["accessJwt"].GetValue<string>()   // NEVER printed
 
-// ---- 7) Upsert each planned record (putRecord = create-or-update by rkey) ---
+// ---- 7) Media uploads (only after the plan and auth gates) -------------------
+// No media URL is fetched before this point.  The complete upload phase runs
+// before the first putRecord, so a failed upload cannot leave a half-written
+// native post behind.
+let private postBytesRaw (url: string) (bearer: string) (mimeType: string) (bytes: byte[]) =
+    use req = new HttpRequestMessage(HttpMethod.Post, url)
+    let content = new ByteArrayContent(bytes)
+    content.Headers.ContentType <- MediaTypeHeaderValue(mimeType)
+    req.Content <- content
+    req.Headers.Authorization <- Headers.AuthenticationHeaderValue("Bearer", bearer)
+    let resp = http.SendAsync(req).Result
+    int resp.StatusCode, resp.Content.ReadAsStringAsync().Result
+
+let private postBytes (url: string) (bearer: string) (mimeType: string) (bytes: byte[]) : JsonNode =
+    let statusCode, body = postBytesRaw url bearer mimeType bytes
+    if statusCode >= 200 && statusCode < 300 then
+        JsonNode.Parse body
+    else
+        // uploadBlob can report an already-existing blob as an error response.
+        // It is safe to reuse that blob, and avoids a needless second upload.
+        let errorOpt =
+            try Some(JsonNode.Parse body)
+            with _ -> None
+        match errorOpt with
+        | Some error when
+            error.["error"] |> Option.ofObj |> Option.map (fun n -> n.GetValue<string>())
+            = Some "already_exists"
+            && not (isNull error.["blob"]) -> error
+        | _ -> failwithf "media upload failed (HTTP %d): %s" statusCode body
+
+let private blobFromResponse (response: JsonNode) =
+    match response.["blob"] with
+    | null -> failwith "media upload response did not contain a blob"
+    | blob -> JsonNode.Parse(blob.ToJsonString())
+
+let private downloadMedia (url: string) =
+    if String.IsNullOrWhiteSpace url then failwith "media manifest contains a blank URL"
+    try http.GetByteArrayAsync(url).Result
+    with ex -> failwithf "could not download media '%s': %s" url ex.Message
+
+let private descriptorValues (staged: Staged) =
+    match staged.Media with
+    | None -> []
+    | Some media ->
+        media
+        |> Seq.map (fun item ->
+            let url = item.["url"].GetValue<string>()
+            let mime = item.["mimeType"].GetValue<string>()
+            let alt = item.["alt"].GetValue<string>()
+            let width = item.["width"].GetValue<int>()
+            let height = item.["height"].GetValue<int>()
+            url, mime, alt, width, height)
+        |> Seq.toList
+
+let private uploadImage (url: string) (mime: string) =
+    let bytes = downloadMedia url
+    let dimensions = imageDimensions mime bytes
+    let response =
+        postBytes
+            (sprintf "%s/xrpc/com.atproto.repo.uploadBlob" pds)
+            accessJwt mime bytes
+    blobFromResponse response, dimensions
+
+let private serviceAuthForVideo () =
+    // The video service token is minted by the account's PDS.  Its audience is
+    // the PDS service DID, and its scope is uploadBlob because the video
+    // service stores the processed blob back in that PDS.
+    let pdsHost = Uri(pds).Host
+    let audience = sprintf "did:web:%s" pdsHost
+    let exp = DateTimeOffset.UtcNow.AddMinutes(30.0).ToUnixTimeSeconds()
+    let url =
+        sprintf "%s/xrpc/com.atproto.server.getServiceAuth?aud=%s&exp=%d&lxm=com.atproto.repo.uploadBlob"
+            pds (Uri.EscapeDataString audience) exp
+    use req = new HttpRequestMessage(HttpMethod.Get, url)
+    req.Headers.Authorization <- Headers.AuthenticationHeaderValue("Bearer", accessJwt)
+    JsonNode.Parse(sendReq req)
+    |> fun response -> response.["token"].GetValue<string>()
+
+let private videoJobStatus (serviceJwt: string) (jobId: string) =
+    let url =
+        sprintf "https://video.bsky.app/xrpc/app.bsky.video.getJobStatus?jobId=%s"
+            (Uri.EscapeDataString jobId)
+    use req = new HttpRequestMessage(HttpMethod.Get, url)
+    req.Headers.Authorization <- Headers.AuthenticationHeaderValue("Bearer", serviceJwt)
+    JsonNode.Parse(sendReq req)
+
+let private videoStatusField (response: JsonNode) (name: string) =
+    let status =
+        match response.["jobStatus"] with
+        | null -> response
+        | node -> node
+    match status.[name] with
+    | null -> response.[name] |> Option.ofObj
+    | value -> Some value
+
+let private videoStatusString (response: JsonNode) (name: string) =
+    videoStatusField response name
+    |> Option.map (fun value -> value.GetValue<string>())
+    |> Option.map (fun value -> value.ToLowerInvariant())
+
+let private uploadVideo (url: string) (mime: string) (name: string) =
+    let bytes = downloadMedia url
+    validateVideo mime bytes
+    let serviceJwt = serviceAuthForVideo ()
+    let endpoint =
+        sprintf "https://video.bsky.app/xrpc/app.bsky.video.uploadVideo?did=%s&name=%s"
+            (Uri.EscapeDataString did) (Uri.EscapeDataString name)
+    let initialStatusCode, initialBody = postBytesRaw endpoint serviceJwt mime bytes
+    let initial =
+        let parsed =
+            try Some(JsonNode.Parse initialBody)
+            with _ -> None
+        match initialStatusCode, parsed with
+        | code, Some response when code >= 200 && code < 300 -> response
+        | _, Some response when videoStatusString response "error" = Some "already_exists" -> response
+        | _, _ -> failwithf "video upload failed (HTTP %d): %s" initialStatusCode initialBody
+    match videoStatusField initial "blob", videoStatusField initial "jobId" with
+    | Some blob, _ -> JsonNode.Parse(blob.ToJsonString())
+    | None, None ->
+        let error = videoStatusString initial "error" |> Option.defaultValue "unknown"
+        failwithf "video upload response contained neither a blob nor a jobId (error: %s)" error
+    | None, Some jobIdNode ->
+        let jobId = jobIdNode.GetValue<string>()
+        let mutable completed : JsonNode option = None
+        let mutable attempt = 0
+        while completed.IsNone && attempt < 60 do
+            Thread.Sleep 2000
+            let status = videoJobStatus serviceJwt jobId
+            let state = videoStatusString status "state" |> Option.defaultValue ""
+            if state = "completed" || state = "job_state_completed" then
+                match videoStatusField status "blob" with
+                | Some blob -> completed <- Some(JsonNode.Parse(blob.ToJsonString()))
+                | _ -> failwith "video job completed without a blob"
+            elif state = "failed" || state = "job_state_failed" || state = "error" then
+                let message = videoStatusField status "error" |> Option.map (fun n -> n.ToJsonString()) |> Option.defaultValue "unknown video processing error"
+                failwithf "video processing failed for '%s': %s" url message
+            attempt <- attempt + 1
+        match completed with
+        | Some blob -> blob
+        | None -> failwithf "video processing timed out for '%s' after 60 polls" url
+
+let private uploadAndAttach (stagedRecord: Staged) =
+    let recordCopy = JsonNode.Parse(stagedRecord.Record.ToJsonString())
+    match stagedRecord.Media with
+    | None -> recordCopy
+    | Some media ->
+        if media.Count = 0 then failwithf "media staging for rkey %s has no descriptors" stagedRecord.Rkey
+        let kind = stagedRecord.MediaKind |> Option.defaultValue ""
+        let blobs =
+            descriptorValues stagedRecord
+            |> List.mapi (fun index (url, mime, _alt, width, height) ->
+                if kind = "video" || kind = "videos" then
+                    uploadVideo url mime (sprintf "%s-%d" stagedRecord.Rkey index), (width, height)
+                else
+                    uploadImage url mime)
+        let embed = recordCopy.["embed"]
+        if kind = "video" || kind = "videos" then
+            embed.["video"] <- blobs.Head |> fst
+        else
+            let images =
+                match embed.["images"], embed.["items"] with
+                | images, _ when not (isNull images) -> images.AsArray()
+                | _, items when not (isNull items) -> items.AsArray()
+                | _ -> failwithf "media record %s has no image/gallery items" stagedRecord.Rkey
+            for index in 0 .. images.Count - 1 do
+                images.[index].["image"] <- blobs.[index] |> fst
+                let width, height = blobs.[index] |> snd
+                let aspectRatio = JsonObject()
+                aspectRatio.["width"] <- JsonValue.Create width
+                aspectRatio.["height"] <- JsonValue.Create height
+                images.[index].["aspectRatio"] <- aspectRatio
+        recordCopy
+
+// ---- 8) Upsert each planned record (putRecord = create-or-update by rkey) ---
 // validate:false → custom lexicon stored with validationStatus "unknown" regardless
 // of whether the PDS can resolve the site.standard.* schema.
 let mutable ok = 0
-for (_op, s) in planned do
+let prepared =
+    planned
+    |> Array.map (fun (op, s) -> op, s, uploadAndAttach s)
+
+for (_op, s, recordCopy) in prepared do
     // JsonNode instances have a parent; detach a fresh copy before re-parenting into the body.
-    let recordCopy = JsonNode.Parse(s.Record.ToJsonString())
     let body = JsonObject()
     body.["repo"]       <- JsonValue.Create did
     body.["collection"] <- JsonValue.Create collection

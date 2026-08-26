@@ -33,6 +33,8 @@ jobs:
       # matching sync step is skipped. See docs/atproto/.
       atproto_staged: ${{ steps.atproto_check.outputs.staged }}          # Track A: site.standard.document (Posts)
       notes_staged: ${{ steps.atproto_check.outputs.notes_staged }}      # Track B: app.bsky.feed.post (Notes)
+      media_staged: ${{ steps.atproto_check.outputs.media_staged }}      # Track C: images + galleries
+      video_staged: ${{ steps.atproto_check.outputs.video_staged }}      # Track C: video
     steps:
       - uses: actions/checkout@v4
         with:
@@ -76,6 +78,22 @@ jobs:
           else
             echo "notes_staged=false" >> "$GITHUB_OUTPUT"
             echo "AT Protocol note staging absent (useAtProtoNotesSync is off) — Track B sync skipped."
+          fi
+          IMAGE_COUNT=$(find _public/api/data/atproto/media/images _public/api/data/atproto/media/galleries -maxdepth 1 -type f -name '*.json' 2>/dev/null | wc -l)
+          VIDEO_COUNT=$(find _public/api/data/atproto/media/videos -maxdepth 1 -type f -name '*.json' 2>/dev/null | wc -l)
+          if [ "$IMAGE_COUNT" -gt 0 ]; then
+            echo "media_staged=true" >> "$GITHUB_OUTPUT"
+            echo "🌐 AT Protocol image/gallery staging present ($IMAGE_COUNT record(s)) — Track C image sync can run."
+          else
+            echo "media_staged=false" >> "$GITHUB_OUTPUT"
+            echo "AT Protocol image/gallery staging absent (media image/gallery flags are off) — Track C image sync skipped."
+          fi
+          if [ "$VIDEO_COUNT" -gt 0 ]; then
+            echo "video_staged=true" >> "$GITHUB_OUTPUT"
+            echo "🌐 AT Protocol video staging present ($VIDEO_COUNT record(s)) — Track C video sync can run."
+          else
+            echo "video_staged=false" >> "$GITHUB_OUTPUT"
+            echo "AT Protocol video staging absent (media video flag is off) — Track C video sync skipped."
           fi
 
       - name: Identify webmentions to send
@@ -158,6 +176,14 @@ jobs:
         with:
           name: atproto-staging-notes
           path: _public/api/data/atproto/posts/
+          retention-days: 1
+
+      - name: Upload AT Protocol media staging for sync job
+        if: steps.atproto_check.outputs.media_staged == 'true' || steps.atproto_check.outputs.video_staged == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: atproto-staging-media
+          path: _public/api/data/atproto/media/
           retention-days: 1
 
   # ============================================================================
@@ -282,8 +308,8 @@ jobs:
   # AT Protocol POSSE Sync Job (Independent)
   # Upserts site.standard.document records into the site's Bluesky-hosted PDS so
   # Posts become first-class ATmosphere / Standard.site documents (#2574 / ADR-0009).
-  # Depends on: build_and_deploy_job (for the atproto-staging artifact)
-  # Gated on build_and_deploy_job.outputs.atproto_staged, so it is SKIPPED entirely
+  # Depends on: build_and_deploy_job (for the atproto-staging artifacts)
+  # Gated on build_and_deploy_job outputs, so it is SKIPPED entirely
   # while AtProtoBuilder.useAtProtoSync is off (the committed default) — zero cost,
   # no confusing no-op runs. Only executes on main-branch pushes.
   # Runs in DRY-RUN mode (no --commit) until deliberately activated.
@@ -291,7 +317,7 @@ jobs:
   # ============================================================================
   sync_atproto_job:
     needs: build_and_deploy_job
-    if: (needs.build_and_deploy_job.outputs.atproto_staged == 'true' || needs.build_and_deploy_job.outputs.notes_staged == 'true') && github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: (needs.build_and_deploy_job.outputs.atproto_staged == 'true' || needs.build_and_deploy_job.outputs.notes_staged == 'true' || needs.build_and_deploy_job.outputs.media_staged == 'true' || needs.build_and_deploy_job.outputs.video_staged == 'true') && github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     name: Sync AT Protocol Records
     steps:
@@ -330,7 +356,7 @@ jobs:
         uses: actions/download-artifact@v4.1.8
         with:
           name: atproto-staging-notes
-          path: atproto-staging-notes
+          path: atproto-feed
 
       # ACTIVE (Track B, steady state) — Notes -> native app.bsky.feed.post. Runs only when note staging
       # is present (AtProtoBuilder.useAtProtoNotesSync = true → notes_staged=true). LIVE WRITE (`--commit`),
@@ -344,7 +370,32 @@ jobs:
         if: needs.build_and_deploy_job.outputs.notes_staged == 'true'
         env:
           ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
-        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-staging-notes --collection app.bsky.feed.post --commit
+        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-feed --collection app.bsky.feed.post --media-kind notes --commit
+
+      - name: Download AT Protocol media staging
+        if: needs.build_and_deploy_job.outputs.media_staged == 'true' || needs.build_and_deploy_job.outputs.video_staged == 'true'
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: atproto-staging-media
+          path: atproto-feed/media
+
+      # DORMANT BY DEFAULT (Track C, image/gallery phase) — the static builder keeps these
+      # manifests disabled until the image activation cutoff and flags are deliberately changed.
+      # When enabled, this remains collection-scoped to app.bsky.feed.post and uses the same
+      # sourceHash/create-update-only protections as Notes.
+      - name: Sync AT Protocol images and galleries (POSSE, Track C)
+        if: needs.build_and_deploy_job.outputs.media_staged == 'true'
+        env:
+          ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
+        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-feed --collection app.bsky.feed.post --media-kind images --commit
+
+      # DORMANT BY DEFAULT (Track C, video phase). Video uses the separate video.bsky.app
+      # processing service and is independently gated from image/gallery activation.
+      - name: Sync AT Protocol videos (POSSE, Track C)
+        if: needs.build_and_deploy_job.outputs.video_staged == 'true'
+        env:
+          ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
+        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-feed --collection app.bsky.feed.post --media-kind videos --commit
 
   # close_pull_request_job:
   #   if: github.event_name == 'pull_request' && github.event.action == 'closed'

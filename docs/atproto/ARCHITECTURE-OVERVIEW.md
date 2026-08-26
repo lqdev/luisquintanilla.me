@@ -12,6 +12,9 @@
   published on/after `notesActivationCutoff` (2026-07-13) POSSE to the Bluesky timeline as
   `app.bsky.feed.post` records (forward-only). To roll back, drop `--commit` (dry-run) or set the
   flag(s) to `false` (fully off, `_public/` byte-identical to the pre-integration baseline).
+- **Part C — rich-media POSSE: IMPLEMENTED, DORMANT.** Image, gallery, and video staging plus
+  collection-safe materialization are implemented behind independent flags. The media flags are
+  currently `false`, so no media manifests or uploads are active and no historical media is backfilled.
 
 This mirrors the site's existing [ActivityPub](../activitypub/ARCHITECTURE-OVERVIEW.md) approach: a
 static hub (the F# build) with a thin dynamic spoke (one post-build `dotnet fsi` sync script run from
@@ -40,7 +43,8 @@ Vault, no storage.
 |-------|--------------|---------|--------|
 | **A** | Posts | `site.standard.document` (community Standard.site lexicon) | **🟢 Live** (`useAtProtoSync = true`) |
 | **B** | Notes | native `app.bsky.feed.post` | **🟢 Live** (`useAtProtoNotesSync = true`, forward-only from 2026-07-13) |
-| — | Media, Responses, RSVP | native `app.bsky.*` + embeds | Deferred to future phases |
+| **C** | Media | native `app.bsky.feed.post` + image/gallery/video embeds | **🟡 Implemented, dormant** (independent flags and cutoffs) |
+| — | Responses, RSVP | native `app.bsky.*` | Deferred to future phases |
 
 Standard.site fills the "long-form article" gap that AT Protocol itself lacks, and is
 [surfaced in the Bluesky timeline](https://atproto.com/blog/standard-site-bluesky-timeline).
@@ -54,9 +58,15 @@ calls — exactly like `ActivityPubBuilder.buildActivities`.
 
 ```
 Program.fs (roster)
-  └─ if AtProtoBuilder.useAtProtoSync then
-        AtProtoBuilder.buildAtProtoStaging posts "_public"
-           └─ _public/api/data/atproto/documents/{rkey}.json   ← one wrapper file per Post
+  ├─ if AtProtoBuilder.useAtProtoSync then
+  │     AtProtoBuilder.buildAtProtoStaging posts "_public"
+  │        └─ _public/api/data/atproto/documents/{rkey}.json   ← one wrapper file per Post
+  ├─ if AtProtoBuilder.useAtProtoNotesSync then
+  │     AtProtoBuilder.buildAtProtoNotesStaging notes "_public"
+  │        └─ _public/api/data/atproto/posts/{rkey}.json       ← native Note
+  └─ if a Part C media flag is enabled then
+        AtProtoBuilder.buildAtProtoMediaStaging albums "_public"
+           └─ _public/api/data/atproto/media/{images|galleries|videos}/{rkey}.json
 ```
 
 **`AtProtoBuilder.fs`** is the core module (added to `PersonalSite.fsproj` after
@@ -147,17 +157,29 @@ via `com.atproto.repo.putRecord`.
   `ATPROTO_APP_PASSWORD` secret.
 - **Flag-off no-op.** With the flag off, no staging dir exists, so the script prints "nothing to sync"
   and exits 0 without touching the network.
-- **Collection-scoped.** Only ever touches `site.standard.document`. The ~14 hand-authored posts live
-  in `app.bsky.feed.post`, a different collection this script never names.
+- **Collection-scoped.** Each invocation targets one collection and its matching staging family:
+  `site.standard.document` for Posts, or the shared `app.bsky.feed.post` collection for Notes and
+  rich media. The latter uses the `sourceHash` write-scope guard so hand-authored posts remain
+  untouched.
 - **Create / update only, never delete.** Records are upserted by their deterministic TID rkey.
 - **Idempotent.** A record whose remote `sourceHash` matches the staged one is skipped.
 - **Write-scope guard.** A remote record sharing a staged rkey but lacking our `sourceHash` marker is
   reported as **left-untouched** and never modified — we only ever manage records we created.
 - **Fail-fast on corrupt staging.** A staging file with a missing/blank `sourceHash` aborts with a
   clear error + exit 1 (never a silent rewrite storm).
-- **`validate: false`** on writes — guarantees the write regardless of whether the PDS can resolve the
-  custom `site.standard.*` schema (the record carries `validationStatus: "unknown"`).
+- **Custom-lexicon validation handling.** `validate: false` is used only for
+  `site.standard.*` writes, whose schema the PDS cannot resolve; native `app.bsky.*` writes omit it
+  so the PDS validates the real schema.
 - **Secret hygiene.** The app password and session JWT are never printed.
+- **Media side-effect boundary.** Media URLs are not downloaded during planning or dry-run. On a
+  write, each pending image is signature-checked, size-limited to 2,000,000 bytes, and dimension-read
+  before `uploadBlob`; MP4 videos are signature-checked and limited to 300,000,000 bytes before the
+  asynchronous `video.bsky.app` processing flow. All required blobs are prepared before the first
+  `putRecord`, so a failed asset cannot leave a partial native post.
+- **Native media shapes.** One to four images use `app.bsky.embed.images`; five to ten use
+  `app.bsky.embed.gallery` with `items` tagged `app.bsky.embed.gallery#image`. Video is restricted
+  to one MP4 per post and uses `app.bsky.embed.video`. The canonical media URL remains in post text
+  with a UTF-8 byte-offset facet because a native post has one embed union.
 
 Plan vocabulary: `create` (rkey absent) · `update` (ours, changed) · `unchanged` (skip) ·
 `left-untouched` (present but not ours).
@@ -169,20 +191,24 @@ Plan vocabulary: `create` (rkey absent) · `update` (ours, changed) · `unchange
 `sync_atproto_job` in `.github/workflows/publish-azure-static-web-apps.yml`, shaped like
 `send_webmentions_job`:
 
-- `needs: build_and_deploy_job`; downloads the `atproto-staging` artifact.
-- **Gated** on `build_and_deploy_job.outputs.atproto_staged` — a `Check for AT Protocol staging` step
-  sets it from the presence of staged files. Flag off → `false` → **the job is skipped entirely** (zero
-  cost, no confusing no-op runs).
+- `needs: build_and_deploy_job`; downloads only the document, Note, and/or media artifacts that were
+  produced.
+- **Gated** on the document, Note, image/gallery, and video staging outputs — a `Check for AT Protocol
+  staging` step sets them from the presence of staged files. All flags off → all outputs `false` →
+  **the job is skipped entirely** (zero cost, no confusing no-op runs).
 - Runs only on `push` to `main`.
 - Runs **live** (`--commit`) for both Track A (`site.standard.document`) and Track B
   (`app.bsky.feed.post`) staging.
+- Track C uses the same `app.bsky.feed.post` collection and write-scope guard, but separate
+  `--media-kind images` and `--media-kind videos` invocations. Media artifacts are downloaded only
+  when their corresponding staging gate is true; the builder's media flags remain dormant by default.
 
 ---
 
-## 8. Activation runbook — ✅ complete
+## 8. Activation runbook — Tracks A/B ✅ complete; Part C 🟡 dormant
 
-All three gates are done; the sync runs **live on every push to `main`**. Retained as the historical
-sequence and the rollback path:
+The document and Note tracks run **live on every push to `main`**. Part C remains deliberately dormant
+until its independent rollout is approved:
 
 1. ✅ **Staging enabled:** `AtProtoBuilder.useAtProtoSync = true` (Track A) and
    `useAtProtoNotesSync = true` (Track B) → each main-branch build produces staging and the
@@ -191,8 +217,11 @@ sequence and the rollback path:
    see [ADR-0009](../adr/0009-at-protocol-integration.md) and the one-time-setup notes).
 3. ✅ **Live:** the sync steps run with `--commit`, so each main-branch push writes records for real.
 
-To roll back at any point, drop `--commit` (dry-run) or set the flag(s) to `false` (fully off,
-byte-identical baseline).
+4. 🟡 **Part C activation:** choose and commit the image/gallery cutoff, enable the image/gallery flag,
+   run the first live sync with `--limit 1`, verify the PDS/AppView record, then remove the limit.
+   Repeat independently for video after live video-service verification.
+
+To roll back any track, drop `--commit` (dry-run) or set its staging flag to `false`.
 
 ---
 
@@ -200,14 +229,16 @@ byte-identical baseline).
 
 | File | Role |
 |------|------|
-| `AtProtoBuilder.fs` | Core module: `Config`, `deriveTid`, `buildDocumentRecordJson`, `buildAtProtoStaging`, `documentLinkHead`, `useAtProtoSync` flag |
-| `Program.fs` | Flag-gated call to `buildAtProtoStaging` |
-| `Scripts/sync-atproto.fsx` | Post-build POSSE sync (dry-run by default; CI runs `--commit`) |
+| `AtProtoBuilder.fs` | Core module: `Config`, deterministic TIDs, document/Note/media record builders, media flags and cutoffs |
+| `Services\AtProtoMediaValidation.fs` | Network-free image signature/dimension and MP4 size/container validation |
+| `Program.fs` | Flag-gated calls for document, Note, and rich-media staging plus shared native rkey checks |
+| `Scripts/sync-atproto.fsx` | Post-build POSSE sync, media validation/materialization, and video polling |
 | `Scripts/create-atproto-publication.fsx` | One-time Part A publication bootstrap |
 | `_src/.well-known/site.standard.publication` | Part A verification file (live) |
 | `.github/workflows/publish-azure-static-web-apps.yml` | `sync_atproto_job` + `atproto_staged` gate |
 | `test-scripts/test-atproto-tid.fsx` | 19 TID determinism/format assertions |
 | `test-scripts/test-atproto-document-json.fsx` | 24 wire-contract assertions |
+| `test-scripts/test-atproto-media.fsx` | 26 rich-media contract assertions |
 | `docs/adr/0009-at-protocol-integration.md` | Architecture Decision Record |
 
 ---

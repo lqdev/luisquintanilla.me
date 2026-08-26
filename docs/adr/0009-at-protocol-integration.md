@@ -1,10 +1,10 @@
 # ADR-0009: AT Protocol Integration Architecture
 
 ## Status
-Proposed
+Accepted — Parts A/B live; Part C implemented and dormant
 
-Tracked in [issue #2574](https://github.com/lqdev/luisquintanilla.me/issues/2574) (shovel-ready spec;
-**Part A shipped**, Part B not yet implemented). Amended 2026-07-02 after a live-protocol validation
+Tracked in [issue #2574](https://github.com/lqdev/luisquintanilla.me/issues/2574) (**Part A and Part B
+live; Part C implemented but not activated**). Amended 2026-07-02 after a live-protocol validation
 round: deterministic TID derivation adopted as the primary record-key design; Track B constraints
 (truncation, immutability, forward-only backfill) and the app-password → OAuth trajectory added.
 Amended 2026-07-16: **Part A (the `site.standard.publication` node) is now live** —
@@ -19,6 +19,10 @@ unchanged, and no `docs.bsky.app` links exist in source. Jetstream v2 **Network 
 archive snapshots) is noted as the likely enabling tech for the **deferred PESOS/backfeed** direction
 (future ADR-0010). App-Password → OAuth remains *tracked, not scheduled* (no ecosystem cutoff date). Full
 impact assessment: `_src/resources/ai-memex/research-bluesky-protocol-services-impact.md`.
+Amended 2026-08-14: Part C rich-media POSSE is implemented behind independent image/gallery and video
+flags and forward-only cutoffs. Images use native `app.bsky.embed.images` or `app.bsky.embed.gallery`;
+video uses `app.bsky.embed.video` through the asynchronous video service. Activation and historical
+backfill remain deliberately deferred.
 
 ## Context
 
@@ -96,6 +100,16 @@ flood followers' timelines. Notes therefore publish POSSE-style — truncated ex
 from the feature's activation date. Long-form documents (Track A) carry none of these constraints and
 backfill fully.
 
+**Rich-media POSSE remains outbound-only and forward-only.** Part C reuses the native
+`app.bsky.feed.post` collection, placing the canonical `/media/{slug}/` URL in text with a UTF-8 link
+facet because a post has one embed union. One to four supported images use `app.bsky.embed.images`;
+five to ten use `app.bsky.embed.gallery` with `items` tagged `app.bsky.embed.gallery#image`; a media
+post may contain only one MP4 video. The static build stages source URLs and metadata only. The sync
+script downloads and validates pending assets after the dry-run, authentication, and write-scope gates,
+derives exact image dimensions, uploads all blobs before the first `putRecord`, and polls the video
+processing service with bounded retries. Independent flags and explicit cutoffs prevent accidental
+backfill or video activation.
+
 **The sync path only ever touches records it created.** Because the integration reuses the existing
 identity, the automation writes into the *same* repo that holds the owner's hand-authored Bluesky
 activity (~14 `app.bsky.feed.post` records today, plus replies/reposts). Every record the integration
@@ -121,7 +135,7 @@ the Bluesky PDS cannot resolve the community lexicon — confirmed in Part A's p
 - Full ownership: no dependency on a third-party CLI's release cadence, bugs, or breaking changes; the
   implementation lives entirely in this repo's existing F# conventions.
 - Content-type-per-lexicon mapping (Posts → `site.standard.document`, Notes → `app.bsky.feed.post`,
-  future Media/Responses → other native lexicons) extends cleanly without inventing a one-size-fits-all
+  Media → native embeds, future Responses → other native lexicons) extends cleanly without inventing a one-size-fits-all
   schema, matching how ActivityPub already handles this.
 
 **More difficult:**
@@ -142,3 +156,7 @@ the Bluesky PDS cannot resolve the community lexicon — confirmed in Part A's p
 - Reusing the personal identity means the write path shares a repo with hand-authored posts, so the
   `sourceHash`-filter invariant (see Decision) is load-bearing safety rather than a nicety: any write
   code that skips it risks clobbering real posts. A dry-run diff must gate the first real sync.
+- Rich-media uploads add external side effects and asynchronous processing, so the implementation must
+  retain strict byte/signature validation, bounded polling, and the all-assets-before-first-write
+  boundary. Failed or unsupported media must fail loudly rather than producing a text-only or partial
+  native post.
