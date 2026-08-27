@@ -12,9 +12,10 @@
   published on/after `notesActivationCutoff` (2026-07-13) POSSE to the Bluesky timeline as
   `app.bsky.feed.post` records (forward-only). To roll back, drop `--commit` (dry-run) or set the
   flag(s) to `false` (fully off, `_public/` byte-identical to the pre-integration baseline).
-- **Part C — rich-media POSSE: IMPLEMENTED, DORMANT.** Image, gallery, and video staging plus
-  collection-safe materialization are implemented behind independent flags. The media flags are
-  currently `false`, so no media manifests or uploads are active and no historical media is backfilled.
+- **Part C — rich-media POSSE: IMAGE PHASE ACTIVE; GALLERY/VIDEO DORMANT.** Image, gallery, and video
+  staging plus collection-safe materialization are implemented behind independent flags.
+  `useAtProtoMediaImageSync = true` activates post-cutoff image manifests; gallery and video remain
+  `false`, and no historical media is backfilled.
 
 This mirrors the site's existing [ActivityPub](../activitypub/ARCHITECTURE-OVERVIEW.md) approach: a
 static hub (the F# build) with a thin dynamic spoke (one post-build `dotnet fsi` sync script run from
@@ -201,14 +202,15 @@ Plan vocabulary: `create` (rkey absent) · `update` (ours, changed) · `unchange
   (`app.bsky.feed.post`) staging.
 - Track C uses the same `app.bsky.feed.post` collection and write-scope guard, but separate
   `--media-kind images` and `--media-kind videos` invocations. Media artifacts are downloaded only
-  when their corresponding staging gate is true; the builder's media flags remain dormant by default.
+  when their corresponding staging gate is true; the image flag is active while gallery and video
+  remain dormant.
 
 ---
 
-## 8. Activation runbook — Tracks A/B ✅ complete; Part C 🟡 dormant
+## 8. Activation runbook — Tracks A/B + image phase ✅ complete; gallery/video 🟡 dormant
 
-The document and Note tracks run **live on every push to `main`**. Part C remains deliberately dormant
-until its independent rollout is approved:
+The document, Note, and image tracks run **live on every push to `main`**. Gallery and video remain
+deliberately dormant until their independent rollouts are approved:
 
 1. ✅ **Staging enabled:** `AtProtoBuilder.useAtProtoSync = true` (Track A) and
    `useAtProtoNotesSync = true` (Track B) → each main-branch build produces staging and the
@@ -217,9 +219,10 @@ until its independent rollout is approved:
    see [ADR-0009](../adr/0009-at-protocol-integration.md) and the one-time-setup notes).
 3. ✅ **Live:** the sync steps run with `--commit`, so each main-branch push writes records for real.
 
-4. 🟡 **Part C activation:** choose and commit the image/gallery cutoff, enable the image/gallery flag,
-   run the first live sync with `--limit 1`, verify the PDS/AppView record, then remove the limit.
-   Repeat independently for video after live video-service verification.
+4. ✅ **Image activation:** `useAtProtoMediaImageSync = true` with the 2026-08-01 forward-only cutoff;
+   the image sync runs collection-scoped with `--commit` and source-hash idempotency.
+5. 🟡 **Gallery/video activation:** enable each independent flag only after its own rollout review and
+   verify the PDS/AppView record before expanding the phase.
 
 To roll back any track, drop `--commit` (dry-run) or set its staging flag to `false`.
 

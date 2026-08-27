@@ -94,7 +94,7 @@ jobs:
             echo "🌐 AT Protocol image/gallery staging present ($IMAGE_COUNT record(s)) — Track C image sync can run."
           else
             echo "media_staged=false" >> "$GITHUB_OUTPUT"
-            echo "AT Protocol image/gallery staging absent (media image/gallery flags are off) — Track C image sync skipped."
+            echo "AT Protocol image/gallery staging absent (no eligible image/gallery manifests) — Track C image sync skipped."
           fi
           if [ "$VIDEO_COUNT" -gt 0 ]; then
             echo "video_staged=true" >> "$GITHUB_OUTPUT"
@@ -387,10 +387,9 @@ jobs:
           name: atproto-staging-media
           path: atproto-feed/media
 
-      # DORMANT BY DEFAULT (Track C, image/gallery phase) — the static builder keeps these
-      # manifests disabled until the image activation cutoff and flags are deliberately changed.
-      # When enabled, this remains collection-scoped to app.bsky.feed.post and uses the same
-      # sourceHash/create-update-only protections as Notes.
+      # ACTIVE (Track C image phase) — the static builder stages post-cutoff images while gallery
+      # staging remains independently gated. This remains collection-scoped to app.bsky.feed.post
+      # and uses the same sourceHash/create-update-only protections as Notes.
       - name: Sync AT Protocol images and galleries (POSSE, Track C)
         if: needs.build_and_deploy_job.outputs.media_staged == 'true'
         env:

@@ -256,11 +256,11 @@ let useAtProtoNotesSync = true
 /// (ADR-0009 / issue #2574). Set to catch the first seed note (lumpen-radio, 2026-07-13) and newer.
 let notesActivationCutoff = DateTimeOffset(2026, 7, 13, 0, 0, 0, TimeSpan.FromHours -5.0)
 
-/// Part C is dormant by default.  Image and gallery activation are separate
+/// Part C rolls out images first.  Image and gallery activation are separate
 /// switches so a small image rollout can be enabled without enabling video.
 /// Video is intentionally independent because it has a different upload
 /// service, quota, and failure mode.
-let useAtProtoMediaImageSync = false
+let useAtProtoMediaImageSync = true
 let useAtProtoMediaGallerySync = false
 let useAtProtoMediaVideoSync = false
 let useAtProtoMediaSync = false

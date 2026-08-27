@@ -1,10 +1,10 @@
 # ADR-0009: AT Protocol Integration Architecture
 
 ## Status
-Accepted — Parts A/B live; Part C implemented and dormant
+Accepted — Parts A/B live; Part C image phase live; gallery/video dormant
 
-Tracked in [issue #2574](https://github.com/lqdev/luisquintanilla.me/issues/2574) (**Part A and Part B
-live; Part C implemented but not activated**). Amended 2026-07-02 after a live-protocol validation
+Tracked in [issue #2574](https://github.com/lqdev/luisquintanilla.me/issues/2574) (**Part A, Part B, and
+the image phase are live; gallery/video remain unactivated**). Amended 2026-07-02 after a live-protocol validation
 round: deterministic TID derivation adopted as the primary record-key design; Track B constraints
 (truncation, immutability, forward-only backfill) and the app-password → OAuth trajectory added.
 Amended 2026-07-16: **Part A (the `site.standard.publication` node) is now live** —
@@ -23,6 +23,8 @@ Amended 2026-08-14: Part C rich-media POSSE is implemented behind independent im
 flags and forward-only cutoffs. Images use native `app.bsky.embed.images` or `app.bsky.embed.gallery`;
 video uses `app.bsky.embed.video` through the asynchronous video service. Activation and historical
 backfill remain deliberately deferred.
+Amended 2026-08-27: the image phase was activated with `useAtProtoMediaImageSync = true` and the
+2026-08-01 forward-only cutoff; gallery and video remain independently gated.
 
 ## Context
 

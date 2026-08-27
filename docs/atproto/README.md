@@ -10,10 +10,10 @@
   published on/after `notesActivationCutoff` (2026-07-13) are POSSE'd to the Bluesky timeline as
   `app.bsky.feed.post` records (forward-only). Roll back by dropping `--commit` (dry-run) or setting the
   flag(s) to `false` (fully off, byte-identical baseline).
-- **Part C (rich-media POSSE): 🟡 IMPLEMENTED, DORMANT** — deterministic image/gallery/video manifests,
-  native embeds, source-hash protection, binary validation, and CI phase gates are implemented. The
-  independent media flags remain `false`; no media is staged, uploaded, or backfilled until an explicit
-  activation cutoff is chosen and the rollout is verified.
+- **Part C (rich-media POSSE): 🟢 IMAGE PHASE ACTIVE; GALLERY/VIDEO DORMANT** — deterministic
+  image/gallery/video manifests, native embeds, source-hash protection, binary validation, and CI phase
+  gates are implemented. `AtProtoBuilder.useAtProtoMediaImageSync = true` stages eligible images
+  published on/after the 2026-08-01 cutoff; gallery and video flags remain `false`.
 
 ---
 
@@ -63,7 +63,7 @@ Full details in [ARCHITECTURE-OVERVIEW.md §6](ARCHITECTURE-OVERVIEW.md#6-sync-s
 
 ---
 
-## 🚀 Activation — Tracks A/B ✅ complete; Part C 🟡 dormant
+## 🚀 Activation — Tracks A/B + image phase ✅ complete; gallery/video 🟡 dormant
 
 The document and Note tracks run **live on every push to `main`**. The same sequence is retained as
 the historical runbook (details:
@@ -73,8 +73,9 @@ the historical runbook (details:
 2. ✅ `ATPROTO_APP_PASSWORD` repository secret added (a dedicated Bluesky App Password).
 3. ✅ `--commit` on the sync steps in `.github/workflows/publish-azure-static-web-apps.yml`.
 
-4. 🟡 For Part C, choose the image/gallery cutoff, enable its flag, use `--limit 1` for the first
-   live write, verify it, then repeat independently for video.
+4. ✅ Image phase activated with `useAtProtoMediaImageSync = true` and the 2026-08-01 forward-only
+   cutoff. The workflow's image sync is collection-scoped and idempotent.
+5. 🟡 Gallery and video remain independently gated; activate each only after its own rollout review.
 
 Roll back by removing `--commit` (back to dry-run) or setting the affected staging flag to `false`.
 

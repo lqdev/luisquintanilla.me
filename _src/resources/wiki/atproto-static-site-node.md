@@ -456,8 +456,8 @@ backfill historical media.
 
 > 🔧 **Reference (F# static site):** Part C stages manifests under
 > `_public/api/data/atproto/media/images`, `galleries`, and `videos`. The CI job passes
-> `--media-kind images` or `--media-kind videos` to `Scripts/sync-atproto.fsx`; the flags remain off
-> by default, so the current build produces no media manifests.
+> `--media-kind images` or `--media-kind videos` to `Scripts/sync-atproto.fsx`; the image flag is
+> active for post-cutoff media while gallery and video remain independently gated.
 
 ## Step 5 — Automate it in CI
 
