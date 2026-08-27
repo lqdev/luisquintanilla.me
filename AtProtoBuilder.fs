@@ -15,6 +15,10 @@ open System.Text.Json
 open System.Text.Json.Nodes
 open System.Text.RegularExpressions
 open Giraffe.ViewEngine
+#if !INTERACTIVE
+open Markdig
+open CustomBlocks
+#endif
 
 // ---------------------------------------------------------------------------
 // Record types (one per lexicon we write)
@@ -65,6 +69,44 @@ type AtProtoPost =
       CreatedAt: string            // ISO 8601
       Embed: AtProtoExternalEmbed option
       SourceHash: string }         // same change-detection / write-scope role as AtProtoDocument
+
+/// A media descriptor is deliberately independent of rendered HTML.  It is the
+/// normalized input used by both the build manifest and the upload step.
+type AtProtoMediaDescriptor =
+    { Url: string
+      MimeType: string
+      Alt: string
+      Width: int
+      Height: int }
+
+type AtProtoRawMediaItem =
+    { MediaType: string
+      Url: string
+      Alt: string
+      Caption: string
+      Aspect: string
+      Width: int option
+      Height: int option }
+
+type AtProtoMediaKind =
+    | Image
+    | Gallery
+    | Video
+
+type MediaValidationError =
+    | NoMedia
+    | BlankMediaUrl
+    | UnsupportedMediaType of string
+    | MixedImageAndVideo
+    | MultipleVideos
+    | TooManyImages of int
+
+type AtProtoMediaStaging =
+    { Rkey: string
+      Kind: AtProtoMediaKind
+      Published: DateTimeOffset
+      Slug: string
+      Descriptors: AtProtoMediaDescriptor list }
 
 // ---------------------------------------------------------------------------
 // Static configuration
@@ -214,6 +256,21 @@ let useAtProtoNotesSync = true
 /// (ADR-0009 / issue #2574). Set to catch the first seed note (lumpen-radio, 2026-07-13) and newer.
 let notesActivationCutoff = DateTimeOffset(2026, 7, 13, 0, 0, 0, TimeSpan.FromHours -5.0)
 
+/// Part C is dormant by default.  Image and gallery activation are separate
+/// switches so a small image rollout can be enabled without enabling video.
+/// Video is intentionally independent because it has a different upload
+/// service, quota, and failure mode.
+let useAtProtoMediaImageSync = false
+let useAtProtoMediaGallerySync = false
+let useAtProtoMediaVideoSync = false
+let useAtProtoMediaSync = false
+
+/// Explicit forward-only activation cutoffs.  Keep these values in source
+/// control: changing a gate must never silently backfill old media into feeds.
+let mediaImagesActivationCutoff = DateTimeOffset(2026, 8, 1, 0, 0, 0, TimeSpan.FromHours -5.0)
+let mediaVideoActivationCutoff = DateTimeOffset(2026, 8, 1, 0, 0, 0, TimeSpan.FromHours -5.0)
+let mediaActivationCutoff = mediaImagesActivationCutoff
+
 /// Grapheme-safe truncation (AT Proto/lexicon length caps are counted in graphemes, not chars).
 let private truncateGraphemes (maxGraphemes: int) (value: string) : string =
     if String.IsNullOrEmpty value then value
@@ -221,6 +278,263 @@ let private truncateGraphemes (maxGraphemes: int) (value: string) : string =
         let si = StringInfo value
         if si.LengthInTextElements <= maxGraphemes then value
         else si.SubstringByTextElements(0, maxGraphemes)
+
+// Plural aliases make the rollout intent clear at call sites and keep the
+// flags easy to discover for operators.
+let useAtProtoMediaImagesSync = useAtProtoMediaImageSync
+let useAtProtoMediaVideosSync = useAtProtoMediaVideoSync
+
+let private nonNull (value: string) = if isNull value then "" else value
+
+let private detectMediaMimeType (url: string) =
+    match Path.GetExtension(nonNull url).ToLowerInvariant() with
+    | ".jpg" | ".jpeg" -> "image/jpeg"
+    | ".png" -> "image/png"
+    | ".gif" -> "image/gif"
+    | ".webp" -> "image/webp"
+    | ".avif" -> "image/avif"
+    | ".mp4" -> "video/mp4"
+    | ".webm" -> "video/webm"
+    | ".mov" -> "video/quicktime"
+    | _ -> "application/octet-stream"
+
+let private parseAspectRatio (aspect: string) =
+    let value = nonNull aspect |> fun s -> s.Trim().ToLowerInvariant()
+    let named =
+        match value with
+        | "landscape" -> Some (16, 9)
+        | "portrait" -> Some (9, 16)
+        | "square" -> Some (1, 1)
+        | _ -> None
+    match named with
+    | Some dimensions -> dimensions
+    | None ->
+        let parts = value.Split([| ':'; '/' |], StringSplitOptions.RemoveEmptyEntries)
+        if parts.Length = 2 then
+            match Int32.TryParse parts.[0], Int32.TryParse parts.[1] with
+            | (true, w), (true, h) when w > 0 && h > 0 -> (w, h)
+            | _ -> (1, 1)
+        else (1, 1)
+
+/// Read the structured `:::media` custom blocks from source markdown.  The
+/// compiled generator uses the existing Markdig/custom-block AST.  The
+/// standalone FSI branch below mirrors that source grammar so the focused
+/// tests can load this file without the complete project compile graph.
+#if !INTERACTIVE
+let extractMediaItemsFromMarkdown (markdown: string) : AtProtoRawMediaItem list =
+    if String.IsNullOrWhiteSpace markdown then []
+    else
+        let pipeline =
+            MarkdownPipelineBuilder()
+            |> CustomBlocks.useCustomBlocks
+            |> fun builder -> builder.Build()
+        let document = Markdown.Parse(markdown, pipeline)
+        CustomBlocks.extractCustomBlocks document
+        |> List.collect (function
+            | CustomBlock.Media items ->
+                items
+                |> List.map (fun item ->
+                    { MediaType = item.media_type
+                      Url = item.uri
+                      Alt = item.alt_text
+                      Caption = item.caption
+                      Aspect = item.aspect
+                      Width = None
+                      Height = None })
+            | _ -> [])
+#else
+let extractMediaItemsFromMarkdown (markdown: string) : AtProtoRawMediaItem list =
+    if String.IsNullOrWhiteSpace markdown then []
+    else
+        let lines = markdown.Replace("\r\n", "\n").Split('\n')
+        let result = ResizeArray<AtProtoRawMediaItem>()
+        let mutable inside = false
+        let mutable current : Map<string, string> = Map.empty
+        let valueOf (line: string) =
+            let colon = line.IndexOf(':')
+            if colon < 0 then None
+            else
+                let value = line.Substring(colon + 1).Trim().Trim([| '"'; '\'' |])
+                Some(line.Substring(0, colon).Trim().ToLowerInvariant(), value)
+        let flush () =
+            if current.ContainsKey "url" || current.ContainsKey "uri" then
+                let get key fallback = current |> Map.tryFind key |> Option.defaultValue fallback
+                result.Add {
+                    MediaType = get "mediatype" (get "media_type" "")
+                    Url = get "url" (get "uri" "")
+                    Alt = get "alt" (get "alt_text" "")
+                    Caption = get "caption" ""
+                    Aspect = get "aspectratio" (get "aspect" "")
+                    Width = (match Int32.TryParse(get "width" "") with | true, n when n > 0 -> Some n | _ -> None)
+                    Height = (match Int32.TryParse(get "height" "") with | true, n when n > 0 -> Some n | _ -> None) }
+            current <- Map.empty
+        for line in lines do
+            let trimmed = line.Trim()
+            if trimmed.Equals(":::media", StringComparison.OrdinalIgnoreCase) then
+                if inside then
+                    flush ()
+                    inside <- false
+                else
+                    inside <- true
+            elif inside && trimmed.StartsWith(":::") then
+                flush ()
+                inside <- false
+            elif inside then
+                if trimmed.StartsWith("- ") then
+                    flush ()
+                    match valueOf (trimmed.Substring(2)) with
+                    | Some (key, value) -> current <- current.Add(key, value)
+                    | None -> ()
+                else
+                    match valueOf trimmed with
+                    | Some (key, value) -> current <- current.Add(key, value)
+                    | None -> ()
+        if inside then flush ()
+        result |> List.ofSeq
+#endif
+
+let private descriptorForMediaItem (title: string) (item: AtProtoRawMediaItem) =
+    let url = nonNull item.Url |> fun s -> s.Trim()
+    let mime =
+        let declared = nonNull item.MediaType |> fun s -> s.Trim().ToLowerInvariant()
+        if declared.Contains "/" then declared
+        elif declared = "image" then
+            let detected = detectMediaMimeType url
+            if detected.StartsWith("image/", StringComparison.Ordinal) then detected else "image/jpeg"
+        elif declared = "video" then
+            let detected = detectMediaMimeType url
+            if detected.StartsWith("video/", StringComparison.Ordinal) then detected else "video/mp4"
+        else detectMediaMimeType url
+    let alt =
+        [ nonNull item.Alt; nonNull item.Caption; nonNull title; "Media" ]
+        |> List.map (fun s -> s.Trim())
+        |> List.tryFind (String.IsNullOrWhiteSpace >> not)
+        |> Option.defaultValue "Media"
+    let aspectWidth, aspectHeight = parseAspectRatio item.Aspect
+    let width = item.Width |> Option.defaultValue aspectWidth
+    let height = item.Height |> Option.defaultValue aspectHeight
+    { Url = url; MimeType = mime; Alt = truncateGraphemes 1000 alt; Width = width; Height = height }
+
+let normalizeMediaDescriptors (title: string) (items: AtProtoRawMediaItem list) =
+    items
+    |> List.map (descriptorForMediaItem title)
+
+let extractMediaDescriptorsFromMarkdown (title: string) (markdown: string) =
+    extractMediaItemsFromMarkdown markdown |> normalizeMediaDescriptors title
+
+let validateMediaDescriptors (descriptors: AtProtoMediaDescriptor list) : Result<AtProtoMediaKind, MediaValidationError> =
+    if List.isEmpty descriptors then Error NoMedia
+    else
+        if descriptors |> List.exists (fun d -> String.IsNullOrWhiteSpace d.Url) then
+            Error BlankMediaUrl
+        else
+            let mimeOf (descriptor: AtProtoMediaDescriptor) =
+                if isNull descriptor.MimeType then "" else descriptor.MimeType.ToLowerInvariant()
+            let videos = descriptors |> List.filter (fun d -> (mimeOf d).StartsWith("video/", StringComparison.OrdinalIgnoreCase))
+            let images = descriptors |> List.filter (fun d -> (mimeOf d).StartsWith("image/", StringComparison.OrdinalIgnoreCase))
+            let unsupported =
+                descriptors
+                |> List.tryFind (fun d ->
+                    let mime = mimeOf d
+                    not (mime = "image/jpeg" || mime = "image/png" || mime = "image/gif" || mime = "image/webp" || mime = "video/mp4"))
+            if unsupported.IsSome then Error (UnsupportedMediaType (mimeOf unsupported.Value))
+            elif List.length videos > 1 then Error MultipleVideos
+            elif not (List.isEmpty videos) && not (List.isEmpty images) then Error MixedImageAndVideo
+            elif not (List.isEmpty videos) then Ok Video
+            elif List.length images > 10 then Error (TooManyImages (List.length images))
+            elif List.isEmpty images then
+                descriptors
+                |> List.tryHead
+                |> Option.map (fun d -> Error (UnsupportedMediaType d.MimeType))
+                |> Option.defaultValue (Error NoMedia)
+            elif List.length images < 5 then Ok Image
+            else Ok Gallery
+
+let mediaKindName kind =
+    match kind with
+    | Image -> "image"
+    | Gallery -> "gallery"
+    | Video -> "video"
+
+let private mediaDirectoryName kind =
+    match kind with
+    | Image -> "images"
+    | Gallery -> "galleries"
+    | Video -> "videos"
+
+/// Media rkeys are namespaced so a media record can never reuse a Note's
+/// content-derived TID, while the existing Note deriveTid contract is unchanged.
+/// The embed kind is intentionally not part of the seed: changing an album from
+/// images to a gallery (or to video) must update one record rather than create a
+/// second post and orphan the old one.
+let deriveMediaTid (publishedDate: DateTimeOffset) (slug: string) (_kind: AtProtoMediaKind) =
+    deriveTid publishedDate (sprintf "media:%s" (nonNull slug))
+
+let mediaPath (slug: string) = sprintf "%s%s/" (ContentTypes.urlPrefix ContentTypes.ContentType.Media) slug
+let mediaUrl (slug: string) = Config.canonicalUrl + mediaPath slug
+
+let normalizeAtProtoTags (tags: string array) =
+    if isNull tags then [||]
+    else
+        tags
+        |> Array.map TagService.processTagName
+        |> Array.filter (fun tag -> not (String.IsNullOrWhiteSpace tag) && tag <> "untagged")
+        |> Array.distinct
+        |> Array.map (truncateGraphemes 128)
+        |> Array.truncate 8
+
+let private mediaDescriptorHashPart (descriptor: AtProtoMediaDescriptor) =
+    String.concat "\u0001"
+        [ (nonNull descriptor.Url).Trim()
+          (nonNull descriptor.MimeType).ToLowerInvariant()
+          (nonNull descriptor.Alt).Trim()
+          string descriptor.Width
+          string descriptor.Height ]
+
+/// Stable media source hash: canonical page URL, final post text, normalized
+/// tags, and normalized descriptors are all part of change detection.
+let generateMediaSourceHash (canonicalUrl: string) (text: string) (tags: string array) (descriptors: AtProtoMediaDescriptor list) =
+    let tagPart =
+        if isNull tags then ""
+        else tags |> Array.toList |> String.concat "\u0001"
+    let mediaPart = descriptors |> List.map mediaDescriptorHashPart |> String.concat "\u0002"
+    generateHash (String.concat "\u0000" [ nonNull canonicalUrl; nonNull text; tagPart; mediaPart ])
+
+let private utf8Length (value: string) = Encoding.UTF8.GetByteCount(nonNull value)
+let private graphemeLength (value: string) = (StringInfo(nonNull value)).LengthInTextElements
+
+let private truncateToBytesAndGraphemes maxBytes maxGraphemes (value: string) =
+    let mutable result = truncateGraphemes maxGraphemes (nonNull value)
+    while utf8Length result > maxBytes && graphemeLength result > 0 do
+        result <- (StringInfo result).SubstringByTextElements(0, graphemeLength result - 1)
+    result
+
+let buildMediaLinkFacet (text: string) (url: string) : JsonObject =
+    let start = text.LastIndexOf(url, StringComparison.Ordinal)
+    if start < 0 then failwithf "Media URL '%s' is missing from post text" url
+    let facet = JsonObject()
+    let index = JsonObject()
+    index.Add("byteStart", JsonValue.Create (utf8Length (text.Substring(0, start))))
+    index.Add("byteEnd", JsonValue.Create (utf8Length (text.Substring(0, start)) + utf8Length url))
+    let feature = JsonObject()
+    feature.Add("$type", JsonValue.Create "app.bsky.richtext.facet#link")
+    feature.Add("uri", JsonValue.Create url)
+    let features = JsonArray()
+    features.Add feature
+    facet.Add("index", index)
+    facet.Add("features", features)
+    facet
+
+let assertNoNativeTidCollisions (items: (string * string * string) list) : unit =
+    let collisions =
+        items
+        |> List.groupBy (fun (collection, rkey, _) -> collection, rkey)
+        |> List.choose (fun ((collection, rkey), group) ->
+            if List.length group > 1 then
+                Some (sprintf "%s/%s <- %s" collection rkey (group |> List.map (fun (_, _, source) -> source) |> String.concat ", "))
+            else None)
+    if not (List.isEmpty collisions) then
+        failwithf "AtProtoBuilder native app.bsky.feed.post rkey collision: %s" (String.concat "; " collisions)
 
 /// Best-effort, dependency-free Markdown -> plaintext for the document's `textContent`
 /// (the lexicon asks for plaintext with no markdown/formatting).
@@ -237,6 +551,36 @@ let stripToPlainText (markdown: string) : string =
         t <- Regex.Replace(t, @"<[^>]+>", "")                   // stray HTML tags
         t <- Regex.Replace(t, @"\s+", " ")                       // collapse whitespace
         t.Trim()
+
+let private removeMediaBlocks (markdown: string) =
+    let output = ResizeArray<string>()
+    let mutable inside = false
+    for line in (nonNull markdown).Replace("\r\n", "\n").Split('\n') do
+        let trimmed = line.Trim()
+        if trimmed.Equals(":::media", StringComparison.OrdinalIgnoreCase) then
+            // The normal fence closes with `:::`, but the parser also accepts
+            // another `:::media` marker as a compatibility fallback.
+            if inside then inside <- false else inside <- true
+        elif inside && trimmed = ":::" then
+            inside <- false
+        elif not inside then
+            output.Add line
+    String.concat "\n" output
+
+/// Return post text with the canonical media page URL retained.  The URL is
+/// deliberately appended after truncation and its facet is byte-indexed below.
+let buildMediaPostText (album: Domain.Album) =
+    let source = album.MarkdownSource |> Option.defaultValue album.Content
+    let body = stripToPlainText (removeMediaBlocks source)
+    let url = mediaUrl album.FileName
+    let separator = if String.IsNullOrWhiteSpace body then "" else "\n\n"
+    let suffix = separator + url
+    if graphemeLength suffix > 300 || utf8Length suffix > 3000 then
+        failwithf "Canonical media URL for '%s' exceeds app.bsky.feed.post limits" album.FileName
+    let availableGraphemes = max 0 (300 - graphemeLength suffix)
+    let availableBytes = max 0 (3000 - utf8Length suffix)
+    let bodyPart = truncateToBytesAndGraphemes availableBytes availableGraphemes body |> fun s -> s.TrimEnd()
+    bodyPart + suffix
 
 /// Canonical `path` for a post's site.standard.document record (leading + trailing slash,
 /// matching the real site URL structure). Derives the prefix from `ContentTypes.urlPrefix` — the
@@ -434,3 +778,179 @@ let buildAtProtoNotesStaging (notes: Domain.Post list) (outputDir: string) : uni
         File.WriteAllText(Path.Combine(postsDir, sprintf "%s.json" rkey), wrapper.ToJsonString opts)
         count <- count + 1
     printfn "  ✅ Generated %d AT Protocol note staging records (post-cutoff)" count
+
+// ---------------------------------------------------------------------------
+// Part C — Media -> native app.bsky.feed.post manifests.
+// ---------------------------------------------------------------------------
+
+let private jsonAspect (descriptor: AtProtoMediaDescriptor) =
+    let aspect = JsonObject()
+    aspect.Add("width", JsonValue.Create descriptor.Width)
+    aspect.Add("height", JsonValue.Create descriptor.Height)
+    aspect
+
+let private jsonMediaDescriptor (descriptor: AtProtoMediaDescriptor) =
+    let image = JsonObject()
+    // `url` is a build-time placeholder.  sync-atproto replaces it with the
+    // uploaded blob ref after authentication and before putRecord.
+    image.Add("url", JsonValue.Create descriptor.Url)
+    image.Add("mimeType", JsonValue.Create descriptor.MimeType)
+    image
+
+let private buildMediaEmbedJson (kind: AtProtoMediaKind) (descriptors: AtProtoMediaDescriptor list) =
+    let embed = JsonObject()
+    let items = JsonArray()
+    for descriptor in descriptors do
+        let item = JsonObject()
+        if kind = Gallery then
+            item.Add("$type", JsonValue.Create "app.bsky.embed.gallery#image")
+        item.Add("image", jsonMediaDescriptor descriptor)
+        item.Add("alt", JsonValue.Create descriptor.Alt)
+        item.Add("aspectRatio", jsonAspect descriptor)
+        items.Add item
+    match kind with
+    | Image ->
+        embed.Add("$type", JsonValue.Create "app.bsky.embed.images")
+        embed.Add("images", items)
+    | Gallery ->
+        embed.Add("$type", JsonValue.Create "app.bsky.embed.gallery")
+        embed.Add("items", items)
+    | Video ->
+        embed.Add("$type", JsonValue.Create "app.bsky.embed.video")
+        let descriptor = List.head descriptors
+        let video = JsonObject()
+        video.Add("url", JsonValue.Create descriptor.Url)
+        video.Add("mimeType", JsonValue.Create descriptor.MimeType)
+        embed.Remove("images") |> ignore
+        embed.Add("video", video)
+        embed.Add("alt", JsonValue.Create descriptor.Alt)
+        embed.Add("aspectRatio", jsonAspect descriptor)
+    embed
+
+let buildMediaPostRecordJson (album: Domain.Album) (published: DateTimeOffset)
+                            (kind: AtProtoMediaKind) (descriptors: AtProtoMediaDescriptor list) : JsonObject =
+    let text = buildMediaPostText album
+    let tags = normalizeAtProtoTags album.Metadata.Tags
+    let o = JsonObject()
+    o.Add("$type", JsonValue.Create "app.bsky.feed.post")
+    o.Add("text", JsonValue.Create text)
+    o.Add("createdAt", JsonValue.Create(published.ToString("yyyy-MM-ddTHH:mm:ss.fffzzz", CultureInfo.InvariantCulture)))
+    let langs = JsonArray()
+    langs.Add(JsonValue.Create "en")
+    o.Add("langs", langs)
+    let facets = JsonArray()
+    facets.Add(buildMediaLinkFacet text (mediaUrl album.FileName))
+    o.Add("facets", facets)
+    if tags.Length > 0 then
+        let tagArray = JsonArray()
+        tags |> Array.iter (fun tag -> tagArray.Add(JsonValue.Create tag))
+        o.Add("tags", tagArray)
+    o.Add("embed", buildMediaEmbedJson kind descriptors)
+    o.Add("sourceHash", JsonValue.Create(generateMediaSourceHash (mediaUrl album.FileName) text tags descriptors))
+    o
+
+let private mediaEnabled kind =
+    match kind with
+    | Image -> useAtProtoMediaSync || useAtProtoMediaImageSync
+    | Gallery -> useAtProtoMediaSync || useAtProtoMediaGallerySync
+    | Video -> useAtProtoMediaSync || useAtProtoMediaVideoSync
+
+let private anyMediaGateEnabled =
+    useAtProtoMediaSync || useAtProtoMediaImageSync || useAtProtoMediaGallerySync || useAtProtoMediaVideoSync
+
+let private mediaAfterCutoff kind published =
+    match kind with
+    | Image | Gallery -> published >= mediaImagesActivationCutoff
+    | Video -> published >= mediaVideoActivationCutoff
+
+let isMediaAfterActivationCutoff kind published = mediaAfterCutoff kind published
+
+let private stagingDirectory (outputDir: string) kind =
+    Path.Combine(outputDir, "api", "data", "atproto", "media", mediaDirectoryName kind)
+
+let private mediaErrorText error =
+    match error with
+    | NoMedia -> "no media items found"
+    | BlankMediaUrl -> "one or more media items have a blank URL"
+    | UnsupportedMediaType mime -> sprintf "unsupported media type '%s'" mime
+    | MixedImageAndVideo -> "mixed image and video media is not supported"
+    | MultipleVideos -> "multiple videos are not supported"
+    | TooManyImages count -> sprintf "%d images supplied; the maximum is 10" count
+
+let private eligibleMedia (albums: Domain.Album list) =
+    if not anyMediaGateEnabled then []
+    else albums
+    |> List.choose (fun album ->
+        match DateTimeOffset.TryParse album.Metadata.Date with
+        | false, _ ->
+            eprintfn "  ⚠️  AtProto: skipping media with unparseable date '%s' (%s)" album.Metadata.Date album.FileName
+            None
+        | true, published ->
+            let source = album.MarkdownSource |> Option.defaultValue album.Content
+            let descriptors = extractMediaDescriptorsFromMarkdown album.Metadata.Title source
+            match validateMediaDescriptors descriptors with
+            | Error error ->
+                // A media file is content, not an optional decoration.  Reject
+                // malformed combinations explicitly instead of staging a
+                // misleading text-only post.
+                failwithf "AtProto media '%s' rejected: %s" album.FileName (mediaErrorText error)
+            | Ok kind when mediaEnabled kind && mediaAfterCutoff kind published ->
+                Some (published, album.FileName, album, kind, descriptors)
+            | Ok _ -> None)
+
+/// Return all native staging keys (Notes plus media) for the cross-content
+/// collision assertion performed by Program.fs and focused tests.
+let nativeStagingKeys (notes: Domain.Post list) (albums: Domain.Album list) =
+    let noteKeys =
+        if not useAtProtoNotesSync then []
+        else
+            notes
+            |> List.choose (fun note ->
+                match DateTimeOffset.TryParse note.Metadata.Date with
+                | true, date when date >= notesActivationCutoff ->
+                    Some ("app.bsky.feed.post", deriveTid date note.FileName, "note:" + note.FileName)
+                | _ -> None)
+    let mediaKeys =
+        if not anyMediaGateEnabled then []
+        else
+            eligibleMedia albums
+            |> List.map (fun (date, slug, _, kind, _) ->
+                "app.bsky.feed.post", deriveMediaTid date slug kind, "media:" + slug)
+    noteKeys @ mediaKeys
+
+/// Generate separate image/gallery/video manifests.  The wrappers contain
+/// upload descriptors and a build-time embed placeholder; the sync script
+/// performs uploads and substitutes blob refs only after the write plan and
+/// authentication gates have passed.
+let buildAtProtoMediaStaging (albums: Domain.Album list) (outputDir: string) : unit =
+    printfn "  🌐 Generating AT Protocol rich-media staging records..."
+    let eligible = eligibleMedia albums
+    assertNoNativeTidCollisions (
+        eligible
+        |> List.map (fun (date, slug, _, kind, _) ->
+            "app.bsky.feed.post", deriveMediaTid date slug kind, "media:" + slug))
+    let opts = JsonSerializerOptions()
+    opts.WriteIndented <- true
+    let mutable count = 0
+    for (published, slug, album, kind, descriptors) in eligible do
+        let directory = stagingDirectory outputDir kind
+        Directory.CreateDirectory directory |> ignore
+        let rkey = deriveMediaTid published slug kind
+        let wrapper = JsonObject()
+        wrapper.Add("collection", JsonValue.Create "app.bsky.feed.post")
+        wrapper.Add("rkey", JsonValue.Create rkey)
+        wrapper.Add("mediaKind", JsonValue.Create (mediaKindName kind))
+        let media = JsonArray()
+        descriptors |> List.iter (fun descriptor ->
+            let item = JsonObject()
+            item.Add("url", JsonValue.Create descriptor.Url)
+            item.Add("mimeType", JsonValue.Create descriptor.MimeType)
+            item.Add("alt", JsonValue.Create descriptor.Alt)
+            item.Add("width", JsonValue.Create descriptor.Width)
+            item.Add("height", JsonValue.Create descriptor.Height)
+            media.Add item)
+        wrapper.Add("media", media)
+        wrapper.Add("record", buildMediaPostRecordJson album published kind descriptors)
+        File.WriteAllText(Path.Combine(directory, sprintf "%s.json" rkey), wrapper.ToJsonString opts)
+        count <- count + 1
+    printfn "  ✅ Generated %d AT Protocol rich-media staging records" count

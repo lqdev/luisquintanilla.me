@@ -172,12 +172,31 @@ let main argv =
         printfn "🌐 Building AT Protocol staging records..."
         AtProtoBuilder.buildAtProtoStaging (postsFeedData |> List.map (fun fd -> fd.Content)) "_public"
 
+    // Track B/C — native app.bsky.feed.post staging.  Media has separate
+    // image/gallery and video gates; video remains dormant until its upload
+    // service rollout is explicitly enabled.  All enabled native records are
+    // collision-checked together with Notes before any manifest is written.
+    let mediaAlbums = mediaFeedData |> List.map (fun fd -> fd.Content)
+    let nativeKeys =
+        AtProtoBuilder.nativeStagingKeys
+            (notesFeedData |> List.map (fun fd -> fd.Content))
+            mediaAlbums
+    AtProtoBuilder.assertNoNativeTidCollisions nativeKeys
+
     // Track B — Notes -> native app.bsky.feed.post staging records. Gated behind
     // AtProtoBuilder.useAtProtoNotesSync (default off) and forward-only from notesActivationCutoff,
     // so _public stays byte-identical until deliberately activated. The sync script consumes these.
     if AtProtoBuilder.useAtProtoNotesSync then
         printfn "🌐 Building AT Protocol note staging records..."
         AtProtoBuilder.buildAtProtoNotesStaging (notesFeedData |> List.map (fun fd -> fd.Content)) "_public"
+
+    // Track C — rich media -> native app.bsky.feed.post.
+    if AtProtoBuilder.useAtProtoMediaSync
+       || AtProtoBuilder.useAtProtoMediaImageSync
+       || AtProtoBuilder.useAtProtoMediaGallerySync
+       || AtProtoBuilder.useAtProtoMediaVideoSync then
+        printfn "🌐 Building AT Protocol rich-media staging records..."
+        AtProtoBuilder.buildAtProtoMediaStaging mediaAlbums "_public"
     
     // =============================================================================
     // ActivityPub Followers Collection - Phase 4A Implementation

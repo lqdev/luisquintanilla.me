@@ -1,6 +1,6 @@
 # Website Development Backlog
 
-*Last Updated: 2026-05-29*
+*Last Updated: 2026-08-14*
 
 This backlog tracks open opportunities and in-flight work for the site. It is intentionally **concise** — full implementation history lives in [`../changelog.md`](../changelog.md) and detailed project logs in [`archive/`](archive/). Reusable patterns and research are captured in the [AI Memex](../_src/resources/ai-memex/).
 
@@ -50,9 +50,10 @@ These are deliberately **deferred** until the listening/privacy primitives (γ a
 ### Tools & automation
 - **`/tools` evolution** — v1 is a curated directory of links (read-it-later extension, github-post PWA, rss extension, playlist-creator). Could grow into richer per-tool pages, install instructions, or hosted demos.
 - **Cross-posting / syndication** — WebSub support or POSSE automation building on the live ActivityPub layer.
-- **AT Protocol (ATmosphere) integration** — [issue #2574](https://github.com/lqdev/luisquintanilla.me/issues/2574) and [ADR-0009](../docs/adr/0009-at-protocol-integration.md): hand-built (no third-party CLI) Standard.site documents for Posts + native `app.bsky.feed.post` for Notes, reusing the existing `lqdev.me` Bluesky identity, zero self-hosted PDS/relay/AppView.
+- **AT Protocol (ATmosphere) integration** — [issue #2574](https://github.com/lqdev/luisquintanilla.me/issues/2574) and [ADR-0009](../docs/adr/0009-at-protocol-integration.md): hand-built (no third-party CLI) Standard.site documents, native Notes, and dormant rich-media POSSE, reusing the existing `lqdev.me` Bluesky identity with zero self-hosted PDS/relay/AppView.
   - **Part A — SHIPPED** ✅: `site.standard.publication` node live at `/.well-known/site.standard.publication` (`at://did:plc:pme7qquljcdx6i4zyawoxypd/site.standard.publication/3mqs7sgylil2w`); PRs #2631/#2632/#2634.
-  - **Part B — in flight** on umbrella `feature/atproto-integration`: per-post `site.standard.document` records + `<link>` verification tags + `Scripts/sync-atproto.fsx`, behind a `useAtProtoSync` flag, forward-only, `sourceHash`-scoped writes.
+  - **Part B — SHIPPED** ✅: per-post `site.standard.document` records, `<link>` verification tags, and forward-only native Notes sync with `sourceHash`-scoped create/update writes.
+  - **Part C — IMPLEMENTED, DORMANT** 🟡: image/gallery and video manifests, native embeds, binary validation, exact image dimensions, deterministic media rkeys, shared native collision checks, and separate CI media gates. Activation remains a deliberate follow-up; no media backfill is enabled.
   - **Deferred — PESOS / backfeed** *(parked 2026-07-16)*: whether to also pull existing Bluesky posts back into the site as an archive (distinct from Part B's site→AT-Proto POSSE). Revisit after Part B; would warrant its own issue + ADR-0010. **Enabling tech (noted 2026-08-14):** [Jetstream v2 **Network Replay**](https://atproto.com/blog/introducing-bluesky-protocol-services) — stateless HTTP archive snapshots (`planSnapshot`/`listSegments`/`getSegment`), no self-hosted infra, fits the static-hub/thin-spoke model; archive access needs a `bsky.network` API token. Impact assessment: [`research-bluesky-protocol-services-impact`](../_src/resources/ai-memex/research-bluesky-protocol-services-impact.md).
 - **Build performance** — profile build/feed-generation if times regress.
 

@@ -10,6 +10,10 @@
   published on/after `notesActivationCutoff` (2026-07-13) are POSSE'd to the Bluesky timeline as
   `app.bsky.feed.post` records (forward-only). Roll back by dropping `--commit` (dry-run) or setting the
   flag(s) to `false` (fully off, byte-identical baseline).
+- **Part C (rich-media POSSE): 🟡 IMPLEMENTED, DORMANT** — deterministic image/gallery/video manifests,
+  native embeds, source-hash protection, binary validation, and CI phase gates are implemented. The
+  independent media flags remain `false`; no media is staged, uploaded, or backfilled until an explicit
+  activation cutoff is chosen and the rollout is verified.
 
 ---
 
@@ -33,10 +37,10 @@ handled via a `sourceHash` extension field).
 The same "static hub, thin dynamic spoke" model the site already uses for
 [ActivityPub](../activitypub/ARCHITECTURE-OVERVIEW.md), applied to AT Protocol:
 
-- **Static:** the normal `dotnet run` build stages one `site.standard.document` record per Post and
-  renders a verification `<link>` tag into each post — pure functions, no network.
-- **Dynamic:** one post-build `dotnet fsi` script (`Scripts/sync-atproto.fsx`) upserts those records to
-  the existing Bluesky-hosted PDS. No Azure Function, no new infrastructure.
+- **Static:** the normal `dotnet run` build stages `site.standard.document` records for Posts,
+  native Note records, and (when activated) media manifests — pure functions, no network.
+- **Dynamic:** one post-build `dotnet fsi` script (`Scripts/sync-atproto.fsx`) upserts those records and
+  materializes media blobs in the existing Bluesky-hosted PDS. No Azure Function, no new infrastructure.
 
 Reused identity: handle `lqdev.me` / `did:plc:pme7qquljcdx6i4zyawoxypd`, hosted on Bluesky's PDS.
 
@@ -47,28 +51,32 @@ Reused identity: handle `lqdev.me` / `did:plc:pme7qquljcdx6i4zyawoxypd`, hosted 
 - **Dry-run unless `--commit`.** `sync-atproto.fsx` writes nothing without `--commit` **and** the
   `ATPROTO_APP_PASSWORD` secret, so you can preview the plan read-only. **CI passes `--commit`** on every
   push to `main` (live).
-- **Flag gates the whole path.** With `useAtProtoSync = false` (and `useAtProtoNotesSync = false`), no
-  staging is produced, the CI sync job is **skipped entirely**, and `_public/` is byte-identical to
-  baseline — the rollback switch.
-- **Collection-scoped + write-scope guard.** Only touches `site.standard.document`, and only manages
-  records bearing our `sourceHash` — hand-authored `app.bsky.feed.post` content is untouchable.
+- **Independent flag gates.** Document, Note, image/gallery, and video staging are controlled
+  independently. When all are false, no staging is produced, the CI sync job is **skipped entirely**,
+  and `_public/` is byte-identical to baseline.
+- **Collection-scoped + write-scope guard.** Each sync invocation targets one collection; shared
+  `app.bsky.feed.post` records are managed only when they carry our `sourceHash`, so hand-authored
+  content is untouchable.
 - **Create/update only, never delete. Idempotent. Fail-fast on corrupt staging.**
 
 Full details in [ARCHITECTURE-OVERVIEW.md §6](ARCHITECTURE-OVERVIEW.md#6-sync-script--the-only-dynamic-step).
 
 ---
 
-## 🚀 Activation — ✅ complete (historical runbook)
+## 🚀 Activation — Tracks A/B ✅ complete; Part C 🟡 dormant
 
-All three steps are done; the sync runs **live on every push to `main`**. Retained as the historical
-sequence and the rollback path (details:
+The document and Note tracks run **live on every push to `main`**. The same sequence is retained as
+the historical runbook (details:
 [ARCHITECTURE-OVERVIEW.md §8](ARCHITECTURE-OVERVIEW.md#8-activation-runbook)):
 
 1. ✅ `AtProtoBuilder.useAtProtoSync = true` (Track A) and `useAtProtoNotesSync = true` (Track B).
 2. ✅ `ATPROTO_APP_PASSWORD` repository secret added (a dedicated Bluesky App Password).
 3. ✅ `--commit` on the sync steps in `.github/workflows/publish-azure-static-web-apps.yml`.
 
-Roll back by removing `--commit` (back to dry-run) or setting the flag(s) to `false` (fully off).
+4. 🟡 For Part C, choose the image/gallery cutoff, enable its flag, use `--limit 1` for the first
+   live write, verify it, then repeat independently for video.
+
+Roll back by removing `--commit` (back to dry-run) or setting the affected staging flag to `false`.
 
 ---
 
@@ -78,5 +86,7 @@ Roll back by removing `--commit` (back to dry-run) or setting the flag(s) to `fa
 - `test-scripts/test-atproto-document-json.fsx` — 24 assertions: the `site.standard.document` wire
   contract (`$type`, required fields, omit-don't-null, the verification-critical `/posts/{slug}/` path,
   tag normalization, and the `sourceHash` formula).
+- `test-scripts/test-atproto-media.fsx` — 29 assertions: media extraction, native embed selection,
+  gallery `items`, alt fallbacks, facets, limits, hashes, cutoffs, validation, and native rkey collisions.
 
 Run: `dotnet fsi test-scripts/test-atproto-document-json.fsx`

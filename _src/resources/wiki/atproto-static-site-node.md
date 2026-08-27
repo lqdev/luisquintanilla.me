@@ -36,12 +36,13 @@ it helps, a callout shows how a concrete F# static-site generator implements the
 6. Step 2 — Become a publication node
 7. Step 3 — POSSE long-form posts as documents (Track A)
 8. Step 4 — POSSE short-form as native Bluesky posts (Track B)
-9. Step 5 — Automate it in CI
-10. Verify & troubleshoot
-11. Safety & idempotency checklist
-12. Reference implementation & further reading
-13. Appendix A — Placeholders
-14. Appendix B — Example records (JSON)
+9. Step 4c — POSSE rich media with native embeds (Part C)
+10. Step 5 — Automate it in CI
+11. Verify & troubleshoot
+12. Safety & idempotency checklist
+13. Reference implementation & further reading
+14. Appendix A — Placeholders
+15. Appendix B — Example records (JSON)
 
 > ℹ️ Every command uses **placeholders** (`yourdomain.com`, `did:plc:xxxx…`, `APP_PASSWORD`, …). Substitute
 > your own values. See **Appendix A** at the end for the full list.
@@ -434,6 +435,30 @@ Write it exactly like a document, but `--collection app.bsky.feed.post` and **om
 > same `deriveTid`, and the sync's plan reports any record lacking our `sourceHash` as *left-untouched* — so
 > hand-authored posts are structurally impossible to modify.
 
+### 4c. Rich-media POSSE with native embeds (Part C)
+
+Rich media uses the same `app.bsky.feed.post` collection, but the embed union carries the uploaded
+asset. Keep the canonical media URL in the post text and add a link facet; a native post cannot combine
+an external card with an image, gallery, or video embed.
+
+- One to four supported images use `app.bsky.embed.images`.
+- Five to ten images use `app.bsky.embed.gallery`; the field is `items`, and each item is tagged
+  `app.bsky.embed.gallery#image`.
+- A media post may contain one MP4 video, uploaded through `video.bsky.app` and materialized as
+  `app.bsky.embed.video`. Mixed image/video and multiple-video posts must be rejected.
+
+The static build should stage only source URLs, MIME types, accessibility text, and dimensions. The
+post-build sync downloads media only after the dry-run, authentication, and write-scope gates. It must
+validate file signatures, enforce the 2,000,000-byte image and 300,000,000-byte video limits, derive
+exact image dimensions, and finish every upload before the first `putRecord`. For a cautious rollout,
+use independent image/gallery and video flags with separate forward-only activation cutoffs; do not
+backfill historical media.
+
+> 🔧 **Reference (F# static site):** Part C stages manifests under
+> `_public/api/data/atproto/media/images`, `galleries`, and `videos`. The CI job passes
+> `--media-kind images` or `--media-kind videos` to `Scripts/sync-atproto.fsx`; the flags remain off
+> by default, so the current build produces no media manifests.
+
 ## Step 5 — Automate it in CI
 
 Wrap the write logic in a small script and run it after your normal build, from CI. The essential pattern:
@@ -480,8 +505,9 @@ Actions*).
 
 > 🔧 **Reference (F# static site):** the sync is a standalone `dotnet fsi` script (BCL-only, no build needed),
 > shaped like the repo's existing Webmentions sender. Its CLI: dry-run by default; `--commit` to write;
-> `--limit N` for a capped first run; `--collection` + `--dir` to target Track A vs Track B. A per-file
-> cross-check aborts *before any network I/O* if a staged record's collection doesn't match `--collection`.
+> `--limit N` for a capped first run; `--collection` + `--dir` to target Track A vs Track B; and
+> `--media-kind images|videos` to select a Part C phase. A per-file cross-check aborts *before any
+> network I/O* if a staged record's collection doesn't match `--collection`.
 
 **Activation runbook** — three deliberate, reversible gates, in order:
 
@@ -533,6 +559,9 @@ the public AppView with `app.bsky.feed.getPostThread`.
 - **Build fails: "TID collision"** — two posts derived the same rkey. Spread the sub-minute offset with a stronger slug hash; assert uniqueness at build time.
 - **Note posted but truncated** — expected: over 300 graphemes becomes an excerpt plus a link card.
 - **Old notes suddenly flooded the timeline** — you backfilled Track B. Only POSSE forward from a cutoff; `createdAt` keeps the true date.
+- **Media upload fails validation** — check the declared MIME type, file signature, byte limit, and
+  dimensions. The sync intentionally rejects incompatible media instead of silently resizing or
+  truncating it.
 - **Write rejected: unknown lexicon** — pass `validate: false` for `site.standard.*` writes.
 - **Rate limited** — the PDS write budget is roughly 5,000 points/hour per DID (a create costs 3 points). Batch/backfill within that; `applyWrites` can group writes into one commit.
 - **Secret leaked in logs** — never print the App Password or JWT. Keep the secret write-only in CI.
@@ -552,6 +581,9 @@ Before your first live write, confirm every box:
 - **`path` == real URL** for every document.
 - **`.well-known` byte-exact** — no trailing newline, no BOM.
 - **Track B forward-only** from an activation cutoff.
+- **Part C forward-only** from independent image/gallery and video activation cutoffs.
+- **Media uploads happen only after planning and authentication**, and all required blobs are ready
+      before the first native post write.
 - **Ship dormant behind a flag** and prove your generated output is byte-identical before activating, so
       the addition can't change what your site already serves.
 
@@ -567,7 +599,8 @@ example:
 
 - `AtProtoBuilder.fs` — record contract, deterministic `deriveTid`, `sourceHash`, staging, the `<link>` tag.
 - `Scripts/sync-atproto.fsx` — the dry-run-by-default POSSE sync (create/update-only, write-scope guard,
-  `--commit` / `--limit` / `--collection` / `--dir`).
+  `--commit` / `--limit` / `--collection` / `--dir`, media validation, image/gallery materialization,
+  and bounded video processing).
 - `Scripts/create-atproto-publication.fsx` — the idempotent one-time publication bootstrap.
 - The publish workflow — the gated CI sync job.
 - `docs/atproto/` and `docs/adr/0009-at-protocol-integration.md` — architecture + the durable decisions.
