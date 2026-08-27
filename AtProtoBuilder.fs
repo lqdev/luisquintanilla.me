@@ -428,14 +428,16 @@ let validateMediaDescriptors (descriptors: AtProtoMediaDescriptor list) : Result
         if descriptors |> List.exists (fun d -> String.IsNullOrWhiteSpace d.Url) then
             Error BlankMediaUrl
         else
-            let videos = descriptors |> List.filter (fun d -> d.MimeType.StartsWith("video/", StringComparison.OrdinalIgnoreCase))
-            let images = descriptors |> List.filter (fun d -> d.MimeType.StartsWith("image/", StringComparison.OrdinalIgnoreCase))
+            let mimeOf (descriptor: AtProtoMediaDescriptor) =
+                if isNull descriptor.MimeType then "" else descriptor.MimeType.ToLowerInvariant()
+            let videos = descriptors |> List.filter (fun d -> (mimeOf d).StartsWith("video/", StringComparison.OrdinalIgnoreCase))
+            let images = descriptors |> List.filter (fun d -> (mimeOf d).StartsWith("image/", StringComparison.OrdinalIgnoreCase))
             let unsupported =
                 descriptors
                 |> List.tryFind (fun d ->
-                    let mime = if isNull d.MimeType then "" else d.MimeType.ToLowerInvariant()
+                    let mime = mimeOf d
                     not (mime = "image/jpeg" || mime = "image/png" || mime = "image/gif" || mime = "image/webp" || mime = "video/mp4"))
-            if unsupported.IsSome then Error (UnsupportedMediaType unsupported.Value.MimeType)
+            if unsupported.IsSome then Error (UnsupportedMediaType (mimeOf unsupported.Value))
             elif List.length videos > 1 then Error MultipleVideos
             elif not (List.isEmpty videos) && not (List.isEmpty images) then Error MixedImageAndVideo
             elif not (List.isEmpty videos) then Ok Video

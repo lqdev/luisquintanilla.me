@@ -79,8 +79,16 @@ jobs:
             echo "notes_staged=false" >> "$GITHUB_OUTPUT"
             echo "AT Protocol note staging absent (useAtProtoNotesSync is off) — Track B sync skipped."
           fi
-          IMAGE_COUNT=$(find _public/api/data/atproto/media/images _public/api/data/atproto/media/galleries -maxdepth 1 -type f -name '*.json' 2>/dev/null | wc -l)
-          VIDEO_COUNT=$(find _public/api/data/atproto/media/videos -maxdepth 1 -type f -name '*.json' 2>/dev/null | wc -l)
+          IMAGE_COUNT=0
+          for MEDIA_DIR in _public/api/data/atproto/media/images _public/api/data/atproto/media/galleries; do
+            if [ -d "$MEDIA_DIR" ]; then
+              IMAGE_COUNT=$((IMAGE_COUNT + $(find "$MEDIA_DIR" -maxdepth 1 -type f -name '*.json' | wc -l)))
+            fi
+          done
+          VIDEO_COUNT=0
+          if [ -d _public/api/data/atproto/media/videos ]; then
+            VIDEO_COUNT=$(find _public/api/data/atproto/media/videos -maxdepth 1 -type f -name '*.json' | wc -l)
+          fi
           if [ "$IMAGE_COUNT" -gt 0 ]; then
             echo "media_staged=true" >> "$GITHUB_OUTPUT"
             echo "🌐 AT Protocol image/gallery staging present ($IMAGE_COUNT record(s)) — Track C image sync can run."

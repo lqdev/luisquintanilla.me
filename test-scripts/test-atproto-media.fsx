@@ -124,6 +124,11 @@ check "unsupported media types are rejected" (
     match validateMediaDescriptors audio with
     | Error (UnsupportedMediaType "audio/mpeg") -> true
     | _ -> false)
+let nullMime = [ { Url = "https://cdn.example/a"; MimeType = null; Alt = "a"; Width = 1; Height = 1 } ]
+check "null media MIME types are rejected without throwing" (
+    match validateMediaDescriptors nullMime with
+    | Error (UnsupportedMediaType mime) when String.IsNullOrEmpty mime -> true
+    | _ -> false)
 let blankUrl = [
     { Url = ""; MimeType = "image/jpeg"; Alt = "missing"; Width = 1; Height = 1 }
     { Url = "https://cdn.example/valid.jpg"; MimeType = "image/jpeg"; Alt = "valid"; Width = 1; Height = 1 } ]

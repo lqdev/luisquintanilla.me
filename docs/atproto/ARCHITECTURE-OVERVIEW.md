@@ -238,7 +238,7 @@ To roll back any track, drop `--commit` (dry-run) or set its staging flag to `fa
 | `.github/workflows/publish-azure-static-web-apps.yml` | `sync_atproto_job` + `atproto_staged` gate |
 | `test-scripts/test-atproto-tid.fsx` | 19 TID determinism/format assertions |
 | `test-scripts/test-atproto-document-json.fsx` | 24 wire-contract assertions |
-| `test-scripts/test-atproto-media.fsx` | 26 rich-media contract assertions |
+| `test-scripts/test-atproto-media.fsx` | 30 rich-media contract assertions |
 | `docs/adr/0009-at-protocol-integration.md` | Architecture Decision Record |
 
 ---

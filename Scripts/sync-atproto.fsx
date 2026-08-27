@@ -70,6 +70,14 @@ let defaultStagingDir =
     | _                    -> Path.Combine("_public", "api", "data", "atproto", "documents")
 let stagingDir = argValue "--dir" |> Option.defaultValue defaultStagingDir
 let mediaKindFilter = argValue "--media-kind" |> Option.map (fun value -> value.Trim().ToLowerInvariant())
+
+match mediaKindFilter with
+| None
+| Some ("note" | "notes" | "image" | "images" | "gallery" | "galleries" | "video" | "videos") -> ()
+| Some invalid ->
+    eprintfn "ERROR: unsupported --media-kind '%s'. Expected notes, images, galleries, or videos." invalid
+    exit 1
+
 // Optional cap on how many records a single run will write (create+update). Used for a cautious
 // first activation: write a small batch, verify end-to-end, then re-run without --limit to backfill.
 let limitOpt =
