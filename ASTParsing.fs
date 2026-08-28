@@ -194,6 +194,17 @@ let renderCardHtmlFromMarkdown (content: string) : string =
     for block in doc do renderer.Render(block) |> ignore
     writer.ToString()
 
+/// Parse a Markdown string into a Markdig AST using the SAME canonical pipeline every
+/// other consumer uses (createMarkdownPipeline: YAML front matter, pipe tables, custom
+/// blocks, etc.). This is the single public entry point for callers that need to inspect
+/// the block structure of content — e.g. AtProtoResponseMapping deciding whether a reshare
+/// carries authored commentary (a non-blockquote top-level block) — without re-deriving a
+/// pipeline that could drift from the one used to render pages. The caller is expected to
+/// strip front matter first (stripFrontMatter) when it only wants the body's blocks.
+let parseMarkdownAst (content: string) : MarkdownDocument =
+    let pipeline = createMarkdownPipeline ()
+    Markdown.Parse(content, pipeline)
+
 /// Central document parsing function - single entry point for all content types
 /// This replaces the various individual parse functions with unified processing
 let parseDocumentFromAst<'TMetadata> (content: string) : Result<ParsedDocument<'TMetadata>, ParseError> =

@@ -25,6 +25,27 @@ video uses `app.bsky.embed.video` through the asynchronous video service. Activa
 backfill remain deliberately deferred.
 Amended 2026-08-27: the image phase was activated with `useAtProtoMediaImageSync = true` and the
 2026-08-01 forward-only cutoff; gallery and video remain independently gated.
+Amended 2026-08-27 (Response POSSE): extended the content-type-per-lexicon mapping to **Responses**,
+implemented behind four dormant flags (`useAtProtoBookmarkPostsSync`, `useAtProtoResharePostsSync`,
+`useAtProtoRepostsSync`, `useAtProtoQuotePostsSync`, all `false`) with `DateTimeOffset.MaxValue` sentinel
+cutoffs (activation must set BOTH a flag and a real forward-only date, so a flipped flag alone stages
+nothing). Mapping: a public **bookmark** targeting an ordinary URL and an **ordinary-web reshare** each
+become an `app.bsky.feed.post` link post (external card → the external target; canonical `lqdev.me`
+URL carried in the post text via a UTF-8 byte facet). An **ATProto-targeted reshare** (recognised
+strictly from a `bsky.app/profile/{actor}/post/{rkey}` permalink or a literal
+`at://{did}/app.bsky.feed.post/{rkey}` URI) becomes an `app.bsky.feed.repost` when the body carries no
+authored commentary, or an `app.bsky.feed.post` quote-post (`embed.record`, original not duplicated in
+text) when it does — decided by scanning the Markdown source's top-level blocks (any non-blockquote
+block = authored commentary). Classification lives in a new pure `AtProtoResponseMapping` module (before
+`AtProtoBuilder` in compile order) over a tiny public `ASTParsing.parseMarkdownAst` wrapper. rkey seeds
+are namespaced (`bookmark:`, `reshare-link:`, `quote:`, `repost:`) so response records never collide
+with Post/Note/media records. **Reposts deliberately carry NO `sourceHash`** (the repost lexicon has no
+extension slot): the sync guards them by their natural subject (URI + CID) — created once, never
+overwritten. Quote/repost staging carries a `targetRef` sidecar the sync resolves (handle → DID, batched
+`app.bsky.feed.getPosts`) into a real subject strongRef, **refusing to write any record whose target is
+unresolved, before any write**. Out of scope (unchanged): replies, stars/likes, RSVPs, the private
+`app.bsky.bookmark` procedure, PESOS, historical backfill, deletion propagation, and quote-posts with
+media (Markdown images or custom media blocks).
 
 ## Context
 

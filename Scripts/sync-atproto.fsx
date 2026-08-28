@@ -8,6 +8,16 @@
 //   * Track B: app.bsky.feed.post       <- AtProtoBuilder.buildAtProtoNotesStaging
 //              (_public/api/data/atproto/posts/{rkey}.json)      [Notes]
 //
+// Response POSSE (#2574 / ADR-0009 amendment) reuses the SAME script with different --dir/--collection:
+//   * Bookmark link posts   --dir _public/api/data/atproto/bookmarks --collection app.bsky.feed.post
+//   * Reshare link posts    --dir _public/api/data/atproto/reshares  --collection app.bsky.feed.post
+//   * Quote posts           --dir _public/api/data/atproto/quotes    --collection app.bsky.feed.post
+//   * Reposts               --dir _public/api/data/atproto/reposts   --collection app.bsky.feed.repost
+//   Link posts sync exactly like Notes (sourceHash guard). Quote/repost staging carries a `targetRef`
+//   sidecar {actor, rkey}; the script resolves it (handle→DID, app.bsky.feed.getPosts) to a real
+//   subject strongRef and REFUSES to write any record whose target is unresolved. Reposts carry NO
+//   sourceHash and are guarded by their natural subject (URI+CID): created once, never overwritten.
+//
 // This is the outbound half of #2574 / ADR-0009. It mirrors the shape of
 // Scripts/send-webmentions.fsx (a small post-build dotnet-fsi side effect, not an Azure
 // Function) and reuses the auth/XRPC pattern proven in Scripts/create-atproto-publication.fsx.
@@ -66,8 +76,9 @@ let collection = argValue "--collection" |> Option.defaultValue "site.standard.d
 // (a footgun). Pass --dir to override.
 let defaultStagingDir =
     match collection with
-    | "app.bsky.feed.post" -> Path.Combine("_public", "api", "data", "atproto", "posts")
-    | _                    -> Path.Combine("_public", "api", "data", "atproto", "documents")
+    | "app.bsky.feed.post"   -> Path.Combine("_public", "api", "data", "atproto", "posts")
+    | "app.bsky.feed.repost" -> Path.Combine("_public", "api", "data", "atproto", "reposts")
+    | _                      -> Path.Combine("_public", "api", "data", "atproto", "documents")
 let stagingDir = argValue "--dir" |> Option.defaultValue defaultStagingDir
 let mediaKindFilter = argValue "--media-kind" |> Option.map (fun value -> value.Trim().ToLowerInvariant())
 
@@ -137,13 +148,15 @@ let postJson (url: string) (bearer: string option) (payload: JsonNode) : JsonNod
 // empty and the script exits without ever touching the network.
 type Staged =
     { Rkey: string
-      SourceHash: string
+      SourceHash: string option
       Record: JsonNode
+      StagingKind: string option
+      TargetRef: JsonNode option
       Media: JsonArray option
       MediaKind: string option }
 
 let mediaStagingDirs =
-    if collection = "app.bsky.feed.post" then
+    if collection = "app.bsky.feed.post" && mediaKindFilter.IsSome then
         // A CI artifact may be downloaded as a media root containing images/,
         // galleries/, and videos/. The build's default layout keeps media next
         // to posts/, so support both layouts without making callers rearrange
@@ -189,20 +202,50 @@ let staged =
         let record = root.["record"]
         let sourceHash =
             match record.["sourceHash"] |> Option.ofObj |> Option.map (fun n -> n.GetValue<string>()) with
-            | Some sh when not (String.IsNullOrWhiteSpace sh) -> sh
+            | Some sh when not (String.IsNullOrWhiteSpace sh) -> Some sh
             | _ ->
-                // The builder ALWAYS emits sourceHash (change-detection + write-scope guard). A missing or
+                // app.bsky.feed.repost records intentionally carry NO sourceHash: the repost lexicon has
+                // no room for our extension field, so reposts are guarded by their natural subject
+                // (URI + CID) instead (see the repost plan path below). For EVERY OTHER collection the
+                // builder ALWAYS emits sourceHash (change-detection + write-scope guard), so a missing or
                 // blank one means a corrupt staging file — fail loudly rather than default to "" (which
                 // matches no remote hash and would rewrite every record on every run, masking the corruption).
-                eprintfn "ERROR: staged file '%s' has no non-blank 'sourceHash'. Corrupt staging; aborting without syncing." path
-                exit 1
+                if collection = "app.bsky.feed.repost" then None
+                else
+                    eprintfn "ERROR: staged file '%s' has no non-blank 'sourceHash'. Corrupt staging; aborting without syncing." path
+                    exit 1
+        // Optional sidecar (quote/repost staging): { actor, rkey, kind } identifying the native post
+        // to quote/repost. Resolved to a real subject strongRef (uri + cid) before any write.
+        let stagingKind =
+            root.["stagingKind"] |> Option.ofObj |> Option.map (fun n -> n.GetValue<string>())
+        let targetRef = root.["targetRef"] |> Option.ofObj
+        let hasUsableTargetRef =
+            match targetRef with
+            | Some target ->
+                match target.["actor"], target.["rkey"] with
+                | actor, rkey when not (isNull actor) && not (isNull rkey) ->
+                    not (String.IsNullOrWhiteSpace(actor.GetValue<string>()))
+                    && not (String.IsNullOrWhiteSpace(rkey.GetValue<string>()))
+                | _ -> false
+            | None -> false
+        match stagingKind with
+        | Some ("quote" | "repost") when not hasUsableTargetRef ->
+            eprintfn "ERROR: staged file '%s' is a %s response record without a usable targetRef. Refusing to write an unresolved subject; aborting." path stagingKind.Value
+            exit 1
+        | _ -> ()
         let media =
             match root.["media"] with
             | :? JsonArray as values -> Some values
             | _ -> None
         let mediaKind =
             root.["mediaKind"] |> Option.ofObj |> Option.map (fun n -> n.GetValue<string>())
-        { Rkey = rkey; SourceHash = sourceHash; Record = record; Media = media; MediaKind = mediaKind })
+        { Rkey = rkey
+          SourceHash = sourceHash
+          Record = record
+          StagingKind = stagingKind
+          TargetRef = targetRef
+          Media = media
+          MediaKind = mediaKind })
     |> Array.filter (fun s ->
         match mediaKindFilter, s.MediaKind with
         | Some "note", None
@@ -251,10 +294,11 @@ let resolvePds () =
 let pds = resolvePds ()
 printfn "PDS=%s" pds
 
-// ---- 2) List existing remote records (no auth) → rkey -> sourceHash ---------
-// Paginated. We read the remote sourceHash purely to skip unchanged records.
+// ---- 2) List existing remote records (no auth) → rkey -> value node ---------
+// Paginated. We keep the whole `value` node so the plan can read either the sourceHash
+// (posts/documents write-scope guard) or the subject strongRef (reposts, which have no sourceHash).
 let fetchRemote () =
-    let map = System.Collections.Generic.Dictionary<string, string option>()
+    let map = System.Collections.Generic.Dictionary<string, JsonNode>()
     let mutable cursor : string option = None
     let mutable more = true
     while more do
@@ -267,11 +311,7 @@ let fetchRemote () =
             // uri looks like at://did/collection/<rkey> — take the last path segment.
             let uri = recNode.["uri"].GetValue<string>()
             let rkey = uri.Substring(uri.LastIndexOf('/') + 1)
-            let value = recNode.["value"]
-            let sh =
-                value.["sourceHash"] |> Option.ofObj
-                |> Option.map (fun n -> n.GetValue<string>())
-            map.[rkey] <- sh
+            map.[rkey] <- recNode.["value"]
         match page.["cursor"] |> Option.ofObj |> Option.map (fun n -> n.GetValue<string>()) with
         | Some c when page.["records"].AsArray().Count > 0 -> cursor <- Some c
         | _ -> more <- false
@@ -280,31 +320,141 @@ let fetchRemote () =
 let remote = fetchRemote ()
 printfn "Remote already holds %d %s record(s)." remote.Count collection
 
+// ---- 2b) Resolve quote/repost targets → real subject strongRefs (UNAUTHENTICATED reads) ------
+// Quote (embed.record) and repost (subject) staging carries a PLACEHOLDER {uri="",cid=""} plus a
+// `targetRef` sidecar {actor, rkey}. Before ANY write, resolve each actor handle→DID and batch-fetch
+// the quoted posts (app.bsky.feed.getPosts, ≤25 per call) to obtain their canonical uri + cid, then
+// fill the placeholder in-place. This runs in the read-only phase so a dry run surfaces resolution
+// problems, and it REFUSES (exit 1) on any unresolved handle or missing post BEFORE writing anything.
+let private stringField (node: JsonNode) (name: string) =
+    if isNull node then None
+    else node.[name] |> Option.ofObj |> Option.map (fun n -> n.GetValue<string>())
+
+let resolveHandleToDid (actor: string) : string option =
+    if actor.StartsWith("did:", StringComparison.OrdinalIgnoreCase) then Some actor
+    else
+        let tryEndpoint host =
+            tryGetJson (sprintf "%s/xrpc/com.atproto.identity.resolveHandle?handle=%s" host (Uri.EscapeDataString actor))
+            |> Option.bind (fun node -> stringField node "did")
+        match tryEndpoint "https://public.api.bsky.app" with
+        | Some did -> Some did
+        | None -> tryEndpoint "https://bsky.social"   // entryway fallback
+
+let resolveTargets (items: Staged[]) : unit =
+    let withTarget = items |> Array.filter (fun s -> s.TargetRef.IsSome)
+    if withTarget.Length = 0 then ()
+    else
+        printfn "Resolving %d quote/repost target(s)…" withTarget.Length
+        let actorOf (s: Staged) = s.TargetRef.Value.["actor"].GetValue<string>()
+        let rkeyOf  (s: Staged) = s.TargetRef.Value.["rkey"].GetValue<string>()
+        // 1) actor (handle or DID) → DID. Refuse any that cannot be resolved.
+        let didMap = System.Collections.Generic.Dictionary<string, string>()
+        for actor in withTarget |> Array.map actorOf |> Array.distinct do
+            match resolveHandleToDid actor with
+            | Some did -> didMap.[actor] <- did
+            | None ->
+                eprintfn "ERROR: could not resolve ATProto actor '%s' to a DID. Refusing to write an unresolved quote/repost. Aborting." actor
+                exit 1
+        let atUriOf (s: Staged) = sprintf "at://%s/app.bsky.feed.post/%s" didMap.[actorOf s] (rkeyOf s)
+        // 2) batch getPosts (≤25 uris/call) → uri → cid.
+        let cidMap = System.Collections.Generic.Dictionary<string, string>()
+        let uris = withTarget |> Array.map atUriOf |> Array.distinct
+        for batch in uris |> Array.chunkBySize 25 do
+            let query = batch |> Array.map (fun u -> "uris=" + Uri.EscapeDataString u) |> String.concat "&"
+            let page = getJson (sprintf "https://public.api.bsky.app/xrpc/app.bsky.feed.getPosts?%s" query)
+            match page.["posts"] with
+            | :? JsonArray as posts ->
+                for p in posts do
+                    match stringField p "uri", stringField p "cid" with
+                    | Some u, Some c -> cidMap.[u] <- c
+                    | _ -> ()
+            | _ -> ()
+        // 3) refuse any target the AppView did not return (deleted / not public / bad rkey).
+        let missing = uris |> Array.filter (fun u -> not (cidMap.ContainsKey u)) |> Array.distinct
+        if missing.Length > 0 then
+            eprintfn "ERROR: %d ATProto quote/repost target(s) could not be resolved to a post (deleted, private, or wrong rkey):" missing.Length
+            for u in missing do eprintfn "        · %s" u
+            eprintfn "       Refusing to write records with an unresolved subject. Aborting before any write."
+            exit 1
+        // 4) fill the placeholder subject strongRef in-place.
+        for s in withTarget do
+            let uri = atUriOf s
+            let strongRef = JsonObject()
+            strongRef.["uri"] <- JsonValue.Create uri
+            strongRef.["cid"] <- JsonValue.Create cidMap.[uri]
+            match s.StagingKind with
+            | Some "quote" ->
+                match s.Record.["embed"] with
+                | embed when not (isNull embed) && not (isNull embed.["record"]) ->
+                    embed.["record"] <- strongRef        // quote post: app.bsky.embed.record
+                | _ ->
+                    failwithf "staged quote '%s' has no embed.record placeholder; aborting before writes" s.Rkey
+            | Some "repost" ->
+                if isNull s.Record.["subject"] then
+                    failwithf "staged repost '%s' has no subject placeholder; aborting before writes" s.Rkey
+                else
+                    s.Record.["subject"] <- strongRef    // repost: app.bsky.feed.repost subject
+            | _ ->
+                // Preserve compatibility with older targetRef wrappers while still requiring a
+                // concrete placeholder shape before any write.
+                match s.Record.["embed"] with
+                | embed when not (isNull embed) && not (isNull embed.["record"]) ->
+                    embed.["record"] <- strongRef
+                | _ when not (isNull s.Record.["subject"]) ->
+                    s.Record.["subject"] <- strongRef
+                | _ ->
+                    failwithf "staged target '%s' has neither embed.record nor subject placeholder; aborting before writes" s.Rkey
+
+resolveTargets staged
+
 // ---- 3) Compute the plan ----------------------------------------------------
-// CREATE = rkey absent remotely.
-// UPDATE = rkey present AND the remote record carries OUR sourceHash but it differs from the staged one.
-// SKIP   = rkey present AND remote sourceHash matches the staged one (idempotent no-op).
-// LEAVE  = rkey present but the remote record has NO sourceHash → it does not bear our write-scope
-//          marker, so we never touch it (honours the "only touch records we created" invariant).
+// Two guard families:
+//  * sourceHash collections (site.standard.document, app.bsky.feed.post — Posts/Notes/media/bookmark/
+//    reshare/quote): CREATE if absent; UPDATE if remote bears OUR sourceHash but it differs; SKIP if it
+//    matches; LEAVE untouched if the remote record has NO sourceHash (not ours).
+//  * app.bsky.feed.repost: no sourceHash exists, so guard by the natural subject (URI+CID): CREATE if
+//    absent; SKIP if a record already exists at our rkey with the SAME subject; LEAVE untouched if a
+//    record exists at our rkey with a DIFFERENT/absent subject (never overwrite; reposts aren't updated).
 let creates = ResizeArray<Staged>()
 let updates = ResizeArray<Staged>()
-let unmanaged = ResizeArray<string>()   // remote rkey exists but lacks our sourceHash marker → leave alone
+let unmanaged = ResizeArray<string>()   // remote rkey exists but is not ours to touch → leave alone
 let mutable skips = 0
-for s in staged do
-    match remote.TryGetValue s.Rkey with
-    | true, remoteSh ->
-        match remoteSh with
-        | Some rsh when rsh = s.SourceHash -> skips <- skips + 1   // unchanged → skip
-        | Some _ -> updates.Add s                                  // ours, changed → update
-        | None -> unmanaged.Add s.Rkey                             // no marker → not ours → never touch
-    | false, _ -> creates.Add s
+
+let subjectKey (node: JsonNode) =
+    if isNull node then ""
+    else (stringField node "uri" |> Option.defaultValue "") + "\u0000" + (stringField node "cid" |> Option.defaultValue "")
+
+if collection = "app.bsky.feed.repost" then
+    for s in staged do
+        match remote.TryGetValue s.Rkey with
+        | true, value ->
+            match value.["subject"] with
+            | null -> unmanaged.Add s.Rkey                                   // present but no subject → leave
+            | remoteSubject ->
+                if subjectKey remoteSubject = subjectKey s.Record.["subject"]
+                then skips <- skips + 1                                      // same subject → already reposted
+                else unmanaged.Add s.Rkey                                    // different subject at our rkey → leave
+        | false, _ -> creates.Add s
+else
+    for s in staged do
+        match remote.TryGetValue s.Rkey with
+        | true, value ->
+            match (stringField value "sourceHash"), s.SourceHash with
+            | Some rsh, Some ssh when rsh = ssh -> skips <- skips + 1   // unchanged → skip
+            | Some _, Some _ -> updates.Add s                           // ours, changed → update
+            | _ -> unmanaged.Add s.Rkey                                 // no marker → not ours → never touch
+        | false, _ -> creates.Add s
 
 printfn ""
 printfn "PLAN: %d create, %d update, %d unchanged, %d left-untouched (of %d staged)"
     creates.Count updates.Count skips unmanaged.Count staged.Length
 if unmanaged.Count > 0 then
-    printfn "  ⚠️  %d remote record(s) share a staged rkey but carry NO sourceHash marker — leaving them" unmanaged.Count
-    printfn "      UNTOUCHED to honour the write-scope invariant (only records bearing our sourceHash are ours):"
+    if collection = "app.bsky.feed.repost" then
+        printfn "  ⚠️  %d remote record(s) share a staged rkey but have a DIFFERENT/absent subject — leaving them" unmanaged.Count
+        printfn "      UNTOUCHED (reposts are guarded by their natural subject URI+CID, never overwritten):"
+    else
+        printfn "  ⚠️  %d remote record(s) share a staged rkey but carry NO sourceHash marker — leaving them" unmanaged.Count
+        printfn "      UNTOUCHED to honour the write-scope invariant (only records bearing our sourceHash are ours):"
     for rk in unmanaged do printfn "        · %s" rk
 
 let plannedAll =

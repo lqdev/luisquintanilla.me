@@ -35,6 +35,10 @@ jobs:
       notes_staged: ${{ steps.atproto_check.outputs.notes_staged }}      # Track B: app.bsky.feed.post (Notes)
       media_staged: ${{ steps.atproto_check.outputs.media_staged }}      # Track C: images + galleries
       video_staged: ${{ steps.atproto_check.outputs.video_staged }}      # Track C: video
+      bookmarks_staged: ${{ steps.atproto_check.outputs.bookmarks_staged }}  # Responses: bookmark link posts
+      reshares_staged: ${{ steps.atproto_check.outputs.reshares_staged }}    # Responses: ordinary-web reshare link posts
+      quotes_staged: ${{ steps.atproto_check.outputs.quotes_staged }}        # Responses: ATProto quote-posts
+      reposts_staged: ${{ steps.atproto_check.outputs.reposts_staged }}      # Responses: ATProto reposts
     steps:
       - uses: actions/checkout@v4
         with:
@@ -103,6 +107,19 @@ jobs:
             echo "video_staged=false" >> "$GITHUB_OUTPUT"
             echo "AT Protocol video staging absent (media video flag is off) — Track C video sync skipped."
           fi
+          # Response POSSE (#2574 / ADR-0009 amendment): bookmarks + reshares -> native records.
+          # Each is gated behind its own dormant AtProtoBuilder flag; when off, no staging dir exists,
+          # the matching output is 'false', and the corresponding sync step is skipped.
+          for RESP in bookmarks reshares quotes reposts; do
+            if ls "_public/api/data/atproto/$RESP"/*.json >/dev/null 2>&1; then
+              RCOUNT=$(ls "_public/api/data/atproto/$RESP"/*.json | wc -l)
+              echo "${RESP}_staged=true" >> "$GITHUB_OUTPUT"
+              echo "🌐 AT Protocol $RESP staging present ($RCOUNT record(s)) — response sync will run."
+            else
+              echo "${RESP}_staged=false" >> "$GITHUB_OUTPUT"
+              echo "AT Protocol $RESP staging absent (mode flag is off) — response sync skipped."
+            fi
+          done
 
       - name: Identify webmentions to send
         run: dotnet fsi Scripts/identify-webmentions.fsx
@@ -192,6 +209,40 @@ jobs:
         with:
           name: atproto-staging-media
           path: _public/api/data/atproto/media/
+          retention-days: 1
+
+      # Response POSSE staging (#2574 / ADR-0009 amendment). One artifact per mode; each upload is
+      # guarded on its own check output so nothing is uploaded while a mode's flag is off.
+      - name: Upload AT Protocol bookmark staging for sync job
+        if: steps.atproto_check.outputs.bookmarks_staged == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: atproto-staging-bookmarks
+          path: _public/api/data/atproto/bookmarks/
+          retention-days: 1
+
+      - name: Upload AT Protocol reshare staging for sync job
+        if: steps.atproto_check.outputs.reshares_staged == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: atproto-staging-reshares
+          path: _public/api/data/atproto/reshares/
+          retention-days: 1
+
+      - name: Upload AT Protocol quote staging for sync job
+        if: steps.atproto_check.outputs.quotes_staged == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: atproto-staging-quotes
+          path: _public/api/data/atproto/quotes/
+          retention-days: 1
+
+      - name: Upload AT Protocol repost staging for sync job
+        if: steps.atproto_check.outputs.reposts_staged == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: atproto-staging-reposts
+          path: _public/api/data/atproto/reposts/
           retention-days: 1
 
   # ============================================================================
@@ -325,7 +376,7 @@ jobs:
   # ============================================================================
   sync_atproto_job:
     needs: build_and_deploy_job
-    if: (needs.build_and_deploy_job.outputs.atproto_staged == 'true' || needs.build_and_deploy_job.outputs.notes_staged == 'true' || needs.build_and_deploy_job.outputs.media_staged == 'true' || needs.build_and_deploy_job.outputs.video_staged == 'true') && github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: (needs.build_and_deploy_job.outputs.atproto_staged == 'true' || needs.build_and_deploy_job.outputs.notes_staged == 'true' || needs.build_and_deploy_job.outputs.media_staged == 'true' || needs.build_and_deploy_job.outputs.video_staged == 'true' || needs.build_and_deploy_job.outputs.bookmarks_staged == 'true' || needs.build_and_deploy_job.outputs.reshares_staged == 'true' || needs.build_and_deploy_job.outputs.quotes_staged == 'true' || needs.build_and_deploy_job.outputs.reposts_staged == 'true') && github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     name: Sync AT Protocol Records
     steps:
@@ -403,6 +454,60 @@ jobs:
         env:
           ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
         run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-feed --collection app.bsky.feed.post --media-kind videos --commit
+
+      # ── Response POSSE (#2574 / ADR-0009 amendment) ─────────────────────────────────────────
+      # DORMANT BY DEFAULT — each mode is gated behind its own AtProtoBuilder flag, so its
+      # *_staged output is 'false' and the download+sync steps are skipped until deliberately
+      # activated. Bookmark + reshare link posts sync exactly like Notes (sourceHash guard);
+      # quote/repost staging carries a targetRef the sync resolves (and refuses to write if
+      # unresolved). Reposts write to the separate app.bsky.feed.repost collection.
+      - name: Download AT Protocol bookmark staging
+        if: needs.build_and_deploy_job.outputs.bookmarks_staged == 'true'
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: atproto-staging-bookmarks
+          path: atproto-bookmarks
+      - name: Sync AT Protocol bookmarks (POSSE)
+        if: needs.build_and_deploy_job.outputs.bookmarks_staged == 'true'
+        env:
+          ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
+        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-bookmarks --collection app.bsky.feed.post --commit
+
+      - name: Download AT Protocol reshare staging
+        if: needs.build_and_deploy_job.outputs.reshares_staged == 'true'
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: atproto-staging-reshares
+          path: atproto-reshares
+      - name: Sync AT Protocol reshares (POSSE)
+        if: needs.build_and_deploy_job.outputs.reshares_staged == 'true'
+        env:
+          ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
+        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-reshares --collection app.bsky.feed.post --commit
+
+      - name: Download AT Protocol quote staging
+        if: needs.build_and_deploy_job.outputs.quotes_staged == 'true'
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: atproto-staging-quotes
+          path: atproto-quotes
+      - name: Sync AT Protocol quote-posts (POSSE)
+        if: needs.build_and_deploy_job.outputs.quotes_staged == 'true'
+        env:
+          ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
+        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-quotes --collection app.bsky.feed.post --commit
+
+      - name: Download AT Protocol repost staging
+        if: needs.build_and_deploy_job.outputs.reposts_staged == 'true'
+        uses: actions/download-artifact@v4.1.8
+        with:
+          name: atproto-staging-reposts
+          path: atproto-reposts
+      - name: Sync AT Protocol reposts (POSSE)
+        if: needs.build_and_deploy_job.outputs.reposts_staged == 'true'
+        env:
+          ATPROTO_APP_PASSWORD: ${{ secrets.ATPROTO_APP_PASSWORD }}
+        run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-reposts --collection app.bsky.feed.repost --commit
 
   # close_pull_request_job:
   #   if: github.event_name == 'pull_request' && github.event.action == 'closed'

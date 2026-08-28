@@ -14,6 +14,13 @@
   image/gallery/video manifests, native embeds, source-hash protection, binary validation, and CI phase
   gates are implemented. `AtProtoBuilder.useAtProtoMediaImageSync = true` stages eligible images
   published on/after the 2026-08-01 cutoff; gallery and video flags remain `false`.
+- **Response POSSE (bookmarks + reshares → native records): 🟡 IMPLEMENTED, DORMANT** — bookmarks and
+  ordinary-web reshares → `app.bsky.feed.post` link posts; ATProto-targeted reshares → `app.bsky.feed.repost`
+  (no commentary) or `app.bsky.feed.post` quote-post (with commentary). Four flags
+  (`useAtProtoBookmarkPostsSync`, `useAtProtoResharePostsSync`, `useAtProtoRepostsSync`,
+  `useAtProtoQuotePostsSync`) are all `false` with `DateTimeOffset.MaxValue` sentinel cutoffs. Activate a
+  mode by setting its flag `true` AND replacing its sentinel with a real forward-only date. See the
+  ADR-0009 2026-08-27 Response-POSSE amendment.
 
 ---
 
@@ -67,7 +74,7 @@ Full details in [ARCHITECTURE-OVERVIEW.md §6](ARCHITECTURE-OVERVIEW.md#6-sync-s
 
 The document and Note tracks run **live on every push to `main`**. The same sequence is retained as
 the historical runbook (details:
-[ARCHITECTURE-OVERVIEW.md §8](ARCHITECTURE-OVERVIEW.md#8-activation-runbook)):
+[ARCHITECTURE-OVERVIEW.md §9](ARCHITECTURE-OVERVIEW.md#9-activation-runbook)):
 
 1. ✅ `AtProtoBuilder.useAtProtoSync = true` (Track A) and `useAtProtoNotesSync = true` (Track B).
 2. ✅ `ATPROTO_APP_PASSWORD` repository secret added (a dedicated Bluesky App Password).
@@ -89,5 +96,9 @@ Roll back by removing `--commit` (back to dry-run) or setting the affected stagi
   tag normalization, and the `sourceHash` formula).
 - `test-scripts/test-atproto-media.fsx` — 29 assertions: media extraction, native embed selection,
   gallery `items`, alt fallbacks, facets, limits, hashes, cutoffs, validation, and native rkey collisions.
+- `test-scripts/test-atproto-response-mapping.fsx` — 46 assertions: strict target-URL parsing
+  (`bsky.app` permalink / `at://` post URI vs ordinary + non-post Bluesky links), the authored-commentary
+  quote-vs-repost decision (including a `>` inside a code fence), and the bookmark/reshare/quote/repost
+  record builders (text contract, external-vs-record embeds, no-`sourceHash` reposts, namespaced rkeys).
 
 Run: `dotnet fsi test-scripts/test-atproto-document-json.fsx`
