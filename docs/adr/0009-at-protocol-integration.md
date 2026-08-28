@@ -1,7 +1,8 @@
 # ADR-0009: AT Protocol Integration Architecture
 
 ## Status
-Accepted — Parts A/B live; Part C image phase live; gallery/video dormant
+Accepted — Parts A/B live; Part C image phase live; reshare link-post phase live; gallery/video and
+other response modes dormant
 
 Tracked in [issue #2574](https://github.com/lqdev/luisquintanilla.me/issues/2574) (**Part A, Part B, and
 the image phase are live; gallery/video remain unactivated**). Amended 2026-07-02 after a live-protocol validation
@@ -26,10 +27,11 @@ backfill remain deliberately deferred.
 Amended 2026-08-27: the image phase was activated with `useAtProtoMediaImageSync = true` and the
 2026-08-01 forward-only cutoff; gallery and video remain independently gated.
 Amended 2026-08-27 (Response POSSE): extended the content-type-per-lexicon mapping to **Responses**,
-implemented behind four dormant flags (`useAtProtoBookmarkPostsSync`, `useAtProtoResharePostsSync`,
-`useAtProtoRepostsSync`, `useAtProtoQuotePostsSync`, all `false`) with `DateTimeOffset.MaxValue` sentinel
-cutoffs (activation must set BOTH a flag and a real forward-only date, so a flipped flag alone stages
-nothing). Mapping: a public **bookmark** targeting an ordinary URL and an **ordinary-web reshare** each
+implemented behind four independent flags (`useAtProtoBookmarkPostsSync`, `useAtProtoResharePostsSync`,
+`useAtProtoRepostsSync`, `useAtProtoQuotePostsSync`) with `DateTimeOffset.MaxValue` sentinel cutoffs
+for dormant modes (activation must set BOTH a flag and a real forward-only date, so a flipped flag alone
+stages nothing). The ordinary-web reshare link-post mode is now active from `2026-08-27 20:58 -05:00`.
+Mapping: a public **bookmark** targeting an ordinary URL and an **ordinary-web reshare** each
 become an `app.bsky.feed.post` link post (external card → the external target; canonical `lqdev.me`
 URL carried in the post text via a UTF-8 byte facet). An **ATProto-targeted reshare** (recognised
 strictly from a `bsky.app/profile/{actor}/post/{rkey}` permalink or a literal

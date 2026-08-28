@@ -456,9 +456,9 @@ jobs:
         run: dotnet fsi Scripts/sync-atproto.fsx --dir atproto-feed --collection app.bsky.feed.post --media-kind videos --commit
 
       # ── Response POSSE (#2574 / ADR-0009 amendment) ─────────────────────────────────────────
-      # DORMANT BY DEFAULT — each mode is gated behind its own AtProtoBuilder flag, so its
-      # *_staged output is 'false' and the download+sync steps are skipped until deliberately
-      # activated. Bookmark + reshare link posts sync exactly like Notes (sourceHash guard);
+      # Response modes are gated behind their own AtProtoBuilder flags. The reshare-link mode is
+      # active from its forward-only cutoff; bookmark, quote, and repost modes remain dormant until
+      # deliberately activated. Bookmark + reshare link posts sync exactly like Notes (sourceHash guard);
       # quote/repost staging carries a targetRef the sync resolves (and refuses to write if
       # unresolved). Reposts write to the separate app.bsky.feed.repost collection.
       - name: Download AT Protocol bookmark staging
