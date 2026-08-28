@@ -16,9 +16,10 @@
   staging plus collection-safe materialization are implemented behind independent flags.
   `useAtProtoMediaImageSync = true` activates post-cutoff image manifests; gallery and video remain
   `false`, and no historical media is backfilled.
-- **Response POSSE — RESHARE LINK-POST PHASE ACTIVE.** Ordinary-web reshares published on/after
-  `2026-08-27 20:58 -05:00` become `app.bsky.feed.post` link posts. Public bookmarks, native reposts,
-  and quote-posts remain implemented but dormant with independent flags and sentinel cutoffs.
+- **Response POSSE — BOOKMARK + RESHARE LINK-POST PHASES ACTIVE.** Public bookmarks published on/after
+  `2026-08-27 21:30 -05:00` and ordinary-web reshares published on/after `2026-08-27 20:58 -05:00`
+  become `app.bsky.feed.post` link posts. Native reposts and quote-posts remain implemented but
+  dormant with independent flags and sentinel cutoffs.
 
 This mirrors the site's existing [ActivityPub](../activitypub/ARCHITECTURE-OVERVIEW.md) approach: a
 static hub (the F# build) with a thin dynamic spoke (one post-build `dotnet fsi` sync script run from
@@ -251,12 +252,12 @@ collision assertion covers all native tracks before staging.
   remain dormant.
 - Response artifacts use independent bookmark, reshare-link, quote, and repost downloads and sync
   invocations. Link and quote posts use the shared `app.bsky.feed.post` collection; reposts use
-  `app.bsky.feed.repost`. The reshare-link mode is active from its real cutoff; the other response
-  modes remain dormant until their source flag and cutoff are activated together.
+  `app.bsky.feed.repost`. The bookmark and reshare-link modes are active from their real cutoffs;
+  repost and quote modes remain dormant until their source flag and cutoff are activated together.
 
 ---
 
-## 9. Activation runbook — Tracks A/B + image + reshare-link phases ✅ complete; other response tracks 🟡 dormant
+## 9. Activation runbook — Tracks A/B + image + bookmark + reshare-link phases ✅ complete; other response tracks 🟡 dormant
 
 The document, Note, and image tracks run **live on every push to `main`**. Gallery and video remain
 deliberately dormant until their independent rollouts are approved:
@@ -275,8 +276,8 @@ deliberately dormant until their independent rollouts are approved:
 
 Response activation is intentionally forward-only and ordered to limit risk:
 
-1. 🟡 Set `bookmarkPostsActivationCutoff` to the desired instant and flip
-   `useAtProtoBookmarkPostsSync = true`. Run a dry-run, then one live record with `--commit --limit 1`.
+1. ✅ `useAtProtoBookmarkPostsSync = true` with `bookmarkPostsActivationCutoff` set to
+   `2026-08-27 21:30 -05:00`; public bookmark link posts run live and forward-only.
 2. ✅ `useAtProtoResharePostsSync = true` with `resharePostsActivationCutoff` set to
    `2026-08-27 20:58 -05:00`; ordinary-web reshare link posts run live and forward-only.
 3. 🟡 Repeat for `repostsActivationCutoff` / `useAtProtoRepostsSync`.

@@ -14,11 +14,12 @@
   image/gallery/video manifests, native embeds, source-hash protection, binary validation, and CI phase
   gates are implemented. `AtProtoBuilder.useAtProtoMediaImageSync = true` stages eligible images
   published on/after the 2026-08-01 cutoff; gallery and video flags remain `false`.
-- **Response POSSE: RESHARE LINK-POST PHASE ACTIVE** — ordinary-web reshares published on/after
-  `2026-08-27 20:58 -05:00` become `app.bsky.feed.post` link posts. Bookmarks, ATProto-targeted
-  reshares without commentary (`app.bsky.feed.repost`), and quote-posts remain implemented but dormant.
-  Each mode still requires its own `true` flag and real forward-only cutoff; the dormant modes retain
-  `DateTimeOffset.MaxValue` sentinels. See the ADR-0009 2026-08-27 Response-POSSE amendment.
+- **Response POSSE: BOOKMARK + RESHARE LINK-POST PHASES ACTIVE** — public bookmarks published on/after
+  `2026-08-27 21:30 -05:00` and ordinary-web reshares published on/after `2026-08-27 20:58 -05:00`
+  become `app.bsky.feed.post` link posts. ATProto-targeted reshares without commentary
+  (`app.bsky.feed.repost`) and quote-posts remain implemented but dormant. Each mode still requires
+  its own `true` flag and real forward-only cutoff; the dormant modes retain `DateTimeOffset.MaxValue`
+  sentinels. See the ADR-0009 2026-08-27 Response-POSSE amendment.
 
 ---
 
@@ -68,7 +69,7 @@ Full details in [ARCHITECTURE-OVERVIEW.md §6](ARCHITECTURE-OVERVIEW.md#6-sync-s
 
 ---
 
-## 🚀 Activation — Tracks A/B + image + reshare-link phases ✅ complete; other response tracks 🟡 dormant
+## 🚀 Activation — Tracks A/B + image + bookmark + reshare-link phases ✅ complete; other response tracks 🟡 dormant
 
 The document and Note tracks run **live on every push to `main`**. The same sequence is retained as
 the historical runbook (details:
