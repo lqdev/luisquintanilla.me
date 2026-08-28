@@ -976,9 +976,9 @@ let buildAtProtoMediaStaging (albums: Domain.Album list) (outputDir: string) : u
 // real uri/cid before putRecord, refusing to write if any target is unresolved.
 // ---------------------------------------------------------------------------
 
-/// Four master flags — one per response POSSE mode. Reshare link posts are active from their
-/// explicit cutoff; the other modes remain dormant until deliberately activated.
-let useAtProtoBookmarkPostsSync = false
+/// Four master flags — one per response POSSE mode. Bookmark and reshare link posts are active from
+/// their explicit cutoffs; repost and quote modes remain dormant until deliberately activated.
+let useAtProtoBookmarkPostsSync = true
 let useAtProtoResharePostsSync = true
 let useAtProtoRepostsSync = false
 let useAtProtoQuotePostsSync = false
@@ -988,7 +988,7 @@ let useAtProtoQuotePostsSync = false
 /// choosing a real cutoff, staging stays empty. Activation is therefore a deliberate two-part change
 /// — set the flag AND replace the sentinel with a real forward-only date (mirrors the notes/media
 /// cutoff discipline, which never silently backfills historical content into followers' timelines).
-let bookmarkPostsActivationCutoff = DateTimeOffset.MaxValue
+let bookmarkPostsActivationCutoff = DateTimeOffset(2026, 8, 27, 21, 30, 0, TimeSpan.FromHours -5.0)
 let resharePostsActivationCutoff = DateTimeOffset(2026, 8, 27, 20, 58, 0, TimeSpan.FromHours -5.0)
 let repostsActivationCutoff = DateTimeOffset.MaxValue
 let quotePostsActivationCutoff = DateTimeOffset.MaxValue
