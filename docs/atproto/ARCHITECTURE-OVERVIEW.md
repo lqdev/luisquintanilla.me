@@ -16,6 +16,10 @@
   staging plus collection-safe materialization are implemented behind independent flags.
   `useAtProtoMediaImageSync = true` activates post-cutoff image manifests; gallery and video remain
   `false`, and no historical media is backfilled.
+- **Response POSSE — IMPLEMENTED, DORMANT.** Public bookmarks and ordinary-web reshares become
+  `app.bsky.feed.post` link posts; ATProto-targeted reshares become native reposts when unannotated
+  or quote-posts when they contain authored commentary. Four independent flags remain `false` with
+  `DateTimeOffset.MaxValue` sentinel cutoffs.
 
 This mirrors the site's existing [ActivityPub](../activitypub/ARCHITECTURE-OVERVIEW.md) approach: a
 static hub (the F# build) with a thin dynamic spoke (one post-build `dotnet fsi` sync script run from
@@ -45,7 +49,11 @@ Vault, no storage.
 | **A** | Posts | `site.standard.document` (community Standard.site lexicon) | **🟢 Live** (`useAtProtoSync = true`) |
 | **B** | Notes | native `app.bsky.feed.post` | **🟢 Live** (`useAtProtoNotesSync = true`, forward-only from 2026-07-13) |
 | **C** | Media | native `app.bsky.feed.post` + image/gallery/video embeds | **🟡 Implemented, dormant** (independent flags and cutoffs) |
-| — | Responses, RSVP | native `app.bsky.*` | Deferred to future phases |
+| **D** | Bookmarks | `app.bsky.feed.post` + `app.bsky.embed.external` | **🟡 Implemented, dormant** (forward-only) |
+| **E** | Ordinary-web reshares | `app.bsky.feed.post` + `app.bsky.embed.external` | **🟡 Implemented, dormant** (forward-only) |
+| **F** | ATProto reshares without commentary | `app.bsky.feed.repost` | **🟡 Implemented, dormant** (forward-only) |
+| **G** | ATProto reshares with commentary | `app.bsky.feed.post` + `app.bsky.embed.record` | **🟡 Implemented, dormant** (forward-only) |
+| — | Replies, stars/likes, RSVP | native `app.bsky.*` | Deferred to future phases |
 
 Standard.site fills the "long-form article" gap that AT Protocol itself lacks, and is
 [surfaced in the Bluesky timeline](https://atproto.com/blog/standard-site-bluesky-timeline).
@@ -68,6 +76,14 @@ Program.fs (roster)
   └─ if a Part C media flag is enabled then
         AtProtoBuilder.buildAtProtoMediaStaging albums "_public"
            └─ _public/api/data/atproto/media/{images|galleries|videos}/{rkey}.json
+  ├─ if bookmark mode is enabled then
+  │     AtProtoBuilder.buildAtProtoBookmarksStaging bookmarks "_public"
+  │        └─ _public/api/data/atproto/bookmarks/{rkey}.json
+  └─ if a reshare mode is enabled then
+        AtProtoBuilder.buildAtProtoResharesStaging responses "_public"
+           ├─ _public/api/data/atproto/reshares/{rkey}.json       ← ordinary-web link posts
+           ├─ _public/api/data/atproto/quotes/{rkey}.json         ← pending quote embeds
+           └─ _public/api/data/atproto/reposts/{rkey}.json        ← pending repost subjects
 ```
 
 **`AtProtoBuilder.fs`** is the core module (added to `PersonalSite.fsproj` after
@@ -88,6 +104,10 @@ Program.fs (roster)
   (see §4).
 - **`documentLinkHead dateStr slug`** — the per-post verification `<link>` tag, flag-gated (returns
   `[]` when the flag is off or the date is unparseable, so pages stay byte-identical).
+- **Response mapping** — `AtProtoResponseMapping` parses only strict `https://bsky.app/profile/.../post/...`
+  and `at://did:.../app.bsky.feed.post/...` targets. It uses the Markdown AST's top-level blocks to
+  distinguish authored commentary from quoted source material; no YAML field or historical content changes
+  are required.
 
 ---
 
@@ -187,14 +207,40 @@ Plan vocabulary: `create` (rkey absent) · `update` (ours, changed) · `unchange
 
 ---
 
-## 7. CI job
+## 7. Response POSSE records
+
+Response routing is derived from the existing `response_type`, `targeturl`, and Markdown source:
+
+| Website intent | Target | Native record |
+|---|---|---|
+| Bookmark | Any ordinary URL | `app.bsky.feed.post` with an external card |
+| Reshare | Ordinary web URL | `app.bsky.feed.post` with an external card |
+| Reshare without authored commentary | Native ATProto post | `app.bsky.feed.repost` |
+| Reshare with authored commentary | Native ATProto post | `app.bsky.feed.post` quote-post |
+
+Link-post text preserves the hub as `Bookmarked: {title}` or `Shared: {title}`, followed by the
+selected excerpt and the canonical `/bookmarks/{slug}/` or `/responses/{slug}/` URL. The canonical URL
+has a UTF-8 byte-indexed link facet; the external card points at the target resource. Quote-post text
+contains only authored commentary plus the canonical response URL because the original post is carried
+by `embed.record`. Native reposts carry only the resolved `{uri, cid}` subject.
+
+The static build writes pending quote/repost wrappers with a `targetRef` sidecar. The sync script
+resolves handles to DIDs and batches `app.bsky.feed.getPosts` requests (25 URIs maximum), then fills
+the strong reference before planning or authentication. Any unresolved target aborts that track before
+the first write. Reposts do not use `sourceHash`; their immutable subject is the ownership guard.
+All response rkeys are intent-qualified (`bookmark:`, `reshare-link:`, `quote:`, `repost:`), and one
+collision assertion covers all native tracks before staging.
+
+---
+
+## 8. CI job
 
 `sync_atproto_job` in `.github/workflows/publish-azure-static-web-apps.yml`, shaped like
 `send_webmentions_job`:
 
-- `needs: build_and_deploy_job`; downloads only the document, Note, and/or media artifacts that were
+- `needs: build_and_deploy_job`; downloads only the document, Note, media, and/or response artifacts that were
   produced.
-- **Gated** on the document, Note, image/gallery, and video staging outputs — a `Check for AT Protocol
+- **Gated** on document, Note, media, and four response staging outputs — a `Check for AT Protocol
   staging` step sets them from the presence of staged files. All flags off → all outputs `false` →
   **the job is skipped entirely** (zero cost, no confusing no-op runs).
 - Runs only on `push` to `main`.
@@ -204,10 +250,14 @@ Plan vocabulary: `create` (rkey absent) · `update` (ours, changed) · `unchange
   `--media-kind images` and `--media-kind videos` invocations. Media artifacts are downloaded only
   when their corresponding staging gate is true; the image flag is active while gallery and video
   remain dormant.
+- Response artifacts use independent bookmark, reshare-link, quote, and repost downloads and sync
+  invocations. Link and quote posts use the shared `app.bsky.feed.post` collection; reposts use
+  `app.bsky.feed.repost`. The response modes remain dormant until their source flag and cutoff are
+  activated together.
 
 ---
 
-## 8. Activation runbook — Tracks A/B + image phase ✅ complete; gallery/video 🟡 dormant
+## 9. Activation runbook — Tracks A/B + image phase ✅ complete; response tracks 🟡 dormant
 
 The document, Note, and image tracks run **live on every push to `main`**. Gallery and video remain
 deliberately dormant until their independent rollouts are approved:
@@ -224,29 +274,43 @@ deliberately dormant until their independent rollouts are approved:
 5. 🟡 **Gallery/video activation:** enable each independent flag only after its own rollout review and
    verify the PDS/AppView record before expanding the phase.
 
-To roll back any track, drop `--commit` (dry-run) or set its staging flag to `false`.
+Response activation is intentionally forward-only and ordered to limit risk:
+
+1. 🟡 Set `bookmarkPostsActivationCutoff` to the desired instant and flip
+   `useAtProtoBookmarkPostsSync = true`. Run a dry-run, then one live record with `--commit --limit 1`.
+2. 🟡 Repeat for `resharePostsActivationCutoff` / `useAtProtoResharePostsSync`.
+3. 🟡 Repeat for `repostsActivationCutoff` / `useAtProtoRepostsSync`.
+4. 🟡 Repeat for `quotePostsActivationCutoff` / `useAtProtoQuotePostsSync`.
+
+Verify the PDS record and Bluesky rendering after each capped run before removing `--limit`. The
+builder fails closed if a response flag is enabled while its cutoff is still `DateTimeOffset.MaxValue`.
+To roll back any track, drop `--commit` (dry-run) or set its staging flag to `false`; this phase never
+deletes or unreposts records. Reclassifying an already-published reshare can leave the old native
+record orphaned until deletion reconciliation is implemented.
 
 ---
 
-## 9. File map
+## 10. File map
 
 | File | Role |
 |------|------|
-| `AtProtoBuilder.fs` | Core module: `Config`, deterministic TIDs, document/Note/media record builders, media flags and cutoffs |
+| `AtProtoBuilder.fs` | Core module: `Config`, deterministic TIDs, document/Note/media/response record builders, flags and cutoffs |
+| `AtProtoResponseMapping.fs` | Pure response target parsing and Markdown commentary classification |
 | `Services\AtProtoMediaValidation.fs` | Network-free image signature/dimension and MP4 size/container validation |
-| `Program.fs` | Flag-gated calls for document, Note, and rich-media staging plus shared native rkey checks |
-| `Scripts/sync-atproto.fsx` | Post-build POSSE sync, media validation/materialization, and video polling |
+| `Program.fs` | Flag-gated calls for document, Note, rich-media, and response staging plus shared native rkey checks |
+| `Scripts/sync-atproto.fsx` | Post-build POSSE sync, target strong-ref resolution, media validation/materialization, and video polling |
 | `Scripts/create-atproto-publication.fsx` | One-time Part A publication bootstrap |
 | `_src/.well-known/site.standard.publication` | Part A verification file (live) |
-| `.github/workflows/publish-azure-static-web-apps.yml` | `sync_atproto_job` + `atproto_staged` gate |
+| `.github/workflows/publish-azure-static-web-apps.yml` | `sync_atproto_job` + document/media/response staging gates |
 | `test-scripts/test-atproto-tid.fsx` | 19 TID determinism/format assertions |
 | `test-scripts/test-atproto-document-json.fsx` | 24 wire-contract assertions |
 | `test-scripts/test-atproto-media.fsx` | 30 rich-media contract assertions |
+| `test-scripts/test-atproto-response-mapping.fsx` | 46 response target, routing, text, facets, tags, and record-shape assertions |
 | `docs/adr/0009-at-protocol-integration.md` | Architecture Decision Record |
 
 ---
 
-## 10. References
+## 11. References
 
 - Issue [#2574](https://github.com/lqdev/luisquintanilla.me/issues/2574) — implementation tracking
 - [ADR-0009](../adr/0009-at-protocol-integration.md) — durable decisions

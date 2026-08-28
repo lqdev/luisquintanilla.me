@@ -3,11 +3,18 @@
 
 #r "nuget: YamlDotNet, 16.3.0"
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
+#r "nuget: Markdig, 0.38.0"
 #load "../Domain.fs"
 #load "../Constants.fs"
+#load "../StructuredData.fs"
+#load "../ReviewSchema.fs"
 #load "../ContentTypes.fs"
+#load "../CustomBlocks.fs"
+#load "../MediaTypes.fs"
+#load "../ASTParsing.fs"
 #load "../Services/Tag.fs"
 #load "../Services/AtProtoMediaValidation.fs"
+#load "../AtProtoResponseMapping.fs"
 #load "../AtProtoBuilder.fs"
 
 open System
@@ -180,7 +187,7 @@ let collisionCaught =
             ("app.bsky.feed.post", "3abc", "note:x")
             ("app.bsky.feed.post", "3abc", "media:x") ]
         false
-    with ex -> ex.Message.Contains("native app.bsky.feed.post rkey collision")
+    with ex -> ex.Message.Contains("native rkey collision")
 check "cross-content native rkey collision is loud" collisionCaught
 
 printfn "-----------------------------------"

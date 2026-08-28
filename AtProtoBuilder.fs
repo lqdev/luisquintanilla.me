@@ -15,6 +15,7 @@ open System.Text.Json
 open System.Text.Json.Nodes
 open System.Text.RegularExpressions
 open Giraffe.ViewEngine
+open AtProtoResponseMapping
 #if !INTERACTIVE
 open Markdig
 open CustomBlocks
@@ -534,7 +535,7 @@ let assertNoNativeTidCollisions (items: (string * string * string) list) : unit 
                 Some (sprintf "%s/%s <- %s" collection rkey (group |> List.map (fun (_, _, source) -> source) |> String.concat ", "))
             else None)
     if not (List.isEmpty collisions) then
-        failwithf "AtProtoBuilder native app.bsky.feed.post rkey collision: %s" (String.concat "; " collisions)
+        failwithf "AtProtoBuilder native rkey collision: %s" (String.concat "; " collisions)
 
 /// Best-effort, dependency-free Markdown -> plaintext for the document's `textContent`
 /// (the lexicon asks for plaintext with no markdown/formatting).
@@ -954,3 +955,418 @@ let buildAtProtoMediaStaging (albums: Domain.Album list) (outputDir: string) : u
         File.WriteAllText(Path.Combine(directory, sprintf "%s.json" rkey), wrapper.ToJsonString opts)
         count <- count + 1
     printfn "  ✅ Generated %d AT Protocol rich-media staging records" count
+
+// ---------------------------------------------------------------------------
+// Response POSSE — bookmarks + reshares -> native Bluesky records.
+//
+// Scope (issue #2574 / ADR-0009 amendment):
+//   * Public bookmark response targeting an ordinary URL  -> app.bsky.feed.post link post.
+//   * Ordinary-web reshare response                        -> app.bsky.feed.post link post.
+//   * ATProto-targeted reshare, NO authored commentary     -> app.bsky.feed.repost.
+//   * ATProto-targeted reshare, WITH authored commentary   -> app.bsky.feed.post quote-post.
+//
+// Classification lives in AtProtoResponseMapping (pure). Everything below is the record + staging
+// layer: it reuses the SAME deterministic-TID rkeys, sourceHash write-scope guard, grapheme/byte
+// truncation, and link-facet math as Tracks A/B/C. rkey SEEDS are namespaced ("bookmark:",
+// "reshare-link:", "quote:", "repost:") so a response record can never collide with a Post/Note/media
+// record. Reposts write to the SEPARATE app.bsky.feed.repost collection and — per the ATProto
+// repost lexicon, which has no room for an extension field — carry NO sourceHash; the sync script
+// guards them by their natural subject (URI + CID) instead. Quote/repost records embed a build-time
+// PLACEHOLDER for the quoted subject; the sync script resolves the target actor -> DID and fills the
+// real uri/cid before putRecord, refusing to write if any target is unresolved.
+// ---------------------------------------------------------------------------
+
+/// Four dormant master flags — one per response POSSE mode. All false: no staging is produced and
+/// _public stays byte-identical to the baseline until a mode is deliberately activated.
+let useAtProtoBookmarkPostsSync = false
+let useAtProtoResharePostsSync = false
+let useAtProtoRepostsSync = false
+let useAtProtoQuotePostsSync = false
+
+/// Forward-only activation cutoffs, one per mode. The SENTINEL is DateTimeOffset.MaxValue: no
+/// response is ever published on/after MaxValue, so even if a flag above is flipped to true WITHOUT
+/// choosing a real cutoff, staging stays empty. Activation is therefore a deliberate two-part change
+/// — set the flag AND replace the sentinel with a real forward-only date (mirrors the notes/media
+/// cutoff discipline, which never silently backfills historical content into followers' timelines).
+let bookmarkPostsActivationCutoff = DateTimeOffset.MaxValue
+let resharePostsActivationCutoff = DateTimeOffset.MaxValue
+let repostsActivationCutoff = DateTimeOffset.MaxValue
+let quotePostsActivationCutoff = DateTimeOffset.MaxValue
+
+let private responseActivationModes =
+    [ "bookmarks", useAtProtoBookmarkPostsSync, bookmarkPostsActivationCutoff
+      "reshare link posts", useAtProtoResharePostsSync, resharePostsActivationCutoff
+      "reposts", useAtProtoRepostsSync, repostsActivationCutoff
+      "quote-posts", useAtProtoQuotePostsSync, quotePostsActivationCutoff ]
+
+/// Fail closed when an operator enables a response track without replacing its
+/// sentinel cutoff. This prevents a flag-only change from silently changing the
+/// forward-only rollout policy.
+let validateResponseActivationConfiguration () : unit =
+    match responseActivationModes |> List.tryFind (fun (_, enabled, cutoff) ->
+        enabled && cutoff = DateTimeOffset.MaxValue) with
+    | Some (mode, _, _) ->
+        failwithf "ATProto response track '%s' is enabled but its activation cutoff is still DateTimeOffset.MaxValue" mode
+    | None -> ()
+
+let private anyReshareModeEnabled =
+    useAtProtoResharePostsSync || useAtProtoRepostsSync || useAtProtoQuotePostsSync
+
+/// Canonical `/bookmarks/{slug}/` and `/responses/{slug}/` paths + URLs, from the single permalink
+/// authority (ContentTypes.urlPrefix) so the in-text canonical link can never drift from the real URL.
+let bookmarkPath (slug: string) : string =
+    sprintf "%s%s/" (ContentTypes.urlPrefix ContentTypes.ContentType.Bookmarks) slug
+let bookmarkUrl (slug: string) : string = Config.canonicalUrl + bookmarkPath slug
+let responsePath (slug: string) : string =
+    sprintf "%s%s/" (ContentTypes.urlPrefix ContentTypes.ContentType.Responses) slug
+let responseUrl (slug: string) : string = Config.canonicalUrl + responsePath slug
+
+/// A response body with its front matter removed, for Markdown analysis (per the plan: analyse the
+/// MARKDOWN source, not the rendered HTML in Response.Content).
+let private responseBody (response: Domain.Response) : string =
+    let raw = response.MarkdownSource |> Option.defaultValue ""
+    ASTParsing.stripFrontMatter raw
+
+let private isoTimestamp (published: DateTimeOffset) =
+    published.ToString("yyyy-MM-ddTHH:mm:ss.fffzzz", CultureInfo.InvariantCulture)
+
+let private englishLangs () =
+    let langs = JsonArray()
+    langs.Add(JsonValue.Create "en")
+    langs
+
+let private addNormalizedTags (record: JsonObject) (tags: string array) =
+    let normalized = normalizeAtProtoTags tags
+    if normalized.Length > 0 then
+        let tagArray = JsonArray()
+        normalized |> Array.iter (fun tag -> tagArray.Add(JsonValue.Create tag))
+        record.Add("tags", tagArray)
+
+/// Compose native post text `"{header}\n\n{excerpt}\n\n{url}"` (or `"{header}\n\n{url}"` when the
+/// excerpt is empty). The canonical URL is appended AFTER truncation — like buildMediaPostText — so
+/// its byte-facet offsets are stable, and the excerpt is grapheme/byte-trimmed so the whole text
+/// stays within Bluesky's 300-grapheme / 3000-byte caps with the header + URL reserved.
+let private composeLinkPostText (header: string) (excerpt: string) (url: string) : string =
+    let header = (nonNull header).Trim()
+    let excerpt = (nonNull excerpt).Trim()
+    let urlSuffix = "\n\n" + url
+    let sep = "\n\n"
+    if graphemeLength urlSuffix > 300 || utf8Length urlSuffix > 3000 then
+        failwithf "Canonical response URL exceeds app.bsky.feed.post limits: %s" url
+    elif graphemeLength header + graphemeLength urlSuffix > 300
+       || utf8Length header + utf8Length urlSuffix > 3000 then
+        // Even header + URL overflow — trim the header (title) to fit, keep the URL.
+        let availG = max 0 (300 - graphemeLength urlSuffix)
+        let availB = max 0 (3000 - utf8Length urlSuffix)
+        (truncateToBytesAndGraphemes availB availG header).TrimEnd() + urlSuffix
+    elif excerpt.Length = 0 then header + urlSuffix
+    else
+        let availG = max 0 (300 - graphemeLength header - graphemeLength sep - graphemeLength urlSuffix)
+        let availB = max 0 (3000 - utf8Length header - utf8Length sep - utf8Length urlSuffix)
+        if availG = 0 || availB = 0 then header + urlSuffix
+        else
+            let body = (truncateToBytesAndGraphemes availB availG excerpt).TrimEnd()
+            if body.Length = 0 then header + urlSuffix else header + sep + body + urlSuffix
+
+/// Compose a quote-post text `"{commentary}\n\n{url}"`. Commentary is present by construction (a
+/// reshare only becomes a quote-post when it has authored commentary), but the empty guard keeps the
+/// URL (and its facet) valid if plaintext extraction somehow collapses to nothing.
+let private composeQuoteText (commentary: string) (url: string) : string =
+    let c = (nonNull commentary).Trim()
+    let urlSuffix = "\n\n" + url
+    if graphemeLength urlSuffix > 300 || utf8Length urlSuffix > 3000 then
+        failwithf "Canonical response URL exceeds app.bsky.feed.post limits: %s" url
+    elif c.Length = 0 then url
+    else
+        let availG = max 0 (300 - graphemeLength urlSuffix)
+        let availB = max 0 (3000 - utf8Length urlSuffix)
+        let body = (truncateToBytesAndGraphemes availB availG c).TrimEnd()
+        if body.Length = 0 then url else body + urlSuffix
+
+/// app.bsky.embed.external card pointing at the EXTERNAL target URL (per the contract: bookmark and
+/// reshare link cards point at the external target, while the canonical lqdev.me URL rides in the
+/// post text via a byte facet).
+let private externalCardJson (externalUrl: string) (title: string) (description: string) : JsonObject =
+    let ext = JsonObject()
+    ext.Add("uri", JsonValue.Create externalUrl)
+    let title = if String.IsNullOrWhiteSpace title then Config.publicationName else title.Trim()
+    ext.Add("title", JsonValue.Create(truncateGraphemes 300 title))
+    ext.Add("description", JsonValue.Create(truncateGraphemes 1000 ((nonNull description).Trim())))
+    let embed = JsonObject()
+    embed.Add("$type", JsonValue.Create "app.bsky.embed.external")
+    embed.Add("external", ext)
+    embed
+
+/// Build the app.bsky.feed.post record for a bookmark response (ordinary-URL target). Text:
+/// `Bookmarked: {title}` + excerpt + canonical bookmark URL (facet); external card -> target URL.
+let buildBookmarkPostRecordJson (response: Domain.Response) (published: DateTimeOffset)
+                                (slug: string) (externalUrl: string) : JsonObject =
+    let title = if isNull response.Metadata.Title then "" else response.Metadata.Title.Trim()
+    let excerpt = stripToPlainText (responseBody response)
+    let canonical = bookmarkUrl slug
+    let text = composeLinkPostText (sprintf "Bookmarked: %s" title) excerpt canonical
+    let o = JsonObject()
+    o.Add("$type", JsonValue.Create "app.bsky.feed.post")
+    o.Add("text", JsonValue.Create text)
+    o.Add("createdAt", JsonValue.Create(isoTimestamp published))
+    o.Add("langs", englishLangs ())
+    addNormalizedTags o response.Metadata.Tags
+    let facets = JsonArray()
+    facets.Add(buildMediaLinkFacet text canonical)   // canonical lqdev.me URL as a link facet
+    o.Add("facets", facets)
+    o.Add("embed", externalCardJson externalUrl title excerpt)
+    let tags = normalizeAtProtoTags response.Metadata.Tags
+    o.Add("sourceHash", JsonValue.Create(generateHash (String.concat "\u0000" [ canonical; nonNull externalUrl; text; String.concat "\u0001" tags ])))
+    o
+
+/// Build the app.bsky.feed.post record for an ordinary-web reshare. Text: `Shared: {title}` +
+/// authored commentary if present else quoted source excerpt + canonical response URL (facet);
+/// external card -> the ordinary target URL.
+let buildResharePostRecordJson (response: Domain.Response) (published: DateTimeOffset)
+                               (slug: string) (externalUrl: string) : JsonObject =
+    let title = if isNull response.Metadata.Title then "" else response.Metadata.Title.Trim()
+    let analysis = analyzeResponseBody (responseBody response)
+    let excerptSource =
+        if analysis.HasAuthoredCommentary then analysis.AuthoredCommentaryMarkdown
+        elif not (String.IsNullOrWhiteSpace analysis.QuotedExcerptMarkdown) then analysis.QuotedExcerptMarkdown
+        else responseBody response
+    let excerpt = stripToPlainText excerptSource
+    let canonical = responseUrl slug
+    let text = composeLinkPostText (sprintf "Shared: %s" title) excerpt canonical
+    let o = JsonObject()
+    o.Add("$type", JsonValue.Create "app.bsky.feed.post")
+    o.Add("text", JsonValue.Create text)
+    o.Add("createdAt", JsonValue.Create(isoTimestamp published))
+    o.Add("langs", englishLangs ())
+    addNormalizedTags o response.Metadata.Tags
+    let facets = JsonArray()
+    facets.Add(buildMediaLinkFacet text canonical)
+    o.Add("facets", facets)
+    o.Add("embed", externalCardJson externalUrl title excerpt)
+    let tags = normalizeAtProtoTags response.Metadata.Tags
+    o.Add("sourceHash", JsonValue.Create(generateHash (String.concat "\u0000" [ canonical; nonNull externalUrl; text; String.concat "\u0001" tags ])))
+    o
+
+/// Build the app.bsky.feed.post quote-post record for an ATProto-targeted reshare WITH commentary.
+/// Text: authored commentary + canonical response URL (facet). embed.record carries a build-time
+/// PLACEHOLDER {uri="",cid=""}; the sync script resolves the target and fills it before putRecord.
+/// The quoted post is NOT duplicated in text — it rides in the embed.
+let buildQuotePostRecordJson (response: Domain.Response) (published: DateTimeOffset)
+                             (slug: string) (target: TargetRef) : JsonObject =
+    match target with
+    | AtProtoPost _ -> ()
+    | OrdinaryUrl url -> failwithf "Cannot build a quote-post for ordinary target URL '%s'" url
+    let analysis = analyzeResponseBody (responseBody response)
+    let commentary = stripToPlainText analysis.AuthoredCommentaryMarkdown
+    let canonical = responseUrl slug
+    let text = composeQuoteText commentary canonical
+    let targetUrl = (nonNull response.Metadata.TargetUrl).Trim()
+    let o = JsonObject()
+    o.Add("$type", JsonValue.Create "app.bsky.feed.post")
+    o.Add("text", JsonValue.Create text)
+    o.Add("createdAt", JsonValue.Create(isoTimestamp published))
+    o.Add("langs", englishLangs ())
+    addNormalizedTags o response.Metadata.Tags
+    let facets = JsonArray()
+    facets.Add(buildMediaLinkFacet text canonical)
+    o.Add("facets", facets)
+    let subject = JsonObject()
+    subject.Add("uri", JsonValue.Create "")   // placeholder — filled by sync after target resolution
+    subject.Add("cid", JsonValue.Create "")
+    let embed = JsonObject()
+    embed.Add("$type", JsonValue.Create "app.bsky.embed.record")
+    embed.Add("record", subject)
+    o.Add("embed", embed)
+    // sourceHash covers the canonical URL, authored text, and original target URL. It deliberately does
+    // NOT cover the resolved CID (unknown at build time), so a target's later edit does not rewrite the
+    // quote; changing the local target reference does re-sync it.
+    let tags = normalizeAtProtoTags response.Metadata.Tags
+    o.Add("sourceHash", JsonValue.Create(generateHash (String.concat "\u0000" [ canonical; text; targetUrl; String.concat "\u0001" tags ])))
+    o
+
+/// Build the app.bsky.feed.repost record for an ATProto-targeted reshare with NO commentary. subject
+/// is a strongRef PLACEHOLDER {uri="",cid=""} filled by the sync. NO text and — deliberately — NO
+/// sourceHash: the repost lexicon has no extension slot, so the sync guards reposts by their natural
+/// subject URI+CID instead of a sourceHash marker.
+let buildRepostRecordJson (published: DateTimeOffset) : JsonObject =
+    let o = JsonObject()
+    o.Add("$type", JsonValue.Create "app.bsky.feed.repost")
+    let subject = JsonObject()
+    subject.Add("uri", JsonValue.Create "")   // placeholder — filled by sync after target resolution
+    subject.Add("cid", JsonValue.Create "")
+    o.Add("subject", subject)
+    o.Add("createdAt", JsonValue.Create(isoTimestamp published))
+    o
+
+// --- Eligibility / routing ---------------------------------------------------
+
+/// A single planned response record (post-flag, post-cutoff), before JSON construction.
+type private ResponsePlan =
+    { Published: DateTimeOffset
+      Slug: string
+      Response: Domain.Response
+      Kind: ResponsePostKind
+      Target: TargetRef }
+
+let private parseResponseDate (r: Domain.Response) : DateTimeOffset option =
+    match DateTimeOffset.TryParse r.Metadata.DatePublished with
+    | true, d -> Some d
+    | _ -> None
+
+/// Namespaced deterministic rkey for a response record. The seed prefix ("bookmark", "reshare-link",
+/// "quote", "repost") keeps response rkeys disjoint from Post/Note/media rkeys.
+let responseRkey (seedPrefix: string) (published: DateTimeOffset) (slug: string) : string =
+    deriveTid published (sprintf "%s:%s" seedPrefix (nonNull slug))
+
+let private resharePrefix (kind: ResponsePostKind) =
+    match kind with
+    | LinkPost -> "reshare-link"
+    | QuotePost -> "quote"
+    | Repost -> "repost"
+
+/// The AT Protocol collection a response record is written to. Reposts get their own collection, so
+/// a repost rkey can never collide with a post rkey.
+let responseCollection (kind: ResponsePostKind) : string =
+    match kind with
+    | Repost -> "app.bsky.feed.repost"
+    | LinkPost | QuotePost -> "app.bsky.feed.post"
+
+/// Bookmark responses eligible for POSSE: bookmark-type, ordinary-URL target, flag on, post-cutoff.
+/// ATProto-targeted bookmarks are intentionally skipped (private app.bsky.bookmark procedures are
+/// out of scope).
+let private eligibleBookmarkPlans (bookmarks: Domain.Response list) : ResponsePlan list =
+    if not useAtProtoBookmarkPostsSync then []
+    else
+        bookmarks
+        |> List.filter (fun r -> String.Equals(r.Metadata.ResponseType, "bookmark", StringComparison.OrdinalIgnoreCase))
+        |> List.choose (fun r ->
+            match parseResponseDate r with
+            | Some d when d >= bookmarkPostsActivationCutoff ->
+                match parseTargetRef r.Metadata.TargetUrl with
+                | OrdinaryUrl _ as t -> Some { Published = d; Slug = r.FileName; Response = r; Kind = LinkPost; Target = t }
+                | AtProtoPost _ -> None
+            | _ -> None)
+
+/// Reshare responses eligible for POSSE, each routed to its kind (link/quote/repost) and gated by
+/// that kind's own flag + cutoff. Body analysis (for the quote-vs-repost decision) only runs when at
+/// least one reshare mode is enabled, so dormant builds pay no parsing cost.
+let private eligibleResharePlans (responses: Domain.Response list) : ResponsePlan list =
+    if not anyReshareModeEnabled then []
+    else
+        responses
+        |> List.filter (fun r -> String.Equals(r.Metadata.ResponseType, "reshare", StringComparison.OrdinalIgnoreCase))
+        |> List.choose (fun r ->
+            match parseResponseDate r with
+            | None -> None
+            | Some d ->
+                let target, kind = classifyResponse r.Metadata.TargetUrl (responseBody r)
+                let enabled =
+                    match kind with
+                    | LinkPost -> useAtProtoResharePostsSync && d >= resharePostsActivationCutoff
+                    | QuotePost -> useAtProtoQuotePostsSync && d >= quotePostsActivationCutoff
+                    | Repost -> useAtProtoRepostsSync && d >= repostsActivationCutoff
+                if enabled && kind = QuotePost && containsLocalMedia (responseBody r) then
+                    failwithf "ATProto quote-post response '%s' contains local media; recordWithMedia is out of scope" r.FileName
+                if enabled then Some { Published = d; Slug = r.FileName; Response = r; Kind = kind; Target = target }
+                else None)
+
+/// (collection, rkey, source) keys for all response-derived native records, for the cross-content
+/// collision assertion in Program.fs. Respects every flag + cutoff, so dormant modes contribute
+/// nothing.
+let responseNativeStagingKeys (bookmarks: Domain.Response list) (responses: Domain.Response list)
+                              : (string * string * string) list =
+    validateResponseActivationConfiguration ()
+    let bmKeys =
+        eligibleBookmarkPlans bookmarks
+        |> List.map (fun p -> responseCollection p.Kind, responseRkey "bookmark" p.Published p.Slug, "bookmark:" + p.Slug)
+    let rsKeys =
+        eligibleResharePlans responses
+        |> List.map (fun p ->
+            let prefix = resharePrefix p.Kind
+            responseCollection p.Kind, responseRkey prefix p.Published p.Slug, prefix + ":" + p.Slug)
+    bmKeys @ rsKeys
+
+let private targetRefJson (kind: ResponsePostKind) (target: TargetRef) : JsonObject option =
+    match target with
+    | AtProtoPost(actor, rkey) ->
+        let o = JsonObject()
+        o.Add("actor", JsonValue.Create actor)
+        o.Add("rkey", JsonValue.Create rkey)
+        o.Add("kind", JsonValue.Create (match kind with | QuotePost -> "quote" | Repost -> "repost" | LinkPost -> "link"))
+        Some o
+    | OrdinaryUrl _ -> None
+
+/// Generate bookmark staging records (app.bsky.feed.post) under
+/// {outputDir}/api/data/atproto/bookmarks/{rkey}.json. Flag-gated + forward-only; sync consumes them
+/// exactly like Notes (sourceHash write-scope guard, no media upload). Fails loudly on rkey collision.
+let buildAtProtoBookmarksStaging (bookmarks: Domain.Response list) (outputDir: string) : unit =
+    validateResponseActivationConfiguration ()
+    printfn "  🌐 Generating AT Protocol bookmark staging records (app.bsky.feed.post)..."
+    let dir = Path.Combine(outputDir, "api", "data", "atproto", "bookmarks")
+    Directory.CreateDirectory dir |> ignore
+    let plans = eligibleBookmarkPlans bookmarks
+    assertNoNativeTidCollisions (
+        plans |> List.map (fun p -> "app.bsky.feed.post", responseRkey "bookmark" p.Published p.Slug, "bookmark:" + p.Slug))
+    let opts = JsonSerializerOptions(WriteIndented = true)
+    let mutable count = 0
+    for p in plans do
+        let externalUrl = match p.Target with | OrdinaryUrl u -> u | AtProtoPost _ -> ""
+        let rkey = responseRkey "bookmark" p.Published p.Slug
+        let wrapper = JsonObject()
+        wrapper.Add("collection", JsonValue.Create "app.bsky.feed.post")
+        wrapper.Add("rkey", JsonValue.Create rkey)
+        wrapper.Add("stagingKind", JsonValue.Create "bookmark")
+        wrapper.Add("record", buildBookmarkPostRecordJson p.Response p.Published p.Slug externalUrl)
+        File.WriteAllText(Path.Combine(dir, sprintf "%s.json" rkey), wrapper.ToJsonString opts)
+        count <- count + 1
+    printfn "  ✅ Generated %d AT Protocol bookmark staging records (post-cutoff)" count
+
+/// Generate reshare staging records, routed per kind: link posts -> reshares/, quote posts ->
+/// quotes/, reposts -> reposts/ (each only when its mode is enabled and post-cutoff). Quote/repost
+/// wrappers carry a `targetRef` sidecar {actor, rkey, kind} the sync uses to resolve + fill the
+/// embed/subject strongRef. Fails loudly on rkey collision (checked across all kinds together).
+let buildAtProtoResharesStaging (responses: Domain.Response list) (outputDir: string) : unit =
+    validateResponseActivationConfiguration ()
+    printfn "  🌐 Generating AT Protocol reshare staging records..."
+    let plans = eligibleResharePlans responses
+    assertNoNativeTidCollisions (
+        plans |> List.map (fun p ->
+            let prefix = resharePrefix p.Kind
+            responseCollection p.Kind, responseRkey prefix p.Published p.Slug, prefix + ":" + p.Slug))
+    let opts = JsonSerializerOptions(WriteIndented = true)
+    let mutable linkCount = 0
+    let mutable quoteCount = 0
+    let mutable repostCount = 0
+    for p in plans do
+        let prefix = resharePrefix p.Kind
+        let rkey = responseRkey prefix p.Published p.Slug
+        let collection = responseCollection p.Kind
+        let subdir = match p.Kind with | LinkPost -> "reshares" | QuotePost -> "quotes" | Repost -> "reposts"
+        let stagingKind =
+            match p.Kind with
+            | LinkPost -> "reshare-link"
+            | QuotePost -> "quote"
+            | Repost -> "repost"
+        let dir = Path.Combine(outputDir, "api", "data", "atproto", subdir)
+        Directory.CreateDirectory dir |> ignore
+        let wrapper = JsonObject()
+        wrapper.Add("collection", JsonValue.Create collection)
+        wrapper.Add("rkey", JsonValue.Create rkey)
+        wrapper.Add("stagingKind", JsonValue.Create stagingKind)
+        match targetRefJson p.Kind p.Target with
+        | Some t -> wrapper.Add("targetRef", t)
+        | None -> ()
+        let record =
+            match p.Kind with
+            | LinkPost ->
+                let externalUrl = match p.Target with | OrdinaryUrl u -> u | AtProtoPost _ -> ""
+                buildResharePostRecordJson p.Response p.Published p.Slug externalUrl
+            | QuotePost -> buildQuotePostRecordJson p.Response p.Published p.Slug p.Target
+            | Repost -> buildRepostRecordJson p.Published
+        wrapper.Add("record", record)
+        File.WriteAllText(Path.Combine(dir, sprintf "%s.json" rkey), wrapper.ToJsonString opts)
+        match p.Kind with
+        | LinkPost -> linkCount <- linkCount + 1
+        | QuotePost -> quoteCount <- quoteCount + 1
+        | Repost -> repostCount <- repostCount + 1
+    printfn "  ✅ Generated %d reshare link, %d quote, %d repost staging records" linkCount quoteCount repostCount

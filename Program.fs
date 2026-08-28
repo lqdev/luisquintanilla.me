@@ -177,10 +177,13 @@ let main argv =
     // service rollout is explicitly enabled.  All enabled native records are
     // collision-checked together with Notes before any manifest is written.
     let mediaAlbums = mediaFeedData |> List.map (fun fd -> fd.Content)
+    let atprotoBookmarks = bookmarksFeedData |> List.map (fun fd -> fd.Content)
+    let atprotoResponses = responsesFeedData |> List.map (fun fd -> fd.Content)
     let nativeKeys =
         AtProtoBuilder.nativeStagingKeys
             (notesFeedData |> List.map (fun fd -> fd.Content))
             mediaAlbums
+        @ AtProtoBuilder.responseNativeStagingKeys atprotoBookmarks atprotoResponses
     AtProtoBuilder.assertNoNativeTidCollisions nativeKeys
 
     // Track B — Notes -> native app.bsky.feed.post staging records. Gated behind
@@ -197,6 +200,21 @@ let main argv =
        || AtProtoBuilder.useAtProtoMediaVideoSync then
         printfn "🌐 Building AT Protocol rich-media staging records..."
         AtProtoBuilder.buildAtProtoMediaStaging mediaAlbums "_public"
+
+    // Response POSSE — bookmarks + reshares -> native Bluesky records (#2574 / ADR-0009 amendment).
+    // Each mode is gated behind its own dormant flag (all false by default) and a forward-only
+    // cutoff, so _public stays byte-identical until a mode is deliberately activated. Bookmarks and
+    // ordinary-web reshares become app.bsky.feed.post link posts; ATProto-targeted reshares become
+    // a repost (no commentary) or a quote-post (with commentary). The sync script consumes these.
+    if AtProtoBuilder.useAtProtoBookmarkPostsSync then
+        printfn "🌐 Building AT Protocol bookmark staging records..."
+        AtProtoBuilder.buildAtProtoBookmarksStaging atprotoBookmarks "_public"
+
+    if AtProtoBuilder.useAtProtoResharePostsSync
+       || AtProtoBuilder.useAtProtoRepostsSync
+       || AtProtoBuilder.useAtProtoQuotePostsSync then
+        printfn "🌐 Building AT Protocol reshare staging records..."
+        AtProtoBuilder.buildAtProtoResharesStaging atprotoResponses "_public"
     
     // =============================================================================
     // ActivityPub Followers Collection - Phase 4A Implementation

@@ -6,10 +6,17 @@
 
 #r "nuget: YamlDotNet, 16.3.0"
 #r "nuget: Giraffe.ViewEngine, 1.4.0"
+#r "nuget: Markdig, 0.38.0"
 #load "../Domain.fs"
 #load "../Constants.fs"
+#load "../StructuredData.fs"
+#load "../ReviewSchema.fs"
 #load "../ContentTypes.fs"
+#load "../CustomBlocks.fs"
+#load "../MediaTypes.fs"
+#load "../ASTParsing.fs"
 #load "../Services/Tag.fs"
+#load "../AtProtoResponseMapping.fs"
 #load "../AtProtoBuilder.fs"
 
 open System
