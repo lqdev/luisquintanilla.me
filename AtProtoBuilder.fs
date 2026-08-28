@@ -1265,8 +1265,8 @@ let private eligibleResharePlans (responses: Domain.Response list) : ResponsePla
                     | LinkPost -> useAtProtoResharePostsSync && d >= resharePostsActivationCutoff
                     | QuotePost -> useAtProtoQuotePostsSync && d >= quotePostsActivationCutoff
                     | Repost -> useAtProtoRepostsSync && d >= repostsActivationCutoff
-                if enabled && kind = QuotePost && containsLocalMedia (responseBody r) then
-                    failwithf "ATProto quote-post response '%s' contains local media; recordWithMedia is out of scope" r.FileName
+                if enabled && kind = QuotePost && containsUnsupportedQuoteMedia (responseBody r) then
+                    failwithf "ATProto quote-post response '%s' contains media (Markdown image or media block); recordWithMedia is out of scope" r.FileName
                 if enabled then Some { Published = d; Slug = r.FileName; Response = r; Kind = kind; Target = target }
                 else None)
 

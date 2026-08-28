@@ -98,11 +98,11 @@ let codeFenceQuote = "```\n> not a real blockquote\n```"
 check "fenced '>' is authored commentary, not a quote"
     ((analyzeResponseBody codeFenceQuote).HasAuthoredCommentary)
 
-check "Markdown image is detected as local media"
-    (containsLocalMedia "Commentary\n\n![Alt text](https://example.com/image.png)")
+check "Markdown image is detected as unsupported quote media"
+    (containsUnsupportedQuoteMedia "Commentary\n\n![Alt text](https://example.com/image.png)")
 
-check "code-fenced image is not detected as local media"
-    (not (containsLocalMedia "```\n![not an image](https://example.com/image.png)\n```"))
+check "code-fenced image is not detected as unsupported quote media"
+    (not (containsUnsupportedQuoteMedia "```\n![not an image](https://example.com/image.png)\n```"))
 
 // --- record builders ---------------------------------------------------------
 let mkResponse fileName title target rtype body : Response =

@@ -115,7 +115,7 @@ let analyzeResponseBody (markdownBody: string) : ResponseBodyAnalysis =
 /// Quote-posts currently use `app.bsky.embed.record` only. A response containing a
 /// media block or Markdown image would require the unsupported recordWithMedia
 /// union, so callers can reject it before staging a misleading text-only quote.
-let containsLocalMedia (markdownBody: string) : bool =
+let containsUnsupportedQuoteMedia (markdownBody: string) : bool =
     let body = if isNull markdownBody then "" else markdownBody
     let doc = ASTParsing.parseMarkdownAst body
     let hasMediaBlock =

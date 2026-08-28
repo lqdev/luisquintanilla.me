@@ -44,7 +44,8 @@ extension slot): the sync guards them by their natural subject (URI + CID) — c
 overwritten. Quote/repost staging carries a `targetRef` sidecar the sync resolves (handle → DID, batched
 `app.bsky.feed.getPosts`) into a real subject strongRef, **refusing to write any record whose target is
 unresolved, before any write**. Out of scope (unchanged): replies, stars/likes, RSVPs, the private
-`app.bsky.bookmark` procedure, PESOS, historical backfill, deletion propagation, and quote-with-local-media.
+`app.bsky.bookmark` procedure, PESOS, historical backfill, deletion propagation, and quote-posts with
+media (Markdown images or custom media blocks).
 
 ## Context
 
