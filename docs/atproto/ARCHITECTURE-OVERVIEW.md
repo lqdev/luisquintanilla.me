@@ -16,10 +16,9 @@
   staging plus collection-safe materialization are implemented behind independent flags.
   `useAtProtoMediaImageSync = true` activates post-cutoff image manifests; gallery and video remain
   `false`, and no historical media is backfilled.
-- **Response POSSE — IMPLEMENTED, DORMANT.** Public bookmarks and ordinary-web reshares become
-  `app.bsky.feed.post` link posts; ATProto-targeted reshares become native reposts when unannotated
-  or quote-posts when they contain authored commentary. Four independent flags remain `false` with
-  `DateTimeOffset.MaxValue` sentinel cutoffs.
+- **Response POSSE — RESHARE LINK-POST PHASE ACTIVE.** Ordinary-web reshares published on/after
+  `2026-08-27 20:58 -05:00` become `app.bsky.feed.post` link posts. Public bookmarks, native reposts,
+  and quote-posts remain implemented but dormant with independent flags and sentinel cutoffs.
 
 This mirrors the site's existing [ActivityPub](../activitypub/ARCHITECTURE-OVERVIEW.md) approach: a
 static hub (the F# build) with a thin dynamic spoke (one post-build `dotnet fsi` sync script run from
@@ -50,7 +49,7 @@ Vault, no storage.
 | **B** | Notes | native `app.bsky.feed.post` | **🟢 Live** (`useAtProtoNotesSync = true`, forward-only from 2026-07-13) |
 | **C** | Media | native `app.bsky.feed.post` + image/gallery/video embeds | **🟡 Implemented, dormant** (independent flags and cutoffs) |
 | **D** | Bookmarks | `app.bsky.feed.post` + `app.bsky.embed.external` | **🟡 Implemented, dormant** (forward-only) |
-| **E** | Ordinary-web reshares | `app.bsky.feed.post` + `app.bsky.embed.external` | **🟡 Implemented, dormant** (forward-only) |
+| **E** | Ordinary-web reshares | `app.bsky.feed.post` + `app.bsky.embed.external` | **🟢 Active** (forward-only from 2026-08-27 20:58 -05:00) |
 | **F** | ATProto reshares without commentary | `app.bsky.feed.repost` | **🟡 Implemented, dormant** (forward-only) |
 | **G** | ATProto reshares with commentary | `app.bsky.feed.post` + `app.bsky.embed.record` | **🟡 Implemented, dormant** (forward-only) |
 | — | Replies, stars/likes, RSVP | native `app.bsky.*` | Deferred to future phases |
@@ -252,12 +251,12 @@ collision assertion covers all native tracks before staging.
   remain dormant.
 - Response artifacts use independent bookmark, reshare-link, quote, and repost downloads and sync
   invocations. Link and quote posts use the shared `app.bsky.feed.post` collection; reposts use
-  `app.bsky.feed.repost`. The response modes remain dormant until their source flag and cutoff are
-  activated together.
+  `app.bsky.feed.repost`. The reshare-link mode is active from its real cutoff; the other response
+  modes remain dormant until their source flag and cutoff are activated together.
 
 ---
 
-## 9. Activation runbook — Tracks A/B + image phase ✅ complete; response tracks 🟡 dormant
+## 9. Activation runbook — Tracks A/B + image + reshare-link phases ✅ complete; other response tracks 🟡 dormant
 
 The document, Note, and image tracks run **live on every push to `main`**. Gallery and video remain
 deliberately dormant until their independent rollouts are approved:
@@ -278,7 +277,8 @@ Response activation is intentionally forward-only and ordered to limit risk:
 
 1. 🟡 Set `bookmarkPostsActivationCutoff` to the desired instant and flip
    `useAtProtoBookmarkPostsSync = true`. Run a dry-run, then one live record with `--commit --limit 1`.
-2. 🟡 Repeat for `resharePostsActivationCutoff` / `useAtProtoResharePostsSync`.
+2. ✅ `useAtProtoResharePostsSync = true` with `resharePostsActivationCutoff` set to
+   `2026-08-27 20:58 -05:00`; ordinary-web reshare link posts run live and forward-only.
 3. 🟡 Repeat for `repostsActivationCutoff` / `useAtProtoRepostsSync`.
 4. 🟡 Repeat for `quotePostsActivationCutoff` / `useAtProtoQuotePostsSync`.
 
