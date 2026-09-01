@@ -2,11 +2,22 @@ module HomepageBuilder
 
     open System
     open System.IO
+    open Giraffe.ViewEngine
     open Domain
     open Loaders
     open ViewGenerator
     open PartialViews
     open BuilderCommon
+
+    // IndieAuth discovery is published on the canonical homepage only. Keep
+    // the endpoint URLs explicit here rather than adding them to the shared
+    // layout, so content pages do not claim to be the identity profile.
+    let private indieAuthDiscoveryLinks = [
+        link [ _rel "indieauth-metadata"
+               _href "https://indieauth.lqdev.tech/.well-known/oauth-authorization-server" ]
+        link [ _rel "authorization_endpoint"
+               _href "https://indieauth.lqdev.tech/api/authorize" ]
+    ]
 
     let buildHomePage (blogPosts:Post array) (feedPosts:Post array) (responsePosts:Response array)= 
         let recentBlog = 
@@ -25,7 +36,7 @@ module HomepageBuilder
             |> Array.head
 
         // let recentPostsContent = generatePartial (recentPostsView recentPosts)
-        let homePage = generate (homeView recentBlog recentFeedPost recentResponsePost) "default" "Home - Luis Quintanilla"
+        let homePage = generateWithHead indieAuthDiscoveryLinks (homeView recentBlog recentFeedPost recentResponsePost) "default" "Home - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"index.html"),homePage)
 
     // New timeline homepage for Phase 3 - Feed-as-Homepage Interface
@@ -85,7 +96,7 @@ module HomepageBuilder
         let pinnedUrls = pinnedItems |> List.map (fun item -> item.Url) |> Set.ofList
         
         // Generate the timeline homepage with pinned posts support
-        let timelineHomePage = generate (TimelineViews.timelineHomeViewStratified (initialItems |> List.toArray) remainingItemsByType pinnedUrls) "default" "Luis Quintanilla - Personal Website"
+        let timelineHomePage = generateWithHead indieAuthDiscoveryLinks (TimelineViews.timelineHomeViewStratified (initialItems |> List.toArray) remainingItemsByType pinnedUrls) "default" "Luis Quintanilla - Personal Website"
         File.WriteAllText(Path.Join(outputDir,"index.html"), timelineHomePage)
         
         let totalItems = allUnifiedItems |> List.sumBy (fun (_, items) -> items.Length)
