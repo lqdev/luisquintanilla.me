@@ -156,6 +156,33 @@ else
 fi
 echo
 
+# Test 4: Empty content with media metadata
+echo "🧪 Test 4: Empty content with media metadata"
+OUTPUT=$(dotnet fsi Scripts/process-media-issue.fsx -- 'image' 'Metadata Only' '' 'portrait' 'metadata-only' 'photography' 2>&1)
+EXIT_CODE=$?
+
+if [ $EXIT_CODE -eq 0 ]; then
+    echo "✅ Test 4 passed"
+    if [ -f "_src/media/metadata-only.md" ]; then
+        if grep -q "title: Metadata Only" "_src/media/metadata-only.md" && \
+           grep -q 'tags: \["photography"\]' "_src/media/metadata-only.md"; then
+            echo "✅ Metadata-only media post created successfully"
+        else
+            echo "❌ Metadata-only frontmatter is incorrect"
+            exit 1
+        fi
+        rm "_src/media/metadata-only.md"
+    else
+        echo "❌ Metadata-only file not created"
+        exit 1
+    fi
+else
+    echo "❌ Test 4 failed with exit code $EXIT_CODE"
+    echo "$OUTPUT"
+    exit 1
+fi
+echo
+
 echo "🎉 All tests passed!"
 echo "✅ New media publishing workflow is working correctly"
 echo ""

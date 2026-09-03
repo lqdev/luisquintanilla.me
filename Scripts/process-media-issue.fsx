@@ -17,14 +17,15 @@ open System.Text.RegularExpressions
 let args = fsi.CommandLineArgs |> Array.skip 1
 
 // Validate arguments
-if args.Length < 3 then
+if args.Length < 2 then
     printfn "❌ Error: Missing required arguments"
     printfn "Usage: dotnet fsi process-media-issue.fsx -- \"media_type\" \"title\" \"content_with_media_blocks\" \"orientation\" \"optional-slug\" \"optional,tags\""
     exit 1
 
 let mediaType = args.[0]
 let title = args.[1]
-let contentWithMediaBlocks = args.[2]
+let contentWithMediaBlocks =
+    if args.Length > 2 && not (isNull args.[2]) then args.[2] else ""
 let orientation = if args.Length > 3 && not (String.IsNullOrWhiteSpace(args.[3])) then Some(args.[3]) else None
 let customSlug = if args.Length > 4 && not (String.IsNullOrWhiteSpace(args.[4])) then Some(args.[4]) else None
 let tagsInput = if args.Length > 5 && not (String.IsNullOrWhiteSpace(args.[5])) then Some(args.[5]) else None
@@ -32,10 +33,6 @@ let tagsInput = if args.Length > 5 && not (String.IsNullOrWhiteSpace(args.[5])) 
 // Validate required fields
 if String.IsNullOrWhiteSpace(title) then
     printfn "❌ Error: Title is required and cannot be empty"
-    exit 1
-
-if String.IsNullOrWhiteSpace(contentWithMediaBlocks) then
-    printfn "❌ Error: Content is required and cannot be empty"
     exit 1
 
 // Slug generation and sanitization functions
