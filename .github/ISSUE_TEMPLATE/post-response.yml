@@ -63,7 +63,7 @@ body:
     id: content
     attributes:
       label: Content (Optional)
-      description: Your response content (supports Markdown). Leave blank for stars/likes with no additional commentary.
+      description: Your response content (supports Markdown). Leave blank if you have no additional commentary.
       placeholder: |
         Write your response content here. You can use Markdown formatting.
         
@@ -72,7 +72,7 @@ body:
         - [Links](https://example.com)
         - Code blocks and other Markdown features
         
-        Note: For "star" or "rsvp" responses, you can leave this blank if you just want to favorite/RSVP without additional commentary.
+        Note: You can leave this blank if you just want to record the response without additional commentary.
     validations:
       required: false
 

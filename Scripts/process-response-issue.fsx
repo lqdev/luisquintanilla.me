@@ -25,7 +25,8 @@ if args.Length < 3 then
 let responseType = args.[0]
 let targetUrl = args.[1]
 let title = args.[2]
-let content = if args.Length > 3 then args.[3].Trim() else ""
+let content =
+    if args.Length > 3 && not (isNull args.[3]) then args.[3].Trim() else ""
 let customSlug = if args.Length > 4 && not (String.IsNullOrWhiteSpace(args.[4])) then Some(args.[4]) else None
 let tagsInput = if args.Length > 5 && not (String.IsNullOrWhiteSpace(args.[5])) then Some(args.[5]) else None
 let rsvpStatusInput = if args.Length > 6 && not (String.IsNullOrWhiteSpace(args.[6])) && args.[6] <> "not applicable" then Some(args.[6]) else None
@@ -52,11 +53,6 @@ if not (Regex.IsMatch(targetUrl, urlPattern)) then
 
 if String.IsNullOrWhiteSpace(title) then
     printfn "❌ Error: Title is required and cannot be empty"
-    exit 1
-
-// Content validation - allow empty content for star and rsvp responses
-if responseType <> "star" && responseType <> "rsvp" && String.IsNullOrWhiteSpace(content) then
-    printfn "❌ Error: Content is required for %s responses" responseType
     exit 1
 
 // RSVP status validation - required for RSVP responses
