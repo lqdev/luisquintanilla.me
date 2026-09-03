@@ -18,8 +18,8 @@ let args = fsi.CommandLineArgs |> Array.skip 1
 
 // Validate arguments
 if args.Length < 2 then
-    printfn "❌ Error: Missing required arguments"
-    printfn "Usage: dotnet fsi process-media-issue.fsx -- \"media_type\" \"title\" \"content_with_media_blocks\" \"orientation\" \"optional-slug\" \"optional,tags\""
+    printfn "❌ Error: Missing required arguments (media_type, title)"
+    printfn "Usage: dotnet fsi process-media-issue.fsx -- \"media_type\" \"title\" [\"content_with_media_blocks\"] [\"orientation\"] [\"optional-slug\"] [\"optional,tags\"]"
     exit 1
 
 let mediaType = args.[0]
