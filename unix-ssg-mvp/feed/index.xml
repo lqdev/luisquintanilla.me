@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:webmention="http://webmention.org/" xmlns:indie="http://indieweb.org/rss">
+<channel>
+<title>Personal Website - All Content</title>
+<link>https://example.com</link>
+<description>Personal blog with IndieWeb support</description>
+<atom:link href="https://example.com/feed/index.xml" rel="self" type="application/rss+xml" />
+<lastBuildDate>$(date -R)</lastBuildDate>
+<webmention:hub>https://webmention.io/hub</webmention:hub>
+<indie:microformats>true</indie:microformats>
+<item>
+<title>Neuromancer by William Gibson - Review</title>
+<link>https://example.com/review/neuromancer-review/</link>
+<guid>https://example.com/review/neuromancer-review/</guid>
+<pubDate>Wed, 14 Jan 2026 01:47:25 +0000</pubDate>
+</item>
+<item>
+<title>Welcome to Unix SSG</title>
+<link>https://example.com/: article/welcome/</link>
+<guid>https://example.com/: article/welcome/</guid>
+<pubDate>Mon, 13 Jan 2025 15:00:00 +0000</pubDate>
+</item>

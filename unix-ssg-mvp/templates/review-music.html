@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${TITLE} - Music Review - Luis Quintanilla</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+            color: #333;
+        }
+        nav {
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e74c3c;
+        }
+        nav a {
+            margin-right: 20px;
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .review-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .review-header {
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .review-type-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #e74c3c;
+            margin: 10px 0;
+        }
+        .meta {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .rating {
+            font-size: 1.5em;
+            color: #f39c12;
+            margin: 15px 0;
+        }
+        .rating-value {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .review-info {
+            background: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #e74c3c;
+            margin: 20px 0;
+        }
+        .review-info dt {
+            font-weight: 600;
+            color: #e74c3c;
+            margin-top: 10px;
+        }
+        .review-info dt:first-child {
+            margin-top: 0;
+        }
+        .review-info dd {
+            margin-left: 0;
+            margin-bottom: 0;
+        }
+        .review-content {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/tags">Tags</a>
+        <a href="/reviews">Reviews</a>
+        <a href="/feed">Feeds</a>
+    </nav>
+    
+    <div class="review-container h-review">
+        <div class="review-header">
+            <span class="review-type-badge">🎵 Music Review</span>
+            <h1 class="p-name">${TITLE}</h1>
+            <div class="meta">
+                <time class="dt-published" datetime="${DATE}">${FORMATTED_DATE}</time>
+            </div>
+        </div>
+        
+        <div class="rating">
+            Rating: <span class="rating-value p-rating">${RATING}</span>/<span class="p-best">${RATING_SCALE}</span> ⭐
+        </div>
+        
+        <dl class="review-info">
+            <dt>Album/Artist:</dt>
+            <dd class="p-item h-product"><span class="p-name">${ITEM_NAME}</span></dd>
+            ${ARTIST_INFO}
+            ${RELEASE_YEAR_INFO}
+            ${ITEM_URL_INFO}
+        </dl>
+        
+        <div class="review-content e-content">
+            ${CONTENT}
+        </div>
+        
+        <!-- Hidden h-card for IndieWeb compatibility -->
+        <div class="microformat-hidden" style="display:none;">
+            <div class="p-author h-card">
+                <img class="u-photo" src="https://www.luisquintanilla.me/avatar.png" alt="Luis Quintanilla">
+                <a class="u-url p-name" href="https://www.luisquintanilla.me">Luis Quintanilla</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
