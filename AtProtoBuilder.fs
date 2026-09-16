@@ -553,6 +553,48 @@ let stripToPlainText (markdown: string) : string =
         t <- Regex.Replace(t, @"\s+", " ")                       // collapse whitespace
         t.Trim()
 
+let rec private containsMarkdownImage (node: Markdig.Syntax.Inlines.Inline) =
+    match node with
+    | :? Markdig.Syntax.Inlines.LinkInline as link when link.IsImage -> true
+    | :? Markdig.Syntax.Inlines.ContainerInline as container ->
+        container |> Seq.exists containsMarkdownImage
+    | _ -> false
+
+/// Response link cards already carry the target media's title and preview. Exclude Markdown image
+/// links from their plaintext excerpt so alt text is not syndicated as a second copy of that title.
+let private removeMarkdownImageLinks (markdown: string) =
+    if String.IsNullOrEmpty markdown then markdown
+    else
+        let doc = ASTParsing.parseMarkdownAst markdown
+        let ranges =
+            Markdig.Syntax.MarkdownObjectExtensions.Descendants<Markdig.Syntax.Inlines.LinkInline>(doc)
+            |> Seq.choose (fun link ->
+                if containsMarkdownImage (link :> Markdig.Syntax.Inlines.Inline) then
+                    let start = max 0 link.Span.Start
+                    let endExclusive = min markdown.Length (link.Span.End + 1)
+                    if endExclusive > start then Some(start, endExclusive) else None
+                else None)
+            |> Seq.sortBy fst
+            |> Seq.fold (fun merged (start, endExclusive) ->
+                match merged with
+                | (previousStart, previousEnd) :: rest when start <= previousEnd ->
+                    (previousStart, max previousEnd endExclusive) :: rest
+                | _ -> (start, endExclusive) :: merged) []
+            |> List.rev
+
+        let builder = StringBuilder()
+        let mutable cursor = 0
+        for (start, endExclusive) in ranges do
+            if start > cursor then
+                builder.Append(markdown.Substring(cursor, start - cursor)) |> ignore
+            cursor <- max cursor endExclusive
+        if cursor < markdown.Length then
+            builder.Append(markdown.Substring(cursor)) |> ignore
+        builder.ToString()
+
+let private stripResponseToPlainText (markdown: string) =
+    markdown |> removeMarkdownImageLinks |> stripToPlainText
+
 let private removeMediaBlocks (markdown: string) =
     let output = ResizeArray<string>()
     let mutable inside = false
@@ -1102,7 +1144,7 @@ let private externalCardJson (externalUrl: string) (title: string) (description:
 let buildBookmarkPostRecordJson (response: Domain.Response) (published: DateTimeOffset)
                                 (slug: string) (externalUrl: string) : JsonObject =
     let title = if isNull response.Metadata.Title then "" else response.Metadata.Title.Trim()
-    let excerpt = stripToPlainText (responseBody response)
+    let excerpt = stripResponseToPlainText (responseBody response)
     let canonical = bookmarkUrl slug
     let text = composeLinkPostText (sprintf "Bookmarked: %s" title) excerpt canonical
     let o = JsonObject()
@@ -1130,7 +1172,7 @@ let buildResharePostRecordJson (response: Domain.Response) (published: DateTimeO
         if analysis.HasAuthoredCommentary then analysis.AuthoredCommentaryMarkdown
         elif not (String.IsNullOrWhiteSpace analysis.QuotedExcerptMarkdown) then analysis.QuotedExcerptMarkdown
         else responseBody response
-    let excerpt = stripToPlainText excerptSource
+    let excerpt = stripResponseToPlainText excerptSource
     let canonical = responseUrl slug
     let text = composeLinkPostText (sprintf "Shared: %s" title) excerpt canonical
     let o = JsonObject()

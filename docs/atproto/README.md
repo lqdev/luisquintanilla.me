@@ -95,7 +95,7 @@ Roll back by removing `--commit` (back to dry-run) or setting the affected stagi
   tag normalization, and the `sourceHash` formula).
 - `test-scripts/test-atproto-media.fsx` — 29 assertions: media extraction, native embed selection,
   gallery `items`, alt fallbacks, facets, limits, hashes, cutoffs, validation, and native rkey collisions.
-- `test-scripts/test-atproto-response-mapping.fsx` — 46 assertions: strict target-URL parsing
+- `test-scripts/test-atproto-response-mapping.fsx` — 48 assertions: strict target-URL parsing
   (`bsky.app` permalink / `at://` post URI vs ordinary + non-post Bluesky links), the authored-commentary
   quote-vs-repost decision (including a `>` inside a code fence), and the bookmark/reshare/quote/repost
   record builders (text contract, external-vs-record embeds, no-`sourceHash` reposts, namespaced rkeys).

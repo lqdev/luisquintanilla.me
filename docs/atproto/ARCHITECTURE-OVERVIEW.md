@@ -222,7 +222,9 @@ Link-post text preserves the hub as `Bookmarked: {title}` or `Shared: {title}`, 
 selected excerpt and the canonical `/bookmarks/{slug}/` or `/responses/{slug}/` URL. The canonical URL
 has a UTF-8 byte-indexed link facet; the external card points at the target resource. Quote-post text
 contains only authored commentary plus the canonical response URL because the original post is carried
-by `embed.record`. Native reposts carry only the resolved `{uri, cid}` subject.
+by `embed.record`. Markdown image links are omitted from link-post excerpts because the external card
+already carries the target media title and preview; the site page still renders the original Markdown
+unchanged. Native reposts carry only the resolved `{uri, cid}` subject.
 
 The static build writes pending quote/repost wrappers with a `targetRef` sidecar. The sync script
 resolves handles to DIDs and batches `app.bsky.feed.getPosts` requests (25 URIs maximum), then fills
@@ -306,7 +308,7 @@ record orphaned until deletion reconciliation is implemented.
 | `test-scripts/test-atproto-tid.fsx` | 19 TID determinism/format assertions |
 | `test-scripts/test-atproto-document-json.fsx` | 24 wire-contract assertions |
 | `test-scripts/test-atproto-media.fsx` | 30 rich-media contract assertions |
-| `test-scripts/test-atproto-response-mapping.fsx` | 46 response target, routing, text, facets, tags, and record-shape assertions |
+| `test-scripts/test-atproto-response-mapping.fsx` | 48 response target, routing, text, facets, tags, and record-shape assertions |
 | `docs/adr/0009-at-protocol-integration.md` | Architecture Decision Record |
 
 ---

@@ -144,6 +144,24 @@ check "reshare: authored commentary used in text" (rsText.Contains "Great sessio
 check "reshare: canonical response URL in text" (rsText.Contains "https://lqdev.me/responses/dotnet-tensors/")
 check "reshare: external card points at target" (rsRec.["embed"].["external"].["uri"].GetValue<string>() = "https://www.youtube.com/watch?v=VOEeNffChSg")
 
+// YouTube thumbnail Markdown is rendered on the site, but its alt text belongs to the external
+// card rather than the syndicated plaintext excerpt. Parentheses in the title also guard against
+// the old regex-based conversion leaking a trailing `")`.
+let youtubeBody =
+    "Great collab\n\n[![They Ain't You (feat. Thundercat)](http://img.youtube.com/vi/eKv2ec8MBrc/0.jpg)](https://www.youtube.com/watch?v=eKv2ec8MBrc \"They Ain't You (feat. Thundercat)\")"
+let youtubeResponse =
+    mkResponse "they-aint-you-feat-thundercat" "They Ain't You (feat. Thundercat)"
+        "https://www.youtube.com/watch?v=eKv2ec8MBrc" "reshare" youtubeBody
+let youtubeRecord =
+    buildResharePostRecordJson youtubeResponse published "they-aint-you-feat-thundercat"
+        "https://www.youtube.com/watch?v=eKv2ec8MBrc"
+let youtubeText = youtubeRecord.["text"].GetValue<string>()
+check "reshare: YouTube thumbnail title is not copied into post text"
+    (youtubeText =
+        "Shared: They Ain't You (feat. Thundercat)\n\nGreat collab\n\nhttps://lqdev.me/responses/they-aint-you-feat-thundercat/")
+check "reshare: YouTube card description contains commentary only"
+    (youtubeRecord.["embed"].["external"].["description"].GetValue<string>() = "Great collab")
+
 // Quote post (ATProto target, commentary)
 let qp = mkResponse "bsky-rss" "Bluesky now supports RSS" "https://bsky.app/profile/bsky.app/post/3kh5rjl6bgu2i" "reshare" "Feel free to subscribe to my feed.\n\n> RSS feeds for profiles!"
 let qpTarget = parseTargetRef qp.Metadata.TargetUrl
