@@ -31,10 +31,11 @@ card, and the link conversion also left a trailing `")` when the title contained
 
 ## Solution
 
-Keep the original Markdown unchanged for the website, but remove Markdown links that contain
-images before deriving the response POSSE excerpt. Parse the source with the same Markdig AST
-pipeline used by the site, recursively detect `LinkInline` image nodes, merge their source
-spans, and remove those spans before the existing plaintext conversion:
+Keep the original Markdown unchanged for the website, but remove non-image Markdown links that
+contain image nodes (linked previews) before deriving the response POSSE excerpt. Parse the source
+with the same Markdig AST pipeline used by the site, recursively detect `LinkInline` image nodes,
+merge their source spans, and remove those spans before the existing plaintext conversion. Standalone
+images remain response content because their alt text may be the only meaningful excerpt:
 
 ```fsharp
 let private stripResponseToPlainText (markdown: string) =
@@ -57,6 +58,6 @@ https://lqdev.me/responses/they-aint-you-feat-thundercat-2026-08-31/
 
 Test the record builder with the real nested image-link shape and a title containing parentheses.
 The response regression suite now verifies both the post text and external-card description.
-When a syndication format has a native media/card field, do not flatten that same media into
-plaintext merely because the source Markdown has useful alt text. Prefer AST spans over regexes
-for nested Markdown constructs.
+When a syndication format has a native media/card field, do not flatten linked preview media into
+plaintext merely because the source Markdown has useful alt text; preserve standalone image alt text.
+Prefer AST spans over regexes for nested Markdown constructs.
