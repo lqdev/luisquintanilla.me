@@ -1,0 +1,161 @@
+{
+  "site": {
+    "title": "Luis Quintanilla",
+    "description": "Personal website and IndieWeb presence",
+    "baseUrl": "https://www.lqdev.me",
+    "author": {
+      "name": "Luis Quintanilla",
+      "email": "luis@lqdev.me",
+      "url": "https://www.lqdev.me"
+    }
+  },
+  "directories": {
+    "source": "_src",
+    "output": "_public",
+    "data": "Data",
+    "assets": "_src/assets"
+  },
+  "contentTypes": [
+    {
+      "name": "posts",
+      "sourceDirectory": "posts",
+      "processor": "PostProcessor",
+      "enabled": true,
+      "urlPattern": "/posts/{slug}/",
+      "feedEnabled": true,
+      "archiveEnabled": true
+    },
+    {
+      "name": "notes",
+      "sourceDirectory": "feed",
+      "processor": "NoteProcessor", 
+      "enabled": true,
+      "urlPattern": "/notes/{slug}/",
+      "feedEnabled": true,
+      "archiveEnabled": true
+    },
+    {
+      "name": "responses",
+      "sourceDirectory": "responses",
+      "processor": "ResponseProcessor",
+      "enabled": true,
+      "urlPattern": "/responses/{slug}/",
+      "feedEnabled": true,
+      "archiveEnabled": false
+    },
+    {
+      "name": "snippets",
+      "sourceDirectory": "resources/snippets",
+      "processor": "SnippetProcessor",
+      "enabled": true,
+      "urlPattern": "/snippets/{slug}/",
+      "feedEnabled": true,
+      "archiveEnabled": true
+    },
+    {
+      "name": "wiki",
+      "sourceDirectory": "wiki",
+      "processor": "WikiProcessor",
+      "enabled": true,
+      "urlPattern": "/wiki/{slug}/",
+      "feedEnabled": true,
+      "archiveEnabled": false
+    },
+    {
+      "name": "presentations",
+      "sourceDirectory": "resources/presentations",
+      "processor": "PresentationProcessor",
+      "enabled": true,
+      "urlPattern": "/presentations/{slug}/",
+      "feedEnabled": true,
+      "archiveEnabled": true
+    }
+  ],
+  "plugins": {
+    "customBlocks": [
+      {
+        "name": "media",
+        "enabled": true,
+        "parser": "MediaBlockParser",
+        "renderer": "MediaBlockHtmlRenderer"
+      },
+      {
+        "name": "review",
+        "enabled": true,
+        "parser": "ReviewBlockParser",  
+        "renderer": "ReviewBlockHtmlRenderer"
+      },
+      {
+        "name": "venue",
+        "enabled": true,
+        "parser": "VenueBlockParser",
+        "renderer": "VenueBlockHtmlRenderer"
+      },
+      {
+        "name": "rsvp",
+        "enabled": true,
+        "parser": "RsvpBlockParser",
+        "renderer": "RsvpBlockHtmlRenderer"
+      }
+    ],
+    "markdownExtensions": [
+      "UsePipeTables",
+      "UseGenericAttributes",
+      "UseAutoLinks",
+      "UseTaskLists",
+      "UseEmphasisExtras",
+      "UseBootstrap",
+      "UseCustomContainers"
+    ]
+  },
+  "features": {
+    "rss": {
+      "enabled": true,
+      "unified": true,
+      "tagFeeds": true,
+      "itemLimit": 20
+    },
+    "tags": {
+      "enabled": true,
+      "generatePages": true,
+      "cloudEnabled": true
+    },
+    "search": {
+      "enabled": true,
+      "generateIndex": true,
+      "includeContent": true
+    },
+    "timeline": {
+      "enabled": true,
+      "progressiveLoading": true,
+      "initialItems": 50,
+      "chunkSize": 25
+    },
+    "textOnlyVersion": {
+      "enabled": true,
+      "outputPath": "text"
+    },
+    "collections": {
+      "enabled": true,
+      "starterPacks": true
+    },
+    "indieWeb": {
+      "enabled": true,
+      "webmentions": true,
+      "microformats": true
+    }
+  },
+  "theme": {
+    "name": "desert",
+    "cssFramework": "bootstrap",
+    "viewEngine": "giraffe",
+    "customCss": ["desert-theme.css", "custom.css"],
+    "customJs": ["timeline.js", "search.js"]
+  },
+  "build": {
+    "cleanOutput": true,
+    "copyStaticFiles": true,
+    "enableValidation": true,
+    "parallel": false
+  }
+}
