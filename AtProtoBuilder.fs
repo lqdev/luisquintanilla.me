@@ -981,7 +981,7 @@ let buildAtProtoMediaStaging (albums: Domain.Album list) (outputDir: string) : u
 let useAtProtoBookmarkPostsSync = true
 let useAtProtoResharePostsSync = true
 let useAtProtoRepostsSync = false
-let useAtProtoQuotePostsSync = false
+let useAtProtoQuotePostsSync = true
 
 /// Forward-only activation cutoffs, one per mode. The SENTINEL is DateTimeOffset.MaxValue: no
 /// response is ever published on/after MaxValue, so even if a flag above is flipped to true WITHOUT
@@ -991,7 +991,7 @@ let useAtProtoQuotePostsSync = false
 let bookmarkPostsActivationCutoff = DateTimeOffset(2026, 8, 27, 21, 30, 0, TimeSpan.FromHours -5.0)
 let resharePostsActivationCutoff = DateTimeOffset(2026, 8, 27, 20, 58, 0, TimeSpan.FromHours -5.0)
 let repostsActivationCutoff = DateTimeOffset.MaxValue
-let quotePostsActivationCutoff = DateTimeOffset.MaxValue
+let quotePostsActivationCutoff = DateTimeOffset(2026, 9, 16, 12, 48, 0, TimeSpan.FromHours -5.0)
 
 let private responseActivationModes =
     [ "bookmarks", useAtProtoBookmarkPostsSync, bookmarkPostsActivationCutoff
