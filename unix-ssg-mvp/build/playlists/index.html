@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlists - Personal Website</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: #333;
+            background: #fafafa;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+        nav {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        nav a {
+            color: #3498db;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .content-list {
+            list-style: none;
+            padding: 0;
+        }
+        .content-list li {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        .content-list a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1em;
+        }
+        .content-list a:hover {
+            text-decoration: underline;
+        }
+        .meta {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-top: 0.5rem;
+        }
+        .empty {
+            color: #95a5a6;
+            font-style: italic;
+            padding: 2rem;
+            text-align: center;
+            background: white;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/tags/">Tags</a>
+        <a href="/feed/">Feeds</a>
+    </nav>
+    
+    <h1>🎵 Playlists</h1>
+    <ul class="content-list">
+        <li>
+            <a href="/playlists/crate-finds-example/">Crate Finds Example</a>
+        </li>
+    </ul>
+    
+    <hr>
+    <p style="text-align: center; color: #999; font-size: 0.9em;">
+        <a href="/">Back to Home</a> • Built with Unix tools
+    </p>
+</body>
+</html>
