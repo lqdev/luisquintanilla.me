@@ -561,7 +561,8 @@ let rec private containsMarkdownImage (node: Markdig.Syntax.Inlines.Inline) =
     | _ -> false
 
 /// Response link cards already carry the target media's title and preview. Exclude Markdown image
-/// links from their plaintext excerpt so alt text is not syndicated as a second copy of that title.
+/// previews from their plaintext excerpt so their alt text is not syndicated as a second copy of
+/// that title; standalone images remain meaningful response content.
 let private removeMarkdownImageLinks (markdown: string) =
     if String.IsNullOrEmpty markdown then markdown
     else
@@ -569,7 +570,7 @@ let private removeMarkdownImageLinks (markdown: string) =
         let ranges =
             Markdig.Syntax.MarkdownObjectExtensions.Descendants<Markdig.Syntax.Inlines.LinkInline>(doc)
             |> Seq.choose (fun link ->
-                if containsMarkdownImage (link :> Markdig.Syntax.Inlines.Inline) then
+                if not link.IsImage && containsMarkdownImage (link :> Markdig.Syntax.Inlines.Inline) then
                     let start = max 0 link.Span.Start
                     let endExclusive = min markdown.Length (link.Span.End + 1)
                     if endExclusive > start then Some(start, endExclusive) else None

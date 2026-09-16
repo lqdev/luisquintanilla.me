@@ -162,6 +162,20 @@ check "reshare: YouTube thumbnail title is not copied into post text"
 check "reshare: YouTube card description contains commentary only"
     (youtubeRecord.["embed"].["external"].["description"].GetValue<string>() = "Great collab")
 
+// A standalone image can be the response's only meaningful content. It is not a linked preview,
+// so its alt text must remain in the syndicated excerpt.
+let standaloneImageResponse =
+    mkResponse "mnt-pocket-reform" "MNT Pocket Reform - Open Source Pocket PC"
+        "https://spectrum.ieee.org/meet-an-open-source-pc-that-can-fit-in-your-pocket" "reshare"
+        "![Take My Money GIF](https://c.tenor.com/R0d3sZ4fq6EAAAAC/money-dollars.gif)"
+let standaloneImageRecord =
+    buildResharePostRecordJson standaloneImageResponse published "mnt-pocket-reform"
+        "https://spectrum.ieee.org/meet-an-open-source-pc-that-can-fit-in-your-pocket"
+check "reshare: standalone image alt text is preserved"
+    (standaloneImageRecord.["text"].GetValue<string>().Contains "Take My Money GIF")
+check "reshare: standalone image card description is preserved"
+    (standaloneImageRecord.["embed"].["external"].["description"].GetValue<string>() = "Take My Money GIF")
+
 // Quote post (ATProto target, commentary)
 let qp = mkResponse "bsky-rss" "Bluesky now supports RSS" "https://bsky.app/profile/bsky.app/post/3kh5rjl6bgu2i" "reshare" "Feel free to subscribe to my feed.\n\n> RSS feeds for profiles!"
 let qpTarget = parseTargetRef qp.Metadata.TargetUrl
