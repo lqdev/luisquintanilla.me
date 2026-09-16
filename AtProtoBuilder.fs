@@ -976,8 +976,8 @@ let buildAtProtoMediaStaging (albums: Domain.Album list) (outputDir: string) : u
 // real uri/cid before putRecord, refusing to write if any target is unresolved.
 // ---------------------------------------------------------------------------
 
-/// Four master flags — one per response POSSE mode. Bookmark and reshare link posts are active from
-/// their explicit cutoffs; repost and quote modes remain dormant until deliberately activated.
+/// Four master flags — one per response POSSE mode. Bookmark, reshare link, and quote posts are
+/// active from their explicit cutoffs; repost mode remains dormant until deliberately activated.
 let useAtProtoBookmarkPostsSync = true
 let useAtProtoResharePostsSync = true
 let useAtProtoRepostsSync = false
