@@ -144,6 +144,38 @@ check "reshare: authored commentary used in text" (rsText.Contains "Great sessio
 check "reshare: canonical response URL in text" (rsText.Contains "https://lqdev.me/responses/dotnet-tensors/")
 check "reshare: external card points at target" (rsRec.["embed"].["external"].["uri"].GetValue<string>() = "https://www.youtube.com/watch?v=VOEeNffChSg")
 
+// YouTube thumbnail Markdown is rendered on the site, but its alt text belongs to the external
+// card rather than the syndicated plaintext excerpt. Parentheses in the title also guard against
+// the old regex-based conversion leaking a trailing `")`.
+let youtubeBody =
+    "Great collab\n\n[![They Ain't You (feat. Thundercat)](http://img.youtube.com/vi/eKv2ec8MBrc/0.jpg)](https://www.youtube.com/watch?v=eKv2ec8MBrc \"They Ain't You (feat. Thundercat)\")"
+let youtubeResponse =
+    mkResponse "they-aint-you-feat-thundercat" "They Ain't You (feat. Thundercat)"
+        "https://www.youtube.com/watch?v=eKv2ec8MBrc" "reshare" youtubeBody
+let youtubeRecord =
+    buildResharePostRecordJson youtubeResponse published "they-aint-you-feat-thundercat"
+        "https://www.youtube.com/watch?v=eKv2ec8MBrc"
+let youtubeText = youtubeRecord.["text"].GetValue<string>()
+check "reshare: YouTube thumbnail title is not copied into post text"
+    (youtubeText =
+        "Shared: They Ain't You (feat. Thundercat)\n\nGreat collab\n\nhttps://lqdev.me/responses/they-aint-you-feat-thundercat/")
+check "reshare: YouTube card description contains commentary only"
+    (youtubeRecord.["embed"].["external"].["description"].GetValue<string>() = "Great collab")
+
+// A standalone image can be the response's only meaningful content. It is not a linked preview,
+// so its alt text must remain in the syndicated excerpt.
+let standaloneImageResponse =
+    mkResponse "mnt-pocket-reform" "MNT Pocket Reform - Open Source Pocket PC"
+        "https://spectrum.ieee.org/meet-an-open-source-pc-that-can-fit-in-your-pocket" "reshare"
+        "![Take My Money GIF](https://c.tenor.com/R0d3sZ4fq6EAAAAC/money-dollars.gif)"
+let standaloneImageRecord =
+    buildResharePostRecordJson standaloneImageResponse published "mnt-pocket-reform"
+        "https://spectrum.ieee.org/meet-an-open-source-pc-that-can-fit-in-your-pocket"
+check "reshare: standalone image alt text is preserved"
+    (standaloneImageRecord.["text"].GetValue<string>().Contains "Take My Money GIF")
+check "reshare: standalone image card description is preserved"
+    (standaloneImageRecord.["embed"].["external"].["description"].GetValue<string>() = "Take My Money GIF")
+
 // Quote post (ATProto target, commentary)
 let qp = mkResponse "bsky-rss" "Bluesky now supports RSS" "https://bsky.app/profile/bsky.app/post/3kh5rjl6bgu2i" "reshare" "Feel free to subscribe to my feed.\n\n> RSS feeds for profiles!"
 let qpTarget = parseTargetRef qp.Metadata.TargetUrl
