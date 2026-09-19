@@ -54,12 +54,23 @@ _public/api/data/atproto/resource-graph/
 ```
 
 The directory contains the three draft bundles, a source-hash manifest, and a
-conventional-OPML loss report. The source hash follows the existing
-hash-and-write-if-changed pattern. The
+conventional-OPML loss report, and `rejections.json`. The source hash follows
+the existing hash-and-write-if-changed pattern. The
 `resourceGraphActivationCutoff` is forward-only; a pre-cutoff staging run
 fails rather than backfilling a historical snapshot. The current collection
 JSON has no per-membership authored timestamps, so the cutoff gates the
 snapshot and does not invent dates.
+
+Every source item is validated before it can enter a bundle. Only absolute
+HTTPS syndication URLs without credentials are emitted. A rejected source
+entry is not silently omitted: the opt-in staging path preserves all accepted
+source positions (so gaps are allowed), skips the rejected item from the graph
+bundle, and writes its collection id/title, item title, original `XmlUrl`,
+source type, position, stable rejection `code`, and human-readable `reason` to
+`rejections.json`. An empty rejection set is written deterministically as
+`[]`. The source hash and manifest still cover the complete source snapshot;
+manifest `memberCount` counts emitted members and `rejectedCount` counts
+reported entries.
 
 No sync script consumes this directory yet. In particular, the static build
 does not call `com.atproto.repo.putRecord`, delete records, authenticate, or
@@ -75,6 +86,11 @@ The staging artifact writes these losses explicitly in
 `conventional-opml-loss-report.json`, and
 `test-scripts/test-resource-graph-staging.fsx` locks the report to a checked-in
 fixture so a future exporter cannot hide the loss.
+
+The existing conventional collection pages, RSS feeds, OPML files, and source
+JSON are unchanged. In particular, HTTP `XmlUrl` values remain in the
+site's ordinary podroll source contract; they are rejected only by the
+opt-in Resource Graph projection and are reported rather than rewritten.
 
 Run the focused contract test from the repository root:
 

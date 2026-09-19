@@ -70,7 +70,8 @@ Reused identity: handle `lqdev.me` / `did:plc:pme7qquljcdx6i4zyawoxypd`, hosted 
 - **Resource Graph remains staging-only.** `ResourceGraphStaging.useResourceGraphStaging` is
   `false` by default; its forward-only cutoff and local source-hash manifest are documented in
   [resource-graph-staging.md](resource-graph-staging.md). No network call is made by the static
-  build and no existing AT behavior is changed.
+  build and no existing AT behavior is changed. Rejected source entries are reported in
+  `rejections.json` rather than silently omitted; existing source URLs are never rewritten.
 
 Full details in [ARCHITECTURE-OVERVIEW.md §6](ARCHITECTURE-OVERVIEW.md#6-sync-script--the-only-dynamic-step).
 
@@ -108,6 +109,7 @@ Roll back by removing `--commit` (back to dry-run) or setting the affected stagi
   record builders (text contract, external-vs-record embeds, no-`sourceHash` reposts, namespaced rkeys).
 - `test-scripts/test-resource-graph-staging.fsx` — draft bundle wire shape, inline ordering,
   exact syndication URLs, source-hash change detection, forward-only cutoff, and explicit
-  conventional-OPML loss reporting.
+  conventional-OPML loss reporting, rejection reports, real collection coverage, and
+  repeated-run byte determinism.
 
 Run: `dotnet fsi test-scripts/test-atproto-document-json.fsx`

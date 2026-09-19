@@ -131,6 +131,19 @@ let invalidTypeRejected =
 
 check "unsupported non-feed types fail explicitly" invalidTypeRejected
 
+let rejectedProjection =
+    projectCollectionWithRejections
+        { sampleData with
+            Items =
+                [| { sampleData.Items.[0] with Type = "html" }; sampleData.Items.[1] |] }
+
+let rejectedProjectionMembers = rejectedProjection.Bundle["members"] :?> JsonArray
+check "non-throwing projection reports rejected entries"
+    (rejectedProjection.Rejections.Length = 1
+     && rejectedProjection.Rejections.Head.Code = "unsupported_syndication_type")
+check "accepted members retain source positions after rejection"
+    (rejectedProjectionMembers.[0].["position"].GetValue<int>() = 1)
+
 let hashA = generateSourceHash sampleCollection sampleData
 let hashB = generateSourceHash sampleCollection sampleData
 let changedData =
@@ -166,10 +179,23 @@ try
         (File.Exists(Path.Combine(stagingPath, "manifest.json")))
     check "staging writes the explicit OPML loss report"
         (File.Exists(Path.Combine(stagingPath, "conventional-opml-loss-report.json")))
-    let firstManifest = File.ReadAllText(Path.Combine(stagingPath, "manifest.json"))
+    check "staging writes an empty deterministic rejection report"
+        (File.ReadAllText(Path.Combine(stagingPath, "rejections.json")).Trim() = "[]")
+    let snapshotFiles =
+        [| "blogroll.json"
+           "podroll.json"
+           "youtube.json"
+           "manifest.json"
+           "rejections.json" |]
+    let firstSnapshot =
+        snapshotFiles
+        |> Array.map (fun fileName -> File.ReadAllBytes(Path.Combine(stagingPath, fileName)))
     buildResourceGraphStagingAt resourceGraphActivationCutoff stagedSources temporaryOutput
-    let secondManifest = File.ReadAllText(Path.Combine(stagingPath, "manifest.json"))
-    check "staging manifest is deterministic across repeated runs" (firstManifest = secondManifest)
+    let secondSnapshot =
+        snapshotFiles
+        |> Array.map (fun fileName -> File.ReadAllBytes(Path.Combine(stagingPath, fileName)))
+    check "staging bundles, manifest, and rejections are byte-identical across repeated runs"
+        (Array.forall2 (=) firstSnapshot secondSnapshot)
 finally
     if Directory.Exists temporaryOutput then
         Directory.Delete(temporaryOutput, true)
@@ -190,6 +216,11 @@ let realYoutube =
     |> Array.find (fun collection -> collection.Id = "youtube")
     |> CollectionBuilder.processCollectionData
 
+let realPodroll =
+    configuredCollections
+    |> Array.find (fun collection -> collection.Id = "podroll")
+    |> CollectionBuilder.processCollectionData
+
 let realBlogrollBundle = projectCollection realBlogroll
 let realYoutubeBundle = projectCollection realYoutube
 let realBlogrollFirstResource =
@@ -201,6 +232,99 @@ check "blogroll source URL is copied from existing collection data"
 check "YouTube channel feed remains a syndication reference"
     (realYoutubeFirstResource["$type"].GetValue<string>().EndsWith("#syndicationRef")
      && realYoutubeFirstResource["uri"].GetValue<string>() = realYoutube.Items.[0].XmlUrl)
+
+let realSources =
+    [| (configuredCollections |> Array.find (fun collection -> collection.Id = "blogroll"), realBlogroll)
+       (configuredCollections |> Array.find (fun collection -> collection.Id = "podroll"), realPodroll)
+       (configuredCollections |> Array.find (fun collection -> collection.Id = "youtube"), realYoutube) |]
+
+let realHttpPodrollItems =
+    realPodroll.Items
+    |> Array.filter (fun item -> item.XmlUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
+
+let realTemporaryOutput =
+    Path.Combine(Path.GetTempPath(), sprintf "lqdev-resource-graph-real-%s" (Guid.NewGuid().ToString("N")))
+
+try
+    buildResourceGraphStagingAt resourceGraphActivationCutoff realSources realTemporaryOutput
+    let realStagingPath =
+        Path.Combine(realTemporaryOutput, "api", "data", "atproto", "resource-graph")
+
+    let realBundleFiles = [| "blogroll.json"; "podroll.json"; "youtube.json" |]
+    check "real configured staging produces all three bundle files"
+        (realBundleFiles
+         |> Array.forall (fun fileName -> File.Exists(Path.Combine(realStagingPath, fileName))))
+
+    let bundleUris fileName =
+        let root =
+            File.ReadAllText(Path.Combine(realStagingPath, fileName))
+            |> JsonNode.Parse
+            :?> JsonObject
+
+        root["members"]
+        :?> JsonArray
+        |> Seq.map (fun memberNode ->
+            let resource = memberNode.["resource"] :?> JsonObject
+            resource["uri"].GetValue<string>())
+        |> Seq.toArray
+
+    check "real configured bundles contain no rejected HTTP URLs"
+        (realBundleFiles
+         |> Array.collect bundleUris
+         |> Array.forall (fun uri ->
+             uri.StartsWith("https://", StringComparison.OrdinalIgnoreCase)))
+
+    let rejectionReport =
+        File.ReadAllText(Path.Combine(realStagingPath, "rejections.json"))
+        |> JsonNode.Parse
+        :?> JsonArray
+
+    let podrollRejections =
+        rejectionReport
+        |> Seq.map (fun node -> node :?> JsonObject)
+        |> Seq.filter (fun rejection ->
+            rejection["collectionId"].GetValue<string>() = "podroll")
+        |> Seq.toArray
+
+    check "real HTTP podroll entries are explicitly rejected"
+        (podrollRejections.Length = realHttpPodrollItems.Length
+         && podrollRejections.Length > 0)
+    check "real rejection report preserves original URL, type, and stable code"
+        (podrollRejections
+         |> Array.forall (fun rejection ->
+             rejection["originalXmlUrl"].GetValue<string>().StartsWith("http://", StringComparison.OrdinalIgnoreCase)
+             && rejection["type"].GetValue<string>() = "rss"
+             && rejection["code"].GetValue<string>() = "non_https_syndication_uri"
+             && rejection["reason"].GetValue<string>() = "XmlUrl must use absolute HTTPS."))
+
+    let realManifest =
+        File.ReadAllText(Path.Combine(realStagingPath, "manifest.json"))
+        |> JsonNode.Parse
+        :?> JsonObject
+
+    let podrollManifest =
+        realManifest["collections"]
+        :?> JsonArray
+        |> Seq.map (fun entry -> entry :?> JsonObject)
+        |> Seq.find (fun entry -> entry["id"].GetValue<string>() = "podroll")
+
+    check "manifest counts emitted and rejected podroll members"
+        (podrollManifest["memberCount"].GetValue<int>() = realPodroll.Items.Length - realHttpPodrollItems.Length
+         && podrollManifest["rejectedCount"].GetValue<int>() = realHttpPodrollItems.Length)
+
+    let realSnapshotFiles = Array.append realBundleFiles [| "manifest.json"; "rejections.json" |]
+    let firstRealSnapshot =
+        realSnapshotFiles
+        |> Array.map (fun fileName -> File.ReadAllBytes(Path.Combine(realStagingPath, fileName)))
+    buildResourceGraphStagingAt resourceGraphActivationCutoff realSources realTemporaryOutput
+    let secondRealSnapshot =
+        realSnapshotFiles
+        |> Array.map (fun fileName -> File.ReadAllBytes(Path.Combine(realStagingPath, fileName)))
+    check "real bundles, manifest, and rejections are byte-identical across repeated runs"
+        (Array.forall2 (=) firstRealSnapshot secondRealSnapshot)
+finally
+    if Directory.Exists realTemporaryOutput then
+        Directory.Delete(realTemporaryOutput, true)
 
 printfn "------------------------------------------"
 printfn "Passed: %d   Failed: %d" passed failed
