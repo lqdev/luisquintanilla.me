@@ -45,6 +45,9 @@ The same "static hub, thin dynamic spoke" model the site already uses for
 
 - **Static:** the normal `dotnet run` build stages `site.standard.document` records for Posts,
   native Note records, and (when activated) media manifests — pure functions, no network.
+- **Draft Resource Graph:** an independent, default-off adapter can stage the existing
+  blogroll, podroll, and YouTube feed collections as wire-compatible
+  `me.lqdev.resourcegraph.temp.bundle` JSON. It is local-only and does not publish AT records.
 - **Dynamic:** one post-build `dotnet fsi` script (`Scripts/sync-atproto.fsx`) upserts those records and
   materializes media blobs in the existing Bluesky-hosted PDS. No Azure Function, no new infrastructure.
 
@@ -64,6 +67,10 @@ Reused identity: handle `lqdev.me` / `did:plc:pme7qquljcdx6i4zyawoxypd`, hosted 
   `app.bsky.feed.post` records are managed only when they carry our `sourceHash`, so hand-authored
   content is untouchable.
 - **Create/update only, never delete. Idempotent. Fail-fast on corrupt staging.**
+- **Resource Graph remains staging-only.** `ResourceGraphStaging.useResourceGraphStaging` is
+  `false` by default; its forward-only cutoff and local source-hash manifest are documented in
+  [resource-graph-staging.md](resource-graph-staging.md). No network call is made by the static
+  build and no existing AT behavior is changed.
 
 Full details in [ARCHITECTURE-OVERVIEW.md §6](ARCHITECTURE-OVERVIEW.md#6-sync-script--the-only-dynamic-step).
 
@@ -99,5 +106,8 @@ Roll back by removing `--commit` (back to dry-run) or setting the affected stagi
   (`bsky.app` permalink / `at://` post URI vs ordinary + non-post Bluesky links), the authored-commentary
   quote-vs-repost decision (including a `>` inside a code fence), and the bookmark/reshare/quote/repost
   record builders (text contract, external-vs-record embeds, no-`sourceHash` reposts, namespaced rkeys).
+- `test-scripts/test-resource-graph-staging.fsx` — draft bundle wire shape, inline ordering,
+  exact syndication URLs, source-hash change detection, forward-only cutoff, and explicit
+  conventional-OPML loss reporting.
 
 Run: `dotnet fsi test-scripts/test-atproto-document-json.fsx`
