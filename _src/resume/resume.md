@@ -157,7 +157,7 @@ year: 2013
 I'm exploring advances in large language models, retrieval-augmented generation (RAG),
 and how AI can enhance developer productivity. In my work at Microsoft, I focus on AI
 platforms and developer experiences, including .NET AI libraries, agent evaluation and
-optimization, and workflows that help developers move emerging capabilities into 
+optimization, and workflows that help developers move emerging capabilities into
 production systems.
 
 I'm also interested in the intersection of AI agents and the open social web: federated
