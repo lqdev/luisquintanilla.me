@@ -244,6 +244,13 @@ let main argv =
     // =============================================================================
     buildUnifiedCollections ()
 
+    // First guarded AT Resource Graph slice. This is a local, deterministic
+    // staging projection only; Resource Graph publication remains opt-in and
+    // this branch does not write to an AT service.
+    if ResourceGraphStaging.useResourceGraphStaging then
+        let resourceGraphCollections = Collections.CollectionBuilder.buildCollections ()
+        ResourceGraphStaging.buildResourceGraphStaging resourceGraphCollections "_public"
+
     // Build event page
     buildEventPage ()
 

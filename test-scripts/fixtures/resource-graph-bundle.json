@@ -1,0 +1,25 @@
+{
+  "$type": "me.lqdev.resourcegraph.temp.bundle",
+  "name": "Blogroll",
+  "description": "Websites and blogs I follow regularly",
+  "members": [
+    {
+      "position": 0,
+      "resource": {
+        "$type": "me.lqdev.resourcegraph.temp.defs#syndicationRef",
+        "uri": "https://example.test/feeds/first.xml",
+        "format": "rss",
+        "title": "First feed"
+      }
+    },
+    {
+      "position": 1,
+      "resource": {
+        "$type": "me.lqdev.resourcegraph.temp.defs#syndicationRef",
+        "uri": "https://example.test/feeds/second.atom",
+        "format": "atom",
+        "title": "Second feed"
+      }
+    }
+  ]
+}
