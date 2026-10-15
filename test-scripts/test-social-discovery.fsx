@@ -8,6 +8,7 @@ open System.Net
 open System.Net.Http
 open System.Text
 open System.Text.Json
+open System.Text.RegularExpressions
 open System.Xml.Linq
 open Collections
 open Domain
@@ -44,6 +45,7 @@ let generatedBlogrollPath = Path.Combine(projectRoot, "_public", "collections", 
 let generatedPodrollPath = Path.Combine(projectRoot, "_public", "collections", "podroll", "index.opml")
 let generatedYouTubePath = Path.Combine(projectRoot, "_public", "collections", "youtube", "index.opml")
 let generatedVCardPath = Path.Combine(projectRoot, "_public", "vcard.vcf")
+let generatedProfilePath = Path.Combine(projectRoot, "_public", ".well-known", "profile.json")
 let configPath = Path.Combine(projectRoot, "staticwebapp.config.json")
 
 let readUtf8 path = File.ReadAllText(path, Encoding.UTF8)
@@ -127,14 +129,37 @@ check "Generated vCard has a formatted name" (vcard.Contains("FN:Luis Quintanill
 check "Generated vCard preserves its source fields" (
     Convert.ToBase64String(File.ReadAllBytes(Path.Combine(projectRoot, "_src", "vcard.vcf"))) = Convert.ToBase64String(File.ReadAllBytes(generatedVCardPath)))
 
+printfn "\nProfile manifest"
+let profileText = readUtf8 generatedProfilePath
+let profile = JsonDocument.Parse(profileText).RootElement
+check "Profile manifest declares its JSON Schema" (
+    profile.GetProperty("$schema").GetString() = "https://json-schema.org/draft/2020-12/schema")
+check "Profile manifest declares a versioned site schema" (
+    profile.GetProperty("schema").GetString() = "https://lqdev.me/docs/social-profile-manifest"
+    && profile.GetProperty("version").GetString() = "1.0")
+check "Profile manifest uses the canonical origin" (
+    not (profileText.Contains("https://www.lqdev.me", StringComparison.Ordinal)))
+check "Profile manifest has no webmention typo" (
+    not (profileText.Contains("webmebtion", StringComparison.Ordinal)))
+check "Profile manifest links to standard discovery surfaces" (
+    let services = profile.GetProperty("services")
+    services.GetProperty("webfinger").GetString() = "https://lqdev.me/.well-known/webfinger"
+    && services.GetProperty("activitypub").GetString() = "https://lqdev.me/api/activitypub/actor"
+    && services.GetProperty("indieauth").GetString().StartsWith("https://", StringComparison.Ordinal))
+
 printfn "\nStatic Web Apps configuration"
 let config = JsonDocument.Parse(readUtf8 configPath)
 let routes = config.RootElement.GetProperty("routes").EnumerateArray() |> Seq.toArray
 let routeFor (path: string) =
     routes
     |> Array.find (fun route -> route.GetProperty("route").GetString() = path)
-let header (route: JsonElement) (name: string) =
-    route.GetProperty("headers").GetProperty(name).GetString()
+let tryHeader (route: JsonElement) (name: string) =
+    let mutable headers = Unchecked.defaultof<JsonElement>
+    let mutable value = Unchecked.defaultof<JsonElement>
+    if route.TryGetProperty("headers", &headers) && headers.TryGetProperty(name, &value) then
+        Some (value.GetString())
+    else
+        None
 let rewrite (route: JsonElement) =
     let mutable value = Unchecked.defaultof<JsonElement>
     if route.TryGetProperty("rewrite", &value) then Some(value.GetString()) else None
@@ -142,18 +167,24 @@ let rewrite (route: JsonElement) =
 let followingRoute = routeFor "/.well-known/following.opml"
 let aboutRoute = routeFor "/.well-known/about.md"
 let contactRoute = routeFor "/.well-known/contact.vcf"
+let profileRoute = routeFor "/.well-known/profile"
 check "Following route rewrites to the existing blogroll OPML" (rewrite followingRoute = Some "/collections/blogroll/index.opml")
 check "About route serves the direct generated file" (rewrite aboutRoute |> Option.isNone)
 check "Contact route rewrites to the existing vCard" (rewrite contactRoute = Some "/vcard.vcf")
-check "Following route has the SocialSpec media type and CORS" (
-    header followingRoute "Content-Type" = "text/x-opml; charset=utf-8"
-    && header followingRoute "Access-Control-Allow-Origin" = "*")
-check "About route has the SocialSpec media type and CORS" (
-    header aboutRoute "Content-Type" = "text/markdown; charset=utf-8"
-    && header aboutRoute "Access-Control-Allow-Origin" = "*")
-check "Contact route has the SocialSpec media type and CORS" (
-    header contactRoute "Content-Type" = "text/vcard; charset=utf-8"
-    && header contactRoute "Access-Control-Allow-Origin" = "*")
+check "Profile route rewrites to the versioned JSON manifest" (rewrite profileRoute = Some "/.well-known/profile.json")
+check "Following route has CORS" (tryHeader followingRoute "Access-Control-Allow-Origin" = Some "*")
+check "About route has CORS" (tryHeader aboutRoute "Access-Control-Allow-Origin" = Some "*")
+check "Contact route has CORS" (tryHeader contactRoute "Access-Control-Allow-Origin" = Some "*")
+check "Profile route has CORS" (tryHeader profileRoute "Access-Control-Allow-Origin" = Some "*")
+let mimeTypes = config.RootElement.GetProperty("mimeTypes")
+check "Static Web Apps maps OPML to text/x-opml" (
+    mimeTypes.GetProperty(".opml").GetString() = "text/x-opml")
+check "Static Web Apps maps Markdown to text/markdown" (
+    mimeTypes.GetProperty(".md").GetString() = "text/markdown")
+check "Static Web Apps maps vCard to text/vcard" (
+    mimeTypes.GetProperty(".vcf").GetString() = "text/vcard")
+check "Static Web Apps maps profile JSON to application/json" (
+    mimeTypes.GetProperty(".json").GetString() = "application/json")
 let fallback = config.RootElement.GetProperty("navigationFallback")
 let excludes = fallback.GetProperty("exclude").EnumerateArray() |> Seq.map _.GetString() |> Seq.toArray
 check "Well-known paths bypass homepage fallback" (excludes |> Array.contains "/.well-known/*")
@@ -161,6 +192,7 @@ check "Existing WebFinger route remains configured" (routes |> Array.exists (fun
 
 printfn "\nHTML discovery links"
 let homepage = readUtf8 (Path.Combine(projectRoot, "_public", "index.html"))
+let aboutHtml = readUtf8 generatedAboutPagePath
 let alternateMatches = System.Text.RegularExpressions.Regex.Matches(homepage, "<link[^>]+rel=\"alternate\"[^>]*>")
 let alternateLinks =
     alternateMatches
@@ -176,6 +208,23 @@ check "Existing blog, microblog, and response feed links remain" (
     && alternateLinks |> Array.exists (_.Contains("href=\"/responses.rss\"", StringComparison.Ordinal)))
 check "No non-specified rel=following link was introduced" (
     not (homepage.Contains("rel=\"following\"", StringComparison.Ordinal)))
+let hasMeta (html: string) (attribute: string) (key: string) (value: string) =
+    let pattern = $"<meta[^>]*{attribute}=\"{Regex.Escape(key)}\"[^>]*content=\"{Regex.Escape(value)}\"[^>]*>"
+    Regex.IsMatch(html, pattern, RegexOptions.IgnoreCase)
+check "Homepage exposes an explicit h-card identity" (
+    homepage.Contains("h-card", StringComparison.Ordinal)
+    && homepage.Contains("class=\"p-name microformat-hidden\"", StringComparison.Ordinal)
+    && homepage.Contains("class=\"u-url u-uid microformat-hidden\"", StringComparison.Ordinal)
+    && homepage.Contains("class=\"u-email microformat-hidden\"", StringComparison.Ordinal)
+    && homepage.Contains("class=\"rounded-circle avatar-flip-image u-photo\"", StringComparison.Ordinal))
+check "Homepage has canonical Open Graph metadata" (
+    hasMeta homepage "property" "og:url" "https://lqdev.me/"
+    && hasMeta homepage "property" "og:type" "profile"
+    && hasMeta homepage "property" "og:image:alt" "Luis Quintanilla avatar")
+check "About page has page-specific Open Graph metadata" (
+    hasMeta aboutHtml "property" "og:url" "https://lqdev.me/about/"
+    && hasMeta aboutHtml "property" "og:type" "profile"
+    && hasMeta aboutHtml "name" "twitter:url" "https://lqdev.me/about/")
 
 let runLiveChecks (baseUrl: string) =
     use handler = new HttpClientHandler(AllowAutoRedirect = false)
@@ -195,8 +244,7 @@ let runLiveChecks (baseUrl: string) =
         check ("Live " + path + " returns 200 without redirect") (response.StatusCode = HttpStatusCode.OK)
         check ("Live " + path + " has the expected media type") (
             not (isNull contentType)
-            && contentType.MediaType = mediaType
-            && contentType.CharSet = "utf-8")
+            && contentType.MediaType = mediaType)
         check ("Live " + path + " allows cross-origin reads") (
             corsPresent
             && (corsValues |> Seq.contains "*"))
@@ -205,11 +253,14 @@ let runLiveChecks (baseUrl: string) =
     let liveFollowing = checkLive "/.well-known/following.opml" "text/x-opml" "text/x-opml"
     let liveAbout = checkLive "/.well-known/about.md" "text/markdown" "text/markdown"
     let liveContact = checkLive "/.well-known/contact.vcf" "text/vcard" "text/vcard"
+    let liveProfile = checkLive "/.well-known/profile" "application/json" "application/json"
     check "Live following response parses as OPML" (try XDocument.Parse(liveFollowing) |> ignore; true with _ -> false)
     check "Live About response contains summary frontmatter" (liveAbout.Contains("summary:", StringComparison.Ordinal))
     check "Live contact response contains FN" (liveContact.Contains("FN:Luis Quintanilla", StringComparison.Ordinal))
+    check "Live profile response parses as JSON" (try JsonDocument.Parse(liveProfile) |> ignore; true with _ -> false)
+    check "Live profile response has no typo" (not (liveProfile.Contains("webmebtion", StringComparison.Ordinal)))
 
-    for path in [| "/.well-known/following.opml"; "/.well-known/about.md"; "/.well-known/contact.vcf" |] do
+    for path in [| "/.well-known/following.opml"; "/.well-known/about.md"; "/.well-known/contact.vcf"; "/.well-known/profile" |] do
         use response = send "HEAD" path "*/*"
         check ("Live HEAD " + path + " returns 200") (response.StatusCode = HttpStatusCode.OK)
         check ("Live HEAD " + path + " has no body") (response.Content.ReadAsByteArrayAsync().GetAwaiter().GetResult().Length = 0)

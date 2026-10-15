@@ -85,7 +85,17 @@ module ContentTypePagesBuilder
             let review = item.Content
             let saveDir = Path.Join(outputDir, "reviews", review.FileName)
             Directory.CreateDirectory(saveDir) |> ignore
-            let html = ViewGenerator.generate (reviewPageView review) "defaultindex" $"{review.Metadata.Title} | Reviews | Luis Quintanilla"
+            let reviewMetadata =
+                pageMetadata
+                    $"/reviews/{review.FileName}/"
+                    $"Review: {review.Metadata.Title}."
+                    "article"
+            let html =
+                ViewGenerator.generatePage
+                    reviewMetadata
+                    (reviewPageView review)
+                    "defaultindex"
+                    $"{review.Metadata.Title} | Reviews | Luis Quintanilla"
             File.WriteAllText(Path.Join(saveDir, "index.html"), html))
 
         // Combined /reviews/ index, sorted by date descending.
@@ -100,7 +110,14 @@ module ContentTypePagesBuilder
                 with
                 | _ -> DateTimeOffset.MinValue)
 
-        let indexHtml = ViewGenerator.generate (reviewsView sortedReviews) "defaultindex" "Reviews | Luis Quintanilla"
+        let indexMetadata =
+            pageMetadata "/reviews/" "Reviews and recommendations from Luis Quintanilla." "website"
+        let indexHtml =
+            ViewGenerator.generatePage
+                indexMetadata
+                (reviewsView sortedReviews)
+                "defaultindex"
+                "Reviews | Luis Quintanilla"
         let indexSaveDir = Path.Join(outputDir, "reviews")
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), indexHtml)
@@ -169,7 +186,10 @@ module ContentTypePagesBuilder
             |> List.toArray
         
         // Create the bookmarks landing page using bookmarkResponseView (which handles Response arrays but displays as bookmarks)
-        let bookmarksLandingHtml = generate (bookmarkResponseView bookmarkResponses) "defaultindex" "Bookmarks - Luis Quintanilla"
+        let bookmarksMetadata =
+            pageMetadata "/bookmarks/" "Bookmarks and links saved by Luis Quintanilla." "website"
+        let bookmarksLandingHtml =
+            generatePage bookmarksMetadata (bookmarkResponseView bookmarkResponses) "defaultindex" "Bookmarks - Luis Quintanilla"
         let bookmarksIndexDir = Path.Join(outputDir, "bookmarks")
         // Use helper to write file
         writePageToDir bookmarksIndexDir "index.html" bookmarksLandingHtml
@@ -186,7 +206,10 @@ module ContentTypePagesBuilder
             |> List.sortByDescending (fun response -> DateTimeOffset.Parse(response.Metadata.DatePublished))
             |> List.toArray
 
-        let rsvpLandingHtml = generate (rsvpView rsvpResponses) "defaultindex" "RSVPs - Luis Quintanilla"
+        let rsvpMetadata =
+            pageMetadata "/rsvp/" "Events Luis Quintanilla has attended or plans to attend." "website"
+        let rsvpLandingHtml =
+            generatePage rsvpMetadata (rsvpView rsvpResponses) "defaultindex" "RSVPs - Luis Quintanilla"
         let rsvpIndexDir = Path.Join(outputDir, "rsvp")
         writePageToDir rsvpIndexDir "index.html" rsvpLandingHtml
 

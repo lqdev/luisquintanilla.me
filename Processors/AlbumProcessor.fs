@@ -110,14 +110,14 @@ module AlbumProcessor
         
         RenderRss = fun album ->
             // Create RSS item for album with all images included
-            let url = sprintf "https://www.lqdev.me/media/%s" album.FileName
+            let url = sprintf "%s/media/%s" Constants.Urls.canonical album.FileName
             let imageCount = 
                 if isNull album.Metadata.Images then 0
                 else Array.length album.Metadata.Images
             let description = sprintf "Album containing %d photos" imageCount
             
             // Normalize URLs in description for RSS compatibility
-            let normalizedDescription = normalizeUrlsForRss description "https://www.lqdev.me"
+            let normalizedDescription = normalizeUrlsForRss description Constants.Urls.canonical
             
             let categories = 
                 if isNull album.Metadata.Tags then []

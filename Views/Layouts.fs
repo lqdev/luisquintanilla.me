@@ -1,7 +1,25 @@
 module Layouts
 
     open Giraffe.ViewEngine
-  
+
+    type PageMetadata =
+        { CanonicalPath: string
+          Description: string
+          OgType: string }
+
+    let defaultPageMetadata (pageTitle: string) =
+        { CanonicalPath = "/"
+          Description = pageTitle + " - " + Constants.Author.name
+          OgType = "website" }
+
+    let private absolutePageUrl (path: string) =
+        if path.StartsWith("http", System.StringComparison.OrdinalIgnoreCase) then
+            path
+        elif path.StartsWith("/") then
+            Constants.Urls.canonical + path
+        else
+            Constants.Urls.canonical + "/" + path
+
     let desertNavigation = Navigation.desertNavigation
     
     let styleSheets = [
@@ -28,18 +46,28 @@ module Layouts
         // Note: customthemes.css removed - functionality integrated into custom CSS
     ]
 
-    let buildOpenGraphElements (pageTitle:string)= 
+    let buildOpenGraphElements (pageTitle:string) (metadata: PageMetadata) =
+        let pageUrl = absolutePageUrl metadata.CanonicalPath
+        let imageAlt = Constants.Author.name + " avatar"
         let ogElements = [
                 meta [_property "og:title"; _content pageTitle]
-                meta [_property "og:type"; _content "website"]
+                meta [_property "og:type"; _content metadata.OgType]
+                meta [_property "og:url"; _content pageUrl]
+                meta [_property "og:description"; _content metadata.Description]
                 meta [_property "og:image"; _content Constants.Avatar.displayUrl]
                 meta [_property "og:image:secure_url"; _content Constants.Avatar.displayUrl]
                 meta [_property "og:image:type"; _content "image/png"]
                 meta [_property "og:image:width"; _content "200"]
-                meta [_property "og:image:height"; _content "200"] 
+                meta [_property "og:image:height"; _content "200"]
+                meta [_property "og:image:alt"; _content imageAlt]
                 meta [_property "og:site_name"; _content Constants.Site.title]
                 meta [_property "og:locale"; _content "en_US"]
+                meta [_name "twitter:card"; _content "summary"]
+                meta [_name "twitter:title"; _content pageTitle]
+                meta [_name "twitter:description"; _content metadata.Description]
+                meta [_name "twitter:url"; _content pageUrl]
                 meta [_property "twitter:image"; _content Constants.Avatar.displayUrl]
+                meta [_name "twitter:image:alt"; _content imageAlt]
                 meta [_property "fediverse:creator"; _content Constants.Author.fediverseHandle]
             
         ]
@@ -117,7 +145,7 @@ module Layouts
     // scripts + init in body); everything else is shared. Both variants emit the same
     // `<meta name="robots" content="nosnippet">` — nosnippet permits indexing but suppresses
     // search-result snippets; the only real difference between the two is the Reveal.js bundle.
-    let private layoutCore (includeReveal: bool) (extraHead: XmlNode list) (pageTitle:string) (content:string) =
+    let private layoutCore (includeReveal: bool) (extraHead: XmlNode list) (metadata: PageMetadata) (pageTitle:string) (content:string) =
         html [_lang "en"] [
             head [] [
                 meta [_charset "UTF-8"]    
@@ -136,7 +164,7 @@ module Layouts
                 // Leaflet.js CSS loaded from CDN in travel-map.js
 
                 // Opengraph
-                let ogElements = buildOpenGraphElements pageTitle
+                let ogElements = buildOpenGraphElements pageTitle metadata
 
                 for el in ogElements do
                     el
@@ -215,19 +243,31 @@ module Layouts
         ]
 
     let defaultLayout (pageTitle:string) (content:string) =
-        layoutCore false [] pageTitle content
+        layoutCore false [] (defaultPageMetadata pageTitle) pageTitle content
 
     /// defaultLayout with extra per-page <head> nodes injected.
     let defaultLayoutWithHead (extraHead: XmlNode list) (pageTitle:string) (content:string) =
-        layoutCore false extraHead pageTitle content
+        layoutCore false extraHead (defaultPageMetadata pageTitle) pageTitle content
+
+    let defaultLayoutAt (metadata: PageMetadata) (pageTitle:string) (content:string) =
+        layoutCore false [] metadata pageTitle content
+
+    let defaultLayoutWithHeadAt (extraHead: XmlNode list) (metadata: PageMetadata) (pageTitle:string) (content:string) =
+        layoutCore false extraHead metadata pageTitle content
 
     // Same as defaultLayout plus the Reveal.js presentation assets (see layoutCore note).
     let defaultIndexedLayout (pageTitle:string) (content:string) =
-        layoutCore true [] pageTitle content
+        layoutCore true [] (defaultPageMetadata pageTitle) pageTitle content
 
     /// defaultIndexedLayout with extra per-page <head> nodes injected.
     let defaultIndexedLayoutWithHead (extraHead: XmlNode list) (pageTitle:string) (content:string) =
-        layoutCore true extraHead pageTitle content
+        layoutCore true extraHead (defaultPageMetadata pageTitle) pageTitle content
+
+    let defaultIndexedLayoutAt (metadata: PageMetadata) (pageTitle:string) (content:string) =
+        layoutCore true [] metadata pageTitle content
+
+    let defaultIndexedLayoutWithHeadAt (extraHead: XmlNode list) (metadata: PageMetadata) (pageTitle:string) (content:string) =
+        layoutCore true extraHead metadata pageTitle content
 
 
 
@@ -295,7 +335,7 @@ module Layouts
                 link [_rel "stylesheet"; _href "/assets/css/presentation-layouts.css"]
 
                 // Opengraph
-                let ogElements = buildOpenGraphElements pageTitle
+                let ogElements = buildOpenGraphElements pageTitle (defaultPageMetadata pageTitle)
 
                 for el in ogElements do
                     el

@@ -102,7 +102,7 @@ module AlbumCollectionProcessor
         
         RenderRss = fun albumCollection ->
             // Create RSS item for album collection
-            let url = sprintf "https://www.lqdev.me/collections/albums/%s/" albumCollection.FileName
+            let url = sprintf "%s/collections/albums/%s/" Constants.Urls.canonical albumCollection.FileName
             let description = albumCollection.Metadata.Description
             
             // Get media count from cache
@@ -118,7 +118,7 @@ module AlbumCollectionProcessor
                     description
             
             // Normalize URLs in description for RSS compatibility
-            let normalizedDescription = normalizeUrlsForRss enhancedDescription "https://www.lqdev.me"
+            let normalizedDescription = normalizeUrlsForRss enhancedDescription Constants.Urls.canonical
             
             // Create RSS category elements for tags
             let categories = 

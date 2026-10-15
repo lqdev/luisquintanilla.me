@@ -172,7 +172,7 @@ module MarketplaceProcessor
             RenderView.AsString.xmlNode viewNode
 
         RenderRss = fun listing ->
-            let url = sprintf "https://www.lqdev.me/marketplace/%s" listing.FileName
+            let url = sprintf "%s/marketplace/%s" Constants.Urls.canonical listing.FileName
             let priceText = formatPrice listing.Metadata.Price listing.Metadata.Currency
             let status = normalizeStatus listing.Metadata.Status
             let conditionText =
@@ -182,7 +182,7 @@ module MarketplaceProcessor
                 if String.IsNullOrWhiteSpace listing.Metadata.Description then listing.Metadata.Title
                 else listing.Metadata.Description
             let description = sprintf "%s \u2014 %s (%s)%s" descBase priceText (statusLabel status) conditionText
-            let normalizedDescription = normalizeUrlsForRss description "https://www.lqdev.me"
+            let normalizedDescription = normalizeUrlsForRss description Constants.Urls.canonical
 
             let categories =
                 if isNull listing.Metadata.Tags then []

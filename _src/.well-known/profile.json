@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema": "https://lqdev.me/docs/social-profile-manifest",
+  "version": "1.0",
+  "profile": {
+    "name": "Luis Quintanilla",
+    "url": "https://lqdev.me/",
+    "about": "https://lqdev.me/.well-known/about.md",
+    "contact": "https://lqdev.me/.well-known/contact.vcf",
+    "avatar": "https://lqdev.me/avatar-doom.png"
+  },
+  "identities": [
+    {
+      "acct": "lqdev@lqdev.me",
+      "protocol": "activitypub",
+      "primary": true,
+      "url": "https://lqdev.me/api/activitypub/actor"
+    },
+    {
+      "acct": "lqdev@toot.lqdev.tech",
+      "protocol": "activitypub",
+      "url": "https://toot.lqdev.tech/@lqdev"
+    },
+    {
+      "id": "github",
+      "protocol": "https",
+      "url": "https://github.com/lqdev",
+      "rel": "me"
+    },
+    {
+      "id": "bluesky",
+      "protocol": "atproto",
+      "url": "https://bsky.app/profile/did:plc:pme7qquljcdx6i4zyawoxypd",
+      "rel": "me"
+    }
+  ],
+  "feeds": {
+    "all": "https://lqdev.me/feed/feed.xml",
+    "blog": "https://lqdev.me/blog.rss",
+    "notes": "https://lqdev.me/microblog.rss",
+    "responses": "https://lqdev.me/responses.rss"
+  },
+  "services": {
+    "webfinger": "https://lqdev.me/.well-known/webfinger",
+    "webmention": "https://webmentions.lqdev.tech/api/inbox",
+    "activitypub": "https://lqdev.me/api/activitypub/actor",
+    "indieauth": "https://indieauth.lqdev.tech/.well-known/oauth-authorization-server"
+  },
+  "following": [
+    {
+      "name": "Blogs",
+      "description": "Blogs I subscribe to",
+      "url": "https://lqdev.me/collections/blogroll/index.opml",
+      "type": "opml"
+    },
+    {
+      "name": "Podcasts",
+      "description": "Podcasts I subscribe to",
+      "url": "https://lqdev.me/collections/podroll/index.opml",
+      "type": "opml"
+    },
+    {
+      "name": "Forums",
+      "description": "Forums I keep up with",
+      "url": "https://lqdev.me/collections/forums/index.opml",
+      "type": "opml"
+    },
+    {
+      "name": "YouTube",
+      "description": "YouTube channels I subscribe to",
+      "url": "https://lqdev.me/collections/youtube/index.opml",
+      "type": "opml"
+    }
+  ],
+  "starterPacks": [
+    {
+      "name": "AI",
+      "description": "A collection of resources for web developers.",
+      "url": "https://lqdev.me/collections/starter-packs/ai/index.opml",
+      "type": "opml"
+    }
+  ]
+}

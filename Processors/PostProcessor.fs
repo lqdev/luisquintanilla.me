@@ -75,13 +75,13 @@ module PostProcessor
         
         RenderRss = fun post ->
             // Create RSS item for post using existing pattern
-            let url = sprintf "https://www.lqdev.me/posts/%s" post.FileName
+            let url = sprintf "%s/posts/%s" Constants.Urls.canonical post.FileName
             let categories = 
                 if isNull post.Metadata.Tags then []
                 else post.Metadata.Tags |> Array.map (fun tag -> XElement(XName.Get "category", tag)) |> Array.toList
             
             // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss post.Content "https://www.lqdev.me"
+            let normalizedContent = normalizeUrlsForRss post.Content Constants.Urls.canonical
             
             let item = 
                 XElement(XName.Get "item",

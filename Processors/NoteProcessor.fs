@@ -70,13 +70,13 @@ module NoteProcessor
         
         RenderRss = fun note ->
             // Create RSS item for note using existing pattern
-            let url = sprintf "https://www.lqdev.me/notes/%s" note.FileName
+            let url = sprintf "%s/notes/%s" Constants.Urls.canonical note.FileName
             let categories = 
                 if isNull note.Metadata.Tags then []
                 else note.Metadata.Tags |> Array.map (fun tag -> XElement(XName.Get "category", tag)) |> Array.toList
             
             // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss note.Content "https://www.lqdev.me"
+            let normalizedContent = normalizeUrlsForRss note.Content Constants.Urls.canonical
             
             let item = 
                 XElement(XName.Get "item",

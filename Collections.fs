@@ -210,9 +210,9 @@ module CollectionProcessor =
     <channel>
         <title>%s</title>
         <description>%s</description>
-        <link>https://www.lqdev.me%s</link>
+        <link>%s%s</link>
     </channel>
-</rss>""" collection.Title collection.Description collection.UrlPath
+</rss>""" collection.Title collection.Description Constants.Urls.canonical collection.UrlPath
     
     // Generate OPML file for collection
     let generateCollectionOpml (data: CollectionData) : string =
@@ -227,7 +227,7 @@ module CollectionProcessor =
                     XmlUrl = item.XmlUrl
                 })
 
-        OpmlService.buildOpmlFeed collection.Title "https://www.lqdev.me" outlines
+        OpmlService.buildOpmlFeed collection.Title Constants.Urls.canonical outlines
         |> fun feed -> feed.ToString()
 
     // Generate GPX file for travel collections  

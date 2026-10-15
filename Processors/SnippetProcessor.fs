@@ -51,7 +51,7 @@ module SnippetProcessor
         
         RenderRss = fun snippet ->
             // Create RSS item for snippet similar to post
-            let url = sprintf "https://www.lqdev.me/resources/snippets/%s" snippet.FileName
+            let url = sprintf "%s/resources/snippets/%s" Constants.Urls.canonical snippet.FileName
             let categories = 
                 if String.IsNullOrEmpty(snippet.Metadata.Tags) then []
                 else snippet.Metadata.Tags.Split(',') 
@@ -59,7 +59,7 @@ module SnippetProcessor
                      |> Array.toList
             
             // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss snippet.Content "https://www.lqdev.me"
+            let normalizedContent = normalizeUrlsForRss snippet.Content Constants.Urls.canonical
             
             let item = 
                 XElement(XName.Get "item",

@@ -80,7 +80,19 @@ let buildContentTypeWithHead<'T> (extraHeadOf: 'T -> XmlNode list) (srcDir: stri
         let content = item.Content
         let saveDir = joinPath (outputDir :: (cfg.OutputDir @ [ cfg.Slug content ]))
         Directory.CreateDirectory(saveDir) |> ignore
-        let html = ViewGenerator.generateWithHead (extraHeadOf content) (cfg.ItemView content items) cfg.Layout (cfg.ItemTitle content)
+        let pageUrl = "/" + (joinPath (cfg.OutputDir @ [ cfg.Slug content ])).Replace("\\", "/") + "/"
+        let metadata =
+            ViewGenerator.pageMetadata
+                pageUrl
+                ((cfg.ItemTitle content) + " - " + Constants.Author.name)
+                "article"
+        let html =
+            ViewGenerator.generateWithPageMetadata
+                (extraHeadOf content)
+                metadata
+                (cfg.ItemView content items)
+                cfg.Layout
+                (cfg.ItemTitle content)
         File.WriteAllText(Path.Join(saveDir, "index.html"), html))
 
     // Index page (only when configured)
@@ -104,7 +116,12 @@ let buildContentTypeWithHead<'T> (extraHeadOf: 'T -> XmlNode list) (srcDir: stri
                     rawText (StructuredData.listPageJson schemaType indexUrl sectionTitle)
                 ]
             ]
-        let indexHtml = ViewGenerator.generate indexContent cfg.Layout index.Title
+        let indexMetadata =
+            ViewGenerator.pageMetadata
+                indexUrl
+                (index.Title + " - " + Constants.Author.name)
+                "website"
+        let indexHtml = ViewGenerator.generatePage indexMetadata indexContent cfg.Layout index.Title
         let indexSaveDir = joinPath (outputDir :: cfg.OutputDir)
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), indexHtml)

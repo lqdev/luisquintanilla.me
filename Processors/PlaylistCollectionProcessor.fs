@@ -77,11 +77,11 @@ module PlaylistCollectionProcessor
         
         RenderRss = fun playlistCollection ->
             // Create RSS item for playlist collection
-            let url = sprintf "https://www.lqdev.me/collections/playlists/%s/" playlistCollection.FileName
+            let url = sprintf "%s/collections/playlists/%s/" Constants.Urls.canonical playlistCollection.FileName
             let description = playlistCollection.Metadata.Description |> Option.defaultValue ""
             
             // Normalize URLs in description for RSS compatibility
-            let normalizedDescription = normalizeUrlsForRss description "https://www.lqdev.me"
+            let normalizedDescription = normalizeUrlsForRss description Constants.Urls.canonical
             
             // Create RSS category elements for tags
             let categories = 

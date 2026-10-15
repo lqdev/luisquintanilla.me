@@ -135,7 +135,7 @@ let avatarFlipCard (altText: string) (flipUrl: string) (ariaLabel: string) (dest
                 div [ _class "avatar-flip-front" ] [
                     img [ _src Constants.Avatar.displayPath
                           _alt altText
-                          _class "rounded-circle avatar-flip-image"
+                          _class "rounded-circle avatar-flip-image u-photo"
                           _height "150"
                           _width "150" ]
                 ]
@@ -168,16 +168,20 @@ let timelineHomeViewStratified (initialItems: UnifiedFeeds.UnifiedFeedItem array
     
     div [ _class "h-feed unified-timeline" ] [
         // Header with personal intro and content filters
-        header [ _class "timeline-header text-center p-4" ] [
+        header [ _class "timeline-header text-center p-4 h-card" ] [
             div [ _class "avatar-section mb-3" ] [
                 avatarFlipCard "Luis Quintanilla Avatar Image" "/" "Show QR code for homepage" "Luis Quintanilla's homepage"
                 div [ _class "mt-2" ] [
-                    h1 [ _class "p-name" ] [
+                    h1 [] [
                         str "Hi, I'm "
                         a [ _href "/about"; _class "author-link" ] [ Text "Luis" ]
                         span [] [ Text " &#x1F44B;" ]
                     ]
-                    p [ _class "tagline" ] [ Text "Latest updates from across the site" ]
+                    span [ _class "p-name microformat-hidden" ] [ Text Constants.Author.name ]
+                    a [ _class "u-url u-uid microformat-hidden"; _href (Constants.Urls.canonical + "/") ] []
+                    a [ _class "u-email microformat-hidden"; _href Constants.Author.email ] []
+                    span [ _class "p-job-title microformat-hidden" ] [ Text Constants.Author.jobTitle ]
+                    p [ _class "tagline p-note" ] [ Text "Latest updates from across the site" ]
                 ]
             ]
             

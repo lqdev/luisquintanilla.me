@@ -195,12 +195,12 @@ module BookProcessor
         
         RenderRss = fun book ->
             // Create RSS item for book
-            let url = sprintf "https://www.lqdev.me/reviews/%s" book.FileName
+            let url = sprintf "%s/reviews/%s" Constants.Urls.canonical book.FileName
             
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", sprintf "%s by %s" book.Metadata.Title book.Metadata.Author),
-                    rssDescriptionElement (normalizeUrlsForRss book.Content "https://www.lqdev.me"),
+                    rssDescriptionElement (normalizeUrlsForRss book.Content Constants.Urls.canonical),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
             

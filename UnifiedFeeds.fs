@@ -186,7 +186,7 @@ module UnifiedFeeds
         |> List.iter (fun item ->
             let contentHtml =
                 let baseContent = toJsonFeedContent item
-                if useAbsoluteUrls then normalizeUrlsForRss baseContent "https://www.lqdev.me"
+                if useAbsoluteUrls then normalizeUrlsForRss baseContent Constants.Urls.canonical
                 else baseContent
 
             let jsonItem = JsonObject()
@@ -207,7 +207,7 @@ module UnifiedFeeds
 
         let author = JsonObject()
         author["name"] <- "Luis Quintanilla"
-        author["url"] <- "https://www.lqdev.me"
+        author["url"] <- Constants.Urls.canonical
 
         let authors = JsonArray()
         authors.Add(author)
@@ -233,9 +233,9 @@ module UnifiedFeeds
             File.WriteAllText(fullPath, feedContent)
 
         let typeConfigs = [
-            (ContentTypes.Posts, "Luis Quintanilla - Posts", "https://www.lqdev.me/posts", "https://www.lqdev.me/posts/feed.json", "Blog posts by Luis Quintanilla", fun (item: UnifiedFeedItem) -> item.ContentType = ContentTypes.Posts)
-            (ContentTypes.Notes, "Luis Quintanilla - Notes", "https://www.lqdev.me/notes", "https://www.lqdev.me/notes/feed.json", "Notes and micro-posts by Luis Quintanilla", fun (item: UnifiedFeedItem) -> item.ContentType = ContentTypes.Notes)
-            (ContentTypes.Responses, "Luis Quintanilla - Responses", "https://www.lqdev.me/responses", "https://www.lqdev.me/responses/feed.json", "IndieWeb responses by Luis Quintanilla", fun (item: UnifiedFeedItem) -> responseStreamContentTypes.Contains(item.ContentType))
+            (ContentTypes.Posts, "Luis Quintanilla - Posts", Constants.Urls.canonical + "/posts", Constants.Urls.canonical + "/posts/feed.json", "Blog posts by Luis Quintanilla", fun (item: UnifiedFeedItem) -> item.ContentType = ContentTypes.Posts)
+            (ContentTypes.Notes, "Luis Quintanilla - Notes", Constants.Urls.canonical + "/notes", Constants.Urls.canonical + "/notes/feed.json", "Notes and micro-posts by Luis Quintanilla", fun (item: UnifiedFeedItem) -> item.ContentType = ContentTypes.Notes)
+            (ContentTypes.Responses, "Luis Quintanilla - Responses", Constants.Urls.canonical + "/responses", Constants.Urls.canonical + "/responses/feed.json", "IndieWeb responses by Luis Quintanilla", fun (item: UnifiedFeedItem) -> responseStreamContentTypes.Contains(item.ContentType))
         ]
 
         typeConfigs
@@ -260,8 +260,8 @@ module UnifiedFeeds
             let allJsonFeed =
                 generateJsonFeedString
                     "Luis Quintanilla - All Updates"
-                    "https://www.lqdev.me/feed"
-                    "https://www.lqdev.me/feed/index.json"
+                    (Constants.Urls.canonical + "/feed")
+                    (Constants.Urls.canonical + "/feed/index.json")
                     "Posts, notes, and responses by Luis Quintanilla"
                     allStreamItems
                     true
@@ -289,7 +289,7 @@ module UnifiedFeeds
         // Fire-hose feed configuration (all content types)
         let fireHoseConfig = {
             Title = "Luis Quintanilla - All Updates"
-            Link = "https://www.lqdev.me/feed"
+            Link = Constants.Urls.canonical + "/feed"
             Description = "All content updates from Luis Quintanilla's website"
             OutputPath = "feed/feed.xml"
             ContentType = None
@@ -309,98 +309,98 @@ module UnifiedFeeds
         let typeConfigurations = [
             (ContentTypes.Posts, {
                 Title = "Luis Quintanilla - Posts"
-                Link = "https://www.lqdev.me/posts"
+                Link = Constants.Urls.canonical + "/posts"
                 Description = "Blog posts by Luis Quintanilla"
                 OutputPath = "posts/feed.xml"
                 ContentType = Some ContentTypes.Posts
             })
             (ContentTypes.Notes, {
                 Title = "Luis Quintanilla - Notes"
-                Link = "https://www.lqdev.me/notes"
+                Link = Constants.Urls.canonical + "/notes"
                 Description = "Notes and micro-posts by Luis Quintanilla"
                 OutputPath = "notes/feed.xml"
                 ContentType = Some ContentTypes.Notes
             })
             (ContentTypes.Responses, {
                 Title = "Luis Quintanilla - Responses"
-                Link = "https://www.lqdev.me/responses"
+                Link = Constants.Urls.canonical + "/responses"
                 Description = "IndieWeb responses by Luis Quintanilla"
                 OutputPath = "responses/feed.xml"
                 ContentType = Some ContentTypes.Responses
             })
             (ContentTypes.Bookmarks, {
                 Title = "Luis Quintanilla - Bookmarks"
-                Link = "https://www.lqdev.me/bookmarks"
+                Link = Constants.Urls.canonical + "/bookmarks"
                 Description = "IndieWeb bookmarks by Luis Quintanilla"
                 OutputPath = "bookmarks/feed.xml"
                 ContentType = Some ContentTypes.Bookmarks
             })
             (ContentTypes.Rsvp, {
                 Title = "Luis Quintanilla - RSVPs"
-                Link = "https://www.lqdev.me/rsvp"
+                Link = Constants.Urls.canonical + "/rsvp"
                 Description = "Events Luis Quintanilla has responded to (yes/no/maybe/interested)"
                 OutputPath = "rsvp/feed.xml"
                 ContentType = Some ContentTypes.Rsvp
             })
             (ContentTypes.Snippets, {
                 Title = "Luis Quintanilla - Snippets"
-                Link = "https://www.lqdev.me/resources/snippets"
+                Link = Constants.Urls.canonical + "/resources/snippets"
                 Description = "Code snippets by Luis Quintanilla"
                 OutputPath = "resources/snippets/feed.xml"
                 ContentType = Some ContentTypes.Snippets
             })
             (ContentTypes.Wiki, {
                 Title = "Luis Quintanilla - Wiki"
-                Link = "https://www.lqdev.me/resources/wiki"
+                Link = Constants.Urls.canonical + "/resources/wiki"
                 Description = "Wiki articles by Luis Quintanilla"
                 OutputPath = "resources/wiki/feed.xml"
                 ContentType = Some ContentTypes.Wiki
             })
             (ContentTypes.Presentations, {
                 Title = "Luis Quintanilla - Presentations"
-                Link = "https://www.lqdev.me/resources/presentations"
+                Link = Constants.Urls.canonical + "/resources/presentations"
                 Description = "Presentations by Luis Quintanilla"
                 OutputPath = "resources/presentations/feed.xml"
                 ContentType = Some ContentTypes.Presentations
             })
             (ContentTypes.Reviews, {
                 Title = "Luis Quintanilla - Reviews"
-                Link = "https://www.lqdev.me/reviews"
+                Link = Constants.Urls.canonical + "/reviews"
                 Description = "Reviews by Luis Quintanilla"
                 OutputPath = "reviews/feed.xml"
                 ContentType = Some ContentTypes.Reviews
             })
             (ContentTypes.Media, {
                 Title = "Luis Quintanilla - Media"
-                Link = "https://www.lqdev.me/media"
+                Link = Constants.Urls.canonical + "/media"
                 Description = "Photo albums and media by Luis Quintanilla"
                 OutputPath = "media/feed.xml"
                 ContentType = Some ContentTypes.Media
             })
             (ContentTypes.AlbumCollection, {
                 Title = "Luis Quintanilla - Albums"
-                Link = "https://www.lqdev.me/collections/albums"
+                Link = Constants.Urls.canonical + "/collections/albums"
                 Description = "Photo album collections by Luis Quintanilla"
                 OutputPath = "collections/albums/feed.xml"
                 ContentType = Some ContentTypes.AlbumCollection
             })
             (ContentTypes.PlaylistCollection, {
                 Title = "Luis Quintanilla - Playlists"
-                Link = "https://www.lqdev.me/collections/playlists"
+                Link = Constants.Urls.canonical + "/collections/playlists"
                 Description = "Music playlist collections by Luis Quintanilla"
                 OutputPath = "collections/playlists/feed.xml"
                 ContentType = Some ContentTypes.PlaylistCollection
             })
             (ContentTypes.AiMemex, {
                 Title = "Luis Quintanilla - AI Memex"
-                Link = "https://www.lqdev.me/resources/ai-memex"
+                Link = Constants.Urls.canonical + "/resources/ai-memex"
                 Description = "AI-authored content: project reports, research, patterns, and blog posts"
                 OutputPath = "resources/ai-memex/feed.xml"
                 ContentType = Some ContentTypes.AiMemex
             })
             (ContentTypes.Marketplace, {
                 Title = "Luis Quintanilla - Marketplace"
-                Link = "https://www.lqdev.me/marketplace"
+                Link = Constants.Urls.canonical + "/marketplace"
                 Description = "Items for sale by Luis Quintanilla"
                 OutputPath = "marketplace/feed.xml"
                 ContentType = Some ContentTypes.Marketplace
@@ -484,7 +484,7 @@ module UnifiedFeeds
                 let sanitizedTag = sanitizeTagForPath tag
                 let tagConfig = {
                     Title = sprintf "Luis Quintanilla - %s" tag
-                    Link = sprintf "https://www.lqdev.me/tags/%s" sanitizedTag
+                    Link = sprintf "%s/tags/%s" Constants.Urls.canonical sanitizedTag
                     Description = sprintf "All content tagged with '%s' by Luis Quintanilla" tag
                     OutputPath = sprintf "tags/%s/feed.xml" sanitizedTag
                     ContentType = None  // Tag feeds include all content types

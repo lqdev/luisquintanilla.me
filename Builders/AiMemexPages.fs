@@ -31,7 +31,7 @@ module AiMemexPagesBuilder
         let chatClient = EntityExtraction.createChatClient ()
         let entryPairs = allEntries |> Array.map (fun e -> (e.FileName, e.Content))
         let extractions =
-            EntityExtraction.extractAll chatClient entryPairs "https://www.lqdev.me"
+            EntityExtraction.extractAll chatClient entryPairs Constants.Urls.canonical
         
         let graph = KnowledgeGraph.buildGraph allEntries extractions
         
@@ -79,7 +79,18 @@ module AiMemexPagesBuilder
                 |> Array.filter (fun en -> en.MentionedIn |> Array.contains entry.FileName)
             
             let html = LayoutViews.aiMemexPageView entry.Metadata.Title (contentToRender |> convertMdToHtml) entry.Metadata.PublishedDate entry.Metadata.LastUpdatedDate entry.FileName entryTags entry.Metadata.EntryType entry.Metadata.Description entry.Metadata.RelatedSkill entry.Metadata.SourceProject backlinks relatedEntries jsonLd crossContent entryEntityNodes
-            let page = generate html "defaultindex" $"{entry.Metadata.Title} | AI Memex | Luis Quintanilla"
+            let pageUrl = $"/resources/ai-memex/{entry.FileName}/"
+            let metadata =
+                pageMetadata
+                    pageUrl
+                    entry.Metadata.Description
+                    "article"
+            let page =
+                generatePage
+                    metadata
+                    html
+                    "defaultindex"
+                    $"{entry.Metadata.Title} | AI Memex | Luis Quintanilla"
             let saveFileName = Path.Join(saveDir, "index.html")
             File.WriteAllText(saveFileName, page))
         
@@ -89,13 +100,33 @@ module AiMemexPagesBuilder
             elif not (String.IsNullOrEmpty(x.Metadata.LastUpdatedDate)) then DateTimeOffset.Parse(x.Metadata.LastUpdatedDate)
             else DateTimeOffset.MinValue)
         let collectionJsonLd = KnowledgeGraph.generateCollectionJsonLd entries
-        let indexHtml = generate (CollectionViews.aiMemexView entries collectionJsonLd) "defaultindex" "AI Memex | Luis Quintanilla"
+        let indexMetadata =
+            pageMetadata
+                "/resources/ai-memex/"
+                "Reusable patterns, research, and project knowledge from Luis Quintanilla's AI Memex."
+                "website"
+        let indexHtml =
+            generatePage
+                indexMetadata
+                (CollectionViews.aiMemexView entries collectionJsonLd)
+                "defaultindex"
+                "AI Memex | Luis Quintanilla"
         let indexSaveDir = Path.Join(outputDir, "resources", "ai-memex")
         Directory.CreateDirectory(indexSaveDir) |> ignore
         File.WriteAllText(Path.Join(indexSaveDir, "index.html"), indexHtml)
         
         // Generate dedicated knowledge graph page
-        let graphHtml = generate (CollectionViews.aiMemexGraphView entries.Length) "defaultindex" "Knowledge Graph | AI Memex | Luis Quintanilla"
+        let graphMetadata =
+            pageMetadata
+                "/resources/ai-memex/graph/"
+                "A browsable knowledge graph of Luis Quintanilla's AI Memex."
+                "website"
+        let graphHtml =
+            generatePage
+                graphMetadata
+                (CollectionViews.aiMemexGraphView entries.Length)
+                "defaultindex"
+                "Knowledge Graph | AI Memex | Luis Quintanilla"
         let graphSaveDir = Path.Join(outputDir, "resources", "ai-memex", "graph")
         Directory.CreateDirectory(graphSaveDir) |> ignore
         File.WriteAllText(Path.Join(graphSaveDir, "index.html"), graphHtml)

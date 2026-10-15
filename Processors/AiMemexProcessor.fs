@@ -63,7 +63,7 @@ module AiMemexProcessor
                  Html.element "p" "" excerpt)
         
         RenderRss = fun aiMemex ->
-            let url = sprintf "https://www.lqdev.me/resources/ai-memex/%s" aiMemex.FileName
+            let url = sprintf "%s/resources/ai-memex/%s" Constants.Urls.canonical aiMemex.FileName
             let categories = 
                 if String.IsNullOrEmpty(aiMemex.Metadata.Tags) then []
                 else aiMemex.Metadata.Tags.Split(',') 
@@ -71,7 +71,7 @@ module AiMemexProcessor
                      |> Array.toList
             
             // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss aiMemex.Content "https://www.lqdev.me"
+            let normalizedContent = normalizeUrlsForRss aiMemex.Content Constants.Urls.canonical
             
             let item = 
                 XElement(XName.Get "item",

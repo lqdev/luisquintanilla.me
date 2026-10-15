@@ -7,8 +7,8 @@ open VDS.RDF.Writing
 open KnowledgeGraph
 
 let private schemaUri = Uri("https://schema.org/")
-let private kbUri = Uri("https://www.lqdev.me/vocab/kb#")
-let private baseUri = Uri("https://www.lqdev.me/")
+let private kbUri = Uri($"{Constants.Urls.canonical}/vocab/kb#")
+let private baseUri = Uri($"{Constants.Urls.canonical}/")
 
 let inline private assertTriple (g: IGraph) (s: INode) (p: INode) (o: INode) =
     g.Assert(Triple(s, p, o)) |> ignore
@@ -36,7 +36,7 @@ let serializeGraph (graph: KnowledgeGraph) (outputDir: string) =
 
     // Entry nodes
     for node in graph.Nodes do
-        let entryUri = rdf.CreateUriNode(UriFactory.Create($"https://www.lqdev.me{node.Url}"))
+        let entryUri = rdf.CreateUriNode(UriFactory.Create($"{Constants.Urls.canonical}{node.Url}"))
         let articleType =
             match node.EntryType with
             | "pattern" -> "schema:TechArticle"
@@ -45,7 +45,7 @@ let serializeGraph (graph: KnowledgeGraph) (outputDir: string) =
             | _ -> "schema:Article"
         assert3 entryUri rdfType (rdf.CreateUriNode(articleType))
         assert3 entryUri schemaName (rdf.CreateLiteralNode(node.Title))
-        assert3 entryUri schemaUrl (rdf.CreateUriNode(UriFactory.Create($"https://www.lqdev.me{node.Url}")))
+        assert3 entryUri schemaUrl (rdf.CreateUriNode(UriFactory.Create($"{Constants.Urls.canonical}{node.Url}")))
         assert3 entryUri kbEntryType (rdf.CreateLiteralNode(node.EntryType))
 
         if not (String.IsNullOrWhiteSpace(node.Description)) then
@@ -64,8 +64,8 @@ let serializeGraph (graph: KnowledgeGraph) (outputDir: string) =
             let tgt = graph.Nodes |> Array.tryFind (fun n -> n.Id = edge.Target)
             match src, tgt with
             | Some s, Some t ->
-                let srcUri = rdf.CreateUriNode(UriFactory.Create($"https://www.lqdev.me{s.Url}"))
-                let tgtUri = rdf.CreateUriNode(UriFactory.Create($"https://www.lqdev.me{t.Url}"))
+                let srcUri = rdf.CreateUriNode(UriFactory.Create($"{Constants.Urls.canonical}{s.Url}"))
+                let tgtUri = rdf.CreateUriNode(UriFactory.Create($"{Constants.Urls.canonical}{t.Url}"))
                 assert3 srcUri kbRelatedTo tgtUri
             | _ -> ()
 
@@ -76,7 +76,7 @@ let serializeGraph (graph: KnowledgeGraph) (outputDir: string) =
             if isAbsolute then
                 rdf.CreateUriNode(parsedUri)
             else
-                rdf.CreateUriNode(UriFactory.Create($"https://www.lqdev.me/entity/{entity.Id}"))
+                rdf.CreateUriNode(UriFactory.Create($"{Constants.Urls.canonical}/entity/{entity.Id}"))
         let entityRdfType =
             match entity.EntityType with
             | "SoftwareApplication" -> "schema:SoftwareApplication"
@@ -100,7 +100,7 @@ let serializeGraph (graph: KnowledgeGraph) (outputDir: string) =
         for slug in entity.MentionedIn do
             match graph.Nodes |> Array.tryFind (fun n -> n.Id = slug) with
             | Some n ->
-                let entryUri = rdf.CreateUriNode(UriFactory.Create($"https://www.lqdev.me{n.Url}"))
+                let entryUri = rdf.CreateUriNode(UriFactory.Create($"{Constants.Urls.canonical}{n.Url}"))
                 assert3 entryUri schemaMentions entityUri
             | None -> ()
 

@@ -103,7 +103,12 @@ module BlogArchiveBuilder
                 ]
             ]
 
-        let archivePage = generate archiveView "defaultindex" "Archive Exports - Luis Quintanilla"
+        let archivePage =
+            generatePage
+                (pageMetadata "/archive/" "Download portable archives of Luis Quintanilla's published content." "website")
+                archiveView
+                "defaultindex"
+                "Archive Exports - Luis Quintanilla"
         writePageToDir (Path.Join(outputDir, "archive")) "index.html" archivePage
 
     let private generateBarFeedJson (archiveTitle: string) (homePageUrl: string) (entries: ArchiveFeedItem list) =
@@ -125,7 +130,7 @@ module BlogArchiveBuilder
 
         let author = JsonObject()
         author["name"] <- "Luis Quintanilla"
-        author["url"] <- "https://www.lqdev.me"
+        author["url"] <- Constants.Urls.canonical
         let authors = JsonArray()
         authors.Add(author)
 
@@ -175,7 +180,7 @@ module BlogArchiveBuilder
         let registerUpload (imgSource: string) =
             let relativePathCandidate =
                 let normalizedSource = imgSource.Trim().Replace(Path.DirectorySeparatorChar, '/').Replace(Path.AltDirectorySeparatorChar, '/')
-                let canonicalUri = Uri($"https://www.lqdev.me/{normalizedSource.TrimStart('/')}")
+                let canonicalUri = Uri($"{Constants.Urls.canonical}/{normalizedSource.TrimStart('/')}")
                 canonicalUri.AbsolutePath.TrimStart('/')
 
             if String.IsNullOrWhiteSpace(relativePathCandidate) then None
@@ -276,25 +281,25 @@ module BlogArchiveBuilder
                 FileName = "posts.bar"
                 Label = "Posts"
                 Description = "Long-form blog posts"
-                SizeBytes = buildBarArchive "posts" "Luis Quintanilla — Posts" "https://www.lqdev.me/posts/" postsItems
+                SizeBytes = buildBarArchive "posts" "Luis Quintanilla — Posts" (Constants.Urls.canonical + "/posts/") postsItems
             }
             {
                 FileName = "notes.bar"
                 Label = "Notes"
                 Description = "Short-form notes and updates"
-                SizeBytes = buildBarArchive "notes" "Luis Quintanilla — Notes" "https://www.lqdev.me/notes/" notesItems
+                SizeBytes = buildBarArchive "notes" "Luis Quintanilla — Notes" (Constants.Urls.canonical + "/notes/") notesItems
             }
             {
                 FileName = "responses.bar"
                 Label = "Responses"
                 Description = "Replies, stars, and reshares"
-                SizeBytes = buildBarArchive "responses" "Luis Quintanilla — Responses" "https://www.lqdev.me/responses/" responseItems
+                SizeBytes = buildBarArchive "responses" "Luis Quintanilla — Responses" (Constants.Urls.canonical + "/responses/") responseItems
             }
             {
                 FileName = "all.bar"
                 Label = "All"
                 Description = "Combined posts, notes, and responses stream"
-                SizeBytes = buildBarArchive "all" "Luis Quintanilla — All Streams" "https://www.lqdev.me/feed/" allItems
+                SizeBytes = buildBarArchive "all" "Luis Quintanilla — All Streams" (Constants.Urls.canonical + "/feed/") allItems
             }
         ]
 

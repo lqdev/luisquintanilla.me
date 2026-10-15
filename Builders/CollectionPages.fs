@@ -12,12 +12,17 @@ module CollectionPagesBuilder
         
         for (collection, data) in collections do
             try
-                // Generate HTML page using the new system
-                let htmlContent = Collections.CollectionProcessor.generateCollectionPage data
-                let htmlPage = generate htmlContent "default" $"{collection.Title} - Luis Quintanilla"
-                
                 // Calculate paths
                 let paths = Collections.CollectionProcessor.getCollectionPaths collection
+
+                // Generate HTML page using the new system
+                let htmlContent = Collections.CollectionProcessor.generateCollectionPage data
+                let metadata =
+                    pageMetadata
+                        (Path.GetDirectoryName(paths.HtmlPath).Replace("\\", "/") |> fun path -> "/" + path.TrimStart('/') + "/")
+                        collection.Description
+                        "website"
+                let htmlPage = generatePage metadata htmlContent "default" $"{collection.Title} - Luis Quintanilla"
                 
                 // Ensure output directory exists
                 let outputPath = Path.Join(outputDir, Path.GetDirectoryName(paths.HtmlPath))

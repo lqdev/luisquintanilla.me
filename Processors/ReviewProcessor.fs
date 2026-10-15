@@ -191,12 +191,12 @@ module ReviewProcessor
             sprintf "<div class=\"review-timeline-card\">%s%s%s</div>" hiddenItemTypeHtml coverHtml ratingHtml
 
         RenderRss = fun review ->
-            let url = sprintf "https://www.lqdev.me/reviews/%s" review.FileName
+            let url = sprintf "%s/reviews/%s" Constants.Urls.canonical review.FileName
 
             let item =
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", rssTitle review),
-                    rssDescriptionElement (normalizeUrlsForRss review.Content "https://www.lqdev.me"),
+                    rssDescriptionElement (normalizeUrlsForRss review.Content Constants.Urls.canonical),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
 

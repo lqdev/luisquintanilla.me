@@ -135,11 +135,11 @@ module ResponseProcessor
                 match response.Metadata.ResponseType with
                 | "bookmark" -> "bookmarks"
                 | _ -> "responses"
-            let url = sprintf "https://www.lqdev.me/%s/%s" urlPath response.FileName
+            let url = sprintf "%s/%s/%s" Constants.Urls.canonical urlPath response.FileName
             let description = sprintf "[%s] %s" response.Metadata.ResponseType response.Content
             
             // Normalize URLs in description for RSS compatibility
-            let normalizedDescription = normalizeUrlsForRss description "https://www.lqdev.me"
+            let normalizedDescription = normalizeUrlsForRss description Constants.Urls.canonical
             
             let categories = 
                 if isNull response.Metadata.Tags then []

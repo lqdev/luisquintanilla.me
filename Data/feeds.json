@@ -2,43 +2,43 @@
     {
         "Title": "Everything",
         "Type": "rss",
-        "HtmlUrl": "https://www.lqdev.me/feed",
-        "XmlUrl": "https://www.lqdev.me/all.rss"
+        "HtmlUrl": "https://lqdev.me/feed",
+        "XmlUrl": "https://lqdev.me/all.rss"
     },
     {
         "Title": "Blog",
         "Type": "rss",
-        "HtmlUrl": "https://www.lqdev.me/posts/1",
-        "XmlUrl": "https://www.lqdev.me/blog.rss"
+        "HtmlUrl": "https://lqdev.me/posts/1",
+        "XmlUrl": "https://lqdev.me/blog.rss"
     },
     {
         "Title": "Microblog",
         "Type": "rss",
-        "HtmlUrl": "https://www.lqdev.me/feed",
-        "XmlUrl": "https://www.lqdev.me/microblog.rss"
+        "HtmlUrl": "https://lqdev.me/feed",
+        "XmlUrl": "https://lqdev.me/microblog.rss"
     },
     {
         "Title": "Responses",
         "Type": "rss",
-        "HtmlUrl": "https://www.lqdev.me/feed/responses",
-        "XmlUrl": "https://www.lqdev.me/responses.rss"
+        "HtmlUrl": "https://lqdev.me/feed/responses",
+        "XmlUrl": "https://lqdev.me/responses.rss"
     },
     {
         "Title": "Mastodon",
         "Type": "rss",
-        "HtmlUrl": "https://www.lqdev.me/mastodon",
-        "XmlUrl": "https://www.lqdev.me/mastodon.rss"
+        "HtmlUrl": "https://lqdev.me/mastodon",
+        "XmlUrl": "https://lqdev.me/mastodon.rss"
     },
     {
         "Title": "Bluesky",
         "Type": "rss",
-        "HtmlUrl": "https://www.lqdev.me/bluesky",
-        "XmlUrl": "https://www.lqdev.me/bluesky.rss"
+        "HtmlUrl": "https://lqdev.me/bluesky",
+        "XmlUrl": "https://lqdev.me/bluesky.rss"
     },
     {
         "Title": "YouTube",
         "Type": "rss",
-        "HtmlUrl": "https://www.lqdev.me/youtube",
-        "XmlUrl": "https://www.lqdev.me/youtube.rss"
+        "HtmlUrl": "https://lqdev.me/youtube",
+        "XmlUrl": "https://lqdev.me/youtube.rss"
     }
 ]
