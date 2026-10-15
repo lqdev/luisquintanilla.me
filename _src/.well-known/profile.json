@@ -1,6 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "schema": "https://lqdev.me/docs/social-profile-manifest",
+  "schema": "https://lqdev.me/.well-known/profile.schema.v1.json",
   "version": "1.0",
   "profile": {
     "name": "Luis Quintanilla",

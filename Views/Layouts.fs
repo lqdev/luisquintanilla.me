@@ -5,12 +5,14 @@ module Layouts
     type PageMetadata =
         { CanonicalPath: string
           Description: string
-          OgType: string }
+          OgType: string
+          IncludeCanonicalLink: bool }
 
     let defaultPageMetadata (pageTitle: string) =
         { CanonicalPath = "/"
           Description = pageTitle + " - " + Constants.Author.name
-          OgType = "website" }
+          OgType = "website"
+          IncludeCanonicalLink = false }
 
     let private absolutePageUrl (path: string) =
         if path.StartsWith("http", System.StringComparison.OrdinalIgnoreCase) then
@@ -168,6 +170,9 @@ module Layouts
 
                 for el in ogElements do
                     el
+
+                if metadata.IncludeCanonicalLink then
+                    link [_rel "canonical"; _href (absolutePageUrl metadata.CanonicalPath)]
 
                 // RSS Feeds
                 for feed in rssFeeds do

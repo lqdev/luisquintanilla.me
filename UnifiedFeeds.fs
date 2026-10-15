@@ -56,6 +56,19 @@ module UnifiedFeeds
         OutputPath: string
         ContentType: string option  // None for fire-hose, Some("posts") for type-specific
     }
+
+    /// Return the identifier published before the canonical-origin migration.
+    /// RSS GUIDs are preserved centrally by GenericBuilder, but normalize a
+    /// canonical GUID defensively for feed data produced by another path.
+    let stableIdFor (item: UnifiedFeedItem) =
+        let guid =
+            match item.RssXml.Element(XName.Get "guid") with
+            | null -> item.Url
+            | element -> element.Value
+        if guid.StartsWith(Constants.Urls.canonical, StringComparison.OrdinalIgnoreCase) then
+            Constants.Urls.legacyWww + guid.Substring(Constants.Urls.canonical.Length)
+        else
+            guid
     
     /// Convert FeedData to UnifiedFeedItem
     let private convertToUnifiedItem<'T> (contentType: string) (feedData: FeedData<'T>) : UnifiedFeedItem option =
@@ -190,7 +203,7 @@ module UnifiedFeeds
                 else baseContent
 
             let jsonItem = JsonObject()
-            jsonItem["id"] <- item.Url
+            jsonItem["id"] <- stableIdFor item
             jsonItem["url"] <- item.Url
             jsonItem["title"] <- item.Title
             jsonItem["content_html"] <- contentHtml

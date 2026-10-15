@@ -1,6 +1,7 @@
 #!/usr/bin/env dotnet fsi
 
 #r "../bin/Debug/net10.0/PersonalSite.dll"
+#r "../bin/Debug/net10.0/Giraffe.ViewEngine.dll"
 
 open System
 open System.IO
@@ -12,6 +13,7 @@ open System.Text.RegularExpressions
 open System.Xml.Linq
 open Collections
 open Domain
+open Giraffe.ViewEngine
 open Loaders
 open MarkdownService
 
@@ -46,6 +48,9 @@ let generatedPodrollPath = Path.Combine(projectRoot, "_public", "collections", "
 let generatedYouTubePath = Path.Combine(projectRoot, "_public", "collections", "youtube", "index.opml")
 let generatedVCardPath = Path.Combine(projectRoot, "_public", "vcard.vcf")
 let generatedProfilePath = Path.Combine(projectRoot, "_public", ".well-known", "profile.json")
+let generatedProfileSchemaPath = Path.Combine(projectRoot, "_public", ".well-known", "profile.schema.v1.json")
+let generatedUnifiedRssPath = Path.Combine(projectRoot, "_public", "feed", "feed.xml")
+let generatedUnifiedJsonFeedPath = Path.Combine(projectRoot, "_public", "feed", "index.json")
 let configPath = Path.Combine(projectRoot, "staticwebapp.config.json")
 
 let readUtf8 path = File.ReadAllText(path, Encoding.UTF8)
@@ -132,11 +137,40 @@ check "Generated vCard preserves its source fields" (
 printfn "\nProfile manifest"
 let profileText = readUtf8 generatedProfilePath
 let profile = JsonDocument.Parse(profileText).RootElement
-check "Profile manifest declares its JSON Schema" (
-    profile.GetProperty("$schema").GetString() = "https://json-schema.org/draft/2020-12/schema")
+let profileSchemaText = readUtf8 generatedProfileSchemaPath
+let profileSchema = JsonDocument.Parse(profileSchemaText).RootElement
+let profileSchemaId = profileSchema.GetProperty("$id").GetString()
+let profileSchemaDefs = profileSchema.GetProperty("$defs")
+let profileSchemaProfile = profileSchemaDefs.GetProperty("profile")
+let profileSchemaFeeds = profileSchema.GetProperty("properties").GetProperty("feeds")
+let profileSchemaServices = profileSchema.GetProperty("properties").GetProperty("services")
+let hasJsonProperty (element: JsonElement) (name: string) =
+    let mutable value = Unchecked.defaultof<JsonElement>
+    element.TryGetProperty(name, &value)
+let requiredProperties (schemaObject: JsonElement) =
+    schemaObject.GetProperty("required").EnumerateArray()
+    |> Seq.map _.GetString()
+    |> Seq.toArray
+let checkRequiredProperties (name: string) (instance: JsonElement) (schemaObject: JsonElement) =
+    let required = requiredProperties schemaObject
+    check (name + " declares all required properties") (
+        required |> Array.forall (hasJsonProperty instance))
+check "Profile schema is published with a stable identifier" (
+    profileSchemaId = "https://lqdev.me/.well-known/profile.schema.v1.json"
+    && (profileSchema.GetProperty("$schema").GetString()) = "https://json-schema.org/draft/2020-12/schema")
 check "Profile manifest declares a versioned site schema" (
-    profile.GetProperty("schema").GetString() = "https://lqdev.me/docs/social-profile-manifest"
-    && profile.GetProperty("version").GetString() = "1.0")
+    (profile.GetProperty("schema").GetString()) = profileSchemaId
+    && (profile.GetProperty("version").GetString()) = "1.0")
+checkRequiredProperties "Profile manifest" profile profileSchema
+let profileObject = profile.GetProperty("profile")
+let feedsObject = profile.GetProperty("feeds")
+let servicesObject = profile.GetProperty("services")
+checkRequiredProperties "Profile manifest profile object" profileObject profileSchemaProfile
+checkRequiredProperties "Profile manifest feeds object" feedsObject profileSchemaFeeds
+checkRequiredProperties "Profile manifest services object" servicesObject profileSchemaServices
+check "Profile schema forbids undeclared root properties" (
+    let declared = profileSchema.GetProperty("properties").EnumerateObject() |> Seq.map _.Name |> Set.ofSeq
+    profile.EnumerateObject() |> Seq.forall (fun property -> declared.Contains(property.Name)))
 check "Profile manifest uses the canonical origin" (
     not (profileText.Contains("https://www.lqdev.me", StringComparison.Ordinal)))
 check "Profile manifest has no webmention typo" (
@@ -146,6 +180,22 @@ check "Profile manifest links to standard discovery surfaces" (
     services.GetProperty("webfinger").GetString() = "https://lqdev.me/.well-known/webfinger"
     && services.GetProperty("activitypub").GetString() = "https://lqdev.me/api/activitypub/actor"
     && services.GetProperty("indieauth").GetString().StartsWith("https://", StringComparison.Ordinal))
+
+printfn "\nPublished feed identifiers"
+let unifiedRss = XDocument.Load(generatedUnifiedRssPath)
+let firstRssItem = unifiedRss.Descendants(XName.Get "item") |> Seq.head
+let firstRssLink = firstRssItem.Element(XName.Get "link").Value
+let firstRssGuid = firstRssItem.Element(XName.Get "guid").Value
+check "Published RSS links use the canonical origin" (
+    firstRssLink.StartsWith("https://lqdev.me/", StringComparison.Ordinal))
+check "Published RSS GUIDs retain the historical origin" (
+    firstRssGuid.StartsWith("https://www.lqdev.me/", StringComparison.Ordinal))
+let unifiedJsonFeed = JsonDocument.Parse(readUtf8 generatedUnifiedJsonFeedPath).RootElement
+let firstJsonItem = unifiedJsonFeed.GetProperty("items").EnumerateArray() |> Seq.head
+check "JSON Feed item IDs retain the historical origin" (
+    firstJsonItem.GetProperty("id").GetString().StartsWith("https://www.lqdev.me/", StringComparison.Ordinal))
+check "JSON Feed item URLs use the canonical origin" (
+    firstJsonItem.GetProperty("url").GetString().StartsWith("https://lqdev.me/", StringComparison.Ordinal))
 
 printfn "\nStatic Web Apps configuration"
 let config = JsonDocument.Parse(readUtf8 configPath)
@@ -225,6 +275,16 @@ check "About page has page-specific Open Graph metadata" (
     hasMeta aboutHtml "property" "og:url" "https://lqdev.me/about/"
     && hasMeta aboutHtml "property" "og:type" "profile"
     && hasMeta aboutHtml "name" "twitter:url" "https://lqdev.me/about/")
+let hasCanonicalLink (html: string) (url: string) =
+    let pattern = $"<link(?=[^>]*rel=\"canonical\")(?=[^>]*href=\"{Regex.Escape(url)}\")[^>]*>"
+    Regex.IsMatch(html, pattern, RegexOptions.IgnoreCase)
+check "Homepage emits its canonical link" (hasCanonicalLink homepage "https://lqdev.me/")
+check "About page emits its canonical link" (hasCanonicalLink aboutHtml "https://lqdev.me/about/")
+let legacyLayoutHtml =
+    Layouts.defaultLayout "Legacy caller" "<p>legacy</p>"
+    |> RenderView.AsString.htmlDocument
+check "Legacy layout callers do not inherit a homepage canonical link" (
+    not (legacyLayoutHtml.Contains("rel=\"canonical\"", StringComparison.Ordinal)))
 
 let runLiveChecks (baseUrl: string) =
     use handler = new HttpClientHandler(AllowAutoRedirect = false)

@@ -6,7 +6,8 @@ module ViewGenerator
     let pageMetadata (canonicalPath: string) (description: string) (ogType: string) : PageMetadata =
         { CanonicalPath = canonicalPath
           Description = description
-          OgType = ogType }
+          OgType = ogType
+          IncludeCanonicalLink = true }
 
     let generateWithPageMetadata
         (extraHead: XmlNode list)
