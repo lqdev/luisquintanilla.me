@@ -2,6 +2,10 @@
 
 A comprehensive collection of curated resources organized by medium and topic. Each collection provides RSS feeds, OPML exports, and individual links for easy subscription and discovery.
 
+## Following directory
+
+The [following OPML directory](/.well-known/following.opml) groups the five collection OPML files below using OPML `include` outlines. Outliner and OPML-aware tools can follow those child documents, while RSS readers that do not expand includes can import any individual collection directly.
+
 ## Content Types
 
 Content organized by the medium or format, following familiar patterns from the traditional web.
@@ -46,5 +50,7 @@ These collections follow some of the principles of the [IndieWeb](https://indiew
 - Maintains human-readable pages for browsing
 - Links directly to source websites and feeds
 - Updates regularly with new discoveries
+
+The following directory is a composition document, not a live synchronization service. Consumers should fetch the child OPML files when they open or import it, and should use the individual collection URLs when they need a conventional flat RSS-reader import.
 
 Part of the broader movement toward decentralized, human-curated discovery in contrast to algorithmic feeds.

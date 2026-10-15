@@ -1,6 +1,7 @@
 module CollectionPagesBuilder
 
     open System.IO
+    open Domain
     open ViewGenerator
     open BuilderCommon
 
@@ -71,3 +72,41 @@ module CollectionPagesBuilder
             with
             | ex -> 
                 printfn "❌ Error building collection %s: %s" collection.Title ex.Message
+
+        let metadata =
+            {
+                Title = "Luis Quintanilla Following"
+                OwnerId = Constants.Urls.canonical
+                DocsUrl = Some $"{Constants.Urls.canonical}/collections/"
+            }
+
+        let includedCollections = Collections.FollowingDirectory.getIncludedCollections ()
+        let missingChildOpmls =
+            includedCollections
+            |> Array.choose (fun collection ->
+                let opmlPath = Collections.CollectionProcessor.getCollectionPaths collection
+                let generatedPath = Path.Join(outputDir, opmlPath.OpmlPath)
+
+                if File.Exists(generatedPath) then
+                    None
+                else
+                    Some generatedPath)
+
+        if missingChildOpmls.Length > 0 then
+            failwithf
+                "Following directory cannot be generated because child OPML files are missing: %s"
+                (String.concat ", " missingChildOpmls)
+
+        let includeOutlines =
+            includedCollections
+            |> Array.map Collections.FollowingDirectory.getInclude
+            |> Array.map IncludeOutline
+
+        let followingContent =
+            OpmlService.buildOpmlDocument metadata includeOutlines
+            |> fun document -> document.ToString()
+
+        let discoveryDir = Path.Join(outputDir, ".well-known")
+        Directory.CreateDirectory(discoveryDir) |> ignore
+        File.WriteAllText(Path.Join(discoveryDir, "following.opml"), followingContent)
+        printfn "✅ Built following OPML directory (%d collections)" includeOutlines.Length

@@ -136,7 +136,7 @@ The shared HTML layout advertises the unified feed first at `/feed/feed.xml`, fo
 
 The site also publishes profile and subscription artifacts at:
 
-- `/.well-known/following.opml` - public blogroll in OPML 2.0 format
+- `/.well-known/following.opml` - include-only OPML directory for the blogroll, podroll, YouTube, forums, and AI starter pack
 - `/.well-known/about.md` - About Markdown with a machine-readable `summary`
 - `/.well-known/contact.vcf` - vCard 3.0 contact artifact
 

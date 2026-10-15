@@ -14,7 +14,6 @@
   "routes": [
     {
       "route": "/.well-known/following.opml",
-      "rewrite": "/collections/blogroll/index.opml",
       "headers": {
         "Access-Control-Allow-Origin": "*"
       }

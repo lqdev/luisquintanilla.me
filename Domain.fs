@@ -214,6 +214,7 @@ module Domain
         {
             Title: string
             OwnerId: string
+            DocsUrl: string option
         }
 
     type Outline = 
@@ -223,6 +224,16 @@ module Domain
             HtmlUrl: string
             XmlUrl: string
         }
+
+    type OpmlInclude =
+        {
+            Title: string
+            Url: string
+        }
+
+    type OpmlOutline =
+        | FeedOutline of Outline
+        | IncludeOutline of OpmlInclude
 
     [<CLIMutable>]
     type PinnedPost = {
