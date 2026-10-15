@@ -130,6 +130,18 @@ All content pages include feed discovery metadata:
 - **Webmention**: Response feeds maintain webmention compatibility
 - **Cool URIs**: Feed URLs follow W3C persistence principles
 
+### SocialSpec Discovery
+
+The shared HTML layout advertises the unified feed first at `/feed/feed.xml`, followed by the existing `/blog.rss`, `/microblog.rss`, and `/responses.rss` aliases. This gives feed consumers one stable default subscription without breaking existing URLs.
+
+The site also publishes profile and subscription artifacts at:
+
+- `/.well-known/following.opml` - public blogroll in OPML 2.0 format
+- `/.well-known/about.md` - About Markdown with a machine-readable `summary`
+- `/.well-known/contact.vcf` - vCard 3.0 contact artifact
+
+See [Social discovery endpoints](social-discovery.md) for source ownership, Azure route behavior, media types, CORS, and validation commands.
+
 ## Migration History
 
 ### Unified Feed Pattern Consistency (2025-08-05)

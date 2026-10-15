@@ -1,6 +1,7 @@
 BEGIN:VCARD
 VERSION:3.0
 N:Quintanilla;Luis;;;
+FN:Luis Quintanilla
 EMAIL;type=INTERNET;type=HOME;type=pref:contact@lqdev.me
 URL;PREF=1:https://lqdev.me/
 URL;TYPE=LinkedIn:https://lqdev.me/linkedin

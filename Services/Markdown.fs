@@ -53,6 +53,48 @@ module MarkdownService
         |> File.ReadAllText 
         |> convertMdToHtml
 
+    let parseAbout (filePath:string) : YamlResult<AboutDetails> =
+        let fail message =
+            invalidArg "filePath" (sprintf "Unable to parse About Markdown '%s': %s" filePath message)
+
+        let fileContents = File.ReadAllText(filePath)
+        let mdPipeline =
+            MarkdownPipelineBuilder()
+                .UseYamlFrontMatter()
+                .Build()
+
+        let doc = Markdown.Parse(fileContents, mdPipeline)
+        let yamlBlock = doc.Descendants<YamlFrontMatterBlock>() |> Seq.tryHead
+
+        match yamlBlock with
+        | None ->
+            fail "a YAML frontmatter block is required"
+        | Some block ->
+            let sanitizedYamlBlock =
+                fileContents
+                    .Substring(block.Span.Start, block.Span.Length)
+                    .Trim([| '-' |])
+
+            let yaml =
+                try
+                    let serializer =
+                        DeserializerBuilder()
+                            .IgnoreUnmatchedProperties()
+                            .Build()
+                    serializer.Deserialize<AboutDetails>(sanitizedYamlBlock)
+                with ex ->
+                    fail (sprintf "invalid YAML frontmatter (%s)" ex.Message)
+
+            if String.IsNullOrWhiteSpace(yaml.Summary) then
+                fail "frontmatter must contain a non-empty string 'summary'"
+
+            let content =
+                fileContents
+                    .Substring(block.Span.Start + block.Span.Length)
+                    .Trim()
+
+            { Yaml = yaml; Content = content }
+
     let getContentAndMetadata<'a> (filePath:string) : YamlResult<'a> = 
         let yamlSerializer = 
             DeserializerBuilder()
@@ -120,4 +162,3 @@ module MarkdownService
         let albumCollectionDetails = getContentAndMetadata<AlbumCollectionDetails>(filePath);
 
         { FileName = Path.GetFileNameWithoutExtension(filePath); Metadata = albumCollectionDetails.Yaml; Content = albumCollectionDetails.Content; MarkdownSource = Some albumCollectionDetails.Content }
-

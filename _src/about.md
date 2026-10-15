@@ -1,3 +1,7 @@
+---
+summary: "Luis Quintanilla is a Chicago-based creator working on machine learning and AI for .NET at Microsoft, with interests in the open and decentralized web."
+---
+
 # Hi!
 
 I'm Luis Quintanilla. I'm a creator based out of Chicago. Currently at Microsoft working on Machine Learning and AI for .NET. 

@@ -11,7 +11,9 @@ module StaticPagesBuilder
     open BuilderCommon
 
     let buildAboutPage () = 
-        let aboutHtml = convertFileToHtml (Path.Join(srcDir,"about.md"))
+        let aboutPath = Path.Join(srcDir,"about.md")
+        let about = parseAbout aboutPath
+        let aboutHtml = convertMdToHtml about.Content
         // Wrap the standard content view and append a ProfilePage @graph whose
         // mainEntity is the shared #person node (site-wide identity graph).
         let aboutContent =
@@ -24,6 +26,10 @@ module StaticPagesBuilder
         let aboutPage = generate aboutContent "default" "About - Luis Quintanilla"
         let saveDir = Path.Join(outputDir,"about")
         writePageToDir saveDir "index.html" aboutPage
+
+        let discoveryDir = Path.Join(outputDir, ".well-known")
+        Directory.CreateDirectory(discoveryDir) |> ignore
+        File.Copy(aboutPath, Path.Join(discoveryDir, "about.md"), true)
 
     let buildCollectionsPage () = 
         let collectionsContent = convertFileToHtml (Path.Join(srcDir,"collections.md")) |> contentView
