@@ -64,6 +64,9 @@ jobs:
       # are off, no staging is produced and this reports staged/notes_staged=false → the matching sync
       # step is skipped and _public stays byte-identical to the pre-integration baseline. When a flag
       # is on, staging appears here and the corresponding sync runs. This step never fails the build.
+      - name: Validate social discovery artifacts
+        run: dotnet fsi test-scripts/test-social-discovery.fsx
+
       - name: Check for AT Protocol staging
         id: atproto_check
         run: |

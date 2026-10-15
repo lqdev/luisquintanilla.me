@@ -217,25 +217,18 @@ module CollectionProcessor =
     // Generate OPML file for collection
     let generateCollectionOpml (data: CollectionData) : string =
         let collection = data.Metadata
-        let items = data.Items
-        
-        let outlines = 
-            items
-            |> Array.map (fun item -> 
-                sprintf """        <outline title="%s" type="%s" htmlUrl="%s" xmlUrl="%s" />"""
-                    item.Title item.Type item.HtmlUrl item.XmlUrl)
-            |> String.concat "\n"
-        
-        sprintf """<?xml version="1.0" encoding="UTF-8"?>
-<opml version="2.0">
-    <head>
-        <title>%s</title>
-        <ownerId>https://www.lqdev.me</ownerId>
-    </head>
-    <body>
-%s
-    </body>
-</opml>""" collection.Title outlines
+        let outlines =
+            data.Items
+            |> Array.map (fun item ->
+                {
+                    Title = item.Title
+                    Type = item.Type
+                    HtmlUrl = item.HtmlUrl
+                    XmlUrl = item.XmlUrl
+                })
+
+        OpmlService.buildOpmlFeed collection.Title "https://www.lqdev.me" outlines
+        |> fun feed -> feed.ToString()
 
     // Generate GPX file for travel collections  
     let generateCollectionGpx (data: CollectionData) : string option =

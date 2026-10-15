@@ -47,6 +47,7 @@ module Layouts
         ogElements
 
     let rssFeeds = [
+        link [_rel "alternate"; _type "application/rss+xml" ; _title (sprintf "%s Everything RSS Feed" Constants.Author.name); _href "/feed/feed.xml"]
         link [_rel "alternate"; _type "application/rss+xml" ; _title (sprintf "%s Blog RSS Feed" Constants.Author.name); _href "/blog.rss"]
         link [_rel "alternate"; _type "application/rss+xml" ; _title (sprintf "%s Microblog RSS Feed" Constants.Author.name); _href "/microblog.rss"]
         link [_rel "alternate"; _type "application/rss+xml" ; _title (sprintf "%s Response RSS Feed" Constants.Author.name); _href "/responses.rss"]

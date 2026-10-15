@@ -9,6 +9,11 @@ module Domain
         Content: string
     }
 
+    [<CLIMutable>]
+    type AboutDetails = {
+        [<YamlMember(Alias="summary")>] Summary: string
+    }
+
     // Unified content interface for tag processing
     type ITaggable = 
         abstract member Tags: string array

@@ -35,6 +35,7 @@ This directory contains guides and reference documentation for the website's fea
 - **[Enhanced Content Discovery](enhanced-content-discovery-implementation.md)** - Site-wide search functionality
 - **[Text-Only Site](text-only-site.md)** - Complete accessibility-first website (<50KB pages)
 - **[Pinned Posts Feature](pinned-posts-feature.md)** - Pin important content to timeline top
+- **[Social Discovery](social-discovery.md)** - SocialSpec profile, following, contact, and feed discovery endpoints
 
 ### 🏗️ Architecture & Technical
 

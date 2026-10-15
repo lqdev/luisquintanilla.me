@@ -10,6 +10,29 @@
   },
   "routes": [
     {
+      "route": "/.well-known/following.opml",
+      "rewrite": "/collections/blogroll/index.opml",
+      "headers": {
+        "Content-Type": "text/x-opml; charset=utf-8",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "route": "/.well-known/about.md",
+      "headers": {
+        "Content-Type": "text/markdown; charset=utf-8",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "route": "/.well-known/contact.vcf",
+      "rewrite": "/vcard.vcf",
+      "headers": {
+        "Content-Type": "text/vcard; charset=utf-8",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
       "route": "/archive/*.bar",
       "headers": {
         "Content-Disposition": "attachment"
@@ -478,7 +501,7 @@
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/images/*.{png,jpg,gif,svg,webp}", "/css/*", "/js/*", "/lib/*", "/media/*", "/assets/*", "/api/*"]
+    "exclude": ["/images/*.{png,jpg,gif,svg,webp}", "/css/*", "/js/*", "/lib/*", "/media/*", "/assets/*", "/api/*", "/.well-known/*"]
   },
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",
