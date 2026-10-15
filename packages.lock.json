@@ -24,9 +24,9 @@
       },
       "FSharp.Core": {
         "type": "Direct",
-        "requested": "[10.1.401, )",
-        "resolved": "10.1.401",
-        "contentHash": "IGqjL9U8pQl7CaCpFP3f5slZMduE8c7ZBx7HycAQ9dc1tawyniNyw7Fh6L2cShIoQDcaDL+S8/kokhWs8WwnBQ=="
+        "requested": "[10.1.402, )",
+        "resolved": "10.1.402",
+        "contentHash": "K+I8ktYusPOEbnh2BrGQgvOl6qZWepmWiMuQDMeo4Q5pU4rXEqHFM6WBk/aSnfqsrZNg6sZQGY8qF5dQd7KHKw=="
       },
       "FSharp.Data": {
         "type": "Direct",
