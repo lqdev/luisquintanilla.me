@@ -158,14 +158,13 @@ module AssetsBuilder
         let mutable count = 0
         let mutable totalBytes = 0L
         for item in items do
-            // item.Url is "https://www.lqdev.me/<path>/" (canonical www form used
-            // across the site). Strip both apex variants, trim trailing slash,
-            // emit one SVG per item. QR payload uses apex (lqdev.me) to match
+            // Strip either origin, trim trailing slash, and emit one SVG per item.
+            // QR payload uses the canonical origin to match
             // the homepage QR convention (Phase 2 decision).
             let relPath =
                 item.Url
-                    .Replace("https://www.lqdev.me/", "")
-                    .Replace("https://lqdev.me/", "")
+                    .Replace(Constants.Urls.legacyWww + "/", "")
+                    .Replace(Constants.Urls.canonical + "/", "")
                     .TrimEnd('/')
             if not (String.IsNullOrWhiteSpace relPath) then
                 let payload = "https://lqdev.me/" + relPath + "/"

@@ -6,21 +6,22 @@
   "mimeTypes": {
     ".activitypub": "application/activity+json",
     ".bar": "application/zip",
-    ".json": "application/json"
+    ".json": "application/json",
+    ".md": "text/markdown",
+    ".opml": "text/x-opml",
+    ".vcf": "text/vcard"
   },
   "routes": [
     {
       "route": "/.well-known/following.opml",
       "rewrite": "/collections/blogroll/index.opml",
       "headers": {
-        "Content-Type": "text/x-opml; charset=utf-8",
         "Access-Control-Allow-Origin": "*"
       }
     },
     {
       "route": "/.well-known/about.md",
       "headers": {
-        "Content-Type": "text/markdown; charset=utf-8",
         "Access-Control-Allow-Origin": "*"
       }
     },
@@ -28,7 +29,13 @@
       "route": "/.well-known/contact.vcf",
       "rewrite": "/vcard.vcf",
       "headers": {
-        "Content-Type": "text/vcard; charset=utf-8",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "route": "/.well-known/profile",
+      "rewrite": "/.well-known/profile.json",
+      "headers": {
         "Access-Control-Allow-Origin": "*"
       }
     },

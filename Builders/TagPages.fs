@@ -103,7 +103,12 @@ module TagPagesBuilder
                     individualTagViewUnified tag taggedContentForView
                     script [ _type "application/ld+json" ] [ rawText tagJsonLd ]
                 ]
-            let individualTagPage = generate individualTagContent "default" $"{tag} - Tags - Luis Quintanilla"
+            let individualTagPage =
+                generatePage
+                    (pageMetadata tagUrl $"Content tagged {tag} on Luis Quintanilla's website." "website")
+                    individualTagContent
+                    "default"
+                    $"{tag} - Tags - Luis Quintanilla"
             File.WriteAllText(Path.Join(individualTagSaveDir, "index.html"), individualTagPage))
 
         // Generate main tags index page
@@ -115,7 +120,12 @@ module TagPagesBuilder
                     rawText (StructuredData.collectionPageJson "/tags/" "Tags" [ ("Home", "/"); ("Tags", "/tags/") ])
                 ]
             ]
-        let tagPage = generate tagsIndexContent "default" "Tags - Luis Quintanilla"
+        let tagPage =
+            generatePage
+                (pageMetadata "/tags/" "Browse the tags used across Luis Quintanilla's website." "website")
+                tagsIndexContent
+                "default"
+                "Tags - Luis Quintanilla"
         File.WriteAllText(Path.Join(saveDir, "index.html"), tagPage)
 
         printfn "✅ Unified tags pages created for %d tags across %d content types" allTagNames.Length contentArrays.Length

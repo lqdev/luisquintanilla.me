@@ -547,7 +547,7 @@ let extractMediaAttachments (content: string) : (string * obj array option) =
 /// Research: HTML content required by Mastodon, name field improves display
 /// Fix: Note ID uses #object fragment so Create activity ID matches fetchable URL
 let convertToNote (item: UnifiedFeeds.UnifiedFeedItem) : ActivityPubNote =
-    let activityBaseId = generateActivityId item.Url item.Content
+    let activityBaseId = generateActivityId (UnifiedFeeds.stableIdFor item) item.Content
     let noteId = generateObjectId activityBaseId  // Note gets #object fragment
     
     // Research: Use Article type for posts, Note for everything else
@@ -681,7 +681,7 @@ let convertToCreateActivity (note: ActivityPubNote) : ActivityPubCreate =
 /// Phase 5A: Stars become Like activities (not wrapped in Create)
 /// Research: Like is an activity itself, object references the target URL
 let convertToLikeActivity (item: UnifiedFeeds.UnifiedFeedItem) : ActivityPubLike =
-    let activityId = generateActivityId item.Url item.Content
+    let activityId = generateActivityId (UnifiedFeeds.stableIdFor item) item.Content
     let targetUrl = item.TargetUrl |> Option.defaultValue item.Url  // Fallback to item URL if no target
     
     let publishedDate =
@@ -706,7 +706,7 @@ let convertToLikeActivity (item: UnifiedFeeds.UnifiedFeedItem) : ActivityPubLike
 /// Phase 5A: Reshares become Announce activities (not wrapped in Create)
 /// Research: Announce is an activity itself, object references the target URL
 let convertToAnnounceActivity (item: UnifiedFeeds.UnifiedFeedItem) : ActivityPubAnnounce =
-    let activityId = generateActivityId item.Url item.Content
+    let activityId = generateActivityId (UnifiedFeeds.stableIdFor item) item.Content
     let targetUrl = item.TargetUrl |> Option.defaultValue item.Url  // Fallback to item URL if no target
     
     let publishedDate =
@@ -734,7 +734,7 @@ let convertToAnnounceActivity (item: UnifiedFeeds.UnifiedFeedItem) : ActivityPub
 /// - "maybe"/"interested" → TentativeAccept: Indicates tentative acceptance
 /// - "no" → Reject: Indicates declining the event
 let convertToRsvpActivity (item: UnifiedFeeds.UnifiedFeedItem) : ActivityPubRsvp =
-    let activityId = generateActivityId item.Url item.Content
+    let activityId = generateActivityId (UnifiedFeeds.stableIdFor item) item.Content
     let targetUrl = item.TargetUrl |> Option.defaultValue item.Url  // Fallback to item URL if no target
     
     let publishedDate =
@@ -771,7 +771,7 @@ let convertToMediaObject (item: UnifiedFeeds.UnifiedFeedItem) : ActivityPubMedia
     match item.MediaData with
     | None -> None
     | Some mediaData ->
-        let activityBaseId = generateActivityId item.Url item.Content
+        let activityBaseId = generateActivityId (UnifiedFeeds.stableIdFor item) item.Content
         let mediaId = generateObjectId activityBaseId  // Media gets #object fragment
         
         let publishedDate =
@@ -801,7 +801,7 @@ let convertToCreateMediaActivity (item: UnifiedFeeds.UnifiedFeedItem) : obj opti
     | None -> None
     | Some mediaObj ->
         // Create wrapper activity
-        let activityBaseId = generateActivityId item.Url item.Content
+        let activityBaseId = generateActivityId (UnifiedFeeds.stableIdFor item) item.Content
         let createId = generateCreateActivityId activityBaseId  // Create uses base URL (fetchable)
         
         // Build Create activity as anonymous record to match existing pattern

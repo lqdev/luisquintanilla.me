@@ -60,11 +60,11 @@ module BookmarkProcessor
         
         RenderRss = fun bookmark ->
             // Create RSS item for bookmark
-            let url = sprintf "https://www.lqdev.me/bookmarks/%s" bookmark.FileName
+            let url = sprintf "%s/bookmarks/%s" Constants.Urls.canonical bookmark.FileName
             let description = sprintf "Bookmark: %s - %s" bookmark.Metadata.Description bookmark.Metadata.BookmarkOf
             
             // Normalize URLs in description for RSS compatibility
-            let normalizedDescription = normalizeUrlsForRss description "https://www.lqdev.me"
+            let normalizedDescription = normalizeUrlsForRss description Constants.Urls.canonical
             
             let item = 
                 XElement(XName.Get "item",

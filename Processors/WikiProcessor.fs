@@ -51,7 +51,7 @@ module WikiProcessor
         
         RenderRss = fun wiki ->
             // Create RSS item for wiki similar to post
-            let url = sprintf "https://www.lqdev.me/resources/wiki/%s" wiki.FileName
+            let url = sprintf "%s/resources/wiki/%s" Constants.Urls.canonical wiki.FileName
             let categories = 
                 if String.IsNullOrEmpty(wiki.Metadata.Tags) then []
                 else wiki.Metadata.Tags.Split(',') 
@@ -59,7 +59,7 @@ module WikiProcessor
                      |> Array.toList
             
             // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss wiki.Content "https://www.lqdev.me"
+            let normalizedContent = normalizeUrlsForRss wiki.Content Constants.Urls.canonical
             
             let item = 
                 XElement(XName.Get "item",

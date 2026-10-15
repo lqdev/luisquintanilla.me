@@ -66,6 +66,16 @@ let rssDescriptionElement (content: string) : XElement =
     let safe = if isNull content then "" else content
     XElement(XName.Get "description", XCData(safe))
 
+/// Preserve the historical RSS identifier while allowing published links to move
+/// to the canonical apex origin. Existing subscribers use <guid> as the item
+/// identity, so changing it would make every existing item look new.
+let private preserveHistoricalRssGuid (rssXml: XElement) =
+    let guid = rssXml.Element(XName.Get "guid")
+    if not (isNull guid)
+       && guid.Value.StartsWith(Constants.Urls.canonical, StringComparison.OrdinalIgnoreCase) then
+        guid.Value <- Constants.Urls.legacyWww + guid.Value.Substring(Constants.Urls.canonical.Length)
+    rssXml
+
 /// Generic content processor pattern for consistent content handling
 type ContentProcessor<'T> = {
     /// Parse content from file path to domain type, transporting a typed
@@ -100,7 +110,7 @@ let buildContentWithFeeds<'T> (processor: ContentProcessor<'T>) (filePaths: stri
     |> List.choose (function
         | Ok content ->
             let cardHtml = processor.RenderCard content
-            let rssXml = processor.RenderRss content
+            let rssXml = processor.RenderRss content |> Option.map preserveHistoricalRssGuid
             Some { Content = content; CardHtml = cardHtml; RssXml = rssXml }
         | Error _ -> None)
 

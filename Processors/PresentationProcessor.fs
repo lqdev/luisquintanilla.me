@@ -80,7 +80,7 @@ module PresentationProcessor
         
         RenderRss = fun presentation ->
             // Create RSS item for presentation
-            let url = sprintf "https://www.lqdev.me/resources/presentations/%s" presentation.FileName
+            let url = sprintf "%s/resources/presentations/%s" Constants.Urls.canonical presentation.FileName
             let categories = 
                 if String.IsNullOrEmpty(presentation.Metadata.Tags) then []
                 else presentation.Metadata.Tags.Split(',') 
@@ -88,7 +88,7 @@ module PresentationProcessor
                      |> Array.toList
             
             // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss presentation.Content "https://www.lqdev.me"
+            let normalizedContent = normalizeUrlsForRss presentation.Content Constants.Urls.canonical
             
             let item = 
                 XElement(XName.Get "item",

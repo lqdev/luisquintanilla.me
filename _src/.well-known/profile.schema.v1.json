@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lqdev.me/.well-known/profile.schema.v1.json",
+  "title": "lqdev.me social profile manifest",
+  "description": "The version 1 machine-readable identity and discovery manifest for lqdev.me.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "profile",
+    "identities",
+    "feeds",
+    "services",
+    "following",
+    "starterPacks"
+  ],
+  "properties": {
+    "schema": {
+      "const": "https://lqdev.me/.well-known/profile.schema.v1.json"
+    },
+    "version": {
+      "const": "1.0"
+    },
+    "profile": {
+      "$ref": "#/$defs/profile"
+    },
+    "identities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/identity"
+      }
+    },
+    "feeds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "all",
+        "blog",
+        "notes",
+        "responses"
+      ],
+      "properties": {
+        "all": {
+          "$ref": "#/$defs/url"
+        },
+        "blog": {
+          "$ref": "#/$defs/url"
+        },
+        "notes": {
+          "$ref": "#/$defs/url"
+        },
+        "responses": {
+          "$ref": "#/$defs/url"
+        }
+      }
+    },
+    "services": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "webfinger",
+        "webmention",
+        "activitypub",
+        "indieauth"
+      ],
+      "properties": {
+        "webfinger": {
+          "$ref": "#/$defs/url"
+        },
+        "webmention": {
+          "$ref": "#/$defs/url"
+        },
+        "activitypub": {
+          "$ref": "#/$defs/url"
+        },
+        "indieauth": {
+          "$ref": "#/$defs/url"
+        }
+      }
+    },
+    "following": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/list"
+      }
+    },
+    "starterPacks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/list"
+      }
+    }
+  },
+  "$defs": {
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "url",
+        "about",
+        "contact",
+        "avatar"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "$ref": "#/$defs/url"
+        },
+        "about": {
+          "$ref": "#/$defs/url"
+        },
+        "contact": {
+          "$ref": "#/$defs/url"
+        },
+        "avatar": {
+          "$ref": "#/$defs/url"
+        }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "protocol",
+        "url"
+      ],
+      "properties": {
+        "acct": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "protocol": {
+          "type": "string"
+        },
+        "primary": {
+          "type": "boolean"
+        },
+        "url": {
+          "$ref": "#/$defs/url"
+        },
+        "rel": {
+          "type": "string"
+        }
+      }
+    },
+    "list": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "description",
+        "url",
+        "type"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "url": {
+          "$ref": "#/$defs/url"
+        },
+        "type": {
+          "const": "opml"
+        }
+      }
+    }
+  }
+}

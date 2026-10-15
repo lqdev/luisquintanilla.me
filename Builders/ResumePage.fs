@@ -200,7 +200,12 @@ module ResumePageBuilder
                 
                 // Generate HTML (will add view in next phase)
                 let html = ContentViews.ResumeView.render completeResume
-                let resumePage = generate html "default" "Resume - Luis Quintanilla"
+                let resumePage =
+                    generatePage
+                        (pageMetadata "/resume/" "Resume and professional background for Luis Quintanilla." "profile")
+                        html
+                        "default"
+                        "Resume - Luis Quintanilla"
                 
                 let saveDir = Path.Join(outputDir, "resume")
                 Directory.CreateDirectory(saveDir) |> ignore

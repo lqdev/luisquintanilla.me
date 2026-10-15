@@ -36,7 +36,15 @@ module HomepageBuilder
             |> Array.head
 
         // let recentPostsContent = generatePartial (recentPostsView recentPosts)
-        let homePage = generateWithHead indieAuthDiscoveryLinks (homeView recentBlog recentFeedPost recentResponsePost) "default" "Home - Luis Quintanilla"
+        let homeMetadata =
+            pageMetadata "/" Constants.Author.bio "profile"
+        let homePage =
+            generateWithPageMetadata
+                indieAuthDiscoveryLinks
+                homeMetadata
+                (homeView recentBlog recentFeedPost recentResponsePost)
+                "default"
+                "Home - Luis Quintanilla"
         File.WriteAllText(Path.Join(outputDir,"index.html"),homePage)
 
     // New timeline homepage for Phase 3 - Feed-as-Homepage Interface
@@ -96,7 +104,15 @@ module HomepageBuilder
         let pinnedUrls = pinnedItems |> List.map (fun item -> item.Url) |> Set.ofList
         
         // Generate the timeline homepage with pinned posts support
-        let timelineHomePage = generateWithHead indieAuthDiscoveryLinks (TimelineViews.timelineHomeViewStratified (initialItems |> List.toArray) remainingItemsByType pinnedUrls) "default" "Luis Quintanilla - Personal Website"
+        let homeMetadata =
+            pageMetadata "/" Constants.Author.bio "profile"
+        let timelineHomePage =
+            generateWithPageMetadata
+                indieAuthDiscoveryLinks
+                homeMetadata
+                (TimelineViews.timelineHomeViewStratified (initialItems |> List.toArray) remainingItemsByType pinnedUrls)
+                "default"
+                "Luis Quintanilla - Personal Website"
         File.WriteAllText(Path.Join(outputDir,"index.html"), timelineHomePage)
         
         let totalItems = allUnifiedItems |> List.sumBy (fun (_, items) -> items.Length)
@@ -113,7 +129,10 @@ module HomepageBuilder
             |> List.toArray
         
         // Generate the unified feed page
-        let unifiedFeedHtml = generate (enhancedSubscriptionHubView flattenedItems) "defaultindex" "Feeds & Content Discovery - Luis Quintanilla"
+        let feedMetadata =
+            pageMetadata "/feed/" "Subscribe to Luis Quintanilla's feeds and discover content." "website"
+        let unifiedFeedHtml =
+            generatePage feedMetadata (enhancedSubscriptionHubView flattenedItems) "defaultindex" "Feeds & Content Discovery - Luis Quintanilla"
         let feedIndexDir = Path.Join(outputDir, "feed")
         Directory.CreateDirectory(feedIndexDir) |> ignore
         File.WriteAllText(Path.Join(feedIndexDir, "index.html"), unifiedFeedHtml)
