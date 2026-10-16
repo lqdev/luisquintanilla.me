@@ -127,6 +127,8 @@ This is a production-ready IndieWeb site built with F# featuring:
 - **Unified Feed**: Combined feed of all content types
 - **OPML Support**: Subscription management with feed discovery
 - **Starter Packs System**: Curated RSS feed collections for easy topic-based subscriptions
+- **Draft AT Resource Graph staging**: Opt-in, local-only projection of blogroll, podroll, and YouTube
+  feed collections with deterministic hashes and explicit OPML loss reporting
 - **Site-wide Search**: Client-side fuzzy search with Fuse.js for 1,130+ content items
 
 ### Collections & Organization

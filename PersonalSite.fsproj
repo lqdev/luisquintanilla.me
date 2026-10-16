@@ -73,6 +73,7 @@
     <Compile Include="Views\Generator.fs" />
     <Compile Include="BuildDriver.fs" />
     <Compile Include="Collections.fs" />
+    <Compile Include="ResourceGraphStaging.fs" />
     <Compile Include="SearchIndex.fs" />
     <Compile Include="Loaders.fs" />
     <Compile Include="TextOnlyBuilder.fs" />
