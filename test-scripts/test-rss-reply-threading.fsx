@@ -71,7 +71,7 @@ check "existing item fields and source:markdown remain intact" (
     item.Element(XName.Get "title").Value = "Reply fixture"
     && item.Element(XName.Get "link").Value = "https://lqdev.me/responses/reply-fixture"
     && item.Element(XName.Get "guid").Value = "https://lqdev.me/responses/reply-fixture"
-    && item.Element(XName.Get "pubDate").Value = "2026-10-15 12:34 -05:00"
+    && item.Element(XName.Get "pubDate").Value = "Thu, 15 Oct 2026 17:34:00 GMT"
     && item.Element(XName.Get "description").Value.Contains("A deterministic reply body.")
     && (item.Elements(XName.Get "category") |> Seq.map (fun e -> e.Value) |> Seq.contains "interop")
     && (item.Elements(XNamespace.Get("http://source.scripting.com/") + "markdown") |> Seq.length = 1))

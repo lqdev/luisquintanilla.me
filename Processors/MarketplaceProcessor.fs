@@ -182,7 +182,7 @@ module MarketplaceProcessor
                 if String.IsNullOrWhiteSpace listing.Metadata.Description then listing.Metadata.Title
                 else listing.Metadata.Description
             let description = sprintf "%s \u2014 %s (%s)%s" descBase priceText (statusLabel status) conditionText
-            let normalizedDescription = normalizeUrlsForRss description Constants.Urls.canonical
+            let normalizedDescription = normalizeRssHtmlUrls description url
 
             let categories =
                 if isNull listing.Metadata.Tags then []
@@ -193,8 +193,11 @@ module MarketplaceProcessor
                     XElement(XName.Get "title", listing.Metadata.Title),
                     rssDescriptionElement normalizedDescription,
                     XElement(XName.Get "link", url),
-                    XElement(XName.Get "guid", url),
-                    XElement(XName.Get "pubDate", listing.Metadata.Date))
+                    XElement(XName.Get "guid", url))
+
+            match rssPubDateElement (sprintf "marketplace/%s.md (date)" listing.FileName) listing.Metadata.Date with
+            | Some pubDate -> item.Add(pubDate)
+            | None -> ()
 
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)

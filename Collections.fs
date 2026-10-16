@@ -5,6 +5,7 @@ open System.IO
 open System.Text
 open System.Text.Json
 open System.Xml
+open System.Xml.Linq
 open Domain
 open Giraffe.ViewEngine
 
@@ -205,14 +206,16 @@ module CollectionProcessor =
     // Generate RSS feed for collection
     let generateCollectionRss (data: CollectionData) : string =
         let collection = data.Metadata
-        sprintf """<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
-    <channel>
-        <title>%s</title>
-        <description>%s</description>
-        <link>%s%s</link>
-    </channel>
-</rss>""" collection.Title collection.Description Constants.Urls.canonical collection.UrlPath
+        let rss =
+            XElement(
+                XName.Get "rss",
+                XAttribute(XName.Get "version", "2.0"),
+                XElement(
+                    XName.Get "channel",
+                    XElement(XName.Get "title", collection.Title),
+                    XElement(XName.Get "description", collection.Description),
+                    XElement(XName.Get "link", Constants.Urls.canonical + collection.UrlPath)))
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Environment.NewLine + rss.ToString()
     
     // Generate OPML file for collection
     let generateCollectionOpml (data: CollectionData) : string =

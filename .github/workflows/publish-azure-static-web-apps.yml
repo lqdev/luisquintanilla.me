@@ -58,7 +58,14 @@ jobs:
         run: dotnet build --no-restore
       
       - name: Generate website
-        run: dotnet run
+        run: dotnet run -- --strict
+
+      - name: Validate RSS output
+        run: |
+          dotnet fsi test-scripts/test-rss-generated-output.fsx
+          dotnet fsi test-scripts/test-rss-correctness.fsx
+          dotnet fsi test-scripts/test-rss-cdata.fsx
+          dotnet fsi test-scripts/test-rss-reply-threading.fsx
 
       # AT Protocol POSSE (#2574 / ADR-0009). When AtProtoBuilder.useAtProtoSync / useAtProtoNotesSync
       # are off, no staging is produced and this reports staged/notes_staged=false → the matching sync

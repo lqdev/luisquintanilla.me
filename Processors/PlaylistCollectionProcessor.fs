@@ -81,7 +81,7 @@ module PlaylistCollectionProcessor
             let description = playlistCollection.Metadata.Description |> Option.defaultValue ""
             
             // Normalize URLs in description for RSS compatibility
-            let normalizedDescription = normalizeUrlsForRss description Constants.Urls.canonical
+            let normalizedDescription = normalizeRssHtmlUrls description url
             
             // Create RSS category elements for tags
             let categories = 
@@ -94,8 +94,11 @@ module PlaylistCollectionProcessor
                     XElement(XName.Get "title", playlistCollection.Metadata.Title),
                     rssDescriptionElement normalizedDescription,
                     XElement(XName.Get "link", url),
-                    XElement(XName.Get "guid", url),
-                    XElement(XName.Get "pubDate", playlistCollection.Metadata.Date))
+                    XElement(XName.Get "guid", url))
+
+            match rssPubDateElement (sprintf "playlists/%s.md (date)" playlistCollection.FileName) playlistCollection.Metadata.Date with
+            | Some pubDate -> item.Add(pubDate)
+            | None -> ()
             
             // Add categories if they exist
             if not (List.isEmpty categories) then

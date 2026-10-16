@@ -59,7 +59,7 @@ module SnippetProcessor
                      |> Array.toList
             
             // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss snippet.Content Constants.Urls.canonical
+            let normalizedContent = normalizeRssHtmlUrls snippet.Content url
             
             let item = 
                 XElement(XName.Get "item",
@@ -68,9 +68,9 @@ module SnippetProcessor
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
             
-            // Add pubDate if created_date exists
-            if not (String.IsNullOrEmpty(snippet.Metadata.CreatedDate)) then
-                item.Add(XElement(XName.Get "pubDate", snippet.Metadata.CreatedDate))
+            match rssPubDateElement (sprintf "resources/snippets/%s.md (created_date)" snippet.FileName) snippet.Metadata.CreatedDate with
+            | Some pubDate -> item.Add(pubDate)
+            | None -> ()
             
             // Add categories if they exist
             if not (List.isEmpty categories) then

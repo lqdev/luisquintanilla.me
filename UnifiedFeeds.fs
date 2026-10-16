@@ -91,7 +91,7 @@ module UnifiedFeeds
             
             let date = 
                 match rssXml.Element(XName.Get "pubDate") with
-                | null -> DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz")
+                | null -> ""
                 | dateElement -> dateElement.Value
             
             // Extract tags from RSS categories and apply sanitization
@@ -125,11 +125,7 @@ module UnifiedFeeds
     
     /// Generate RSS feed for given items and configuration
     let private generateRssFeed (items: UnifiedFeedItem list) (config: FeedConfiguration) : string =
-        let latestDate = 
-            if items.IsEmpty then 
-                DateTime.Now.ToString("ddd, dd MMM yyyy HH:mm:ss zzz")
-            else 
-                items |> List.head |> fun item -> item.Date
+        let buildDate = formatRssDate DateTimeOffset.UtcNow
         
         let channel = 
             XElement(XName.Get "rss",
@@ -139,7 +135,7 @@ module UnifiedFeeds
                     XElement(XName.Get "title", config.Title),
                     XElement(XName.Get "link", config.Link),
                     XElement(XName.Get "description", config.Description),
-                    XElement(XName.Get "lastBuildDate", latestDate),
+                    XElement(XName.Get "lastBuildDate", buildDate),
                     XElement(XName.Get "language", "en")))
         
         // Add RSS items to channel
@@ -187,10 +183,7 @@ module UnifiedFeeds
     let private sortByDateDesc (items: UnifiedFeedItem list) =
         items
         |> List.sortByDescending (fun item ->
-            if String.IsNullOrWhiteSpace(item.Date) then DateTimeOffset.MinValue
-            else
-                try DateTimeOffset.Parse(item.Date)
-                with _ -> DateTimeOffset.MinValue)
+            tryParseRssDate item.Date |> Option.defaultValue DateTimeOffset.MinValue)
 
     let generateJsonFeedString (title: string) (homePageUrl: string) (feedUrl: string) (description: string) (items: UnifiedFeedItem list) (useAbsoluteUrls: bool) =
         let jsonItems = JsonArray()
@@ -287,17 +280,10 @@ module UnifiedFeeds
     let buildAllFeeds (feedDataSets: (string * (UnifiedFeedItem list)) list) (outputDirectory: string) =
         // Flatten all feed items and sort chronologically
         // Handle null/empty dates gracefully by using a very old date for items with missing dates
-        let allUnifiedItems = 
+        let allUnifiedItems =
             feedDataSets
             |> List.collect snd
-            |> List.sortByDescending (fun item -> 
-                if String.IsNullOrWhiteSpace(item.Date) then
-                    DateTimeOffset.MinValue
-                else
-                    try
-                        DateTimeOffset.Parse(item.Date)
-                    with
-                    | _ -> DateTimeOffset.MinValue)
+            |> sortByDateDesc
         
         // Fire-hose feed configuration (all content types)
         let fireHoseConfig = {
@@ -470,7 +456,7 @@ module UnifiedFeeds
             feedDataSets
             |> List.collect snd
             |> List.filter (fun item -> item.ContentType <> ContentTypes.AiMemex && item.ContentType <> ContentTypes.Marketplace)
-            |> List.sortByDescending (fun item -> DateTimeOffset.Parse(item.Date))
+            |> sortByDateDesc
         
         // Extract all canonical tags (processTagName consolidates plurals, gerunds, etc.)
         let allTags = 

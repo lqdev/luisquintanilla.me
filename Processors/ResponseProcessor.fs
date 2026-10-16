@@ -152,7 +152,7 @@ module ResponseProcessor
             let description = sprintf "[%s] %s" response.Metadata.ResponseType response.Content
             
             // Normalize URLs in description for RSS compatibility
-            let normalizedDescription = normalizeUrlsForRss description Constants.Urls.canonical
+            let normalizedDescription = normalizeRssHtmlUrls description url
             
             let categories = 
                 if isNull response.Metadata.Tags then []
@@ -163,8 +163,11 @@ module ResponseProcessor
                     XElement(XName.Get "title", response.Metadata.Title),
                     rssDescriptionElement normalizedDescription,
                     XElement(XName.Get "link", url),
-                    XElement(XName.Get "guid", url),
-                    XElement(XName.Get "pubDate", response.Metadata.DatePublished))
+                    XElement(XName.Get "guid", url))
+
+            match rssPubDateElement (sprintf "responses/%s.md (dt_published)" response.FileName) response.Metadata.DatePublished with
+            | Some pubDate -> item.Add(pubDate)
+            | None -> ()
             
             // Add categories if they exist
             if not (List.isEmpty categories) then

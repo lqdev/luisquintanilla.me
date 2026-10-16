@@ -109,15 +109,11 @@ module AlbumProcessor
             RenderView.AsString.xmlNode viewNode
         
         RenderRss = fun album ->
-            // Create RSS item for album with all images included
+            // Render the same authored markdown/media blocks used by the page.
             let url = sprintf "%s/media/%s" Constants.Urls.canonical album.FileName
-            let imageCount = 
-                if isNull album.Metadata.Images then 0
-                else Array.length album.Metadata.Images
-            let description = sprintf "Album containing %d photos" imageCount
-            
-            // Normalize URLs in description for RSS compatibility
-            let normalizedDescription = normalizeUrlsForRss description Constants.Urls.canonical
+            let normalizedDescription =
+                MarkdownService.convertMdToHtml album.Content
+                |> fun html -> normalizeRssHtmlUrls html url
             
             let categories = 
                 if isNull album.Metadata.Tags then []
@@ -128,8 +124,15 @@ module AlbumProcessor
                     XElement(XName.Get "title", album.Metadata.Title),
                     rssDescriptionElement normalizedDescription,
                     XElement(XName.Get "link", url),
-                    XElement(XName.Get "guid", url),
-                    XElement(XName.Get "pubDate", album.Metadata.Date))
+                    XElement(XName.Get "guid", url))
+
+            match rssPubDateElement (sprintf "media/%s.md (published_date)" album.FileName) album.Metadata.Date with
+            | Some pubDate -> item.Add(pubDate)
+            | None -> ()
+
+            let mediaElements = mediaRssContentElements album.Content url
+            if not mediaElements.IsEmpty then
+                item.Add(mediaElements |> List.toArray)
             
             // Add categories if they exist
             if not (List.isEmpty categories) then

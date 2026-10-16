@@ -87,8 +87,23 @@ module PresentationProcessor
                      |> Array.map (fun tag -> XElement(XName.Get "category", tag.Trim())) 
                      |> Array.toList
             
-            // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss presentation.Content Constants.Urls.canonical
+            let resources =
+                if isNull presentation.Metadata.Resources || presentation.Metadata.Resources.Length = 0 then
+                    []
+                else
+                    [ h3 [] [ Text "Resources" ]
+                      ul [] [
+                          for resource in presentation.Metadata.Resources do
+                              li [] [ a [ _href resource.Url ] [ Text resource.Text ] ]
+                      ] ]
+            let descriptionView =
+                div [] [
+                    rawText (MarkdownService.convertMdToHtml presentation.Content)
+                    yield! resources
+                ]
+            let normalizedContent =
+                RenderView.AsString.xmlNode descriptionView
+                |> fun html -> normalizeRssHtmlUrls html url
             
             let item = 
                 XElement(XName.Get "item",
@@ -97,9 +112,9 @@ module PresentationProcessor
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
             
-            // Add pubDate if date exists
-            if not (String.IsNullOrEmpty(presentation.Metadata.Date)) then
-                item.Add(XElement(XName.Get "pubDate", presentation.Metadata.Date))
+            match rssPubDateElement (sprintf "resources/presentations/%s.md (date)" presentation.FileName) presentation.Metadata.Date with
+            | Some pubDate -> item.Add(pubDate)
+            | None -> ()
             
             // Add categories if they exist
             if not (List.isEmpty categories) then

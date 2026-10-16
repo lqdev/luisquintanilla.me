@@ -59,7 +59,7 @@ module WikiProcessor
                      |> Array.toList
             
             // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss wiki.Content Constants.Urls.canonical
+            let normalizedContent = normalizeRssHtmlUrls wiki.Content url
             
             let item = 
                 XElement(XName.Get "item",
@@ -68,9 +68,9 @@ module WikiProcessor
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
             
-            // Add pubDate if last_updated_date exists
-            if not (String.IsNullOrEmpty(wiki.Metadata.LastUpdatedDate)) then
-                item.Add(XElement(XName.Get "pubDate", wiki.Metadata.LastUpdatedDate))
+            match rssPubDateElement (sprintf "resources/wiki/%s.md (last_updated_date)" wiki.FileName) wiki.Metadata.LastUpdatedDate with
+            | Some pubDate -> item.Add(pubDate)
+            | None -> ()
             
             // Add categories if they exist
             if not (List.isEmpty categories) then

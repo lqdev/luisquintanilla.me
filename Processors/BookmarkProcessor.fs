@@ -64,15 +64,18 @@ module BookmarkProcessor
             let description = sprintf "Bookmark: %s - %s" bookmark.Metadata.Description bookmark.Metadata.BookmarkOf
             
             // Normalize URLs in description for RSS compatibility
-            let normalizedDescription = normalizeUrlsForRss description Constants.Urls.canonical
+            let normalizedDescription = normalizeRssHtmlUrls description url
             
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", bookmark.Metadata.Title),
                     rssDescriptionElement normalizedDescription,
                     XElement(XName.Get "link", url),
-                    XElement(XName.Get "guid", url),
-                    XElement(XName.Get "pubDate", bookmark.Metadata.DatePublished))
+                    XElement(XName.Get "guid", url))
+
+            match rssPubDateElement (sprintf "bookmarks/%s.md (date_published)" bookmark.FileName) bookmark.Metadata.DatePublished with
+            | Some pubDate -> item.Add(pubDate)
+            | None -> ()
             
             // Add source:markdown if available
             match generateSourceMarkdown bookmark.MarkdownSource with

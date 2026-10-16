@@ -71,7 +71,7 @@ module AiMemexProcessor
                      |> Array.toList
             
             // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss aiMemex.Content Constants.Urls.canonical
+            let normalizedContent = normalizeRssHtmlUrls aiMemex.Content url
             
             let item = 
                 XElement(XName.Get "item",
@@ -80,9 +80,9 @@ module AiMemexProcessor
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
             
-            // Add pubDate if published_date exists
-            if not (String.IsNullOrEmpty(aiMemex.Metadata.PublishedDate)) then
-                item.Add(XElement(XName.Get "pubDate", aiMemex.Metadata.PublishedDate))
+            match rssPubDateElement (sprintf "resources/ai-memex/%s.md (published_date)" aiMemex.FileName) aiMemex.Metadata.PublishedDate with
+            | Some pubDate -> item.Add(pubDate)
+            | None -> ()
             
             // Add categories if they exist
             if not (List.isEmpty categories) then
