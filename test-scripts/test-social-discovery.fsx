@@ -224,19 +224,20 @@ let feedsObject = profile.GetProperty("feeds")
 let servicesObject = profile.GetProperty("services")
 let followingEntries = profile.GetProperty("following").EnumerateArray() |> Seq.toArray
 let followingUrls = followingEntries |> Array.map (fun entry -> entry.GetProperty("url").GetString())
-checkRequiredProperties "Profile manifest profile object" profileObject profileSchemaProfile
-checkRequiredProperties "Profile manifest feeds object" feedsObject profileSchemaFeeds
-checkRequiredProperties "Profile manifest services object" servicesObject profileSchemaServices
-check "Profile manifest advertises aggregate and direct following OPMLs" (
-    followingUrls
-    |> Set.ofArray
-    |> Set.isSuperset (set [
+let requiredFollowingUrls =
+    set [
         "https://lqdev.me/.well-known/following.opml"
         "https://lqdev.me/collections/blogroll/index.opml"
         "https://lqdev.me/collections/podroll/index.opml"
         "https://lqdev.me/collections/forums/index.opml"
         "https://lqdev.me/collections/youtube/index.opml"
-    ]))
+    ]
+let actualFollowingUrlSet = followingUrls |> Set.ofArray
+checkRequiredProperties "Profile manifest profile object" profileObject profileSchemaProfile
+checkRequiredProperties "Profile manifest feeds object" feedsObject profileSchemaFeeds
+checkRequiredProperties "Profile manifest services object" servicesObject profileSchemaServices
+check "Profile manifest advertises aggregate and direct following OPMLs" (
+    Set.isSubset requiredFollowingUrls actualFollowingUrlSet)
 check "Profile manifest preserves the AI starter pack entry" (
     profile.GetProperty("starterPacks").EnumerateArray()
     |> Seq.exists (fun entry -> entry.GetProperty("url").GetString() = "https://lqdev.me/collections/starter-packs/ai/index.opml"))
@@ -290,7 +291,18 @@ let followingRoute = routeFor "/.well-known/following.opml"
 let aboutRoute = routeFor "/.well-known/about.md"
 let contactRoute = routeFor "/.well-known/contact.vcf"
 let profileRoute = routeFor "/.well-known/profile"
+let childOpmlPaths =
+    [|
+        "/collections/blogroll/index.opml"
+        "/collections/podroll/index.opml"
+        "/collections/youtube/index.opml"
+        "/collections/forums/index.opml"
+        "/collections/starter-packs/ai/index.opml"
+    |]
 check "Following route serves the generated directory directly" (rewrite followingRoute |> Option.isNone)
+for path in childOpmlPaths do
+    let childRoute = routeFor path
+    check ("Child OPML route has CORS: " + path) (tryHeader childRoute "Access-Control-Allow-Origin" = Some "*")
 check "About route serves the direct generated file" (rewrite aboutRoute |> Option.isNone)
 check "Contact route rewrites to the existing vCard" (rewrite contactRoute = Some "/vcard.vcf")
 check "Profile route rewrites to the versioned JSON manifest" (rewrite profileRoute = Some "/.well-known/profile.json")
@@ -400,6 +412,10 @@ let runLiveChecks (baseUrl: string) =
         liveFollowingOutlines.Length = 5
         && (liveFollowingOutlines |> Array.forall (fun outline -> followingAttribute "type" outline = "include"))
         && actualLiveFollowingUrls = expectedLiveFollowingUrls)
+    for path in childOpmlPaths do
+        let liveChild = checkLive path "text/x-opml" "text/x-opml"
+        check ("Live child OPML parses: " + path) (
+            try XDocument.Parse(liveChild) |> ignore; true with _ -> false)
     check "Live About response contains summary frontmatter" (liveAbout.Contains("summary:", StringComparison.Ordinal))
     check "Live contact response contains FN" (liveContact.Contains("FN:Luis Quintanilla", StringComparison.Ordinal))
     check "Live profile response parses as JSON" (try JsonDocument.Parse(liveProfile) |> ignore; true with _ -> false)

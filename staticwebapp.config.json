@@ -19,6 +19,36 @@
       }
     },
     {
+      "route": "/collections/blogroll/index.opml",
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "route": "/collections/podroll/index.opml",
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "route": "/collections/youtube/index.opml",
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "route": "/collections/forums/index.opml",
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "route": "/collections/starter-packs/ai/index.opml",
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
       "route": "/.well-known/about.md",
       "headers": {
         "Access-Control-Allow-Origin": "*"
