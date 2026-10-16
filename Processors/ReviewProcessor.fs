@@ -196,7 +196,7 @@ module ReviewProcessor
             let item =
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", rssTitle review),
-                    rssDescriptionElement (normalizeUrlsForRss review.Content Constants.Urls.canonical),
+                    rssDescriptionElement (normalizeRssHtmlUrls review.Content url),
                     XElement(XName.Get "link", url),
                     XElement(XName.Get "guid", url))
 
@@ -204,8 +204,9 @@ module ReviewProcessor
             let date =
                 if String.IsNullOrWhiteSpace(review.Metadata.PublishedDate) then review.Metadata.DatePublished
                 else review.Metadata.PublishedDate
-            if not (String.IsNullOrWhiteSpace(date)) then
-                item.Add(XElement(XName.Get "pubDate", date))
+            match rssPubDateElement (sprintf "reviews/%s.md (published_date/date_published)" review.FileName) date with
+            | Some pubDate -> item.Add(pubDate)
+            | None -> ()
 
             // Add categories from tags
             if not (isNull review.Metadata.Tags) then

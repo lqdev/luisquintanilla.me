@@ -80,16 +80,20 @@ module PostProcessor
                 if isNull post.Metadata.Tags then []
                 else post.Metadata.Tags |> Array.map (fun tag -> XElement(XName.Get "category", tag)) |> Array.toList
             
-            // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss post.Content Constants.Urls.canonical
+            let renderedContent =
+                MarkdownService.convertMdToHtml post.Content
+                |> fun html -> normalizeRssHtmlUrls html url
             
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", post.Metadata.Title),
-                    rssDescriptionElement normalizedContent,
+                    rssDescriptionElement renderedContent,
                     XElement(XName.Get "link", url),
-                    XElement(XName.Get "guid", url),
-                    XElement(XName.Get "pubDate", post.Metadata.Date))
+                    XElement(XName.Get "guid", url))
+
+            match rssPubDateElement (sprintf "posts/%s.md (published_date)" post.FileName) post.Metadata.Date with
+            | Some pubDate -> item.Add(pubDate)
+            | None -> ()
             
             // Add categories if they exist
             if not (List.isEmpty categories) then

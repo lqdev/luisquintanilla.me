@@ -118,7 +118,7 @@ module AlbumCollectionProcessor
                     description
             
             // Normalize URLs in description for RSS compatibility
-            let normalizedDescription = normalizeUrlsForRss enhancedDescription Constants.Urls.canonical
+            let normalizedDescription = normalizeRssHtmlUrls enhancedDescription url
             
             // Create RSS category elements for tags
             let categories = 
@@ -131,8 +131,11 @@ module AlbumCollectionProcessor
                     XElement(XName.Get "title", albumCollection.Metadata.Title),
                     rssDescriptionElement normalizedDescription,
                     XElement(XName.Get "link", url),
-                    XElement(XName.Get "guid", url),
-                    XElement(XName.Get "pubDate", albumCollection.Metadata.Date))
+                    XElement(XName.Get "guid", url))
+
+            match rssPubDateElement (sprintf "albums/%s.md (date)" albumCollection.FileName) albumCollection.Metadata.Date with
+            | Some pubDate -> item.Add(pubDate)
+            | None -> ()
             
             // Add categories if they exist
             if not (List.isEmpty categories) then

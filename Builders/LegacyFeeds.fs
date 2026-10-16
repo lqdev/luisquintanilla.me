@@ -6,7 +6,7 @@ module LegacyFeedsBuilder
     let buildLegacyRssFeedAliases () =
         // Create legacy RSS feed aliases for backward compatibility
         let sourceBlogFeed = Path.GetFullPath(Path.Join(outputDir, "posts", "feed.xml"))
-        let sourceMicroblogFeed = Path.GetFullPath(Path.Join(outputDir, "feed", "notes.xml"))
+        let sourceMicroblogFeed = Path.GetFullPath(Path.Join(outputDir, "notes", "feed.xml"))
         let sourceResponsesFeed = Path.GetFullPath(Path.Join(outputDir, "responses", "feed.xml"))
         let sourceUnifiedFeed = Path.GetFullPath(Path.Join(outputDir, "feed", "feed.xml"))
         

@@ -75,16 +75,18 @@ module NoteProcessor
                 if isNull note.Metadata.Tags then []
                 else note.Metadata.Tags |> Array.map (fun tag -> XElement(XName.Get "category", tag)) |> Array.toList
             
-            // Normalize URLs in content for RSS compatibility
-            let normalizedContent = normalizeUrlsForRss note.Content Constants.Urls.canonical
+            let normalizedContent = normalizeRssHtmlUrls note.Content url
             
             let item = 
                 XElement(XName.Get "item",
                     XElement(XName.Get "title", note.Metadata.Title),
                     rssDescriptionElement normalizedContent,
                     XElement(XName.Get "link", url),
-                    XElement(XName.Get "guid", url),
-                    XElement(XName.Get "pubDate", note.Metadata.Date))
+                    XElement(XName.Get "guid", url))
+
+            match rssPubDateElement (sprintf "notes/%s.md (published_date)" note.FileName) note.Metadata.Date with
+            | Some pubDate -> item.Add(pubDate)
+            | None -> ()
             
             // Add categories if they exist
             if not (List.isEmpty categories) then
