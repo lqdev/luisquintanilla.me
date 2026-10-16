@@ -464,6 +464,35 @@ module CollectionConfig =
         // TODO: Implement JSON-based configuration loading
         getDefaultCollections ()
 
+module FollowingDirectory =
+
+    let private includedCollectionIds =
+        [| "blogroll"; "podroll"; "youtube"; "forums"; "ai" |]
+
+    let getIncludedCollections () : Collection array =
+        let collections = CollectionConfig.loadCollectionsConfig ()
+
+        includedCollectionIds
+        |> Array.map (fun collectionId ->
+            match collections |> Array.tryFind (fun collection -> collection.Id = collectionId) with
+            | Some collection -> collection
+            | None ->
+                failwithf
+                    "Following directory references collection '%s', but it is not configured."
+                    collectionId)
+
+    let getInclude (collection: Collection) : OpmlInclude =
+        let collectionPath = collection.UrlPath.TrimEnd('/')
+
+        {
+            Title = collection.Title
+            Url = $"{Constants.Urls.canonical}{collectionPath}/index.opml"
+        }
+
+    let getIncludes () : OpmlInclude array =
+        getIncludedCollections ()
+        |> Array.map getInclude
+
 // Builder Integration Functions
 module CollectionBuilder =
     

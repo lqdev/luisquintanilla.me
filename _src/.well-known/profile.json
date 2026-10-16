@@ -47,6 +47,12 @@
   },
   "following": [
     {
+      "name": "Following",
+      "description": "An include-only OPML directory of my blogs, podcasts, YouTube channels, forums, and AI starter pack.",
+      "url": "https://lqdev.me/.well-known/following.opml",
+      "type": "opml"
+    },
+    {
       "name": "Blogs",
       "description": "Blogs I subscribe to",
       "url": "https://lqdev.me/collections/blogroll/index.opml",

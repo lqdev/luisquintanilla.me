@@ -43,9 +43,12 @@ let sourceAboutPath = Path.Combine(projectRoot, "_src", "about.md")
 let generatedAboutPath = Path.Combine(projectRoot, "_public", ".well-known", "about.md")
 let generatedAboutPagePath = Path.Combine(projectRoot, "_public", "about", "index.html")
 let generatedTextAboutPagePath = Path.Combine(projectRoot, "_public", "text", "about", "index.html")
+let generatedFollowingPath = Path.Combine(projectRoot, "_public", ".well-known", "following.opml")
 let generatedBlogrollPath = Path.Combine(projectRoot, "_public", "collections", "blogroll", "index.opml")
 let generatedPodrollPath = Path.Combine(projectRoot, "_public", "collections", "podroll", "index.opml")
 let generatedYouTubePath = Path.Combine(projectRoot, "_public", "collections", "youtube", "index.opml")
+let generatedForumsPath = Path.Combine(projectRoot, "_public", "collections", "forums", "index.opml")
+let generatedAiStarterPackPath = Path.Combine(projectRoot, "_public", "collections", "starter-packs", "ai", "index.opml")
 let generatedVCardPath = Path.Combine(projectRoot, "_public", "vcard.vcf")
 let generatedProfilePath = Path.Combine(projectRoot, "_public", ".well-known", "profile.json")
 let generatedProfileSchemaPath = Path.Combine(projectRoot, "_public", ".well-known", "profile.schema.v1.json")
@@ -111,9 +114,46 @@ let checkOpml (name: string) (path: string) =
 let blogrollOutlines = checkOpml "Blogroll" generatedBlogrollPath
 let podrollOutlines = checkOpml "Podroll" generatedPodrollPath
 let youtubeOutlines = checkOpml "YouTube" generatedYouTubePath
+let forumsOutlines = checkOpml "Forums" generatedForumsPath
+let aiStarterPackOutlines = checkOpml "AI Starter Pack" generatedAiStarterPackPath
 check "Blogroll has the expected number of entries" (blogrollOutlines.Length = (loadBlogrollLinks ()).Length)
 check "Podroll has the expected number of entries" (podrollOutlines.Length = (loadPodrollLinks ()).Length)
 check "YouTube has the expected number of entries" (youtubeOutlines.Length = (loadYouTubeLinks ()).Length)
+check "Forums has the expected number of entries" (forumsOutlines.Length = (loadForumsLinks ()).Length)
+check "AI Starter Pack has the expected number of entries" (aiStarterPackOutlines.Length = (loadAIStarterPackLinks ()).Length)
+
+let followingDocument = XDocument.Load(generatedFollowingPath)
+let followingRoot = followingDocument.Root
+let followingHead = followingRoot.Element(XName.Get "head")
+let followingBody = followingRoot.Element(XName.Get "body")
+let followingOutlines = followingBody.Elements(XName.Get "outline") |> Seq.toArray
+let followingAttribute (name: string) (outline: XElement) =
+    let attribute = outline.Attribute(XName.Get name)
+    if isNull attribute then "" else attribute.Value
+let expectedFollowingIncludes = FollowingDirectory.getIncludes ()
+let expectedFollowingUrls = expectedFollowingIncludes |> Array.map _.Url
+let actualFollowingUrls = followingOutlines |> Array.map (followingAttribute "url")
+check "Following directory has the expected OPML metadata" (
+    followingRoot.Name.LocalName = "opml"
+    && followingRoot.Attribute(XName.Get "version").Value = "2.0"
+    && followingHead.Element(XName.Get "title").Value = "Luis Quintanilla Following"
+    && followingHead.Element(XName.Get "ownerId").Value = "https://lqdev.me"
+    && followingHead.Element(XName.Get "docs").Value = "https://lqdev.me/collections/")
+check "Following directory contains exactly the configured child OPMLs" (
+    followingOutlines.Length = expectedFollowingIncludes.Length
+    && (followingOutlines |> Array.map (followingAttribute "text")) = (expectedFollowingIncludes |> Array.map _.Title)
+    && actualFollowingUrls = expectedFollowingUrls)
+check "Following directory outlines are include-only" (
+    followingOutlines
+    |> Array.forall (fun outline ->
+        followingAttribute "type" outline = "include"
+        && not (isNull (outline.Attribute(XName.Get "title")))
+        && isNull (outline.Attribute(XName.Get "xmlUrl"))
+        && isNull (outline.Attribute(XName.Get "htmlUrl"))
+        && (outline.Elements(XName.Get "outline") |> Seq.isEmpty)))
+check "Following directory contains no direct RSS outlines" (
+    followingRoot.Descendants(XName.Get "outline")
+    |> Seq.forall (fun outline -> followingAttribute "type" outline <> "rss"))
 
 let specialOpml =
     OpmlService.buildOpmlFeed
@@ -126,6 +166,23 @@ check "OPML safely round-trips XML-sensitive values" (
     specialOutline.Attribute(XName.Get "text").Value = "A & B"
     && specialOutline.Attribute(XName.Get "htmlUrl").Value = "https://example.test/?a=1&b=2"
     && specialOutline.Attribute(XName.Get "xmlUrl").Value = "https://example.test/feed?name=\"x\"")
+let specialDirectory =
+    OpmlService.buildOpmlDocument
+        {
+            Title = "Directory & <collection>"
+            OwnerId = "https://example.test"
+            DocsUrl = Some "https://example.test/docs"
+        }
+        [| IncludeOutline { Title = "Feeds & Friends"; Url = "https://example.test/feeds.opml" } |]
+        |> fun document -> XDocument.Parse(document.ToString())
+let specialInclude = specialDirectory.Descendants(XName.Get "outline") |> Seq.exactlyOne
+check "OPML include outlines use include-specific attributes" (
+    specialInclude.Attribute(XName.Get "text").Value = "Feeds & Friends"
+    && specialInclude.Attribute(XName.Get "title").Value = "Feeds & Friends"
+    && specialInclude.Attribute(XName.Get "type").Value = "include"
+    && specialInclude.Attribute(XName.Get "url").Value = "https://example.test/feeds.opml"
+    && isNull (specialInclude.Attribute(XName.Get "xmlUrl"))
+    && specialDirectory.Root.Element(XName.Get "head").Element(XName.Get "docs").Value = "https://example.test/docs")
 
 printfn "\nvCard output"
 let vcard = readUtf8 generatedVCardPath
@@ -165,9 +222,25 @@ checkRequiredProperties "Profile manifest" profile profileSchema
 let profileObject = profile.GetProperty("profile")
 let feedsObject = profile.GetProperty("feeds")
 let servicesObject = profile.GetProperty("services")
+let followingEntries = profile.GetProperty("following").EnumerateArray() |> Seq.toArray
+let followingUrls = followingEntries |> Array.map (fun entry -> entry.GetProperty("url").GetString())
+let requiredFollowingUrls =
+    set [
+        "https://lqdev.me/.well-known/following.opml"
+        "https://lqdev.me/collections/blogroll/index.opml"
+        "https://lqdev.me/collections/podroll/index.opml"
+        "https://lqdev.me/collections/forums/index.opml"
+        "https://lqdev.me/collections/youtube/index.opml"
+    ]
+let actualFollowingUrlSet = followingUrls |> Set.ofArray
 checkRequiredProperties "Profile manifest profile object" profileObject profileSchemaProfile
 checkRequiredProperties "Profile manifest feeds object" feedsObject profileSchemaFeeds
 checkRequiredProperties "Profile manifest services object" servicesObject profileSchemaServices
+check "Profile manifest advertises aggregate and direct following OPMLs" (
+    Set.isSubset requiredFollowingUrls actualFollowingUrlSet)
+check "Profile manifest preserves the AI starter pack entry" (
+    profile.GetProperty("starterPacks").EnumerateArray()
+    |> Seq.exists (fun entry -> entry.GetProperty("url").GetString() = "https://lqdev.me/collections/starter-packs/ai/index.opml"))
 check "Profile schema forbids undeclared root properties" (
     let declared = profileSchema.GetProperty("properties").EnumerateObject() |> Seq.map _.Name |> Set.ofSeq
     profile.EnumerateObject() |> Seq.forall (fun property -> declared.Contains(property.Name)))
@@ -218,7 +291,18 @@ let followingRoute = routeFor "/.well-known/following.opml"
 let aboutRoute = routeFor "/.well-known/about.md"
 let contactRoute = routeFor "/.well-known/contact.vcf"
 let profileRoute = routeFor "/.well-known/profile"
-check "Following route rewrites to the existing blogroll OPML" (rewrite followingRoute = Some "/collections/blogroll/index.opml")
+let childOpmlPaths =
+    [|
+        "/collections/blogroll/index.opml"
+        "/collections/podroll/index.opml"
+        "/collections/youtube/index.opml"
+        "/collections/forums/index.opml"
+        "/collections/starter-packs/ai/index.opml"
+    |]
+check "Following route serves the generated directory directly" (rewrite followingRoute |> Option.isNone)
+for path in childOpmlPaths do
+    let childRoute = routeFor path
+    check ("Child OPML route has CORS: " + path) (tryHeader childRoute "Access-Control-Allow-Origin" = Some "*")
 check "About route serves the direct generated file" (rewrite aboutRoute |> Option.isNone)
 check "Contact route rewrites to the existing vCard" (rewrite contactRoute = Some "/vcard.vcf")
 check "Profile route rewrites to the versioned JSON manifest" (rewrite profileRoute = Some "/.well-known/profile.json")
@@ -315,6 +399,23 @@ let runLiveChecks (baseUrl: string) =
     let liveContact = checkLive "/.well-known/contact.vcf" "text/vcard" "text/vcard"
     let liveProfile = checkLive "/.well-known/profile" "application/json" "application/json"
     check "Live following response parses as OPML" (try XDocument.Parse(liveFollowing) |> ignore; true with _ -> false)
+    let liveFollowingDocument = XDocument.Parse(liveFollowing)
+    let liveFollowingOutlines =
+        liveFollowingDocument.Descendants(XName.Get "outline")
+        |> Seq.toArray
+    let actualLiveFollowingUrls =
+        liveFollowingOutlines
+        |> Array.map (followingAttribute "url")
+        |> Array.sort
+    let expectedLiveFollowingUrls = expectedFollowingUrls |> Array.sort
+    check "Live following response contains the five include outlines" (
+        liveFollowingOutlines.Length = 5
+        && (liveFollowingOutlines |> Array.forall (fun outline -> followingAttribute "type" outline = "include"))
+        && actualLiveFollowingUrls = expectedLiveFollowingUrls)
+    for path in childOpmlPaths do
+        let liveChild = checkLive path "text/x-opml" "text/x-opml"
+        check ("Live child OPML parses: " + path) (
+            try XDocument.Parse(liveChild) |> ignore; true with _ -> false)
     check "Live About response contains summary frontmatter" (liveAbout.Contains("summary:", StringComparison.Ordinal))
     check "Live contact response contains FN" (liveContact.Contains("FN:Luis Quintanilla", StringComparison.Ordinal))
     check "Live profile response parses as JSON" (try JsonDocument.Parse(liveProfile) |> ignore; true with _ -> false)
