@@ -14,12 +14,12 @@ open System.Text.Json
 open System.Text.Json.Nodes
 open System.Globalization
 open System.Text.RegularExpressions
-open FSharp.Reflection
-open System.Reflection
 open Giraffe.ViewEngine
 open Giraffe.ViewEngine.HtmlElements
 open Markdig
 open Markdig.Syntax
+open AngleSharp.Dom
+open AngleSharp.Html.Parser
 
 /// Data structure for feed generation with both card and RSS item
 type FeedData<'T> = {
@@ -112,9 +112,12 @@ let resolveRssHttpUrl (baseUrl: string) (value: string) : Uri option =
                 else baseUri.AbsolutePath + "/"
             let directoryUri =
                 Uri(baseUri.GetLeftPart(UriPartial.Authority) + basePath)
+            let hasExplicitScheme = Regex.IsMatch(value, @"^[A-Za-z][A-Za-z0-9+.-]*:")
             let mutable absoluteUri = Unchecked.defaultof<Uri>
             let resolved =
-                if Uri.TryCreate(value, UriKind.Absolute, &absoluteUri) then absoluteUri
+                if hasExplicitScheme then
+                    if Uri.TryCreate(value, UriKind.Absolute, &absoluteUri) then absoluteUri
+                    else null
                 else
                     try Uri(directoryUri, value)
                     with :? UriFormatException -> null
@@ -123,79 +126,6 @@ let resolveRssHttpUrl (baseUrl: string) (value: string) : Uri option =
                 None
             else
                 Some resolved
-
-let private htmlParserBindingFlags = BindingFlags.Public ||| BindingFlags.NonPublic
-
-let private htmlAttributeParts (attribute: FSharp.Data.HtmlAttribute) : string * string =
-    let case, fields =
-        FSharpValue.GetUnionFields(
-            attribute,
-            typeof<FSharp.Data.HtmlAttribute>,
-            bindingFlags = htmlParserBindingFlags)
-    if case.Name <> "HtmlAttribute" || fields.Length <> 2 then
-        invalidOp "Unexpected FSharp.Data HTML attribute representation"
-    string fields.[0], string fields.[1]
-
-let private htmlElementParts (node: FSharp.Data.HtmlNode) : (string * FSharp.Data.HtmlNode list) option =
-    let case, fields =
-        FSharpValue.GetUnionFields(
-            node,
-            typeof<FSharp.Data.HtmlNode>,
-            bindingFlags = htmlParserBindingFlags)
-    if case.Name = "HtmlElement" && fields.Length = 3 then
-        Some (string fields.[0], fields.[2] :?> FSharp.Data.HtmlNode list)
-    else
-        None
-
-let private htmlNodeChildren (document: FSharp.Data.HtmlDocument) : FSharp.Data.HtmlNode list =
-    let case, fields =
-        FSharpValue.GetUnionFields(
-            document,
-            typeof<FSharp.Data.HtmlDocument>,
-            bindingFlags = htmlParserBindingFlags)
-    if case.Name <> "HtmlDocument" || fields.Length <> 2 then
-        invalidOp "Unexpected FSharp.Data HTML document representation"
-    fields.[1] :?> FSharp.Data.HtmlNode list
-
-let rec private transformHtmlNodeAttributes
-    (resolveAttribute: string -> string -> string option)
-    (node: FSharp.Data.HtmlNode)
-    : FSharp.Data.HtmlNode * bool =
-    let case, fields =
-        FSharpValue.GetUnionFields(
-            node,
-            typeof<FSharp.Data.HtmlNode>,
-            bindingFlags = htmlParserBindingFlags)
-
-    match case.Name with
-    | "HtmlElement" when fields.Length = 3 ->
-        let name = string fields.[0]
-        let attributes = fields.[1] :?> FSharp.Data.HtmlAttribute list
-        let children = fields.[2] :?> FSharp.Data.HtmlNode list
-        let mutable changed = false
-        let rewrittenAttributes =
-            attributes
-            |> List.map (fun attribute ->
-                let attributeName, value = htmlAttributeParts attribute
-                match resolveAttribute attributeName value with
-                | Some rewritten when rewritten <> value ->
-                    changed <- true
-                    attributeName, rewritten
-                | _ -> attributeName, value)
-        let rewrittenChildren =
-            children
-            |> List.map (fun child ->
-                let rewrittenChild, childChanged = transformHtmlNodeAttributes resolveAttribute child
-                if childChanged then changed <- true
-                rewrittenChild)
-        if changed then
-            FSharp.Data.HtmlNode.NewElement(name, rewrittenAttributes, rewrittenChildren), true
-        else
-            node, false
-    | "HtmlText"
-    | "HtmlComment"
-    | "HtmlCData" -> node, false
-    | _ -> invalidOp (sprintf "Unexpected FSharp.Data HTML node representation: %s" case.Name)
 
 /// Resolve only scalar URL-bearing HTML attributes in RSS description fragments.
 /// The shared normalizeUrlsForRss helper remains unchanged for JSON Feed callers.
@@ -211,10 +141,6 @@ let normalizeRssHtmlUrls (html: string) (itemUrl: string) : string =
             |> Diagnostics.report
             html
         | Some itemUri ->
-            let itemPath =
-                if itemUri.AbsolutePath.EndsWith("/", StringComparison.Ordinal) then itemUri.AbsolutePath
-                else itemUri.AbsolutePath + "/"
-            let baseUri = Uri(itemUri.GetLeftPart(UriPartial.Authority) + itemPath)
             let mutable failedAttribute: string option = None
             let resolveAttribute (name: string) (value: string) =
                 if not (
@@ -224,25 +150,32 @@ let normalizeRssHtmlUrls (html: string) (itemUrl: string) : string =
                    || String.IsNullOrWhiteSpace(value) then
                     None
                 else
-                    let mutable absoluteUri = Unchecked.defaultof<Uri>
-                    let hasExplicitScheme = Regex.IsMatch(value, @"^[A-Za-z][A-Za-z0-9+.-]*:")
-                    if Uri.TryCreate(value, UriKind.Absolute, &absoluteUri)
-                       || (hasExplicitScheme
-                           && not (value.StartsWith("http:", StringComparison.OrdinalIgnoreCase)
-                                   || value.StartsWith("https:", StringComparison.OrdinalIgnoreCase))) then
-                        None
-                    else
-                        match resolveRssHttpUrl itemUrl value with
-                        | Some resolved -> Some resolved.AbsoluteUri
-                        | None ->
+                    match resolveRssHttpUrl itemUrl value with
+                    | Some resolved ->
+                        let hasExplicitScheme = Regex.IsMatch(value, @"^[A-Za-z][A-Za-z0-9+.-]*:")
+                        if hasExplicitScheme then
+                            None
+                        else
+                            Some resolved.AbsoluteUri
+                    | None ->
+                        let hasExplicitScheme = Regex.IsMatch(value, @"^[A-Za-z][A-Za-z0-9+.-]*:")
+                        if hasExplicitScheme then None
+                        else
                             failedAttribute <- Some value
                             None
 
-            let document = FSharp.Data.HtmlDocument.Parse("<html><body>" + html + "</body></html>")
-            let children = htmlNodeChildren document
-            let rewritten =
-                children
-                |> List.map (fun node -> transformHtmlNodeAttributes resolveAttribute node)
+            let parser = HtmlParser()
+            let document = parser.ParseDocument("<html><body>" + html + "</body></html>")
+            let mutable changed = false
+            for element in document.QuerySelectorAll("[src], [href], [poster]") do
+                for attributeName in [ "src"; "href"; "poster" ] do
+                    let value = element.GetAttribute(attributeName)
+                    if not (isNull value) then
+                        match resolveAttribute attributeName value with
+                        | Some rewritten ->
+                            element.SetAttribute(attributeName, rewritten)
+                            changed <- true
+                        | None -> ()
             match failedAttribute with
             | Some value ->
                 Diagnostics.ContentError.ParseFailure(
@@ -251,18 +184,7 @@ let normalizeRssHtmlUrls (html: string) (itemUrl: string) : string =
                     sprintf "could not resolve relative HTML URL %A" value)
                 |> Diagnostics.report
             | None -> ()
-            if rewritten |> List.exists snd then
-                let rewrittenNodes = rewritten |> List.map fst
-                let rec findBodyContents (nodes: FSharp.Data.HtmlNode list) =
-                    nodes
-                    |> List.tryPick (fun node ->
-                        match htmlElementParts node with
-                        | Some ("body", bodyChildren) -> Some bodyChildren
-                        | Some (_, nestedChildren) -> findBodyContents nestedChildren
-                        | None -> None)
-                match findBodyContents rewrittenNodes with
-                | Some bodyChildren -> bodyChildren |> List.map string |> String.concat ""
-                | None -> invalidOp "Parsed RSS HTML did not contain a body element"
+            if changed then document.Body.InnerHtml
             else
                 html
 

@@ -57,6 +57,17 @@ check "custom-scheme links are retained without URL-resolution diagnostics" (
     normalizeRssHtmlUrls """<a href="lqvlc://radio.example/stream.pls">Radio</a>"""
         "https://www.example.test/posts/entry"
     |> fun result -> result.Contains("lqvlc://radio.example/stream.pls"))
+let htmlWithEntitiesAndLineBreak =
+    """<p>List&lt;AIBookmark&gt; &amp; other values<br>Next line <a href="guide.html" title="A &quot;quoted&quot; title">Guide</a></p>"""
+let normalizedEntitiesAndLineBreak =
+    normalizeRssHtmlUrls htmlWithEntitiesAndLineBreak "https://www.example.test/posts/entry"
+check "HTML rewriting retains br elements and escapes decoded text entities" (
+    normalizedEntitiesAndLineBreak.Contains("<br>")
+    && normalizedEntitiesAndLineBreak.Contains("List&lt;AIBookmark&gt;")
+    && normalizedEntitiesAndLineBreak.Contains("&amp; other values"))
+check "HTML rewriting safely re-escapes decoded attribute quotes" (
+    normalizedEntitiesAndLineBreak.Contains("title=\"A &quot;quoted&quot; title\"")
+    && normalizedEntitiesAndLineBreak.Contains("href=\"https://www.example.test/posts/entry/guide.html\""))
 
 let sourceMarkdown = "text with ]]> marker"
 let sourceElement = generateSourceMarkdown (Some sourceMarkdown) |> Option.get
