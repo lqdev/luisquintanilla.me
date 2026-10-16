@@ -24,6 +24,7 @@ dotnet fsi test-scripts\test-wiki-migration.fsx     # Wiki migration validation
 # Feature Flag Tests
 dotnet fsi test-scripts\test-feature-flags.fsx      # Feature flag system validation
 dotnet fsi test-scripts\test-rss-cdata.fsx          # RSS CDATA regression guard
+dotnet fsi test-scripts\test-rss-reply-threading.fsx # Reply threading and feed propagation
 dotnet fsi test-scripts\test-social-discovery.fsx   # SocialSpec discovery artifacts and config
 ```
 

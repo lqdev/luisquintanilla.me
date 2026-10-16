@@ -89,6 +89,21 @@ All RSS feeds include proper `<category>` elements for content organization:
 </item>
 ```
 
+### Reply Threading Metadata
+RSS items for responses whose `response_type` is `reply` and whose `targeturl` is a well-formed absolute HTTP(S) URL include one `thr:in-reply-to` element in the namespace `http://purl.org/syndication/thread/1.0`. The item's target URL is written to both the required `ref` attribute and the optional `href` attribute. Other response types do not receive this element. Invalid or blank targets are omitted without changing the rest of the item.
+
+This reuses the threading vocabulary defined by [RFC 4685](https://www.rfc-editor.org/rfc/rfc4685.html) through RSS 2.0's [namespaced extension mechanism](https://www.rssboard.org/rss-specification). It is not a native RSS element, nor does RFC 4685 specify RSS threading. The `thr` prefix is only a serialization label; the namespace URI identifies the vocabulary.
+
+Under RFC 4685, `ref` identifies the parent resource and `href` optionally locates a representation of it. The existing response metadata contains a target URL but no separate persistent identifier for the parent, so both attributes are mapped to that URL. This is appropriate for interoperability when the parent's persistent identifier is its permalink; it does not establish that arbitrary webpage URLs are interchangeable with opaque parent identifiers. No identifier resolution or network requests are performed during the static build. Existing item links, historical GUIDs, dates, categories, content, and `source:markdown` remain unchanged.
+
+#### Manual RSC interoperability smoke test
+1. Choose an original public post on the target RSC instance whose persistent parent identifier is its permalink.
+2. Have the instance subscribe to and approve the site's responses feed (`/responses/feed.xml`, also available at `/responses.rss`).
+3. Publish a normal site response with `response_type: reply` and `targeturl` set to that permalink.
+4. Allow or trigger feed acquisition, then verify the reply is attached under the correct original parent rather than appearing only as a standalone imported item.
+
+The metadata expresses the relationship; it does not notify RSC or discover the publisher. Feed subscription and ingestion are separate requirements. This feed change does not receive replies back onto this site.
+
 ### Feed Generation Architecture
 **Location**: `GenericBuilder.fs` - Unified feed processing system
 

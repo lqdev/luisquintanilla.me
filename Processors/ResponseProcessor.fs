@@ -73,6 +73,19 @@ module ResponseProcessor
         renderResponseTarget response +
         Html.element "div" (Html.attribute "class" "response-content") bodyHtml
 
+    let private replyTargetReference (targetUrl: string) =
+        if String.IsNullOrWhiteSpace(targetUrl) then None
+        else
+            let target = targetUrl.Trim()
+            let mutable targetUri = Unchecked.defaultof<Uri>
+            if Uri.TryCreate(target, UriKind.Absolute, &targetUri)
+               && (targetUri.Scheme = Uri.UriSchemeHttp || targetUri.Scheme = Uri.UriSchemeHttps)
+               && String.IsNullOrEmpty(targetUri.UserInfo)
+               && Uri.IsWellFormedUriString(target, UriKind.Absolute) then
+                Some target
+            else
+                None
+
     let create() : ContentProcessor<Response> = {
         Parse = fun filePath ->
             match parseResponseFromFile filePath with
@@ -156,7 +169,18 @@ module ResponseProcessor
             // Add categories if they exist
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
-            
+
+            if String.Equals(response.Metadata.ResponseType, "reply", StringComparison.OrdinalIgnoreCase) then
+                match replyTargetReference response.Metadata.TargetUrl with
+                | Some target ->
+                    let threadNs = XNamespace.Get("http://purl.org/syndication/thread/1.0")
+                    item.Add(XAttribute(XNamespace.Xmlns + "thr", threadNs.NamespaceName))
+                    item.Add(
+                        XElement(threadNs + "in-reply-to",
+                            XAttribute(XName.Get "ref", target),
+                            XAttribute(XName.Get "href", target)))
+                | None -> ()
+
             // Add source:markdown if available
             match generateSourceMarkdown response.MarkdownSource with
             | Some sourceElement -> item.Add(sourceElement)
