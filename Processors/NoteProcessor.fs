@@ -97,5 +97,6 @@ module NoteProcessor
             | Some sourceElement -> item.Add(sourceElement)
             | None -> ()
             
+            FeedSemantics.append item FeedSemantics.EntryKind.Note
             Some item
     }

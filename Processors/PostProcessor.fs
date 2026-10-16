@@ -104,5 +104,6 @@ module PostProcessor
             | Some sourceElement -> item.Add(sourceElement)
             | None -> ()
             
+            FeedSemantics.append item FeedSemantics.EntryKind.BlogPost
             Some item
     }
