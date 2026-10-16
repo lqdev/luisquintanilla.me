@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:source="http://source.scripting.com/"
+     xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RSS semantics example - synthetic fixtures</title>
+    <link>https://lqdev.me/</link>
+    <description>Example feed containing a post, note, reply, like, and public bookmark.</description>
+    <lastBuildDate>Fri, 16 Oct 2026 17:00:00 GMT</lastBuildDate>
+    <language>en</language>
+
+    <item>
+      <title>Example ordinary post</title>
+      <description><![CDATA[An ordinary post about open feeds.]]></description>
+      <link>https://lqdev.me/posts/example-ordinary-post</link>
+      <guid>https://www.lqdev.me/posts/example-ordinary-post</guid>
+      <pubDate>Fri, 16 Oct 2026 17:00:00 GMT</pubDate>
+      <category>feeds</category>
+      <source:markdown><![CDATA[An ordinary post about open feeds.]]></source:markdown>
+      <atom:category term="https://schema.org/BlogPosting" />
+      <atom:link rel="https://schema.org/author"
+                 href="https://lqdev.me/" />
+    </item>
+
+    <item>
+      <title>Example ordinary note</title>
+      <description><![CDATA[A short note about open feeds.]]></description>
+      <link>https://lqdev.me/notes/example-ordinary-note</link>
+      <guid>https://www.lqdev.me/notes/example-ordinary-note</guid>
+      <pubDate>Fri, 16 Oct 2026 16:00:00 GMT</pubDate>
+      <category>feeds</category>
+      <source:markdown><![CDATA[A short note about open feeds.]]></source:markdown>
+      <atom:category term="https://schema.org/SocialMediaPosting" />
+      <atom:link rel="https://schema.org/author"
+                 href="https://lqdev.me/" />
+    </item>
+
+    <item xmlns:thr="http://purl.org/syndication/thread/1.0">
+      <title>Example reply</title>
+      <description><![CDATA[[reply] <p>I agree with this point about open feeds.</p>]]></description>
+      <link>https://lqdev.me/responses/example-reply</link>
+      <guid>https://www.lqdev.me/responses/example-reply</guid>
+      <pubDate>Fri, 16 Oct 2026 15:00:00 GMT</pubDate>
+      <category>feeds</category>
+      <thr:in-reply-to ref="https://example.org/original-post?x=1&amp;y=two#discussion"
+                       href="https://example.org/original-post?x=1&amp;y=two#discussion" />
+      <source:markdown><![CDATA[I agree with this point about open feeds.]]></source:markdown>
+      <atom:category term="https://schema.org/Comment" />
+      <atom:link rel="https://schema.org/author"
+                 href="https://lqdev.me/" />
+      <atom:link rel="https://schema.org/parentItem"
+                 href="https://example.org/original-post?x=1&amp;y=two#discussion" />
+    </item>
+
+    <item>
+      <title>Example basic like</title>
+      <description><![CDATA[[star] <p>A useful article about open feeds.</p>]]></description>
+      <link>https://lqdev.me/responses/example-basic-like</link>
+      <guid>https://www.lqdev.me/responses/example-basic-like</guid>
+      <pubDate>Fri, 16 Oct 2026 14:00:00 GMT</pubDate>
+      <category>feeds</category>
+      <source:markdown><![CDATA[A useful article about open feeds.]]></source:markdown>
+      <atom:category term="https://schema.org/LikeAction" />
+      <atom:link rel="https://schema.org/agent"
+                 href="https://lqdev.me/" />
+      <atom:link rel="https://schema.org/object"
+                 href="https://example.org/liked-article" />
+    </item>
+
+    <item>
+      <title>Example public bookmark</title>
+      <description><![CDATA[[bookmark] <p>Keeping this article for future reference.</p>]]></description>
+      <link>https://lqdev.me/bookmarks/example-public-bookmark</link>
+      <guid>https://www.lqdev.me/bookmarks/example-public-bookmark</guid>
+      <pubDate>Fri, 16 Oct 2026 13:00:00 GMT</pubDate>
+      <category>feeds</category>
+      <source:markdown><![CDATA[Keeping this article for future reference.]]></source:markdown>
+      <atom:category term="https://schema.org/BookmarkAction" />
+      <atom:link rel="https://schema.org/agent"
+                 href="https://lqdev.me/" />
+      <atom:link rel="https://schema.org/object"
+                 href="https://example.org/article?x=1&amp;y=two" />
+    </item>
+  </channel>
+</rss>

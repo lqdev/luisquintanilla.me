@@ -73,19 +73,6 @@ module ResponseProcessor
         renderResponseTarget response +
         Html.element "div" (Html.attribute "class" "response-content") bodyHtml
 
-    let private replyTargetReference (targetUrl: string) =
-        if String.IsNullOrWhiteSpace(targetUrl) then None
-        else
-            let target = targetUrl.Trim()
-            let mutable targetUri = Unchecked.defaultof<Uri>
-            if Uri.TryCreate(target, UriKind.Absolute, &targetUri)
-               && (targetUri.Scheme = Uri.UriSchemeHttp || targetUri.Scheme = Uri.UriSchemeHttps)
-               && String.IsNullOrEmpty(targetUri.UserInfo)
-               && Uri.IsWellFormedUriString(target, UriKind.Absolute) then
-                Some target
-            else
-                None
-
     let create() : ContentProcessor<Response> = {
         Parse = fun filePath ->
             match parseResponseFromFile filePath with
@@ -173,21 +160,36 @@ module ResponseProcessor
             if not (List.isEmpty categories) then
                 item.Add(categories |> List.toArray)
 
-            if String.Equals(response.Metadata.ResponseType, "reply", StringComparison.OrdinalIgnoreCase) then
-                match replyTargetReference response.Metadata.TargetUrl with
-                | Some target ->
-                    let threadNs = XNamespace.Get("http://purl.org/syndication/thread/1.0")
-                    item.Add(XAttribute(XNamespace.Xmlns + "thr", threadNs.NamespaceName))
-                    item.Add(
-                        XElement(threadNs + "in-reply-to",
-                            XAttribute(XName.Get "ref", target),
-                            XAttribute(XName.Get "href", target)))
-                | None -> ()
+            let semanticKind =
+                match FeedSemantics.responseKind response.Metadata.ResponseType with
+                | Some kind ->
+                    match FeedSemantics.targetReference response.Metadata.TargetUrl with
+                    | Some target -> Some(kind target)
+                    | None ->
+                        Diagnostics.ContentError.ParseFailure(
+                            sprintf "%s/%s.md" urlPath response.FileName,
+                            "rss-relationship-target",
+                            sprintf "response_type %A has invalid targeturl %A; use a well-formed absolute HTTP(S) URL without credentials; RSS item retained, semantic block omitted"
+                                response.Metadata.ResponseType response.Metadata.TargetUrl)
+                        |> Diagnostics.report
+                        None
+                | None -> None
+
+            match semanticKind with
+            | Some(FeedSemantics.EntryKind.Reply target) ->
+                let threadNs = XNamespace.Get("http://purl.org/syndication/thread/1.0")
+                item.Add(XAttribute(XNamespace.Xmlns + "thr", threadNs.NamespaceName))
+                item.Add(
+                    XElement(threadNs + "in-reply-to",
+                        XAttribute(XName.Get "ref", target),
+                        XAttribute(XName.Get "href", target)))
+            | _ -> ()
 
             // Add source:markdown if available
             match generateSourceMarkdown response.MarkdownSource with
             | Some sourceElement -> item.Add(sourceElement)
             | None -> ()
-                
+
+            semanticKind |> Option.iter (FeedSemantics.append item)
             Some item
     }

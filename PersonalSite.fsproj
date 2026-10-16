@@ -34,6 +34,7 @@
     <Compile Include="Services\QRStyled.fs" />
     <Compile Include="Services\RetroAvatar.fs" />
     <Compile Include="GenericBuilder.fs" />
+    <Compile Include="Services\FeedSemantics.fs" />
     <Compile Include="Processors\PostProcessor.fs" />
     <Compile Include="Processors\NoteProcessor.fs" />
     <Compile Include="Processors\SnippetProcessor.fs" />

@@ -109,6 +109,95 @@ Under RFC 4685, `ref` identifies the parent resource and `href` optionally locat
 
 The metadata expresses the relationship; it does not notify RSC or discover the publisher. Feed subscription and ingestion are separate requirements. This feed change does not receive replies back onto this site.
 
+### Entry Kind and Relationship Annotations
+
+Supported items carry direct-child Atom `category` and `link` elements in
+`http://www.w3.org/2005/Atom`, using Schema.org IRIs as values. This is an
+**application-defined RSS binding using established vocabulary**, not a standardized
+Schema.org RSS serialization, RDF graph, ActivityPub implementation, or guarantee
+that every reader understands these relationships.
+
+| Production source kind | Category `term` | Profile link `rel` | Target link `rel` |
+|---|---|---|---|
+| Blog post | `https://schema.org/BlogPosting` | `https://schema.org/author` | None |
+| Note | `https://schema.org/SocialMediaPosting` | `https://schema.org/author` | None |
+| Response `reply` | `https://schema.org/Comment` | `https://schema.org/author` | `https://schema.org/parentItem` |
+| Response `star` | `https://schema.org/LikeAction` | `https://schema.org/agent` | `https://schema.org/object` |
+| Public bookmark `bookmark` | `https://schema.org/BookmarkAction` | `https://schema.org/agent` | `https://schema.org/object` |
+
+Every eligible item has exactly one semantic category and one profile link with
+`href="https://lqdev.me/"`. Relationship-bearing items also have exactly one target
+link. Posts and notes are classified by source kind, never length, title, or
+platform. Both are ordinary authored content; although Schema.org defines
+BlogPosting as a subtype of SocialMediaPosting, consumers should explicitly
+recognize both rather than assume vocabulary inference. Response subtype matching
+is ordinal case-insensitive, as in the existing reply threading, without trimming
+or rewriting frontmatter.
+
+For example, the new reply block is:
+
+```xml
+<atom:category xmlns:atom="http://www.w3.org/2005/Atom"
+               term="https://schema.org/Comment" />
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom"
+           rel="https://schema.org/author" href="https://lqdev.me/" />
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom"
+           rel="https://schema.org/parentItem"
+           href="https://example.org/original-post?x=1&amp;y=two#discussion" />
+```
+
+Namespace URI plus local name is authoritative, not prefix spelling or declaration
+placement. The [five-item synthetic fixture](../test-scripts/fixtures/rss-semantics.xml)
+shows every mapping, alongside the independent consumer in
+`test-scripts\test-rss-semantics.fsx`. These fixtures are not published content.
+
+`Services\FeedSemantics.fs` extracts the deployed reply validator unchanged: trim
+surrounding whitespace; accept only well-formed absolute HTTP(S) URLs without
+credentials; reject malformed escaping, embedded spaces, relative URLs, and other
+schemes. It preserves the original trimmed string, not URI reserialization.
+`parentItem` and existing RFC 4685 `ref`/`href` use that same validated target.
+There is no fetching, redirect resolution, or parent-ID discovery.
+
+Invalid targets on supported subtypes retain the readable item but omit the
+**whole new block**, with an actionable `Diagnostics.ContentError.ParseFailure`
+at stage `rss-relationship-target` naming the source, subtype, and rejected
+`targeturl`. Like existing content diagnostics, this is reported without failing
+ordinary generation; `--strict` or `STRICT_CONTENT=1` makes accumulated diagnostics
+fail the build. Unsupported kinds (reshare/share, RSVP, reviews/ratings, unknown
+responses, resources, curated favorites, marketplace) are intentional exclusions:
+no new block and no annotation diagnostic. A missing target never reclassifies a
+response as an ordinary post.
+
+Annotations are appended once at `PostProcessor`, `NoteProcessor`, and the active
+`ResponseProcessor` bookmark path, then reused through type, unified, tag, and
+legacy-copy feeds. Readers ignoring them retain the same item membership/order,
+20-item windows, titles, own links, historical www GUID text and attribute
+presence, RFC 1123/GMT publication dates, rendered bodies, CDATA, exact HTTP
+`source:markdown` payloads, unqualified topic categories, threading, and Media RSS.
+Channel `lastBuildDate` remains the current UTC build time and naturally differs
+between builds. JSON Feed and BAR payloads are not changed.
+
+This does not redesign HTML, microformats, timeline cards, share controls or
+JSON-LD; migrate content; add comments/likes APIs or source extensions; or implement
+a conversation backend. Ordinary RSS readers can ignore the annotations; consumer
+subscription, relationship interpretation, and notification remain separate work.
+
+#### Publication gate and later live verification
+
+Local generation and controlled fixtures do **not** verify public served bytes.
+Merging to main publishes through Azure and triggers downstream notification work,
+so merge/deployment requires separate owner approval. After approved publication,
+fetch and parse the actual `/feed/feed.xml`, `/posts/feed.xml`, `/notes/feed.xml`,
+`/responses/feed.xml`, `/bookmarks/feed.xml`, and an applicable tag feed at
+`https://lqdev.me`. Apply the namespace-aware consumer assertions to eligible
+current-window entries, compare identities against a prepublication baseline, and
+check an existing reader does not duplicate unchanged entries. Verify `/all.rss`,
+`/blog.rss`, `/microblog.rss`, `/responses.rss`, and `/bookmarks.rss` still redirect
+to their established feeds. Old examples may be outside the 20-item windows;
+never publish fake entries or bump dates just to surface them. Rollback removes
+only annotation generation, preserving existing identities and source content,
+and also requires publication approval.
+
 ### Feed Generation Architecture
 **Location**: `GenericBuilder.fs` - Unified feed processing system
 
