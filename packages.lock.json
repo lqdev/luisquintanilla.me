@@ -32,7 +32,7 @@
         "type": "Direct",
         "requested": "[10.1.402, )",
         "resolved": "10.1.402",
-        "contentHash": "O9hOKHkFOygPMWLM5k6YE8EF+J2QmPI2VYndneq246gQ53yPHVS2oF6RGJc4tN066G/lVcUsdeVOTNGCkD8Nkw=="
+        "contentHash": "K+I8ktYusPOEbnh2BrGQgvOl6qZWepmWiMuQDMeo4Q5pU4rXEqHFM6WBk/aSnfqsrZNg6sZQGY8qF5dQd7KHKw=="
       },
       "FSharp.Data": {
         "type": "Direct",
