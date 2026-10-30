@@ -51,6 +51,6 @@ These collections follow some of the principles of the [IndieWeb](https://indiew
 - Links directly to source websites and feeds
 - Updates regularly with new discoveries
 
-The following directory is a composition document, not a live synchronization service. Consumers should fetch the child OPML files when they open or import it, and should use the individual collection URLs when they need a conventional flat RSS-reader import.
+OPML inclusion by itself is not live synchronization. When the site's WebSub hub integration is enabled, OPML-aware subscribers can receive pushed updates to the root and child lists and reconcile their subscriptions. The hub only forwards OPML documents; it does not interpret includes or change a reader's account. Readers without OPML-over-WebSub support can import an individual collection as a snapshot.
 
 Part of the broader movement toward decentralized, human-curated discovery in contrast to algorithmic feeds.

@@ -102,8 +102,15 @@ printfn "\nOPML output"
 let checkOpml (name: string) (path: string) =
     let document = XDocument.Load(path)
     let root = document.Root
+    let head = root.Element(XName.Get "head")
     let outlines = root.Descendants(XName.Get "outline") |> Seq.toArray
+    let mutable dateModified = Unchecked.defaultof<DateTimeOffset>
+
     check (name + " is OPML 2.0") (root.Name.LocalName = "opml" && root.Attribute(XName.Get "version").Value = "2.0")
+    check (name + " has a valid dateModified") (
+        not (isNull head)
+        && not (isNull (head.Element(XName.Get "dateModified")))
+        && DateTimeOffset.TryParse(head.Element(XName.Get "dateModified").Value, &dateModified))
     check (name + " contains outlines with text") (
         outlines.Length > 0
         && outlines |> Array.forall (fun outline ->
@@ -127,6 +134,7 @@ let followingRoot = followingDocument.Root
 let followingHead = followingRoot.Element(XName.Get "head")
 let followingBody = followingRoot.Element(XName.Get "body")
 let followingOutlines = followingBody.Elements(XName.Get "outline") |> Seq.toArray
+let mutable followingDateModified = Unchecked.defaultof<DateTimeOffset>
 let followingAttribute (name: string) (outline: XElement) =
     let attribute = outline.Attribute(XName.Get name)
     if isNull attribute then "" else attribute.Value
@@ -138,7 +146,8 @@ check "Following directory has the expected OPML metadata" (
     && followingRoot.Attribute(XName.Get "version").Value = "2.0"
     && followingHead.Element(XName.Get "title").Value = "Luis Quintanilla Following"
     && followingHead.Element(XName.Get "ownerId").Value = "https://lqdev.me"
-    && followingHead.Element(XName.Get "docs").Value = "https://lqdev.me/collections/")
+    && followingHead.Element(XName.Get "docs").Value = "https://lqdev.me/collections/"
+    && DateTimeOffset.TryParse(followingHead.Element(XName.Get "dateModified").Value, &followingDateModified))
 check "Following directory contains exactly the configured child OPMLs" (
     followingOutlines.Length = expectedFollowingIncludes.Length
     && (followingOutlines |> Array.map (followingAttribute "text")) = (expectedFollowingIncludes |> Array.map _.Title)
@@ -172,10 +181,12 @@ let specialDirectory =
             Title = "Directory & <collection>"
             OwnerId = "https://example.test"
             DocsUrl = Some "https://example.test/docs"
+            DateModified = Some(DateTimeOffset(2025, 1, 1, 0, 0, 0, TimeSpan.Zero))
         }
         [| IncludeOutline { Title = "Feeds & Friends"; Url = "https://example.test/feeds.opml" } |]
         |> fun document -> XDocument.Parse(document.ToString())
 let specialInclude = specialDirectory.Descendants(XName.Get "outline") |> Seq.exactlyOne
+let specialDirectoryModified = specialDirectory.Root.Element(XName.Get "head").Element(XName.Get "dateModified")
 check "OPML include outlines use include-specific attributes" (
     specialInclude.Attribute(XName.Get "text").Value = "Feeds & Friends"
     && specialInclude.Attribute(XName.Get "title").Value = "Feeds & Friends"
@@ -183,6 +194,10 @@ check "OPML include outlines use include-specific attributes" (
     && specialInclude.Attribute(XName.Get "url").Value = "https://example.test/feeds.opml"
     && isNull (specialInclude.Attribute(XName.Get "xmlUrl"))
     && specialDirectory.Root.Element(XName.Get "head").Element(XName.Get "docs").Value = "https://example.test/docs")
+check "OPML dateModified is emitted in RFC 1123 format" (
+    not (isNull specialDirectoryModified)
+    && specialDirectoryModified.Value = "Wed, 01 Jan 2025 00:00:00 GMT"
+    && isNull (specialOpml.Root.Element(XName.Get "head").Element(XName.Get "dateModified")))
 
 printfn "\nvCard output"
 let vcard = readUtf8 generatedVCardPath
@@ -299,10 +314,13 @@ let childOpmlPaths =
         "/collections/forums/index.opml"
         "/collections/starter-packs/ai/index.opml"
     |]
+let opmlPaths = Array.append [| "/.well-known/following.opml" |] childOpmlPaths
 check "Following route serves the generated directory directly" (rewrite followingRoute |> Option.isNone)
-for path in childOpmlPaths do
+for path in opmlPaths do
     let childRoute = routeFor path
     check ("Child OPML route has CORS: " + path) (tryHeader childRoute "Access-Control-Allow-Origin" = Some "*")
+    check ("OPML route revalidates cached content: " + path) (
+        tryHeader childRoute "Cache-Control" = Some "public, max-age=0, must-revalidate")
 check "About route serves the direct generated file" (rewrite aboutRoute |> Option.isNone)
 check "Contact route rewrites to the existing vCard" (rewrite contactRoute = Some "/vcard.vcf")
 check "Profile route rewrites to the versioned JSON manifest" (rewrite profileRoute = Some "/.well-known/profile.json")

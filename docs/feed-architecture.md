@@ -251,7 +251,9 @@ The site also publishes profile and subscription artifacts at:
 - `/.well-known/about.md` - About Markdown with a machine-readable `summary`
 - `/.well-known/contact.vcf` - vCard 3.0 contact artifact
 
-See [Social discovery endpoints](social-discovery.md) for source ownership, Azure route behavior, media types, CORS, and validation commands.
+The six following OPML routes include `dateModified` metadata and, when `WEBSUB_HUB_URL` is configured, advertise and notify a WebSub hub after deployment. This signals updates to the lists only; subscribers still need OPML-aware reconciliation, while the RSS feeds inside those lists retain their normal update mechanisms.
+
+See [Social discovery endpoints](social-discovery.md) for source ownership, Azure route behavior, media types, CORS, WebSub discovery, and validation commands.
 
 ## Migration History
 
