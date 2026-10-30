@@ -44,6 +44,7 @@ jobs:
         with:
           submodules: true
           lfs: false
+          fetch-depth: 0
       
       - name: Setup .NET SDK 10.x
         uses: actions/setup-dotnet@v4
@@ -73,6 +74,12 @@ jobs:
       # is on, staging appears here and the corresponding sync runs. This step never fails the build.
       - name: Validate social discovery artifacts
         run: dotnet fsi test-scripts/test-social-discovery.fsx
+
+      - name: Add WebSub discovery links to generated OPML routes
+        if: vars.WEBSUB_HUB_URL != ''
+        env:
+          WEBSUB_HUB_URL: ${{ vars.WEBSUB_HUB_URL }}
+        run: dotnet fsi Scripts/configure-websub-discovery.fsx
 
       - name: Check for AT Protocol staging
         id: atproto_check
@@ -194,6 +201,13 @@ jobs:
           skip_app_build: true # Skip build since we already built with F#
           skip_api_build: false # Let Azure build the Node.js API
           ###### End of Repository/Build Configurations ######
+
+      - name: Ping WebSub hub with updated OPML topics
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && vars.WEBSUB_HUB_URL != ''
+        env:
+          WEBSUB_HUB_URL: ${{ vars.WEBSUB_HUB_URL }}
+          WEBSUB_PUBLISH_TOKEN: ${{ secrets.WEBSUB_PUBLISH_TOKEN }}
+        run: dotnet fsi Scripts/ping-websub.fsx -- --commit
       
       # Upload artifacts for downstream notification jobs
       # These jobs run independently and need access to build outputs

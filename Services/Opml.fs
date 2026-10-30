@@ -1,6 +1,9 @@
 module OpmlService
 
     open System
+    open System.ComponentModel
+    open System.Diagnostics
+    open System.Globalization
     open System.IO
     open System.Linq
     open System.Text.Json
@@ -24,7 +27,59 @@ module OpmlService
         | _ ->
             ()
 
+        match metadata.DateModified with
+        | Some dateModified ->
+            head.Add(XElement(XName.Get "dateModified", dateModified.ToString("r", CultureInfo.InvariantCulture)))
+        | None ->
+            ()
+
         head
+
+    let private tryGitOutput (arguments: string list) =
+        try
+            let startInfo = ProcessStartInfo()
+            startInfo.FileName <- "git"
+            startInfo.UseShellExecute <- false
+            startInfo.RedirectStandardOutput <- true
+
+            for argument in arguments do
+                startInfo.ArgumentList.Add(argument)
+
+            use gitProcess = Process.Start(startInfo)
+
+            if isNull gitProcess then
+                None
+            else
+                let output = gitProcess.StandardOutput.ReadToEnd().Trim()
+                gitProcess.WaitForExit()
+                if gitProcess.ExitCode = 0 then Some output else None
+        with
+        | :? Win32Exception
+        | :? InvalidOperationException
+        | :? IOException ->
+            None
+
+    /// Prefer the last committed source change; use the file timestamp for uncommitted or unavailable history.
+    let sourceModified (path: string) =
+        let isClean =
+            match tryGitOutput [ "diff"; "--quiet"; "HEAD"; "--"; path ] with
+            | Some output -> String.IsNullOrEmpty(output)
+            | None -> false
+
+        let committedTimestamp =
+            if isClean then
+                tryGitOutput [ "log"; "-1"; "--format=%cI"; "--"; path ]
+                |> Option.bind (fun value ->
+                    let mutable timestamp = Unchecked.defaultof<DateTimeOffset>
+                    if DateTimeOffset.TryParse(value, CultureInfo.InvariantCulture, DateTimeStyles.RoundtripKind, &timestamp) then
+                        Some timestamp
+                    else
+                        None)
+            else
+                None
+
+        committedTimestamp
+        |> Option.defaultWith (fun () -> DateTimeOffset(File.GetLastWriteTimeUtc(path)))
 
     let private feedOutlineElement (data: Outline) =
         XElement(XName.Get "outline",
@@ -57,14 +112,23 @@ module OpmlService
         let outlineElements = outlines |> Array.map outlineElement
         opmlDocument head outlineElements
 
-    let buildOpmlFeed (title: string) (ownerId: string) (links: Outline array) =
+    let buildOpmlFeedWithDateModified
+        (title: string)
+        (ownerId: string)
+        (dateModified: DateTimeOffset option)
+        (links: Outline array)
+        =
         let metadata =
             {
                 Title = title
                 OwnerId = ownerId
                 DocsUrl = None
+                DateModified = dateModified
             }
 
         links
         |> Array.map FeedOutline
         |> buildOpmlDocument metadata
+
+    let buildOpmlFeed (title: string) (ownerId: string) (links: Outline array) =
+        buildOpmlFeedWithDateModified title ownerId None links
