@@ -1,8 +1,13 @@
 # WebSub — Architecture Overview
 
 Design companion to [ADR-0010](../adr/0010-websub-publisher-and-hub.md). Covers both halves:
-the publisher-side changes in this repository (Phase 0/2) and the self-hosted hub (Phases 1–3,
+the publisher-side changes in this repository (Phase 0/2) and the self-hosted hub (Phase 1,
 separate repository). **No code exists yet**; this document is the spec to build from.
+
+> **Amended 2026-10-30** (ADR-0010 Amendment): the hub is **single-publisher** — it accepts topics on
+> `lqdev.me` only. Sections sized for an open hub (per-domain topic caps, global topic cap, feed-size
+> cap, the Phase 3 verification steps, open question 2) are retained as historical context but are not
+> to be built. The hub is also explicitly **not** a follower-discovery mechanism; see ADR-0010 §Amendment B.
 
 Spec reference: [WebSub, W3C Recommendation 23 Jan 2018](https://www.w3.org/TR/websub/).
 
@@ -259,20 +264,20 @@ updated only after fan-out, so missed subscribers are retried then.
 
 | Limit | Value | Enforced at |
 |---|---|---|
-| Topic exists only after a verified subscribe | — | publish (no-op), subscribe |
-| Topic must declare this hub (`rel=hub`) | — | subscribe |
-| Topics per registrable domain | 25 | subscribe |
-| Global topics | 1,000 (raise deliberately; `503` when full) | subscribe |
+| Topic must be on the static allowlist (this site's canonical feeds) | — | subscribe (`4xx` otherwise), publish (no-op) |
 | Subscribers per topic | 500 | subscribe |
-| Feed size | 2 MB | subscribe, publish fetch |
+| ~~Topics per registrable domain~~ | ~~25~~ | superseded — single publisher |
+| ~~Global topics~~ | ~~1,000~~ | superseded — single publisher |
+| ~~Feed size~~ | ~~2 MB~~ | superseded — topics are known (largest 352 KB) |
 | Fetch timeout | 10 s | all outbound |
 | Publish coalescing | ≤ 1 fetch / 60 s / topic | publish |
 | Lease | ≤ 7 days (604 800 s); default 7 days if unspecified | subscribe |
 | Consecutive delivery failures before drop | 10 | publish |
 | Subscribe/publish requests per IP | 60 / min | all inbound |
 
-Cost bound these imply: 1,000 topics × 2 MB × (1 fetch/min worst case) is the theoretical ceiling;
-realistic load (~50 KB feeds, ~10 pings/day) is ≈ 15 GB/month, inside Azure's free egress.
+Cost bound: 15 topics × ≤ 352 KB × 500 subscribers × ~10 pings/day ≈ 26 GB/month worst case,
+realistically far less (most feeds are small and most pings touch one or two topics). Inside Azure's
+free egress at expected scale.
 
 ### 3.7 Security
 
@@ -338,16 +343,16 @@ websub-hub/
   `curl -H 'If-None-Match: …'` of an unchanged feed.
 - **Phase 1**: Same test against `hub.lqdev.me`. Dump the Table Storage account and confirm no
   plaintext callbacks or feed bodies. Confirm App Insights resource does not exist.
-- **Phase 3**: Attempt to subscribe a topic on a domain already at 25; expect `429`/`4xx` with reason.
-  Attempt `hub.topic=http://169.254.169.254/`; expect refusal with no outbound request (verify via
-  Function logs **disabled** → verify via a canary: a topic on a host you control that records hits).
+- **Phase 1 (allowlist)**: Attempt to subscribe `hub.topic=https://example.com/feed.xml`; expect `4xx`
+  with no outbound request. Attempt `hub.callback=http://169.254.169.254/`; expect refusal (SSRF guard
+  on callbacks). Verify via a canary host you control, since Function logs are disabled.
 
 ---
 
 ## 4. Open questions
 
 1. **Repository name** for the hub (`websub-hub`, `lqdev-hub`, …).
-2. **Go/no-go for Phase 3** is deferred until Phase 1 has run privately for a few weeks.
+2. ~~Go/no-go for Phase 3~~ — withdrawn; opening the hub would need a new ADR.
 3. **Callback-domain caps**: should one subscriber domain (e.g. a large reader service) be able to hold
    unlimited subscriptions? Probably yes — they are the point — but worth a cap at 10,000 as a
    circuit breaker.

@@ -19,7 +19,7 @@ An ADR is a short document capturing an important architectural decision along w
 | [0007](0007-content-type-roster-registry.md) | Content-Type Roster Registry for Unified-Feed Membership | Accepted |
 | [0008](0008-structured-render-product.md) | Structured Render Product for the Timeline | Accepted |
 | [0009](0009-at-protocol-integration.md) | AT Protocol Integration Architecture | Proposed |
-| [0010](0010-websub-publisher-and-hub.md) | WebSub — Publisher Support and a Self-Hosted Forgetful Hub | Proposed |
+| [0010](0010-websub-publisher-and-hub.md) | WebSub — Publisher Support and a Self-Hosted Forgetful Hub (single-publisher, amended) | Proposed |
 
 ## Creating a New ADR
 
