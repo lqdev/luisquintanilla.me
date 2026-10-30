@@ -45,11 +45,11 @@ I also have a separate [content snippets file](https://github.com/lqdev/luisquin
 
 ## A tiny computer in my pocket
 
-That changed when I had a Surface Duo. With its two screens, I could open my site's repository in GitHub's browser-based editor, [github.dev](https://www.lqdev.me/notes/surface-duo-blogging-github-dev), and use one screen for the editor and the other for the keyboard. It felt like a little pocket computer. My snippets were there, too, which made it possible to write and publish a short post without waiting until I was back at my desk.
+That changed when I had a Surface Duo. With its two screens, I could open my site's repository in GitHub's browser-based editor, [github.dev](/notes/surface-duo-blogging-github-dev), and use one screen for the editor and the other for the keyboard. It felt like a little pocket computer. My snippets were there, too, which made it possible to write and publish a short post without waiting until I was back at my desk.
 
 It worked, but it wasn't exactly comfortable. VS Code on a small screen is still VS Code on a small screen, and doing the Git and pull-request steps on a phone added friction. Then the Surface Duo stopped receiving security updates. Around that time I was also carrying a dumbphone, so publishing from my laptop was good enough. When I eventually had a single-screen smartphone again, I could have gone back to the browser editor, but the experience wasn't appealing enough to bother.
 
-I'm still holding out for a true [mobile computer](https://lqdev.me/posts/i-want-mobile-computer/), but in the meantime I wanted a better publishing interface than a tiny code editor.
+I'm still holding out for a true [mobile computer](/posts/i-want-mobile-computer/), but in the meantime I wanted a better publishing interface than a tiny code editor.
 
 ## A Discord bot was the first bridge
 
