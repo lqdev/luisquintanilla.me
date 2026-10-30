@@ -3,114 +3,133 @@
         "Title": "Blogroll.org",
         "Type": "rss",
         "HtmlUrl": "https://blogroll.org/",
-        "XmlUrl": "https://blogroll.org/feed/"
+        "XmlUrl": "https://blogroll.org/feed/",
+        "Added": "2022-08-14"
     },
     {
         "Title": "Cheapskate's Guide",
         "Type": "rss",
         "HtmlUrl": "https://cheapskatesguide.org/",
-        "XmlUrl": "https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml"
+        "XmlUrl": "https://cheapskatesguide.org/cheapskates-guide-rss-feed.xml",
+        "Added": "2022-08-14"
     },
     {
         "Title": "JWZ",
         "Type": "rss",
         "HtmlUrl": "https://www.jwz.org/blog/",
-        "XmlUrl": "https://cdn.jwz.org/blog/feed/"
+        "XmlUrl": "https://cdn.jwz.org/blog/feed/",
+        "Added": "2022-08-14"
     },
     {
         "Title": "Pluralistic: Daily links from Cory Doctorow",
         "Type": "rss",
         "HtmlUrl": "https://pluralistic.net/",
-        "XmlUrl": "https://pluralistic.net/feed/"
+        "XmlUrl": "https://pluralistic.net/feed/",
+        "Added": "2022-08-14"
     },
     {
         "Title": "Hundred Rabbits",
         "Type": "rss",
         "HtmlUrl": "https://100r.co/site/home.html",
-        "XmlUrl": "https://100r.co/links/rss.xml"
+        "XmlUrl": "https://100r.co/links/rss.xml",
+        "Added": "2022-08-14"
     },
     {
         "Title": "Julia Evans",
         "Type": "rss",
         "HtmlUrl": "https://jvns.ca/",
-        "XmlUrl": "https://jvns.ca/atom.xml"
+        "XmlUrl": "https://jvns.ca/atom.xml",
+        "Added": "2022-08-14"
     },
     {
         "Title": "Adventure Taco",
         "Type": "rss",
         "HtmlUrl": "https://adventuretaco.com/",
-        "XmlUrl": "https://adventuretaco.com/feed/"
+        "XmlUrl": "https://adventuretaco.com/feed/",
+        "Added": "2022-08-14"
     },
     {
         "Title": "Noted",
         "Type": "rss",
         "HtmlUrl": "https://noted.lol/",
-        "XmlUrl": "https://noted.lol/rss/"
+        "XmlUrl": "https://noted.lol/rss/",
+        "Added": "2022-08-14"
     },
     {
         "Title": "Along The Ray",
         "Type": "rss",
         "HtmlUrl": "https://alongtheray.com/",
-        "XmlUrl": "https://alongtheray.com/feed.rss"
+        "XmlUrl": "https://alongtheray.com/feed.rss",
+        "Added": "2022-08-14"
     },
     {
         "Title": "The New Oil",
         "Type": "rss",
         "HtmlUrl": "https://blog.thenewoil.org",
-        "XmlUrl": "https://blog.thenewoil.org/feed/"
+        "XmlUrl": "https://blog.thenewoil.org/feed/",
+        "Added": "2022-08-19"
     },
     {
-       "Title": "Indieseek - Indie Web Directory",
-       "Type": "rss",
-       "HtmlUrl": "https://indieseek.xyz",
-       "XmlUrl": "https://indieseek.xyz/feed/"
+        "Title": "Indieseek - Indie Web Directory",
+        "Type": "rss",
+        "HtmlUrl": "https://indieseek.xyz",
+        "XmlUrl": "https://indieseek.xyz/feed/",
+        "Added": "2022-08-14"
     },
     {
-       "Title": "Marco Arment",
-       "Type": "rss",
-       "HtmlUrl": "https://marco.org/",
-       "XmlUrl": "https://marco.org/rss/"
+        "Title": "Marco Arment",
+        "Type": "rss",
+        "HtmlUrl": "https://marco.org/",
+        "XmlUrl": "https://marco.org/rss/",
+        "Added": "2022-09-04"
     },
     {
-       "Title": "Two Bit History",
-       "Type": "rss",
-       "HtmlUrl": "https://twobithistory.org/",
-       "XmlUrl": "https://twobithistory.org/feed.xml"
+        "Title": "Two Bit History",
+        "Type": "rss",
+        "HtmlUrl": "https://twobithistory.org/",
+        "XmlUrl": "https://twobithistory.org/feed.xml",
+        "Added": "2022-10-06"
     },
     {
-       "Title": "Jim Nielsen",
-       "Type": "rss",
-       "HtmlUrl": "https://blog.jim-nielsen.com/",
-       "XmlUrl": "https://blog.jim-nielsen.com/feed.xml"
+        "Title": "Jim Nielsen",
+        "Type": "rss",
+        "HtmlUrl": "https://blog.jim-nielsen.com/",
+        "XmlUrl": "https://blog.jim-nielsen.com/feed.xml",
+        "Added": "2023-01-18"
     },
     {
-       "Title": "Jose Briones",
-       "Type": "rss",
-       "HtmlUrl": "https://josebriones.substack.com",
-       "XmlUrl": "https://josebriones.substack.com/feed"
+        "Title": "Jose Briones",
+        "Type": "rss",
+        "HtmlUrl": "https://josebriones.substack.com",
+        "XmlUrl": "https://josebriones.substack.com/feed",
+        "Added": "2023-01-18"
     },
     {
-       "Title": "Seth Godin",
-       "Type": "rss",
-       "HtmlUrl": "https://seths.blog",
-       "XmlUrl": "https://feeds.feedblitz.com/sethsblog"
+        "Title": "Seth Godin",
+        "Type": "rss",
+        "HtmlUrl": "https://seths.blog",
+        "XmlUrl": "https://feeds.feedblitz.com/sethsblog",
+        "Added": "2023-01-18"
     },
     {
-       "Title": "Manuel Moreale",
-       "Type": "rss",
-       "HtmlUrl": "https://manuelmoreale.com/",
-       "XmlUrl": "https://manuelmoreale.com/feed/rss"
+        "Title": "Manuel Moreale",
+        "Type": "rss",
+        "HtmlUrl": "https://manuelmoreale.com/",
+        "XmlUrl": "https://manuelmoreale.com/feed/rss",
+        "Added": "2023-12-08"
     },
     {
-       "Title": "Plain text. Paper, less.",
-       "Type": "rss",
-       "HtmlUrl": "https://www.blog.plaintextpaperless.com/",
-       "XmlUrl": "https://www.blog.plaintextpaperless.com/feed"
+        "Title": "Plain text. Paper, less.",
+        "Type": "rss",
+        "HtmlUrl": "https://www.blog.plaintextpaperless.com/",
+        "XmlUrl": "https://www.blog.plaintextpaperless.com/feed",
+        "Added": "2024-06-06"
     },
     {
-       "Title": "Uses This",
-       "Type": "rss",
-       "HtmlUrl": "https://usesthis.com/",
-       "XmlUrl": "https://www.blog.plaintextpaperless.com/feed"
-    }        
+        "Title": "Uses This",
+        "Type": "rss",
+        "HtmlUrl": "https://usesthis.com/",
+        "XmlUrl": "https://www.blog.plaintextpaperless.com/feed",
+        "Added": "2024-07-28"
+    }
 ]
