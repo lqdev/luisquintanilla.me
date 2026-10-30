@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Welcome to Unix SSG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Personal blog post">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: #333;
+        }
+        article {
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+        time {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        .content {
+            margin-top: 2rem;
+        }
+        .content h2 {
+            color: #34495e;
+            margin-top: 2rem;
+        }
+        .content code {
+            background: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+        .content pre {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .content blockquote {
+            border-left: 4px solid #3498db;
+            padding-left: 1rem;
+            margin-left: 0;
+            font-style: italic;
+            color: #555;
+        }
+        nav {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        nav a {
+            color: #3498db;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/tags/">Tags</a>
+        <a href="/feed/">Feeds</a>
+    </nav>
+    
+    <article>
+        <header>
+            <h1>Welcome to Unix SSG</h1>
+            <time datetime="2025-01-13 10:00 -05:00">January 13, 2025</time>
+        </header>
+        
+        <div class="content">
+            <h1 id="welcome-to-the-unix-static-site-generator">Welcome to the Unix
+Static Site Generator</h1>
+<p>This is a demonstration of a <strong>minimal static site
+generator</strong> built with standard Unix tools.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>✅ Markdown processing with Pandoc</li>
+<li>✅ YAML frontmatter parsing with yq<br />
+</li>
+<li>✅ HTML templating with envsubst</li>
+<li>✅ RSS feed generation</li>
+<li>✅ Tag-based organization</li>
+<li>✅ Parallel processing with Make</li>
+<li>✅ Minimal dependencies</li>
+</ul>
+<h2 id="philosophy">Philosophy</h2>
+<p>The Unix philosophy of <strong>“do one thing well”</strong> applied
+to static site generation:</p>
+<blockquote>
+<p>Write programs that do one thing and do it well. Write programs to
+work together.</p>
+</blockquote>
+<p>Each component has a single responsibility: - <code>pandoc</code>
+converts markdown to HTML - <code>yq</code> processes YAML
+metadata<br />
+- <code>envsubst</code> handles template substitution -
+<code>make</code> orchestrates the build process</p>
+<h2 id="code-example">Code Example</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Process all markdown files in parallel</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> src <span class="at">-name</span> <span class="st">&quot;*.md&quot;</span> <span class="at">-type</span> f <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xargs</span> <span class="at">-P</span> <span class="va">$(</span><span class="fu">nproc</span><span class="va">)</span> <span class="at">-I</span> {} bin/process-markdown.sh {}</span></code></pre></div>
+<p>This approach minimizes dependencies while maintaining full
+functionality.</p>
+        </div>
+    </article>
+</body>
+</html>
