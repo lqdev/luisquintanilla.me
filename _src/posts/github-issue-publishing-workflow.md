@@ -6,6 +6,8 @@ published_date: "2026-10-30 13:38 -05:00"
 tags: ["github","publishing","static-sites","indieweb","workflow"]
 ---
 
+DISCLAIMER: AI was used to help me organize and improve the flow of this post. Ideas and thoughts expressed are my own.
+
 Most of my website is static. The content is Markdown, and I wrote a static site generator in F# to turn those files into the pages you see here. There are a few dynamic pieces around AT Protocol and ActivityPub, including related Azure Functions, but the writing itself is still just files in a Git repository.
 
 That setup works well for long-form posts. I write them on my computer in [VS Code](https://code.visualstudio.com/), then commit the Markdown to GitHub. But my site is more than long-form articles. I also publish notes, photos and videos, replies, likes, reshares, bookmarks, and RSVPs. They're the kinds of small interactions people often share on social media.
