@@ -69,6 +69,28 @@
       }
     },
     {
+      "route": "/.well-known/host-meta",
+      "headers": {
+        "Content-Type": "application/xrd+xml; charset=utf-8",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "route": "/.well-known/nodeinfo",
+      "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "route": "/nodeinfo/2.1",
+      "rewrite": "/nodeinfo/2.1.json",
+      "headers": {
+        "Content-Type": "application/json; profile=\"http://nodeinfo.diaspora.software/ns/schema/2.1#\"; charset=utf-8",
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
       "route": "/archive/*.bar",
       "headers": {
         "Content-Disposition": "attachment"
@@ -136,6 +158,14 @@
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Accept, Content-Type"
+      }
+    },
+    {
+      "route": "/api/activitypub/featured",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, OPTIONS",
         "Access-Control-Allow-Headers": "Accept, Content-Type"
       }
     },

@@ -49,7 +49,9 @@ These are deliberately **deferred** until the listening/privacy primitives (γ a
 
 ### Tools & automation
 - **`/tools` evolution** — v1 is a curated directory of links (read-it-later extension, github-post PWA, rss extension, playlist-creator). Could grow into richer per-tool pages, install instructions, or hosted demos.
-- **Cross-posting / syndication** — WebSub support or POSSE automation building on the live ActivityPub layer.
+- **WebSub** — [ADR-0010](../docs/adr/0010-websub-publisher-and-hub.md) + [design](../docs/websub/ARCHITECTURE-OVERVIEW.md): Phase 0 publisher support (`rel=hub`/`rel=self` in the ~14 canonical feeds, JSON Feed `hubs`, post-deploy ping, Switchboard first) with the **`lastBuildDate` = `UtcNow` fix as a prerequisite** (`UnifiedFeeds.fs:128` makes every feed change every build). Phases 1–3: self-hosted *forgetful* hub at `hub.lqdev.me` (hash-only, encrypted callbacks, no logs, 7-day leases, published caps); Phase 3 public opening is a separate go/no-go.
+- **`u-syndication` backlinks** — Bluesky rkeys are deterministic (`AtProtoBuilder.fs:149-154`), so the `bsky.app/profile/{did}/post/{rkey}` permalink is computable at build time with no round-trip; ActivityPub note IDs are the site's own URLs. Emit for staged items; skip the Mastodon mirror (server-assigned IDs).
+- **Cross-posting / syndication** — further POSSE automation building on the live ActivityPub layer.
 - **AT Protocol (ATmosphere) integration** — [issue #2574](https://github.com/lqdev/luisquintanilla.me/issues/2574) and [ADR-0009](../docs/adr/0009-at-protocol-integration.md): hand-built (no third-party CLI) Standard.site documents, native Notes, and dormant rich-media POSSE, reusing the existing `lqdev.me` Bluesky identity with zero self-hosted PDS/relay/AppView.
   - **Part A — SHIPPED** ✅: `site.standard.publication` node live at `/.well-known/site.standard.publication` (`at://did:plc:pme7qquljcdx6i4zyawoxypd/site.standard.publication/3mqs7sgylil2w`); PRs #2631/#2632/#2634.
   - **Part B — SHIPPED** ✅: per-post `site.standard.document` records, `<link>` verification tags, and forward-only native Notes sync with `sourceHash`-scoped create/update writes.

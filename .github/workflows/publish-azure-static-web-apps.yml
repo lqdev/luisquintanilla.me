@@ -143,6 +143,8 @@ jobs:
           cp -v _public/api/data/outbox/*.json api/data/outbox/
           echo "Syncing followers data..."
           cp -v _public/api/data/followers.json api/data/followers.json
+          echo "Syncing featured (pinned) collection..."
+          cp -v _public/api/data/featured.json api/data/featured.json
           echo "✅ ActivityPub data synced successfully"
           echo "Outbox files: $(ls api/data/outbox/ | wc -l) files"
           echo "Total outbox size: $(du -sh api/data/outbox/ | cut -f1)"
