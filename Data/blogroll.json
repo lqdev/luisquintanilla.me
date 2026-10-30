@@ -119,17 +119,10 @@
         "Added": "2023-12-08"
     },
     {
-        "Title": "Plain text. Paper, less.",
-        "Type": "rss",
-        "HtmlUrl": "https://www.blog.plaintextpaperless.com/",
-        "XmlUrl": "https://www.blog.plaintextpaperless.com/feed",
-        "Added": "2024-06-06"
-    },
-    {
         "Title": "Uses This",
         "Type": "rss",
         "HtmlUrl": "https://usesthis.com/",
-        "XmlUrl": "https://www.blog.plaintextpaperless.com/feed",
+        "XmlUrl": "https://usesthis.com/feed.atom",
         "Added": "2024-07-28"
     },
     {

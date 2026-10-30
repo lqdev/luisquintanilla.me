@@ -77,13 +77,6 @@
         "Added": "2022-08-14"
     },
     {
-        "Title": "Software Engineering Daily",
-        "Type": "rss",
-        "HtmlUrl": "https://softwareengineeringdaily.com/archives/",
-        "XmlUrl": "https://softwareengineeringdaily.com/feed/podcast/",
-        "Added": "2022-08-14"
-    },
-    {
         "Title": "National Park After Dark",
         "Type": "rss",
         "HtmlUrl": "https://www.npadpodcast.com/",
@@ -182,10 +175,66 @@
         "Added": "2025-08-04"
     },
     {
-        "Title": "The Joe Rogan Experience",
+        "Title": "Video Palace",
         "Type": "rss",
-        "HtmlUrl": "https://podcasters.spotify.com/pod/show/joeroganexperience",
-        "XmlUrl": "https://feeds.megaphone.fm/GLT1412515089",
-        "Added": "2024-07-28"
+        "HtmlUrl": "https://podcasts.apple.com/us/podcast/video-palace/id1439247558",
+        "XmlUrl": "https://rss.art19.com/video-palace",
+        "Added": "2026-10-30"
+    },
+    {
+       "Title": "Galaxy Brain",
+       "Type": "rss",
+       "HtmlUrl": "https://www.theatlantic.com/podcasts/galaxy-brain/",
+       "XmlUrl": "https://feeds.megaphone.fm/galaxybrain",
+       "Added": "2026-10-30"
+    },
+    {
+       "Title": "The Why Files",
+       "Type": "rss",
+       "HtmlUrl": "https://thewhyfiles.com/podcast/",
+       "XmlUrl": "https://anchor.fm/s/89358408/podcast/rss",
+       "Added": "2026-10-30"
+    },
+    {
+       "Title": "Off Protocol",
+       "Type": "rss",
+       "HtmlUrl": "https://atproto.com/off-protocol",
+       "XmlUrl": "https://atproto.com/off-protocol/rss.xml",
+       "Added": "2026-10-30"
+    },
+    {
+       "Title": "Decoder",
+       "Type": "rss",
+       "HtmlUrl": "https://www.theverge.com/decoder-podcast-with-nilay-patel",
+       "XmlUrl": "https://feeds.megaphone.fm/recodedecode",
+       "Added": "2026-10-30"
+    },
+    {
+       "Title": "The 404 Media Podcast",
+       "Type": "rss",
+       "HtmlUrl": "https://www.404media.co/the-404-media-podcast/",
+       "XmlUrl": "https://feeds.megaphone.fm/TBIEA2761282490",
+       "Added": "2026-10-30" 
+    },
+    {
+        "Title": "The AI Daily Brief",
+        "Type": "rss",
+        "HtmlUrl": "https://www.podchaser.com/podcasts/the-ai-daily-brief-formerly-th-5260567",
+        "XmlUrl": "https://anchor.fm/s/f7cac464/podcast/rss",
+        "Added": "2026-10-30"
+    },
+    {
+       "Title": "Soul Boom",
+       "Type": "rss",
+       "HtmlUrl": "https://www.soulboom.com/",
+       "XmlUrl": "https://feeds.megaphone.fm/soulboom",
+       "Added": "2026-10-30"
+    },
+    {
+       "Title": "Ram Dass Here and Now",
+       "Type": "rss",
+       "HtmlUrl": "https://www.ramdass.org/format/ram-dass-here-and-now-podcast/",
+       "XmlUrl": "https://rss.art19.com/ram-dass-here-and-now",
+       "Added": "2026-10-30"
     }
 ]

@@ -19,9 +19,10 @@
         "body": [
 			"{",
 			"   \"Title\": \"\",",
-			"   \"Type\": \"\",",
+			"   \"Type\": \"rss\",",
             "   \"HtmlUrl\": \"\",",
-            "   \"XmlUrl\": \"\"",
+            "   \"XmlUrl\": \"\",",
+			"   \"Added\": \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\"",
 			"}"            
         ]
     },
