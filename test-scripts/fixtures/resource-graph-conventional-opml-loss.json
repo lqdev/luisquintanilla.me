@@ -1,0 +1,12 @@
+{
+  "profile": "conventional",
+  "status": "losses-explicit",
+  "losses": [
+    "authorship",
+    "membershipRelationships",
+    "cids",
+    "nestedBundles",
+    "provenance",
+    "liveFrozenSemantics"
+  ]
+}
