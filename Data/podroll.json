@@ -3,162 +3,189 @@
         "Title": "Practical AI",
         "Type": "rss",
         "HtmlUrl": "https://changelog.com/practicalai",
-        "XmlUrl": "https://changelog.com/practicalai/feed"
+        "XmlUrl": "https://changelog.com/practicalai/feed",
+        "Added": "2022-08-14"
     },
     {
         "Title": "The TWIML AI Podcast",
         "Type": "rss",
         "HtmlUrl": "https://twimlai.com/",
-        "XmlUrl": "https://feeds.megaphone.fm/MLN2155636147"
+        "XmlUrl": "https://feeds.megaphone.fm/MLN2155636147",
+        "Added": "2022-08-14"
     },
     {
         "Title": "Darknet Diaries",
         "Type": "rss",
         "HtmlUrl": "https://darknetdiaries.com/",
-        "XmlUrl": "https://feeds.megaphone.fm/darknetdiaries"
+        "XmlUrl": "https://feeds.megaphone.fm/darknetdiaries",
+        "Added": "2022-08-14"
     },
     {
         "Title": "We're In!",
         "Type": "rss",
         "HtmlUrl": "https://were-in.simplecast.com/",
-        "XmlUrl": "https://feeds.simplecast.com/_SsyS46z"
+        "XmlUrl": "https://feeds.simplecast.com/_SsyS46z",
+        "Added": "2022-08-14"
     },
     {
         "Title": "The Privacy, Security, & OSINT Show",
         "Type": "rss",
         "HtmlUrl": "https://soundcloud.com/user-98066669",
-        "XmlUrl": "https://feeds.soundcloud.com/users/soundcloud:users:261098918/sounds.rss"
+        "XmlUrl": "https://feeds.soundcloud.com/users/soundcloud:users:261098918/sounds.rss",
+        "Added": "2022-08-14"
     },
     {
         "Title": "Surveillance Report",
         "Type": "rss",
         "HtmlUrl": "https://surveillancereport.tech/",
-        "XmlUrl": "https://surveillance-report.castos.com/feed"
+        "XmlUrl": "https://surveillance-report.castos.com/feed",
+        "Added": "2022-08-14"
     },
     {
         "Title": "Cyber",
         "Type": "rss",
         "HtmlUrl": "https://www.vice.com/en_us/topic/cyber",
-        "XmlUrl": "https://rss.acast.com/cyber"
+        "XmlUrl": "https://rss.acast.com/cyber",
+        "Added": "2022-08-14"
     },
     {
         "Title": "Deep Questions",
         "Type": "rss",
         "HtmlUrl": "https://www.calnewport.com/podcast/",
-        "XmlUrl": "https://feeds.buzzsprout.com/1121972.rss"
-    },                            
+        "XmlUrl": "https://feeds.buzzsprout.com/1121972.rss",
+        "Added": "2022-08-14"
+    },
     {
         "Title": ".NET Rocks",
         "Type": "rss",
         "HtmlUrl": "https://www.dotnetrocks.com/",
-        "XmlUrl": "http://feeds.feedburner.com/netRocksFullMp3Downloads"
+        "XmlUrl": "http://feeds.feedburner.com/netRocksFullMp3Downloads",
+        "Added": "2022-08-14"
     },
     {
         "Title": "FLOSS Weekly",
         "Type": "rss",
         "HtmlUrl": "https://hackaday.com/tag/floss-weekly/",
-        "XmlUrl": "https://feeds.libsyn.com/499093/rss"
+        "XmlUrl": "https://feeds.libsyn.com/499093/rss",
+        "Added": "2024-01-15"
     },
     {
         "Title": "Windows Weekly",
         "Type": "rss",
         "HtmlUrl": "https://twit.tv/shows/windows-weekly",
-        "XmlUrl": "https://feeds.twit.tv/ww.xml"
+        "XmlUrl": "https://feeds.twit.tv/ww.xml",
+        "Added": "2022-08-14"
     },
     {
         "Title": "Software Engineering Daily",
         "Type": "rss",
         "HtmlUrl": "https://softwareengineeringdaily.com/archives/",
-        "XmlUrl": "https://softwareengineeringdaily.com/feed/podcast/"
+        "XmlUrl": "https://softwareengineeringdaily.com/feed/podcast/",
+        "Added": "2022-08-14"
     },
     {
         "Title": "National Park After Dark",
         "Type": "rss",
         "HtmlUrl": "https://www.npadpodcast.com/",
-        "XmlUrl": "https://anchor.fm/s/466eb6e4/podcast/rss"
-    },    
+        "XmlUrl": "https://anchor.fm/s/466eb6e4/podcast/rss",
+        "Added": "2022-08-14"
+    },
     {
         "Title": "The Generation Why",
         "Type": "rss",
         "HtmlUrl": "https://wondery.com/shows/generation-why/",
-        "XmlUrl": "https://rss.art19.com/generation-why-podcast"
+        "XmlUrl": "https://rss.art19.com/generation-why-podcast",
+        "Added": "2022-08-14"
     },
     {
         "Title": "Radio Rental",
         "Type": "rss",
         "HtmlUrl": "https://radiorentalusa.com/",
-        "XmlUrl": "https://feeds.megaphone.fm/radio-rental"
+        "XmlUrl": "https://feeds.megaphone.fm/radio-rental",
+        "Added": "2022-08-14"
     },
     {
         "Title": "Dark Air",
         "Type": "rss",
         "HtmlUrl": "https://audioboom.com/channels/5046661",
-        "XmlUrl": "https://audioboom.com/channels/5046661.rss"
+        "XmlUrl": "https://audioboom.com/channels/5046661.rss",
+        "Added": "2022-08-14"
     },
     {
         "Title": "Unsolved Mysteries",
         "Type": "rss",
         "HtmlUrl": "https://unsolved.com/",
-        "XmlUrl": "https://feeds.megaphone.fm/unsolved-mysteries"
+        "XmlUrl": "https://feeds.megaphone.fm/unsolved-mysteries",
+        "Added": "2022-09-14"
     },
     {
         "Title": "IRL: Online Life is Real Life",
         "Type": "rss",
         "HtmlUrl": "http://irlpodcast.org/",
-        "XmlUrl": "https://feeds.mozilla-podcasts.org/irl"
+        "XmlUrl": "https://feeds.mozilla-podcasts.org/irl",
+        "Added": "2022-09-14"
     },
     {
-       "Title": "Hacker Public Radio",
-       "Type": "rss",
-       "HtmlUrl": "https://www.hackerpublicradio.org/",
-       "XmlUrl": "http://hackerpublicradio.org/hpr_rss.php"
+        "Title": "Hacker Public Radio",
+        "Type": "rss",
+        "HtmlUrl": "https://www.hackerpublicradio.org/",
+        "XmlUrl": "http://hackerpublicradio.org/hpr_rss.php",
+        "Added": "2023-01-18"
     },
     {
-       "Title": "Lex Friedman Podcast",
-       "Type": "rss",
-       "HtmlUrl": "https://lexfridman.com/",
-       "XmlUrl": "https://lexfridman.com/feed/podcast/"
+        "Title": "Lex Friedman Podcast",
+        "Type": "rss",
+        "HtmlUrl": "https://lexfridman.com/",
+        "XmlUrl": "https://lexfridman.com/feed/podcast/",
+        "Added": "2023-01-18"
     },
     {
-       "Title": "Podcasting 2.0",
-       "Type": "rss",
-       "HtmlUrl": "http://podcastindex.org",
-       "XmlUrl": "http://mp3s.nashownotes.com/pc20rss.xml"
+        "Title": "Podcasting 2.0",
+        "Type": "rss",
+        "HtmlUrl": "http://podcastindex.org",
+        "XmlUrl": "http://mp3s.nashownotes.com/pc20rss.xml",
+        "Added": "2023-01-18"
     },
     {
-       "Title": "Reality 2.0",
-       "Type": "rss",
-       "HtmlUrl": "https://www.reality2cast.com",
-       "XmlUrl": "https://feeds.fireside.fm/reality2/rss"
+        "Title": "Reality 2.0",
+        "Type": "rss",
+        "HtmlUrl": "https://www.reality2cast.com",
+        "XmlUrl": "https://feeds.fireside.fm/reality2/rss",
+        "Added": "2023-01-18"
     },
     {
-       "Title": "Self-Hosted",
-       "Type": "rss",
-       "HtmlUrl": "https://selfhosted.show",
-       "XmlUrl": "https://feeds.fireside.fm/selfhosted/rss"
+        "Title": "Self-Hosted",
+        "Type": "rss",
+        "HtmlUrl": "https://selfhosted.show",
+        "XmlUrl": "https://feeds.fireside.fm/selfhosted/rss",
+        "Added": "2023-01-18"
     },
     {
         "Title": "Daily Stoic",
         "Type": "rss",
         "HtmlUrl": "https://wondery.com/shows/the-daily-stoic/",
-        "XmlUrl": "https://rss.art19.com/the-daily-stoic"
+        "XmlUrl": "https://rss.art19.com/the-daily-stoic",
+        "Added": "2023-04-16"
     },
     {
-       "Title": "Better Offline",
-       "Type": "rss",
-       "HtmlUrl": "https://www.betteroffline.com/",
-       "XmlUrl": "https://www.omnycontent.com/d/playlist/e73c998e-6e60-432f-8610-ae210140c5b1/cf0c25ad-cf01-4da5-ae1c-b0fc015f790e/53ed270b-7147-4f70-81c2-b0fc015fe4ed/podcast.rss"
+        "Title": "Better Offline",
+        "Type": "rss",
+        "HtmlUrl": "https://www.betteroffline.com/",
+        "XmlUrl": "https://www.omnycontent.com/d/playlist/e73c998e-6e60-432f-8610-ae210140c5b1/cf0c25ad-cf01-4da5-ae1c-b0fc015f790e/53ed270b-7147-4f70-81c2-b0fc015fe4ed/podcast.rss",
+        "Added": "2024-04-07"
     },
     {
-       "Title": "Desert Oracle Radio",
-       "Type": "rss",
-       "HtmlUrl": "https://desertoracle.com/radio",
-       "XmlUrl": "https://www.omnycontent.com/d/playlist/33bd51d8-cd0c-4607-84d5-af0901305df5/d53a0c5a-2f7f-4b69-8f9d-af090132fd33/be70cec1-18b9-4f9a-8092-af090132fd41/podcast.rss"
+        "Title": "Desert Oracle Radio",
+        "Type": "rss",
+        "HtmlUrl": "https://desertoracle.com/radio",
+        "XmlUrl": "https://www.omnycontent.com/d/playlist/33bd51d8-cd0c-4607-84d5-af0901305df5/d53a0c5a-2f7f-4b69-8f9d-af090132fd33/be70cec1-18b9-4f9a-8092-af090132fd41/podcast.rss",
+        "Added": "2025-08-04"
     },
     {
-       "Title": "The Joe Rogan Experience",
-       "Type": "rss",
-       "HtmlUrl": "https://podcasters.spotify.com/pod/show/joeroganexperience",
-       "XmlUrl": "https://feeds.megaphone.fm/GLT1412515089"
-    }                          
+        "Title": "The Joe Rogan Experience",
+        "Type": "rss",
+        "HtmlUrl": "https://podcasters.spotify.com/pod/show/joeroganexperience",
+        "XmlUrl": "https://feeds.megaphone.fm/GLT1412515089",
+        "Added": "2024-07-28"
+    }
 ]

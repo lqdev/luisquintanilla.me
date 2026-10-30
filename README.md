@@ -17,6 +17,7 @@ A modern F# static site generator implementing IndieWeb principles with unified 
 - 🎵 [**Post a Music Review**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-music.yml) - Share music reviews
 - 🏢 [**Post a Business Review**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-business.yml) - Share business reviews
 - 🛍️ [**Post a Product Review**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-product.yml) - Share product reviews
+- ➕ [**Follow a Site**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=follow.yml) - Add to the blogroll/podroll; sends a follow webmention on publish ([ADR-0011](docs/adr/0011-follows-as-blogroll-state.md))
 
 > **Note for Reviews**: Use the appropriate review template link above - each template automatically applies the correct labels. The workflow validates that both labels are present before processing.
 > 

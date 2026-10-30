@@ -1,0 +1,71 @@
+name: ➕ Follow a Site
+description: Add a site to the blogroll or podroll (sends a follow webmention on publish)
+title: "[Follow] "
+labels: ["follow"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Follow a Site
+
+        Adds an entry to `Data/blogroll.json` or `Data/podroll.json` and opens a pull request.
+        Once merged and published, the site receives a follow webmention from the roll page,
+        and the entry appears in the roll's OPML and `/.well-known/following.opml`.
+
+        **Tip**: the RSS browser extension can prefill this form. Set its custom reader URL to
+        `https://github.com/lqdev/luisquintanilla.me/issues/new?template=follow.yml&feed_url=%s`.
+
+  - type: input
+    id: feed_url
+    attributes:
+      label: Feed URL
+      description: The RSS, Atom, or JSON Feed URL to subscribe to. Checked once for reachability and feed-like content.
+      placeholder: "https://example.com/feed.xml"
+    validations:
+      required: true
+
+  - type: input
+    id: site_url
+    attributes:
+      label: Site URL
+      description: The site's homepage. This is the follow target (webmention + u-follow-of), not the feed.
+      placeholder: "https://example.com/"
+    validations:
+      required: true
+
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: Display name for the roll entry
+      placeholder: "e.g., Example Blog"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: roll
+    attributes:
+      label: Roll
+      description: Which roll should this entry be added to?
+      options:
+        - blogroll
+        - podroll
+      default: 0
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        **What happens next?**
+
+        1. 🤖 A GitHub Action validates the URLs and fetches the feed once as a sanity check
+        2. 📄 Appends the entry (with today's date) to the selected roll
+        3. 🔀 Creates a pull request with the change
+        4. ✅ The issue is closed automatically
+        5. 🚀 After merge, the site publishes and a follow webmention is sent to the Site URL
+
+        To unfollow, remove the entry from the roll file in a PR; the next publish re-sends the
+        webmention so the receiver sees the link is gone.

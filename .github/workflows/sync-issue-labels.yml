@@ -38,6 +38,7 @@ jobs:
             //   - post-review-business.yml: ["review", "business"]
             //   - post-review-product.yml: ["review", "product"]
             //   - add-read-later.yml: ["read-later"]
+            //   - follow.yml: ["follow"]
             const labels = [
               { name: 'note', description: 'Quick note post', color: '0E8A16' },
               { name: 'bookmark', description: 'Bookmark post', color: '1D76DB' },
@@ -51,7 +52,8 @@ jobs:
               { name: 'music', description: 'Music review', color: 'FBCA04' },
               { name: 'business', description: 'Business/establishment review', color: '0E8A16' },
               { name: 'product', description: 'Product review', color: '1D76DB' },
-              { name: 'read-later', description: 'Read later list addition', color: '7057FF' }
+              { name: 'read-later', description: 'Read later list addition', color: '7057FF' },
+              { name: 'follow', description: 'Follow a site (blogroll/podroll entry)', color: '0052CC' }
             ];
             
             console.log('Starting label sync...');
@@ -112,6 +114,7 @@ jobs:
           echo "- \`playlist\` - Playlist content creation and management" >> $GITHUB_STEP_SUMMARY
           echo "- \`review\` - Review posts" >> $GITHUB_STEP_SUMMARY
           echo "- \`read-later\` - Read later list additions" >> $GITHUB_STEP_SUMMARY
+          echo "- \`follow\` - Follow a site (blogroll/podroll entry)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Review Type Labels" >> $GITHUB_STEP_SUMMARY
           echo "- \`book\` - Book reviews" >> $GITHUB_STEP_SUMMARY

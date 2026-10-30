@@ -20,6 +20,7 @@ An ADR is a short document capturing an important architectural decision along w
 | [0008](0008-structured-render-product.md) | Structured Render Product for the Timeline | Accepted |
 | [0009](0009-at-protocol-integration.md) | AT Protocol Integration Architecture | Proposed |
 | [0010](0010-websub-publisher-and-hub.md) | WebSub — Publisher Support and a Self-Hosted Forgetful Hub | Proposed |
+| [0011](0011-follows-as-blogroll-state.md) | Follows as Blogroll State — Issue-Driven Entries, `u-follow-of`, and Follow Webmentions | Accepted |
 
 ## Creating a New ADR
 
