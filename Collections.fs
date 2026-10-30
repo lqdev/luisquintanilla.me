@@ -103,19 +103,9 @@ module CollectionProcessor =
                         Items = items
                     }
             | _ ->
-                // Legacy support: load as Outline array first, then convert to CollectionItem array
-                let outlines = JsonSerializer.Deserialize<Outline array>(jsonContent)
-                let items = 
-                    outlines 
-                    |> Array.map (fun outline -> {
-                        Title = outline.Title
-                        Type = outline.Type
-                        HtmlUrl = outline.HtmlUrl
-                        XmlUrl = outline.XmlUrl
-                        Description = None
-                        Tags = None
-                        Added = None
-                    })
+                // Roll files share the Outline shape plus optional CollectionItem fields
+                // (Added, Description, Tags). System.Text.Json maps absent fields to None.
+                let items = JsonSerializer.Deserialize<CollectionItem array>(jsonContent)
                 
                 {
                     Metadata = { collection with ItemCount = Some items.Length }
@@ -129,53 +119,81 @@ module CollectionProcessor =
                 Items = [||]
             }
     
+    // Collections whose entries are follows. Each entry renders as an h-entry with a
+    // u-follow-of h-card so the collection page is a valid webmention source for
+    // follow/unfollow notifications (see docs/follow/ARCHITECTURE-OVERVIEW.md).
+    let followCollectionIds = set [ "blogroll"; "podroll" ]
+
+    let private formatAddedDate (added: string) =
+        match DateTimeOffset.TryParse(added) with
+        | true, parsed -> parsed.ToString("MMM d, yyyy")
+        | _ -> added
+
+    let private rollItemView (item: CollectionItem) : XmlNode =
+        li [] [
+            strong [] [ str $"{item.Title} - " ]
+            a [ _href item.HtmlUrl ] [ Text "Website" ]
+            str " / "
+            a [ _href item.XmlUrl ] [ Text "RSS Feed" ]
+        ]
+
+    // The anchor text is the followed site's title so the implied h-card name/url are correct.
+    let private followItemView (item: CollectionItem) : XmlNode =
+        li [ _class "h-entry" ] [
+            strong [] [
+                a [ _class "u-follow-of h-card"; _href item.HtmlUrl ] [ Text item.Title ]
+            ]
+            str " - "
+            a [ _href item.XmlUrl; _type "application/rss+xml" ] [ Text "RSS Feed" ]
+            match item.Added with
+            | Some added ->
+                str " · "
+                small [ _class "text-muted" ] [
+                    str "following since "
+                    time [ _class "dt-published"; _datetime added ] [ Text (formatAddedDate added) ]
+                ]
+            | None -> ()
+        ]
+
     // Standard collection page generation (original logic)
     let generateStandardCollectionPage (data: CollectionData) : XmlNode =
         let collection = data.Metadata
         let items = data.Items
-        
-        // Convert CollectionItem array to legacy Outline array for existing view compatibility
-        let outlines = 
-            items
-            |> Array.map (fun item -> {
-                Title = item.Title
-                Type = item.Type
-                HtmlUrl = item.HtmlUrl
-                XmlUrl = item.XmlUrl
-            })
-        
-        // Use consistent rollLinkView pattern from FeedViews
-        let linkContent = 
+        let isFollowCollection = followCollectionIds.Contains collection.Id
+
+        let linkContent =
             ul [] [
                 for item in items do
-                    li [] [
-                        strong [] [
-                            str $"{item.Title} - "
-                        ]
-                        a [ _href item.HtmlUrl ] [ Text "Website"]
-                        str " / "
-                        a [ _href item.XmlUrl ] [ Text "RSS Feed"]                    
-                    ]
+                    if isFollowCollection then followItemView item else rollItemView item
             ]
-        
-        div [ _class "mr-auto" ] [
-            h2 [] [ Text collection.Title ]
+
+        let containerClass = if isFollowCollection then "mr-auto h-feed" else "mr-auto"
+        let titleClass = if isFollowCollection then "p-name" else ""
+
+        div [ _class containerClass ] [
+            h2 [ _class titleClass ] [ Text collection.Title ]
             p [] [ Text collection.Description ]
-            
+
+            if isFollowCollection then
+                div [ _class "p-author h-card microformat-hidden" ] [
+                    img [ _src Constants.Avatar.displayPath; _class "u-photo"; _alt Constants.Author.name ]
+                    a [ _href "/about"; _class "u-url p-name" ] [ Text Constants.Author.name ]
+                ]
+
             // Collection metadata
             if collection.ItemCount.IsSome then
                 p [ _class "collection-meta text-muted" ] [
                     Text $"Contains {collection.ItemCount.Value} feeds"
                 ]
-            
+
             // OPML download information
             p [] [
                 Text "You can subscribe to any of the individual feeds in your preferred RSS reader using the RSS feed links below. Want to subscribe to all of them? Use the "
-                a [ _href $"{collection.UrlPath}index.opml" ] [ Text "OPML file" ]
+                a [ _href $"{collection.UrlPath}index.opml"; _rel "alternate"; _type "text/x-opml" ] [ Text "OPML file" ]
                 Text " if your RSS reader supports "
                 a [ _href "http://opml.org/" ] [ Text "OPML." ]
             ]
-            
+
             linkContent
         ]
 
