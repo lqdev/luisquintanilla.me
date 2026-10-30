@@ -134,6 +134,28 @@ jobs:
       - name: Identify webmentions to send
         run: dotnet fsi Scripts/identify-webmentions.fsx
 
+      # Follow/unfollow webmentions from Data/{blogroll,podroll}.json changes.
+      # Base = head of the last successful run on main (survives cancelled deploys),
+      # falling back to the push's previous SHA. No base (e.g. workflow_dispatch) => nothing sent.
+      # See docs/follow/ARCHITECTURE-OVERVIEW.md
+      - name: Identify follow webmentions (roll diff)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EVENT_BEFORE: ${{ github.event.before }}
+        run: |
+          BASE_SHA=$(gh run list --workflow "${{ github.workflow }}" --branch main --status success --limit 1 --json headSha -q '.[0].headSha' 2>/dev/null || true)
+          if [ -z "$BASE_SHA" ]; then
+            BASE_SHA="$EVENT_BEFORE"
+          fi
+          if [ -z "$BASE_SHA" ] || [ "$BASE_SHA" = "0000000000000000000000000000000000000000" ]; then
+            echo "No base commit available; skipping follow webmention diff."
+            dotnet fsi Scripts/identify-follow-webmentions.fsx --
+          else
+            echo "Diffing rolls against base $BASE_SHA"
+            git cat-file -e "$BASE_SHA^{commit}" 2>/dev/null || git fetch --no-tags --depth=1 origin "$BASE_SHA"
+            dotnet fsi Scripts/identify-follow-webmentions.fsx -- --base "$BASE_SHA"
+          fi
+
       - name: Sync ActivityPub data for Azure Functions
         run: |
           echo "📦 Syncing generated ActivityPub data to Azure Functions directory..."
@@ -179,7 +201,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: webmention-artifacts
-          path: _tmp/webmentions.json
+          path: |
+            _tmp/webmentions.json
+            _tmp/follow-webmentions.json
           retention-days: 1
       
       - name: Upload ActivityPub data for delivery queue
