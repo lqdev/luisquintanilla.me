@@ -64,15 +64,27 @@ else
                     match result with
                     | ValidationSuccess s -> 
                         printfn $"{s.RequestBody.Target} sent successfully to {s.Endpoint.OriginalString}"
+                        return None
+                    | ValidationError "No webmention endpoint available" ->
+                        printfn $"Skipped unsupported target {targetUri}: no webmention endpoint available"
+                        return None
                     | ValidationError e -> 
                         printfn $"Error: {e}"
+                        return Some $"{sourceUri} -> {targetUri}: {e}"
                 with
-                | ex -> printfn $"Exception sending webmention: {ex.Message}"
+                | ex ->
+                    printfn $"Exception sending webmention: {ex.Message}"
+                    return Some $"{sourceUri} -> {targetUri}: {ex.Message}"
             })
     
-    tasks
-    |> Async.Parallel
-    |> Async.RunSynchronously
-    |> ignore
-    
-    printfn $"Completed sending {webmentions.Length} webmentions"
+    let failures =
+        tasks
+        |> Async.Parallel
+        |> Async.RunSynchronously
+        |> Array.choose id
+
+    if failures.Length > 0 then
+        failures |> Array.iter (printfn "❌ %s")
+        failwith $"{failures.Length} of {webmentions.Length} webmentions failed; failing the job so a later publish can retry."
+    else
+        printfn $"Completed sending {webmentions.Length} webmentions"

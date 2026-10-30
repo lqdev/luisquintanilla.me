@@ -18,7 +18,6 @@ open System.Net.Http
 open System.Threading.Tasks
 open System.Text.Json
 open System.Text.Json.Nodes
-open System.Text.RegularExpressions
 
 let args = fsi.CommandLineArgs |> Array.skip 1
 
@@ -67,8 +66,18 @@ let feedUrl = feedUri.AbsoluteUri
 // ---------------------------------------------------------------------------
 
 let normalizeForCompare (url: string) =
-    url.Trim().TrimEnd('/').ToLowerInvariant()
-    |> fun u -> Regex.Replace(u, @"^https?://(www\.)?", "")
+    match Uri.TryCreate(url.Trim(), UriKind.Absolute) with
+    | true, uri when uri.Scheme = Uri.UriSchemeHttp || uri.Scheme = Uri.UriSchemeHttps ->
+        let host =
+            if uri.Host.StartsWith("www.", StringComparison.OrdinalIgnoreCase) then
+                uri.Host.Substring(4)
+            else
+                uri.Host
+        let userInfo = if String.IsNullOrEmpty(uri.UserInfo) then "" else $"{uri.UserInfo}@"
+        let port = if uri.IsDefaultPort then "" else $":{uri.Port}"
+        let path = uri.AbsolutePath.TrimEnd('/')
+        $"{uri.Scheme.ToLowerInvariant()}://{userInfo}{host}{port}{path}{uri.Query}{uri.Fragment}"
+    | _ -> url.Trim()
 
 let readRoll (path: string) : JsonArray =
     if not (File.Exists(path)) then fail $"Roll file not found: {path}"
@@ -117,21 +126,26 @@ let checkFeed () =
         printfn "⚠️  Feed check skipped (FOLLOW_SKIP_FEED_CHECK=1)"
     else
         use handler = new HttpClientHandler(AllowAutoRedirect = true, MaxAutomaticRedirections = 5)
-        use client = new HttpClient(handler, Timeout = TimeSpan.FromSeconds(20.0))
+        use client = new HttpClient(handler, Timeout = System.Threading.Timeout.InfiniteTimeSpan)
+        use cancellation = new System.Threading.CancellationTokenSource(TimeSpan.FromSeconds(20.0))
         client.DefaultRequestHeaders.UserAgent.ParseAdd("lqdev.me-follow-check/1.0 (+https://lqdev.me/collections/blogroll/)")
         client.DefaultRequestHeaders.Accept.ParseAdd("application/rss+xml, application/atom+xml, application/feed+json, application/xml;q=0.9, */*;q=0.5")
         try
-            use response = client.GetAsync(feedUri, HttpCompletionOption.ResponseHeadersRead).GetAwaiter().GetResult()
+            use response = client.GetAsync(feedUri, HttpCompletionOption.ResponseHeadersRead, cancellation.Token).GetAwaiter().GetResult()
             let status = int response.StatusCode
             let contentType =
                 match response.Content.Headers.ContentType with
                 | null -> ""
                 | ct -> ct.ToString()
             if response.IsSuccessStatusCode then
-                use stream = response.Content.ReadAsStreamAsync().GetAwaiter().GetResult()
+                use stream = response.Content.ReadAsStreamAsync(cancellation.Token).GetAwaiter().GetResult()
                 let buffer = Array.zeroCreate<byte> 8192
-                let read = stream.Read(buffer, 0, buffer.Length)
-                let body = Text.Encoding.UTF8.GetString(buffer, 0, read)
+                let mutable bytesRead = 0
+                let mutable reachedEnd = false
+                while bytesRead < buffer.Length && not reachedEnd do
+                    let read = stream.ReadAsync(buffer, bytesRead, buffer.Length - bytesRead, cancellation.Token).GetAwaiter().GetResult()
+                    if read = 0 then reachedEnd <- true else bytesRead <- bytesRead + read
+                let body = Text.Encoding.UTF8.GetString(buffer, 0, bytesRead)
                 if looksLikeFeed contentType body then
                     printfn "✅ Feed check: %d %s" status contentType
                 else
@@ -142,7 +156,7 @@ let checkFeed () =
                 printfn "⚠️  Feed check: HTTP %d — could not verify feed content (possible bot-blocking or transient error). Proceeding." status
         with
         | :? HttpRequestException as ex -> fail $"Feed URL is not reachable: {ex.Message}"
-        | :? TaskCanceledException -> fail "Feed URL timed out after 20 seconds"
+        | :? OperationCanceledException -> fail "Feed URL timed out after 20 seconds"
 
 checkFeed ()
 
