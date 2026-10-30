@@ -35,7 +35,8 @@ module.exports = async function (context, req) {
 
         // RFC 7033 §4.3: optional `rel` filter (may repeat). Filters links only;
         // subject/aliases/properties are always returned.
-        const rels = [].concat(req.query.rel || []);
+        const requestUrl = new URL(req.url, 'https://lqdev.me');
+        const rels = requestUrl.searchParams.getAll('rel');
         const body = rels.length === 0
             ? jrd
             : { ...jrd, links: jrd.links.filter(link => rels.includes(link.rel)) };

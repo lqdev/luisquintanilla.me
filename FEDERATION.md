@@ -55,9 +55,9 @@ Delivery is push-based to follower inboxes via Azure Queue Storage after each de
 |----------|----------|
 | `Follow` | Stored in Table Storage; `Accept` delivered asynchronously. |
 | `Undo { Follow }` | Follower removed. |
-| Anything else | Acknowledged (202) and discarded. |
+| Anything else | Acknowledged (202) and not processed or stored as application data. The accepted payload is still attempted as a diagnostic file write (see below). |
 
-Replies, likes, and boosts of this site's content are **not** stored or displayed anywhere. This is deliberate: the site does not show third-party content. (Webmentions are received by an external endpoint and likewise not rendered.)
+Replies, likes, and boosts of this site's content are not stored as application data or displayed. Before dispatch, the inbox attempts to write the full JSON payload of each accepted activity to `api/data/activities/{timestamp}.json` for diagnostics, including activities that are otherwise discarded. This is a best-effort write to the function's local filesystem, not durable storage; no expiration or cleanup policy is configured, and actual retention depends on the hosting filesystem lifecycle. Webmentions are received by an external endpoint and likewise not rendered.
 
 ## Collections
 
@@ -84,7 +84,7 @@ Individual activities dereference at `/api/activitypub/activities/{hash}`; the N
 
 ## Rate limits and blocking
 
-No rate limits are applied beyond Azure Functions defaults. There is no instance block list; unwanted interactions are simply not stored.
+No rate limits are applied beyond Azure Functions defaults. There is no instance block list; unwanted interactions are not stored as application data, though accepted inbox payloads are subject to the diagnostic write described above.
 
 ## Contact
 

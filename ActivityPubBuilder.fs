@@ -1037,7 +1037,7 @@ let buildNodeInfo (unifiedItems: UnifiedFeeds.UnifiedFeedItem list) (outputDir: 
                 "repository", box "https://github.com/lqdev/luisquintanilla.me"
                 "homepage", box Config.baseUrl ])
             "protocols", box [| "activitypub" |]
-            "services", box (dict [ "inbound", box Array.empty<string>; "outbound", box [| "atom1.0"; "rss2.0" |] ])
+            "services", box (dict [ "inbound", box Array.empty<string>; "outbound", box [| "rss2.0" |] ])
             "openRegistrations", box false
             "usage", box (dict [
                 "users", box (dict [ "total", box 1; "activeMonth", box 1; "activeHalfyear", box 1 ])
