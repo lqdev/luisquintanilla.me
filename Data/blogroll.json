@@ -131,5 +131,12 @@
         "HtmlUrl": "https://usesthis.com/",
         "XmlUrl": "https://www.blog.plaintextpaperless.com/feed",
         "Added": "2024-07-28"
+    },
+    {
+        "Title": "Ellane W",
+        "Type": "rss",
+        "HtmlUrl": "https://ellanew.com/",
+        "XmlUrl": "https://ellanew.com/feed.rss",
+        "Added": "2026-10-30"
     }
 ]
