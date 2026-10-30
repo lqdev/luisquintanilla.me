@@ -1,0 +1,328 @@
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "id": "https://lqdev.me/api/activitypub/featured",
+  "type": "OrderedCollection",
+  "totalItems": 5,
+  "orderedItems": [
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "id": "https://lqdev.me/api/activitypub/activities/167e617c06f2443ea0d340c7609ca5d1#object",
+      "type": "Article",
+      "attributedTo": "https://lqdev.me/api/activitypub/actor",
+      "published": "2026-04-28T22:02:00-05:00",
+      "content": "\nEarlier today I had the opportunity to attend [FediForum](https://fediforum.org/2026-04/) and talk about Mycelium during one of the sessions. This was the first time I had talked about it publicly, which made it exciting. I wanted to see whether the framing made sense to people who spend a lot of time thinking about open social technologies.\n\n## Why the timing felt relevant\n\nThe timing could not have been more relevant because earlier this morning I read [Anthropic\u2019s Project Deal post](https://www.anthropic.com/features/project-deal). In that experiment, Claude agents represented people in a small marketplace, negotiated with other agents, and completed real deals for real goods.\n\nThat feels like exactly the kind of problem the open social web community is well positioned to think about. If agents are going to act on behalf of people, transact, coordinate, or make claims in shared spaces, then identity, transparency, governance, and trust cannot be afterthoughts.\n\n## So what is Mycelium?\n\nMycelium is my attempt to explore what open, federated infrastructure for AI agents might look like if we borrowed ideas from the social web instead of starting from centralized platforms.\n\nIn its current state, it\u0027s a research project into something that\u0027s been in the back of my mind for a few years now. A few months ago, I finally decided to put some of those ideas on paper. A large part of it is built on and inspired by existing projects and protocols like [ActivityPub](https://activitypub.rocks/) and [AT Protocol](https://atproto.com/) as well as AI projects like [Gas Town / Wasteland](https://steve-yegge.medium.com/welcome-to-the-wasteland-a-thousand-gas-towns-a5eb9bc8dc1f) and [OpenClaw](https://openclaw.ai/). \n\nEach of those projects gets at part of the problem:\n\n- Gas Town and Wasteland make the agent coordination problem vivid.\n- ActivityPub and AT Protocol show different ways to build interoperable social infrastructure. \n- OpenClaw points toward local-first agent control. \n\nWhat I\u2019m trying to explore with Mycelium is whether those threads can be pulled together into something social, sovereign, federated, and evidence-linked.\n\nThe core thesis of Mycelium is that agents need the same kinds of decentralized social infrastructure we are already building for people:\n\n- **Portable Identity** -  An agent\u0027s credentials and history are recognized everywhere, not locked to one platform. (i.e. Domain names. Your domain points to you regardless of which hosting provider you use.)\n- **Personal Data Storage** - Agents from different systems can all read from and write to each other\u0027s data in a common language, while you retain ownership of your slice. (i.e. Medical records. Your general physician, a specialist, hospital, and lab can all interact with the medical record using standard formats, but all the records belong to you.)\n- **Federated Communication and Coordination** - Agents on different servers or networks can interoperate without intermediaries. (i.e. Like email. A Gmail user and a Outlook user don\u0027t need to use the same e-mail provider to exchange messages.)\n- **Self-Sovereign Reputation** - An agent\u0027s reputation is the composite of things like certifications, attestations from other agents and humans it\u0027s worked with, a verifiable record of completed work. (i.e. CVs. A medical doctor might have a degree, board certifications, history of procedures performed, peer reviews, and even malpractice which all demonstrate their experience and capabilities in their respective area of expertise)\n- **Community Governance and Moderation** - Individuals and communities define their own trust rules for which agents can do what. (i.e. Co-ops. Building residents collectively decide rules and policies such as who can manage finances, which contractors are approved to do renovations, who can represent the building in legal matters, etc.)\n\nBy leveraging emerging open social web technologies and infrastructure, we can build multi-agent systems that are resilient, interoperable, and not owned by any single platform.\n\n## What the MVP shows\n\nTo make the idea less abstract, I built an [MVP](https://github.com/lqdev/mycelium-mvp) that runs through a full coordination loop: agents bootstrap identities, declare capabilities, discover tasks through a wanted board, claim work, get matched and assigned, complete tasks, receive verification, and accumulate reputation stamps linked back to evidence. The dashboard is just one view over that activity. The records are the important part.\n\n![Mycelium MVP Dashboard](https://github.com/user-attachments/assets/febaeec3-a917-4f63-b2a6-a5675236021a)\n\nI\u0027d like to distinguish what the MVP shows and what it does not. Currently it proves the shape of the coordination model: \n\n- Work can be represented as records\n- Claims and completions can leave evidence\n- Reputation can point back to proof\n\nWhat it doesn\u0027t solve for yet are things like:\n\n- Privacy boundaries\n- Governance\n- Reputation gaming\n- Abuse resistance\n- Production-ready federation across real protocol infrastructure\n\nThese are hard parts that require more exploration and design.\n\n## Help pressure-test this\n\nI\u0027ll be the first to say that I am approaching this as a user, builder, and advocate for open social technologies, not as someone who has all the answers.\n\nIf open social web builders do not help shape this kind of infrastructure, my guess is that centralized AI platforms will. And if that happens, these systems will probably become less open, less resilient, and less interoperable over time.\n\nWhich is why I\u0027d like to extend an invitation. Not to adopt Mycelium, but to pressure test my assumptions and design.\n\nThere are still many open questions, but that is the part I find exciting. \n\nIf this seems remotely interesting, or if you want to poke holes in it, please [reach out](/contact). E-mail is preferred.\n\nIf you\u0027re interested in learning more, here is the [slide deck with resources I prepared for the Fediforum session](/resources/presentations/mycelium-fediforum-04-2026). \n\nYou can also go directly to the [draft spec](https://github.com/lqdev/mycelium) and try out the [MVP](https://github.com/lqdev/mycelium-mvp) yourself.",
+      "to": [
+        "https://www.w3.org/ns/activitystreams#Public"
+      ],
+      "name": "Mycelium at FediForum: AI Agents Need Open Social Infrastructure",
+      "url": "https://lqdev.me/posts/mycelium-fediforum-ai-agents-open-social-infrastructure-04-2026",
+      "cc": [
+        "https://lqdev.me/api/activitypub/followers"
+      ],
+      "tag": [
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/fediverse",
+          "name": "#fediverse"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/fediforum",
+          "name": "#fediforum"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/atproto",
+          "name": "#atproto"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/ai",
+          "name": "#ai"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/agent",
+          "name": "#agent"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/protocol",
+          "name": "#protocol"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/federation",
+          "name": "#federation"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/decentralization",
+          "name": "#decentralization"
+        }
+      ]
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "id": "https://lqdev.me/api/activitypub/activities/e742d726fbe227f1870ac1a6899b50d5#object",
+      "type": "Article",
+      "attributedTo": "https://lqdev.me/api/activitypub/actor",
+      "published": "2026-02-11T21:12:00-05:00",
+      "content": "\nDISCLAIMER: AI was used to help me organize and improve the flow of this post. Ideas and thoughts expressed are my own. \n\nLately I\u2019ve noticed across a lot of different feeds people shifting away from Discord.\n\nA while back I wrote a post about [alternatives to WhatsApp](/posts/alternatives-to-whatsapp/), and in some ways this post feels similar. I\u2019m not sure what the core motivation for migrating from Discord is at this time. Maybe it\u2019s the [imminent IPO](/responses/discord-quietly-files-for-us-ipo-2026-01-09/). Maybe it\u2019s the [new age verification policy](https://discord.com/press-releases/discord-launches-teen-by-default-settings-globally). In any case, it\u2019s encouraging to see people at least looking for alternatives. Preferably ones that are open-source and allow self-hosting.\n\nI grew up with IRC and AOL Instant Messenger, so it\u2019s possible I\u2019m just old and don\u2019t really get Discord. But in many communities I\u2019m part of, Discord is effectively being used as a forum. And as a forum replacement, it\u2019s not great. Even with Threads, it feels subpar.\n\nTo be fair, I have similar criticisms of Slack and Teams.\n\nReal-time chat moves fast. Too fast most of the time. That doesn\u2019t mean it useless. It works well for scheduled events, live collaboration, or situations where everyone shares the same context at the same time. Gaming, which was its original use case, is a perfect example where real-time matters. But when conversations stretch over days, or when you want knowledge to accumulate instead of disappearing into scrollback, chat starts working against you.\n\nWhen it comes to real-time group chat and chat rooms, I\u2019m still a fan of [Matrix](https://matrix.org/). It\u0027s end-to-end encrypted (E2EE), you can self-host, and you can federate. I really value that combination. Federation has tradeoffs, especially if you\u2019re maintaining your own instance. Even so, it remains one of the better options if you actually need synchronous communication.\n\nForums are a different category.\n\nFor forums, I think [Discourse](https://www.discourse.org/) is by far the best option right now. A few reasons:\n\n* It\u2019s [open-source](https://discourse.org/open-source)\n* You can [self-host](https://github.com/discourse/discourse/blob/main/docs/INSTALL-cloud.md)\n* It\u2019s used by [well-known communities](https://discover.discourse.com/) like OpenAI, Spotify, NixOS, TWiT, and many others\n* Strong [RSS support](https://meta.discourse.org/t/finding-discourse-rss-feeds/264134?tl=en)\n* [Fediverse friendly](https://blog.discourse.org/2025/04/discourse-and-the-fediverse/)\n* Built-in [real-time chat](https://www.discourse.org/chat), which I haven\u2019t personally used but it\u2019s there if you need it\n* And [a lot more features](https://www.discourse.org/features) beyond that\n\nAs folks migrate, whether you\u2019re a community member or running an instance, I don\u2019t think the main story is the migration itself.\n\nIt\u2019s more about using the right tool for the job.\n\nReal-time chat is great when you actually need more synchronous communication. Forums are better when conversations need to stick around, be searchable, and grow over time. A lot of the friction I see comes from trying to make one behave like the other.\n\nThe other piece, at least for me, is control. When platform priorities shift, or incentives change, it\u2019s easier to adapt if you\u2019re not completely locked in. Self-hosting isn\u2019t for everyone, but having that option changes the dynamic.\n\n[Communities aren\u2019t fungible](https://www.joanwestenberg.com/communities-are-not-fungible/). The tools they\u2019re built on shape how they feel and how they evolve. That\u2019s probably the part that matters most.\n\nP.S. The recommendations in this post are purely anectodal and based on my experiene with the various platforms. For a more comprehensive analysis of the various Discord alterntives, check out the following resources:\n\n- [The Ultimate Guide to using Matrix](https://techlore.tv/w/7375fhwPZsK2R2QiB41T1N) by Techlore. Worth calling out, that video is not on YouTube. This is on Techlore\u0027s PeerTube instance. If you don\u0027t know what [PeerTube](https://joinpeertube.org/) is, I highly recommend checking it out :slightly_smiling_face:\n- [Discord Alternatives, Ranked](https://taggart-tech.com/discord-alternatives/)",
+      "to": [
+        "https://www.w3.org/ns/activitystreams#Public"
+      ],
+      "name": "Alternatives to Discord",
+      "url": "https://lqdev.me/posts/alternatives-to-discord-2026-02-11",
+      "cc": [
+        "https://lqdev.me/api/activitypub/followers"
+      ],
+      "tag": [
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/discord",
+          "name": "#discord"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/matrix",
+          "name": "#matrix"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/discourse",
+          "name": "#discourse"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/chat",
+          "name": "#chat"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/forums",
+          "name": "#forums"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/im",
+          "name": "#im"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/messaging",
+          "name": "#messaging"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/opensource",
+          "name": "#opensource"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/community",
+          "name": "#community"
+        }
+      ]
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "id": "https://lqdev.me/api/activitypub/activities/a2c32f05bcd86ad1cdc172ac38d8efd9#object",
+      "type": "Article",
+      "attributedTo": "https://lqdev.me/api/activitypub/actor",
+      "published": "2025-05-27T19:44:00-05:00",
+      "content": "\nThis question comes up a lot in conversations. The short answer? I don\u2019t. There\u2019s just too much happening, too fast, for anyone to stay on top of everything.\n\nWhile I enjoy sharing links and recommendations, I realized that a blog post might be more helpful. It gives folks a single place they can bookmark, share, and come back to on their own time, rather than having to dig through message threads where things inevitably get lost.\n\nThat said, here are some sources I use to try and stay informed:\n\n- **Newsletters** are great for curated content. They highlight the top stories and help filter through the noise.\n- **Blogs** are often the primary sources behind those newsletters. They go deeper and often cover a broader set of topics that might not make it into curated roundups.\n- **Podcasts** serve a similar role. In some cases, they provide curation like newsletters and deep dives like blogs in others. Best of all, you can tune in while on the go making it a hands-free activity.\n\nFor your convenience, if any of the sources (including podcasts) I list below have RSS feeds, I\u2019ve included them in my [AI Starter Pack](/collections/starter-packs//ai), which you can [download and import into your favorite RSS reader](/collections/starter-packs//ai/index.opml) (as long as it supports OPML file imports).\n\nIf you have some sources to share, [send me an e-mail](/contact). I\u0027d love to keep adding to this list! If they have a feed I can subscribe to, even better.\n\n## Newsletters\n\n- [AlphaSignal](https://alphasignal.ai/)\n- [The Batch](https://www.deeplearning.ai/the-batch/)\n- [Latent Space](https://www.latent.space/)\n- [TLDR AI](https://tldr.tech/ai)\n\n## Blogs\n\nI pride myself on being able to track down an RSS feed on just about any website, even if it\u2019s buried or not immediately visible. Unfortunately, I haven\u0027t found a feed URL for either OpenAI or Anthropic which is annoying. \n\n**OpenAI and Anthropic, if you could do everyone a favor and drop a link, that would be great.** \n\nUPDATE: Thanks to [@m2vh@mastodontech.de](https://toot.lqdev.tech/@m2vh@mastodontech.de) for sharing the OpenAI news feed. \n\nI know I could use one of those web-page-to-RSS converters, but I\u0027d much rather have an official link directly from the source.\n\n- [OpenAI](https://openai.com/news/)\n- [Anthropic](https://www.anthropic.com/news)\n- [Google AI Blog](https://blog.google/technology/ai/)\n- [AWS Machine Learning Blog](https://aws.amazon.com/blogs/machine-learning/)\n- [Microsoft Research](https://www.microsoft.com/en-us/research/blog/)\n- [Google Research](https://research.google/blog/)\n- [Simon Willison](https://simonwillison.net/)\n\n## Podcasts\n\n- [AI Daily Brief](https://www.podchaser.com/podcasts/the-ai-daily-brief-formerly-th-5260567)\n- [TWIML AI Podcast](https://twimlai.com/)\n- [Practical AI](https://changelog.com/practicalai)\n\n## Subscribing to feeds\n\nNow that I\u2019ve got you here...\n\nLet\u2019s talk about the best way to access all these feeds. My preferred and recommended approach is using a feed reader.\n\nWhen subscribing to content on the open web, feed readers are your secret weapon.\n\nRSS might seem like it\u2019s dead (it\u2019s not\u2014yet). In fact, it\u2019s the reason you often hear the phrase, \u201CWherever you get your podcasts.\u201D But RSS goes beyond podcasts. It\u2019s widely supported by blogs, newsletters, and even social platforms like the Fediverse (Mastodon, PeerTube, etc.) and BlueSky. It\u2019s also how I\u2019m able to compile my [starter packs](/collections/starter-packs/). \n\nI\u0027ve written more about RSS in [Rediscovering the RSS Protocol](/posts/rediscovering-rss-user-freedom), but the short version is this: when you build on open standards like RSS and OPML, you\u2019re building on freedom. Freedom to use the tools that work best for you. Freedom to own your experience. And freedom to support a healthier, more independent web.\n",
+      "to": [
+        "https://www.w3.org/ns/activitystreams#Public"
+      ],
+      "name": "How do I keep up with AI?",
+      "url": "https://lqdev.me/posts/how-i-keep-up-with-ai",
+      "cc": [
+        "https://lqdev.me/api/activitypub/followers"
+      ],
+      "tag": [
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/ai",
+          "name": "#ai"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/rss",
+          "name": "#rss"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/starterpack",
+          "name": "#starterpack"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/newsletter",
+          "name": "#newsletter"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/blog",
+          "name": "#blog"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/opml",
+          "name": "#opml"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/openweb",
+          "name": "#openweb"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/podcast",
+          "name": "#podcast"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/indieweb",
+          "name": "#indieweb"
+        }
+      ]
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "id": "https://lqdev.me/api/activitypub/activities/e75e054ae498c183859ca3799e776bb6#object",
+      "type": "Article",
+      "attributedTo": "https://lqdev.me/api/activitypub/actor",
+      "published": "2024-12-08T19:40:00-05:00",
+      "content": "\nOne of the things I like about Bluesky is the [Starter Pack feature](https://bsky.social/about/blog/06-26-2024-starter-packs). \n\nIn a gist, a Starter Pack is a collection of feeds. \n\nBluesky users can:\n\n- Create starter packs\n- Share starter packs\n- Subscribe to starter packs\n\nUnfortunately, Starter Packs are limited to Bluesky. \n\nOr are they? \n\nAs mentioned, starter packs are a collection of feeds that others can create, share, and subscribe to. \n\n[Bluesky supports RSS](/responses/bluesky-rss-support/), which means you could organize the feeds using an OPML file that you can share with others and others can subscribe to. The benefits of this is, you can continue to keep up with activity on Bluesky from the feed reader of your choice without being required to have an account on Bluesky. \n\nMore importantly, because RSS and OPML are open standards, you\u0027re not limited to building starter packs for Bluesky. You can create, share, and subscribe to starter packs for any platform that supports RSS. That includes blogs, podcasts, forums, YouTube, Mastodon, etc. [Manton seems to have something similar in mind](https://www.manton.org/2024/12/07/with-the-success.html) as a means of building on open standards that make it easy for Micro.blog to interop with various platforms. \n\nIf you\u0027re interested in what that might look like in practice, check out my \u0022starter packs\u0022 which you can subscribe to using your RSS reader of choice and the provided OPML files. \n\n- [Blogs](/collections/blogroll)\n- [Podcasts](/collections/podroll)\n- [YouTube](/collections/youtube)\n- [Forums](/collections/forums)\n\nI\u0027m still working on similar collections for Mastodon and Bluesky but the same concept applies.  \n\nAlthough these are just simple examples, it shows the importance of building on open standards and the open web. Doing so introduces more freedom for creators and communities. \n\nHere are other \u0022starter packs\u0022 you might consider subscribing to. \n\n- [People and Blogs](https://www.thingelstad.com/2024/12/03/people-blogs-list.html)\n- [Blogroll Club](https://blogroll.club/faq/)\n\nIf this is interesting to you, [Feedland](https://feedland.org/) might be a project worth checking out.  ",
+      "to": [
+        "https://www.w3.org/ns/activitystreams#Public"
+      ],
+      "name": "Starter Packs with OPML and RSS",
+      "url": "https://lqdev.me/posts/rss-opml-starter-packs",
+      "cc": [
+        "https://lqdev.me/api/activitypub/followers"
+      ],
+      "tag": [
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/rss",
+          "name": "#rss"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/opml",
+          "name": "#opml"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/indieweb",
+          "name": "#indieweb"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/starterpacks",
+          "name": "#starterpacks"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/community",
+          "name": "#community"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/bluesky",
+          "name": "#bluesky"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/socialmedia",
+          "name": "#socialmedia"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/openweb",
+          "name": "#openweb"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/protocol",
+          "name": "#protocol"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/openstandard",
+          "name": "#openstandard"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/feedland",
+          "name": "#feedland"
+        }
+      ]
+    },
+    {
+      "@context": "https://www.w3.org/ns/activitystreams",
+      "id": "https://lqdev.me/api/activitypub/activities/c4cb35ae62cd9f838d66dfc3fa24abe6#object",
+      "type": "Note",
+      "attributedTo": "https://lqdev.me/api/activitypub/actor",
+      "published": "2024-08-01T20:08:00-05:00",
+      "content": "\u003Cp\u003EWhile thiking about implementing \u003Ca href=\u0022/responses/well-known-feeds/\u0022\u003E\u003Ccode\u003E.well-known\u003C/code\u003E for RSS feeds on my site\u003C/a\u003E, I had another idea. Since that uses OPML anyways, I remembered recently \u003Ca href=\u0022/notes/blogroll-discovery-implemented//\u0022\u003Edoing something similar for my blogroll\u003C/a\u003E.\u003C/p\u003E\n\u003Cp\u003EThe concept is the same, except instead of making my blogroll discoverable, I\u0027m doing it for my feeds. At the end of the day, a blogroll is a collection of feeds, so it should just work for my own feeds.\u003C/p\u003E\n\u003Cp\u003EThe implementation ended up being:\u003C/p\u003E\n\u003Col\u003E\n\u003Cli\u003E\u003Cp\u003ECreate an OPML file for\u003Ca href=\u0022/feed\u0022\u003E each of the feeds on by website\u003C/a\u003E.\u003C/p\u003E\n\u003Cpre\u003E\u003Ccode class=\u0022language-xml\u0022\u003E \u0026lt;opml version=\u0026quot;2.0\u0026quot;\u0026gt;\n   \u0026lt;head\u0026gt;\n \t\u0026lt;title\u0026gt;Luis Quintanilla Feeds\u0026lt;/title\u0026gt;\n \t\u0026lt;ownerId\u0026gt;https://www.luisquintanilla.me\u0026lt;/ownerId\u0026gt;\n   \u0026lt;/head\u0026gt;\n   \u0026lt;body\u0026gt;\n \t\u0026lt;outline title=\u0026quot;Blog\u0026quot; text=\u0026quot;Blog\u0026quot; type=\u0026quot;rss\u0026quot; htmlUrl=\u0026quot;/posts/1\u0026quot; xmlUrl=\u0026quot;/blog.rss\u0026quot; /\u0026gt;\n \t\u0026lt;outline title=\u0026quot;Microblog\u0026quot; text=\u0026quot;Microblog\u0026quot; type=\u0026quot;rss\u0026quot; htmlUrl=\u0026quot;/feed\u0026quot; xmlUrl=\u0026quot;/microblog.rss\u0026quot; /\u0026gt;\n \t\u0026lt;outline title=\u0026quot;Responses\u0026quot; text=\u0026quot;Responses\u0026quot; type=\u0026quot;rss\u0026quot; htmlUrl=\u0026quot;/feed/responses\u0026quot; xmlUrl=\u0026quot;/responses.rss\u0026quot; /\u0026gt;\n \t\u0026lt;outline title=\u0026quot;Mastodon\u0026quot; text=\u0026quot;Mastodon\u0026quot; type=\u0026quot;rss\u0026quot; htmlUrl=\u0026quot;/mastodon\u0026quot; xmlUrl=\u0026quot;/mastodon.rss\u0026quot; /\u0026gt;\n \t\u0026lt;outline title=\u0026quot;Bluesky\u0026quot; text=\u0026quot;Bluesky\u0026quot; type=\u0026quot;rss\u0026quot; htmlUrl=\u0026quot;/bluesky\u0026quot; xmlUrl=\u0026quot;/bluesky.rss\u0026quot; /\u0026gt;\n \t\u0026lt;outline title=\u0026quot;YouTube\u0026quot; text=\u0026quot;YouTube\u0026quot; type=\u0026quot;rss\u0026quot; htmlUrl=\u0026quot;/youtube\u0026quot; xmlUrl=\u0026quot;/bluesky.rss\u0026quot; /\u0026gt;\n   \u0026lt;/body\u0026gt;\n \u0026lt;/opml\u0026gt;\n\u003C/code\u003E\u003C/pre\u003E\n\u003C/li\u003E\n\u003Cli\u003E\u003Cp\u003EAdd a \u003Ccode\u003Elink\u003C/code\u003E tag to the \u003Ccode\u003Ehead\u003C/code\u003E element of my website.\u003C/p\u003E\n\u003Cpre\u003E\u003Ccode class=\u0022language-html\u0022\u003E \u0026lt;link rel=\u0026quot;feeds\u0026quot; type=\u0026quot;text/xml\u0026quot; title=\u0026quot;Luis Quintanilla\u0027s Feeds\u0026quot; href=\u0026quot;/feed/index.opml\u0026quot;\u0026gt;\n\u003C/code\u003E\u003C/pre\u003E\n\u003C/li\u003E\n\u003C/ol\u003E\n",
+      "to": [
+        "https://www.w3.org/ns/activitystreams#Public"
+      ],
+      "name": "OPML for website feeds",
+      "url": "https://lqdev.me/notes/website-feeds-opml",
+      "cc": [
+        "https://lqdev.me/api/activitypub/followers"
+      ],
+      "tag": [
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/rss",
+          "name": "#rss"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/opml",
+          "name": "#opml"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/indieweb",
+          "name": "#indieweb"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/feed",
+          "name": "#feed"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/internet",
+          "name": "#internet"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/protocol",
+          "name": "#protocol"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/webstandards",
+          "name": "#webstandards"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/standard",
+          "name": "#standard"
+        },
+        {
+          "type": "Hashtag",
+          "href": "https://lqdev.me/tags/web",
+          "name": "#web"
+        }
+      ]
+    }
+  ]
+}

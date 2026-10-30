@@ -1,16 +1,57 @@
 {
   "subject": "acct:lqdev@lqdev.me",
-  "aliases": ["https://lqdev.me/api/activitypub/actor"],
+  "aliases": [
+    "https://lqdev.me/api/activitypub/actor",
+    "https://lqdev.me/",
+    "acct:lqdev@toot.lqdev.tech",
+    "https://toot.lqdev.tech/users/lqdev",
+    "did:plc:pme7qquljcdx6i4zyawoxypd"
+  ],
   "links": [
     {
       "rel": "self",
-      "type": "application/activity+json", 
+      "type": "application/activity+json",
       "href": "https://lqdev.me/api/activitypub/actor"
     },
     {
       "rel": "http://webfinger.net/rel/profile-page",
       "type": "text/html",
       "href": "https://lqdev.me/"
+    },
+    {
+      "rel": "http://webfinger.net/rel/avatar",
+      "type": "image/png",
+      "href": "https://lqdev.me/avatar-doom.png"
+    },
+    {
+      "rel": "describedby",
+      "type": "application/json",
+      "href": "https://lqdev.me/.well-known/profile"
+    },
+    {
+      "rel": "alternate",
+      "type": "application/rss+xml",
+      "href": "https://lqdev.me/feed/feed.xml"
+    },
+    {
+      "rel": "alternate",
+      "type": "application/feed+json",
+      "href": "https://lqdev.me/feed/index.json"
+    },
+    {
+      "rel": "me",
+      "type": "text/html",
+      "href": "https://github.com/lqdev"
+    },
+    {
+      "rel": "me",
+      "type": "text/html",
+      "href": "https://bsky.app/profile/did:plc:pme7qquljcdx6i4zyawoxypd"
+    },
+    {
+      "rel": "me",
+      "type": "text/html",
+      "href": "https://toot.lqdev.tech/@lqdev"
     }
   ]
 }

@@ -996,3 +996,59 @@ let queueRecentPostsForDelivery (unifiedItems: UnifiedFeeds.UnifiedFeedItem list
     else
         printfn "  📮 Found %d recent posts for delivery (will be queued post-deployment)" recentItems.Length
         printfn "  ℹ️  Post queueing handled by GitHub Actions workflow after deployment"
+
+/// Mastodon `featured` collection (pinned posts), FEP-compatible OrderedCollection.
+/// Items are the full Note/Article objects so consumers need not dereference.
+/// Source of truth is Data/pinned-posts.json (same list the homepage uses).
+let buildFeatured (pinned: Domain.PinnedPost array) (unifiedItems: UnifiedFeeds.UnifiedFeedItem list) (outputDir: string) : unit =
+    let fileNameOf (url: string) = url.TrimEnd('/').Split('/') |> Array.last
+    let notes =
+        pinned
+        |> Array.sortBy (fun p -> p.Order)
+        |> Array.choose (fun p ->
+            unifiedItems
+            |> List.tryFind (fun item -> fileNameOf item.Url = p.FileName && item.ContentType = p.ContentType))
+        |> Array.map (convertToNote >> box)
+
+    let featured =
+        dict [
+            "@context", box Config.activityStreamsContext
+            "id", box (sprintf "%s/api/activitypub/featured" Config.baseUrl)
+            "type", box "OrderedCollection"
+            "totalItems", box notes.Length
+            "orderedItems", box notes
+        ]
+
+    let dataDir = Path.Combine(outputDir, "api", "data")
+    Directory.CreateDirectory(dataDir) |> ignore
+    File.WriteAllText(Path.Combine(dataDir, "featured.json"), JsonSerializer.Serialize(featured, jsonOptions))
+    printfn "  ✅ ActivityPub featured collection: %d pinned items" notes.Length
+
+/// NodeInfo 2.1 document (http://nodeinfo.diaspora.software/ns/schema/2.1).
+/// Discovery link lives in _src/.well-known/nodeinfo; this writes the target
+/// to _public/nodeinfo/2.1.json (routed from /nodeinfo/2.1 by staticwebapp.config.json).
+let buildNodeInfo (unifiedItems: UnifiedFeeds.UnifiedFeedItem list) (outputDir: string) : unit =
+    let nodeInfo =
+        dict [
+            "version", box "2.1"
+            "software", box (dict [
+                "name", box "lqdev-me"
+                "version", box Constants.Pwa.cacheVersion
+                "repository", box "https://github.com/lqdev/luisquintanilla.me"
+                "homepage", box Config.baseUrl ])
+            "protocols", box [| "activitypub" |]
+            "services", box (dict [ "inbound", box Array.empty<string>; "outbound", box [| "rss2.0" |] ])
+            "openRegistrations", box false
+            "usage", box (dict [
+                "users", box (dict [ "total", box 1; "activeMonth", box 1; "activeHalfyear", box 1 ])
+                "localPosts", box unifiedItems.Length ])
+            "metadata", box (dict [
+                "nodeName", box Constants.Site.title
+                "nodeDescription", box Constants.Author.bio
+                "federation", box (sprintf "%s/FEDERATION.md" "https://github.com/lqdev/luisquintanilla.me/blob/main") ])
+        ]
+
+    let dir = Path.Combine(outputDir, "nodeinfo")
+    Directory.CreateDirectory(dir) |> ignore
+    File.WriteAllText(Path.Combine(dir, "2.1.json"), JsonSerializer.Serialize(nodeInfo, jsonOptions))
+    printfn "  ✅ NodeInfo 2.1: %d local posts" unifiedItems.Length

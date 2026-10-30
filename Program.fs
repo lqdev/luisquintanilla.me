@@ -161,6 +161,8 @@ let main argv =
     ActivityPubBuilder.buildActivities activityPubContent "_public"
     ActivityPubBuilder.buildOutbox activityPubContent "_public"
     ActivityPubBuilder.queueRecentPostsForDelivery activityPubContent "_public"
+    ActivityPubBuilder.buildFeatured (loadPinnedPosts()) activityPubContent "_public"
+    ActivityPubBuilder.buildNodeInfo activityPubContent "_public"
 
     // =============================================================================
     // AT Protocol (ATmosphere) staging — site.standard.document records for Posts (Track A).

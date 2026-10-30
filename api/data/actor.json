@@ -5,6 +5,12 @@
     {
       "toot": "http://joinmastodon.org/ns#",
       "discoverable": "toot:discoverable",
+      "indexable": "toot:indexable",
+      "featured": {
+        "@id": "toot:featured",
+        "@type": "@id"
+      },
+      "manuallyApprovesFollowers": "as:manuallyApprovesFollowers",
       "memorial": "toot:memorial",
       "alsoKnownAs": {
         "@id": "as:alsoKnownAs",
@@ -25,7 +31,10 @@
   "name": "Luis Quintanilla",
   "summary": "AI whisperer wandering the shifting sands of the desert of the real . Semi-fluent in the language of machines, with an affinity for the F# dialect.",
   "url": "https://lqdev.me/",
+  "published": "2026-10-30T00:00:00Z",
   "discoverable": true,
+  "indexable": false,
+  "manuallyApprovesFollowers": false,
   "memorial": false,
   "icon": {
     "type": "Image",
@@ -58,5 +67,6 @@
   "inbox": "https://lqdev.me/api/activitypub/inbox",
   "outbox": "https://lqdev.me/api/activitypub/outbox",
   "followers": "https://lqdev.me/api/activitypub/followers",
-  "following": "https://lqdev.me/api/activitypub/following"
+  "following": "https://lqdev.me/api/activitypub/following",
+  "featured": "https://lqdev.me/api/activitypub/featured"
 }

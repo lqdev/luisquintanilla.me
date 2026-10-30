@@ -138,6 +138,16 @@ let verifyActor () =
     check "icon.url" Constants.Avatar.displayUrl (root.GetProperty("icon").GetProperty("url").GetString())
     check "image.url" Constants.Avatar.displayUrl (root.GetProperty("image").GetProperty("url").GetString())
     check "publicKeyPem" Constants.ActivityPub.publicKeyPem (root.GetProperty("publicKey").GetProperty("publicKeyPem").GetString())
+    check "featured" (Constants.Urls.canonical + "/api/activitypub/featured") (str "featured")
+
+    // Policy: discoverable (directories, suggestions) but NOT full-text indexable.
+    let checkBool (label: string) (expected: bool) =
+        match root.TryGetProperty(label) with
+        | true, (v: JsonElement) when v.GetBoolean() = expected -> ()
+        | _ -> mismatches.Add(sprintf "%s: expected %b" label expected)
+    checkBool "discoverable" true
+    checkBool "indexable" false
+    checkBool "manuallyApprovesFollowers" false
 
     let alsoKnownAs = root.GetProperty("alsoKnownAs")
     if alsoKnownAs.GetArrayLength() = 0 || alsoKnownAs.[0].GetString() <> Constants.Author.mastodonProfile then

@@ -46,6 +46,10 @@ This directory contains the Azure Functions implementation for ActivityPub feder
 - **Inbox**: `/api/activitypub/inbox` (Phase 4 - receives Follow/Unfollow activities)
 - **Followers**: `/api/activitypub/followers`
 - **Following**: `/api/activitypub/following`
+- **Featured (pinned)**: `/api/activitypub/featured` (generated from `Data/pinned-posts.json`)
+- **NodeInfo**: `/.well-known/nodeinfo` → `/nodeinfo/2.1` (static, generated at build)
+- **host-meta**: `/.well-known/host-meta` (XRD `lrdd` template for WebFinger)
+- **Federation policy**: [`/FEDERATION.md`](../FEDERATION.md) (FEP-67ff)
 - **Individual Notes**: `/api/activitypub/notes/{hash}` (Azure Function proxy serving static files with correct Content-Type)
 
 **Rationale**: The `/api/activitypub/*` structure enables other `/api/*` functionality for non-ActivityPub features while keeping ActivityPub endpoints logically grouped. See [`/docs/activitypub/implementation-status.md`](../docs/activitypub/implementation-status.md) lines 37-45 for full architectural decision documentation.
