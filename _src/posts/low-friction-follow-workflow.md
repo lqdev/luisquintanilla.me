@@ -6,9 +6,11 @@ published_date: "2026-10-30 16:27 -05:00"
 tags: ["github","indieweb","rss","opml","webmentions","workflow"]
 ---
 
-In a [previous post](/posts/github-issue-publishing-workflow/), I described how I use GitHub issue forms and Actions as a lightweight CMS and mobile publishing flow. I wanted that same convenience for following people.
+In a [previous post](/posts/github-issue-publishing-workflow/), I described my GitHub Issues-based CMS and mobile publishing flow. I want to use that same foundation for follows.
 
-On a social app, one tap to follow adds someone to my following list, subscribes me to their updates, and may notify them. I want that experience with my website as the hub and other services as spokes, a model I wrote about in my [thoughts on the social web after FOSDEM](/posts/fosdem-2026-social-web-thoughts/).
+On a social app, tapping Follow adds someone to my list, subscribes me to updates, and may notify them. I want that ease without handing the relationship to the app.
+
+My website is my digital home and the hub for my identity, content, and activity. Social networks and protocols are spokes that help me reach people on other services; they extend the hub, not replace it. If one disappears, my identity and published work remain on my site. I wrote about this model in my [FOSDEM reflections](/posts/fosdem-2026-social-web-thoughts/). My public following list should live on the hub too.
 
 DISCLAIMER: AI was used to help me organize and improve the flow of this post. Ideas and thoughts expressed are my own.
 
@@ -20,13 +22,13 @@ For blogs that publish an open feed like RSS, I can subscribe with the reader I 
 
 To notify the owner, I can mark the blogroll link with the [`u-follow-of` microformat](https://indieweb.org/u-follow-of) and send a [Webmention](https://indieweb.org/Webmention). Webmention is a standard for notifying another site when I link to it. A site that accepts follow Webmentions can tell the owner or display the follow. That adds a notification to the blogroll relationship.
 
-OPML makes feed lists portable, and many readers can import and export it. My [collections](/collections/) include a [blogroll](/collections/blogroll/), a [podroll](/collections/podroll/), [YouTube channels](/collections/youtube/), [forums](/collections/forums/), and topic-based [starter packs](/collections/starter-packs/). Some combine different kinds of feeds. I wrote about using RSS and OPML to create starter packs around Bluesky and other services in [Starter Packs with OPML and RSS](/posts/rss-opml-starter-packs/).
+OPML makes feed lists portable: readers can import or export them. My [collections](/collections/) include a [blogroll](/collections/blogroll/), [podroll](/collections/podroll/), [YouTube channels](/collections/youtube/), [forums](/collections/forums/), and topic-based [starter packs](/collections/starter-packs/). Some combine different feeds. I wrote about using RSS and OPML for Bluesky and other starter packs in [this post](/posts/rss-opml-starter-packs/).
 
-The follow workflow below only updates the blogroll or podroll; my other collections include other feeds. The OPML files are the public source of truth for feeds I choose to share, not every private subscription in my reader. Importing OPML is a snapshot, so later changes to my site do not update copies already in clients.
+The follow workflow below only updates my blogroll or podroll. My OPML collections are the public source of truth for feeds I choose to share, not all my reader subscriptions. Importing OPML is a snapshot; later changes do not update existing copies in clients.
 
 ## Reusing what I already have
 
-I want to improve both the manual list updates and synchronization; this post focuses on the first. Finding an RSS feed can take more effort than editing a data file. Feeds are not always easy to find, even for podcasts, and without one I cannot add a site to these lists. After finding a feed, I copy its URL and site details into the list. The [RSS Browser Extension](https://github.com/lqdev/rss-browser-extension) detects feeds on pages, as I wrote about when [building it](/posts/taking-claude-code-web-for-a-spin/), but I still have to start and submit a follow issue.
+I want to improve both manual list maintenance and synchronization; here I focus on the first. Finding feeds can take more effort than editing a file. Blog and podcast feed URLs are not always easy to find, and without one I cannot add the site to these lists. I then copy the URL and site details into the form. The [RSS Browser Extension](https://github.com/lqdev/rss-browser-extension) detects feeds on pages, as I wrote in [my post about building it](/posts/taking-claude-code-web-for-a-spin/), but I still have to submit a follow issue.
 
 I already use GitHub issues to create posts, and my site sends Webmentions for interactions like responses and RSVPs during publishing. I reused those pieces rather than add another service. The [follow issue template](https://github.com/lqdev/luisquintanilla.me/blob/main/.github/ISSUE_TEMPLATE/follow.yml) starts the process:
 
