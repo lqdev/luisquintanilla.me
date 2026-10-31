@@ -16,7 +16,7 @@ DISCLAIMER: AI was used to help me organize and improve the flow of this post. I
 
 ## Building a follow on the open web
 
-A [blogroll](https://indieweb.org/blogroll) is a curated list of links to blogs and sites I follow. It is an old web practice, not unique to me. It helps people discover what I read; on its own, it neither subscribes me to updates nor tells the site owner.
+A [blogroll](https://indieweb.org/blogroll) is a curated list of links to blogs and sites I follow. It common practice to publish this list on your site in the early days of the web. The blogrolls helps people discover what I read. On its own, it neither subscribes me to updates nor tells the site owner that I am following them.
 
 For blogs that publish an open feed like RSS, I can subscribe with the reader I choose. That is separate from the public list: the blogroll helps with discovery, while the feed gives my reader updates. I wrote more about open feeds in [Rediscovering the RSS protocol](/posts/rediscovering-rss-user-freedom/).
 
