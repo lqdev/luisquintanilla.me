@@ -8,21 +8,21 @@ tags: ["github","indieweb","rss","opml","webmentions","workflow"]
 
 In a [previous post](/posts/github-issue-publishing-workflow/), I described my GitHub Issues-based CMS and mobile publishing flow. I want to use that same foundation for follows.
 
-On a social app, tapping Follow adds someone to my list, subscribes me to updates, and may notify them. I want that ease without handing the relationship to the app.
+Social apps bundle follows: I add someone to my list, subscribe to their updates, and they may be notified. I want that ease without one platform owning it.
 
-My website is my digital home and the hub for my identity, content, and activity. Social networks and protocols are spokes that help me reach people on other services; they extend the hub, not replace it. If one disappears, my identity and published work remain on my site. I wrote about this model in my [FOSDEM reflections](/posts/fosdem-2026-social-web-thoughts/). My public following list should live on the hub too.
+My site is my digital home and hub for my identity and content. Networks and protocols are spokes that help me reach others, not replacements for the hub. If one disappears, my site and work remain. My [FOSDEM reflections](/posts/fosdem-2026-social-web-thoughts/) explain the model. For following, my site holds the public list, RSS lets my reader subscribe, Webmention can notify the other site, and OPML makes the list portable.
 
 DISCLAIMER: AI was used to help me organize and improve the flow of this post. Ideas and thoughts expressed are my own.
 
 ## Building a follow on the open web
 
-A [blogroll](https://indieweb.org/blogroll) is a curated list of links to blogs and sites I follow. It common practice to publish this list on your site in the early days of the web. The blogrolls helps people discover what I read. On its own, it neither subscribes me to updates nor tells the site owner that I am following them.
+A [blogroll](https://indieweb.org/blogroll) is a curated list of links to blogs and sites I follow. Publishing one on a personal site has been a web tradition since the early days. It helps people discover what I read, but a list alone neither subscribes me to updates nor notifies the site owner.
 
-For blogs that publish an open feed like RSS, I can subscribe with the reader I choose. That is separate from the public list: the blogroll helps with discovery, while the feed gives my reader updates. I wrote more about open feeds in [Rediscovering the RSS protocol](/posts/rediscovering-rss-user-freedom/).
+For blogs publishing open feeds like RSS, I can subscribe with the reader I choose. The blogroll is public and aids discovery; the feed provides updates. I wrote more about this in [Rediscovering the RSS protocol](/posts/rediscovering-rss-user-freedom/).
 
-To notify the owner, I can mark the blogroll link with the [`u-follow-of` microformat](https://indieweb.org/u-follow-of) and send a [Webmention](https://indieweb.org/Webmention). Webmention is a standard for notifying another site when I link to it. A site that accepts follow Webmentions can tell the owner or display the follow. That adds a notification to the blogroll relationship.
+To notify the owner, I mark the link with [`u-follow-of`](https://indieweb.org/u-follow-of) and send a [Webmention](https://indieweb.org/Webmention). Webmention lets one site notify another when it links to it. A site that accepts follow Webmentions can tell its owner or display the follow. That adds notification to the blogroll.
 
-OPML makes feed lists portable: readers can import or export them. My [collections](/collections/) include a [blogroll](/collections/blogroll/), [podroll](/collections/podroll/), [YouTube channels](/collections/youtube/), [forums](/collections/forums/), and topic-based [starter packs](/collections/starter-packs/). Some combine different feeds. I wrote about using RSS and OPML for Bluesky and other starter packs in [this post](/posts/rss-opml-starter-packs/).
+OPML makes feed lists portable: readers can import or export them. My [collections](/collections/) include a [blogroll](/collections/blogroll/), [podroll](/collections/podroll/), [YouTube channels](/collections/youtube/), [forums](/collections/forums/), and topic-based [starter packs](/collections/starter-packs/). Others mix feeds. I wrote about using RSS and OPML for Bluesky and other starter packs in [this post](/posts/rss-opml-starter-packs/).
 
 The follow workflow below only updates my blogroll or podroll. My OPML collections are the public source of truth for feeds I choose to share, not all my reader subscriptions. Importing OPML is a snapshot; later changes do not update existing copies in clients.
 
