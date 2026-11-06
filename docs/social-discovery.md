@@ -22,7 +22,17 @@ The following endpoint is an include-only OPML directory, not a flat RSS-reader 
 
 Each child document remains an independently usable flat OPML subscription list. The root intentionally does not duplicate the child RSS outlines, and inclusion is shallow: the root includes child OPML files, which contain the direct RSS outlines. Clients that do not expand `type="include"` should import one of the child documents directly.
 
-The following endpoint is distinct from `/feed/index.opml`, which is a list of Luis's own feeds and is therefore not a following list. Inclusion is also not live synchronization; a consumer may fetch children when opening the directory, but an already-imported RSS subscription list does not automatically track future changes.
+The following endpoint is distinct from `/feed/index.opml`, which is a list of Luis's own feeds and is therefore not a following list. OPML inclusion alone is not live synchronization: an already-imported RSS subscription list does not automatically track future changes.
+
+### WebSub for OPML
+
+When the WebSub hub is configured for deployment, all six following OPML routes advertise the hub and their own topic URL through HTTP `Link` headers (`rel="hub"` and `rel="self"`). The publisher workflow adds those headers to the generated Static Web Apps configuration and, after a successful deployment, sends an authenticated publish notification for the root directory and each child list. Each OPML document includes a `dateModified` value derived from its source files' latest committed change.
+
+This is a push signal for **list changes**, not a reader-side subscription manager. A compatible subscriber must subscribe to the root and each `type="include"` URL as separate topics, then reconcile the delivered OPML against its own subscriptions. The hub forwards the complete OPML representation; it does not parse includes or modify a reader's account. Existing readers without OPML-over-WebSub support continue to import the list as a snapshot. The RSS feeds listed inside OPML are separate topics and continue to update according to each reader's existing feed behavior.
+
+To enable publisher discovery and notifications, set the lqdev.me repository variable `WEBSUB_HUB_URL` to the deployed hub's root URL and the repository secret `WEBSUB_PUBLISH_TOKEN` to the hub's publish token. The URL is public configuration; only the token belongs in a secret. The pipeline skips hub discovery and notifications while `WEBSUB_HUB_URL` is unset. `Scripts/ping-websub.fsx` defaults to a dry run and accepts `--commit` only for an authenticated notification.
+
+The OPML routes use `Cache-Control: public, max-age=0, must-revalidate` so the hub fetches the newly deployed representation rather than a stale edge-cached copy after a publish notification.
 
 Azure Static Web Apps serves the generated following artifact directly and rewrites the contact and extensionless profile endpoints to their existing generated artifacts. About Markdown is copied as a generated artifact because its machine-readable `summary` frontmatter must remain available. The `mimeTypes` map supplies the required `.opml`, `.md`, `.vcf`, and `.json` media types; endpoint routes supply `Access-Control-Allow-Origin: *` without changing global CORS or fallback behavior.
 

@@ -248,7 +248,12 @@ module CollectionProcessor =
                     XmlUrl = item.XmlUrl
                 })
 
-        OpmlService.buildOpmlFeed collection.Title Constants.Urls.canonical outlines
+        let sourcePath = Path.Join("Data", collection.DataFile)
+        OpmlService.buildOpmlFeedWithDateModified
+            collection.Title
+            Constants.Urls.canonical
+            (Some (OpmlService.sourceModified sourcePath))
+            outlines
         |> fun feed -> feed.ToString()
 
     // Generate GPX file for travel collections  
