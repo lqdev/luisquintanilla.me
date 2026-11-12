@@ -29,7 +29,7 @@ runs:
   using: "composite"
   steps:
     - name: Install uv (Python package manager)
-      uses: astral-sh/setup-uv@v4
+      uses: astral-sh/setup-uv@v10
       with:
         version: "latest"
 

@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Run domain analysis script
         id: analyze
@@ -48,7 +48,7 @@ jobs:
           echo "${{ steps.analyze.outputs.top_domains }}"
 
       - name: Upload results as artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: external-domains-report-${{ github.run_number }}
           path: domain_analysis.tsv

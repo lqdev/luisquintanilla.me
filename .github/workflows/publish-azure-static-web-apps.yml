@@ -40,13 +40,13 @@ jobs:
       quotes_staged: ${{ steps.atproto_check.outputs.quotes_staged }}        # Responses: ATProto quote-posts
       reposts_staged: ${{ steps.atproto_check.outputs.reposts_staged }}      # Responses: ATProto reposts
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           submodules: true
           lfs: false
       
       - name: Setup .NET SDK 10.x
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with: 
           dotnet-version: '10.0.x'
           cache: false
@@ -198,7 +198,7 @@ jobs:
       # Upload artifacts for downstream notification jobs
       # These jobs run independently and need access to build outputs
       - name: Upload webmention data for notification job
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: webmention-artifacts
           path: |
@@ -207,7 +207,7 @@ jobs:
           retention-days: 1
       
       - name: Upload ActivityPub data for delivery queue
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: activitypub-artifacts
           # Phase 5F: Upload all outbox files including pagination pages
@@ -215,7 +215,7 @@ jobs:
           retention-days: 1
 
       - name: Upload Blog Archive exports
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: blog-archive-artifacts
           path: _public/archive/*.bar
@@ -225,7 +225,7 @@ jobs:
       # guarded on the check step so nothing is uploaded (and no warning) while the flag is off.
       - name: Upload AT Protocol staging for sync job
         if: steps.atproto_check.outputs.staged == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: atproto-staging
           path: _public/api/data/atproto/documents/
@@ -233,7 +233,7 @@ jobs:
 
       - name: Upload AT Protocol note staging for sync job
         if: steps.atproto_check.outputs.notes_staged == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: atproto-staging-notes
           path: _public/api/data/atproto/posts/
@@ -241,7 +241,7 @@ jobs:
 
       - name: Upload AT Protocol media staging for sync job
         if: steps.atproto_check.outputs.media_staged == 'true' || steps.atproto_check.outputs.video_staged == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: atproto-staging-media
           path: _public/api/data/atproto/media/
@@ -251,7 +251,7 @@ jobs:
       # guarded on its own check output so nothing is uploaded while a mode's flag is off.
       - name: Upload AT Protocol bookmark staging for sync job
         if: steps.atproto_check.outputs.bookmarks_staged == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: atproto-staging-bookmarks
           path: _public/api/data/atproto/bookmarks/
@@ -259,7 +259,7 @@ jobs:
 
       - name: Upload AT Protocol reshare staging for sync job
         if: steps.atproto_check.outputs.reshares_staged == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: atproto-staging-reshares
           path: _public/api/data/atproto/reshares/
@@ -267,7 +267,7 @@ jobs:
 
       - name: Upload AT Protocol quote staging for sync job
         if: steps.atproto_check.outputs.quotes_staged == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: atproto-staging-quotes
           path: _public/api/data/atproto/quotes/
@@ -275,7 +275,7 @@ jobs:
 
       - name: Upload AT Protocol repost staging for sync job
         if: steps.atproto_check.outputs.reposts_staged == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: atproto-staging-reposts
           path: _public/api/data/atproto/reposts/
@@ -292,19 +292,19 @@ jobs:
     runs-on: ubuntu-latest
     name: Send Webmentions
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           submodules: true
           lfs: false
       
       - name: Setup .NET SDK 10.x
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with: 
           dotnet-version: '10.0.x'
           cache: false
       
       - name: Download webmention data
-        uses: actions/download-artifact@v4.1.8
+        uses: actions/download-artifact@v8
         with:
           name: webmention-artifacts
           path: .
@@ -330,7 +330,7 @@ jobs:
       ACTIVITYPUB_STORAGE_CONNECTION: ${{ secrets.ACTIVITYPUB_STORAGE_CONNECTION }}
     steps:
       - name: Download ActivityPub artifacts
-        uses: actions/download-artifact@v4.1.8
+        uses: actions/download-artifact@v8
         with:
           name: activitypub-artifacts
           path: _public/api/data/outbox/
@@ -416,20 +416,20 @@ jobs:
     runs-on: ubuntu-latest
     name: Sync AT Protocol Records
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           submodules: true
           lfs: false
 
       - name: Setup .NET SDK 10.x
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '10.0.x'
           cache: false
 
       - name: Download AT Protocol document staging
         if: needs.build_and_deploy_job.outputs.atproto_staged == 'true'
-        uses: actions/download-artifact@v4.1.8
+        uses: actions/download-artifact@v8
         with:
           name: atproto-staging
           path: atproto-staging
@@ -448,7 +448,7 @@ jobs:
 
       - name: Download AT Protocol note staging
         if: needs.build_and_deploy_job.outputs.notes_staged == 'true'
-        uses: actions/download-artifact@v4.1.8
+        uses: actions/download-artifact@v8
         with:
           name: atproto-staging-notes
           path: atproto-feed
@@ -469,7 +469,7 @@ jobs:
 
       - name: Download AT Protocol media staging
         if: needs.build_and_deploy_job.outputs.media_staged == 'true' || needs.build_and_deploy_job.outputs.video_staged == 'true'
-        uses: actions/download-artifact@v4.1.8
+        uses: actions/download-artifact@v8
         with:
           name: atproto-staging-media
           path: atproto-feed/media
@@ -499,7 +499,7 @@ jobs:
       # unresolved). Reposts write to the separate app.bsky.feed.repost collection.
       - name: Download AT Protocol bookmark staging
         if: needs.build_and_deploy_job.outputs.bookmarks_staged == 'true'
-        uses: actions/download-artifact@v4.1.8
+        uses: actions/download-artifact@v8
         with:
           name: atproto-staging-bookmarks
           path: atproto-bookmarks
@@ -511,7 +511,7 @@ jobs:
 
       - name: Download AT Protocol reshare staging
         if: needs.build_and_deploy_job.outputs.reshares_staged == 'true'
-        uses: actions/download-artifact@v4.1.8
+        uses: actions/download-artifact@v8
         with:
           name: atproto-staging-reshares
           path: atproto-reshares
@@ -523,7 +523,7 @@ jobs:
 
       - name: Download AT Protocol quote staging
         if: needs.build_and_deploy_job.outputs.quotes_staged == 'true'
-        uses: actions/download-artifact@v4.1.8
+        uses: actions/download-artifact@v8
         with:
           name: atproto-staging-quotes
           path: atproto-quotes
@@ -535,7 +535,7 @@ jobs:
 
       - name: Download AT Protocol repost staging
         if: needs.build_and_deploy_job.outputs.reposts_staged == 'true'
-        uses: actions/download-artifact@v4.1.8
+        uses: actions/download-artifact@v8
         with:
           name: atproto-staging-reposts
           path: atproto-reposts

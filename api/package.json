@@ -10,11 +10,11 @@
     "node": ">=18.0.0 <22.0.0"
   },
   "dependencies": {
-    "rss-parser": "^3.13.0",
-    "@azure/identity": "^4.0.0",
-    "@azure/keyvault-keys": "^4.8.0",
-    "@azure/data-tables": "^13.2.2",
-    "@azure/storage-queue": "^12.17.0"
+    "@azure/data-tables": "^13.3.2",
+    "@azure/identity": "^4.14.1",
+    "@azure/keyvault-keys": "^4.10.2",
+    "@azure/storage-queue": "^12.32.0",
+    "rss-parser": "^3.13.0"
   },
   "keywords": [
     "azure-functions",
