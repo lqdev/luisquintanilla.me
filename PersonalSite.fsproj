@@ -95,8 +95,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AngleSharp" Version="1.4.0" />
+    <PackageReference Include="AngleSharp" Version="1.10.2" />
     <PackageReference Include="dotNetRdf" Version="3.*" />
+    <PackageReference Update="FSharp.Core" Version="10.1.404" />
     <PackageReference Include="FSharp.Data" Version="5.0.2" />
     <PackageReference Include="Giraffe.ViewEngine" Version="1.4.0" />
     <PackageReference Include="lqdev.WebmentionFs" Version="0.0.7" />

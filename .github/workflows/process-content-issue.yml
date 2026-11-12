@@ -12,12 +12,12 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Setup .NET 10
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '10.0.x'
           cache: false
@@ -27,7 +27,7 @@ jobs:
           
       - name: Parse issue and extract form data
         id: extract-data
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             try {
@@ -105,7 +105,7 @@ jobs:
           
       - name: Create Pull Request
         if: steps.process-issue.outputs.success == 'true'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Add note post: ${{ steps.extract-data.outputs.title }}"
@@ -130,7 +130,7 @@ jobs:
           
       - name: Close issue on success
         if: steps.process-issue.outputs.success == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.update({
@@ -149,7 +149,7 @@ jobs:
             
       - name: Handle processing errors
         if: steps.process-issue.outputs.success == 'false'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.createComment({
@@ -166,12 +166,12 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Setup .NET 10
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '10.0.x'
           cache: false
@@ -181,7 +181,7 @@ jobs:
           
       - name: Parse issue and extract form data
         id: extract-data
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             try {
@@ -274,7 +274,7 @@ jobs:
           
       - name: Create Pull Request
         if: steps.process-issue.outputs.success == 'true'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Add ${{ steps.extract-data.outputs.response_type }} response: ${{ steps.extract-data.outputs.title }}"
@@ -301,7 +301,7 @@ jobs:
           
       - name: Close issue on success
         if: steps.process-issue.outputs.success == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.update({
@@ -320,7 +320,7 @@ jobs:
             
       - name: Handle processing errors
         if: steps.process-issue.outputs.success == 'false'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.createComment({
@@ -337,12 +337,12 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Setup .NET 10
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '10.0.x'
           cache: false
@@ -352,7 +352,7 @@ jobs:
           
       - name: Parse issue and extract form data
         id: extract-data
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             try {
@@ -435,7 +435,7 @@ jobs:
           
       - name: Create Pull Request
         if: steps.process-issue.outputs.success == 'true'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Add bookmark: ${{ steps.extract-data.outputs.title }}"
@@ -461,7 +461,7 @@ jobs:
           
       - name: Close issue on success
         if: steps.process-issue.outputs.success == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.update({
@@ -480,7 +480,7 @@ jobs:
             
       - name: Handle processing errors
         if: steps.process-issue.outputs.success == 'false'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.createComment({
@@ -497,12 +497,12 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Setup .NET 10
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '10.0.x'
           cache: false
@@ -512,7 +512,7 @@ jobs:
           
       - name: Parse issue and extract form data
         id: extract-data
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             try {
@@ -612,7 +612,7 @@ jobs:
           
       - name: Create Pull Request
         if: steps.process-issue.outputs.success == 'true'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Add media post: ${{ steps.extract-data.outputs.title }}"
@@ -641,7 +641,7 @@ jobs:
           
       - name: Close issue on success
         if: steps.process-issue.outputs.success == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.update({
@@ -660,7 +660,7 @@ jobs:
             
       - name: Handle processing errors
         if: steps.process-issue.outputs.success == 'false'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.createComment({
@@ -676,12 +676,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup .NET 10
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '10.0.x'
           cache: false
@@ -691,7 +691,7 @@ jobs:
 
       - name: Parse issue and extract form data
         id: extract-data
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             try {
@@ -815,7 +815,7 @@ jobs:
 
       - name: Create Pull Request
         if: steps.process-issue.outputs.success == 'true'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Add marketplace listing: ${{ steps.extract-data.outputs.title }}"
@@ -845,7 +845,7 @@ jobs:
 
       - name: Close issue on success
         if: steps.process-issue.outputs.success == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.update({
@@ -864,7 +864,7 @@ jobs:
 
       - name: Handle processing errors
         if: steps.process-issue.outputs.success == 'false'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.createComment({
@@ -880,12 +880,12 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Setup .NET 10
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '10.0.x'
           cache: false
@@ -895,7 +895,7 @@ jobs:
           
       - name: Determine review type
         id: determine-type
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const labels = context.payload.issue.labels.map(label => label.name);
@@ -913,7 +913,7 @@ jobs:
           
       - name: Validate review type
         if: steps.determine-type.outputs.review_type == 'unknown'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const validTypes = ['book', 'movie', 'music', 'business', 'product'];
@@ -944,7 +944,7 @@ jobs:
       - name: Parse issue and extract form data
         id: extract-data
         if: steps.determine-type.outputs.review_type != 'unknown'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             try {
@@ -1117,7 +1117,7 @@ jobs:
           
       - name: Create Pull Request
         if: steps.process-issue.outputs.success == 'true'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Add ${{ steps.extract-data.outputs.review_type }} review: ${{ steps.extract-data.outputs.item_name }}"
@@ -1147,7 +1147,7 @@ jobs:
           
       - name: Close issue on success
         if: steps.process-issue.outputs.success == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.update({
@@ -1166,7 +1166,7 @@ jobs:
             
       - name: Handle processing errors
         if: steps.process-issue.outputs.success == 'false'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.createComment({
@@ -1185,19 +1185,19 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup .NET 10
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '10.0.x'
           cache: false
 
       - name: Parse issue and extract form data
         id: extract-data
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             function extractFormValue(body, label) {
@@ -1259,7 +1259,7 @@ jobs:
 
       - name: Create Pull Request
         if: steps.process-issue.outputs.success == 'true'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Follow: ${{ steps.extract-data.outputs.title }} (${{ steps.extract-data.outputs.roll }})"
@@ -1290,7 +1290,7 @@ jobs:
 
       - name: Close issue on success
         if: steps.process-issue.outputs.success == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             await github.rest.issues.createComment({
@@ -1308,7 +1308,7 @@ jobs:
 
       - name: Handle processing errors
         if: steps.process-issue.outputs.success == 'false'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           SCRIPT_OUTPUT: ${{ steps.process-issue.outputs.output }}
         with:

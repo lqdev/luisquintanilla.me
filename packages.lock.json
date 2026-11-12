@@ -4,9 +4,9 @@
     "net10.0": {
       "AngleSharp": {
         "type": "Direct",
-        "requested": "[1.4.0, )",
-        "resolved": "1.4.0",
-        "contentHash": "6ph8mpaQx0KL0COYRt0kI8MB9gSp1PtKijKMhJU//+aVFgKAJLKDesG/+26JSaVCOrHNgPf12wpfoyRcMYOeXg=="
+        "requested": "[1.10.2, )",
+        "resolved": "1.10.2",
+        "contentHash": "f/5wfCkGt6eDs2CEJSXZWKmuvOd58mSkN/fyZ88X9btackH2AhXxR6DrTRdak7pK5/pP0EZhHDE8EupnNJgawg=="
       },
       "dotNetRdf": {
         "type": "Direct",
@@ -30,9 +30,9 @@
       },
       "FSharp.Core": {
         "type": "Direct",
-        "requested": "[10.1.403, )",
-        "resolved": "10.1.403",
-        "contentHash": "TWtcvx8ZryidjqFb84j8iu2akDNpFr8pSWBbuFDMI5xRZrfCjJXsyOkO/bH5TTElSupHxgZTYi1I5Fd7InqlDQ=="
+        "requested": "[10.1.404, )",
+        "resolved": "10.1.404",
+        "contentHash": "NzyMm8uoa4ULzpQwMcq/4F2zCWGKduuGwxdRSi48kEahNlykKJBUSmb9H/6SFbS0fDd+LqQum0BOkDp8pD8xRg=="
       },
       "FSharp.Data": {
         "type": "Direct",

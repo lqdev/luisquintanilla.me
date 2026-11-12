@@ -816,18 +816,18 @@ Extend the existing `.github/workflows/process-content-issue.yml` with review pr
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Setup .NET 9
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: '9.0.x'
           
       - name: Determine review type
         id: determine-type
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const labels = context.payload.issue.labels.map(label => label.name);
@@ -845,7 +845,7 @@ Extend the existing `.github/workflows/process-content-issue.yml` with review pr
           
       - name: Parse issue and extract form data
         id: extract-data
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             try {
@@ -1016,7 +1016,7 @@ Extend the existing `.github/workflows/process-content-issue.yml` with review pr
           
       - name: Create Pull Request
         if: steps.process-issue.outputs.success == 'true'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Add ${{ steps.extract-data.outputs.review_type }} review: ${{ steps.extract-data.outputs.item_name }}"
@@ -1046,7 +1046,7 @@ Extend the existing `.github/workflows/process-content-issue.yml` with review pr
           
       - name: Close issue on success
         if: steps.process-issue.outputs.success == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.update({
@@ -1065,7 +1065,7 @@ Extend the existing `.github/workflows/process-content-issue.yml` with review pr
             
       - name: Handle processing errors
         if: steps.process-issue.outputs.success == 'false'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.createComment({

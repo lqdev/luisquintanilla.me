@@ -53,7 +53,7 @@ function extractFormValue(body, label) {
 ### 3. Python Environment Setup
 ```bash
 # Install uv package manager
-uses: astral-sh/setup-uv@v4
+uses: astral-sh/setup-uv@v10
 
 # Create virtual environment
 uv venv
@@ -120,7 +120,7 @@ Optional user commentary here...
 ### 6. Pull Request Creation
 ```yaml
 - name: Create Pull Request
-  uses: peter-evans/create-pull-request@v5
+  uses: peter-evans/create-pull-request@v8
   with:
     commit-message: "Add playlist: ${{ title }}"
     title: "Add playlist: ${{ title }}"

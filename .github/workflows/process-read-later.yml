@@ -16,13 +16,13 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Parse issue and extract form data
         id: extract-data
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             try {
@@ -137,7 +137,7 @@ jobs:
       - name: Create Pull Request
         id: create-pr
         if: steps.update-json.outputs.duplicate == 'false'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Add to read later: ${{ steps.final-title.outputs.title }}"
@@ -163,7 +163,7 @@ jobs:
 
       - name: Auto-merge Pull Request
         if: steps.create-pr.outputs.pull-request-number != ''
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             try {
@@ -254,7 +254,7 @@ jobs:
 
       - name: Close issue on success
         if: steps.update-json.outputs.duplicate == 'false'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.update({
@@ -273,7 +273,7 @@ jobs:
 
       - name: Handle duplicate
         if: steps.update-json.outputs.duplicate == 'true'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.update({
@@ -292,7 +292,7 @@ jobs:
 
       - name: Handle processing errors
         if: failure()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             github.rest.issues.createComment({
@@ -309,7 +309,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -363,7 +363,7 @@ jobs:
       - name: Create Pull Request
         id: create-pr
         if: steps.cleanup.outputs.has_changes == 'true'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Clean up read later entries older than 14 days"
@@ -391,7 +391,7 @@ jobs:
 
       - name: Auto-merge Pull Request
         if: steps.create-pr.outputs.pull-request-number != ''
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             try {
@@ -506,7 +506,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -609,7 +609,7 @@ jobs:
       - name: Create Pull Request
         id: create-pr
         if: steps.cleanup.outputs.has_changes == 'true'
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Clean up read later entries matching responses/bookmarks"
@@ -638,7 +638,7 @@ jobs:
 
       - name: Auto-merge Pull Request
         if: steps.create-pr.outputs.pull-request-number != ''
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             try {

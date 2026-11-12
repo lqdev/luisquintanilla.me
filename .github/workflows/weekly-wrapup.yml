@@ -13,12 +13,12 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0 # Full history needed for the script to analyze recent content
       
       - name: Setup .NET SDK 10.x
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with: 
           dotnet-version: '10.0.x'
           cache: false
@@ -56,7 +56,7 @@ jobs:
       
       - name: Create Pull Request
         if: steps.git-check.outputs.changes == 'true'
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'Add weekly post summary for ${{ steps.date.outputs.date }}'

@@ -239,7 +239,7 @@ Jobs run in separate runner instances with fresh filesystems. Artifacts enable s
 **Check:**
 1. Paths exist in build job workspace
 2. Build completed successfully before artifact upload
-3. actions/upload-artifact@v4 is functioning
+3. actions/upload-artifact@v7 is functioning
 4. GitHub Actions storage quota not exceeded
 
 ## Future Enhancements
