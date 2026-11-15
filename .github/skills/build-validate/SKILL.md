@@ -53,6 +53,8 @@ F# project files require explicit file ordering.
 ### Type inference errors
 Use explicit type annotations in F# code. The compiler sometimes can't infer types
 across module boundaries.
+For whole-document Markdig inline traversal, see the
+[explicit overload-selection pattern](../../../_src/resources/ai-memex/pattern-markdig-inline-traversal-overload-selection.md).
 
 ### Content not appearing
 Check that:
