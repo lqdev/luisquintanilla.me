@@ -1,7 +1,7 @@
 {
   "trailingSlash": "auto",
   "platform": {
-    "apiRuntime": "node:20"
+    "apiRuntime": "node:22"
   },
   "mimeTypes": {
     ".activitypub": "application/activity+json",

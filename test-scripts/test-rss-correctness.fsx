@@ -2,7 +2,7 @@
 // Run from the project root, after `dotnet build`:
 //   dotnet fsi test-scripts/test-rss-correctness.fsx
 
-#r "../bin/Debug/net10.0/PersonalSite.dll"
+#r "../bin/Debug/net11.0/PersonalSite.dll"
 
 open System
 open System.Globalization

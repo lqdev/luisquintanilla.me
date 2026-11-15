@@ -14,7 +14,7 @@ This document describes the dependency caching optimizations implemented across 
 
 ### 2. Workflow Updates
 
-All workflows using .NET have been updated to leverage the built-in caching feature of `actions/setup-dotnet@v4`:
+All workflows using .NET have been updated to leverage the built-in caching feature of `actions/setup-dotnet@v6`:
 
 #### Updated Workflows:
 1. **publish-azure-static-web-apps.yml** - Main deployment workflow
@@ -28,7 +28,7 @@ All workflows using .NET have been updated to leverage the built-in caching feat
 **Before:**
 ```yaml
 - name: Setup .NET SDK 9.x
-  uses: actions/setup-dotnet@v4
+  uses: actions/setup-dotnet@v6
   with: 
     dotnet-version: '9.0.x'
 
@@ -42,7 +42,7 @@ All workflows using .NET have been updated to leverage the built-in caching feat
 **After:**
 ```yaml
 - name: Setup .NET SDK 9.x
-  uses: actions/setup-dotnet@v4
+  uses: actions/setup-dotnet@v6
   with: 
     dotnet-version: '9.0.x'
     cache: true
@@ -57,7 +57,7 @@ All workflows using .NET have been updated to leverage the built-in caching feat
 
 ### 3. Additional Improvements
 
-- **Updated action versions**: `stats.yml` updated from `actions/setup-dotnet@v1.9.0` to `v4` and `actions/checkout@v2` to `v4`
+- **Updated action versions**: `stats.yml` updated from `actions/setup-dotnet@v1.9.0` to `v6` and `actions/checkout@v2` to `v7`
 - **Locked mode restore**: Using `--locked-mode` ensures builds fail if dependencies don't match the lock file
 - **Optimized builds**: Using `--no-restore` flag prevents redundant package restoration
 

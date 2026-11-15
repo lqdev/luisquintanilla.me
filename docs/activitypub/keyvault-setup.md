@@ -385,7 +385,7 @@ jobs:
   build-and-sign:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
       
       - name: Build static site
         run: |
@@ -393,7 +393,7 @@ jobs:
           dotnet run
       
       - name: Azure Login
-        uses: azure/login@v1
+        uses: azure/login@v3
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       

@@ -1,5 +1,5 @@
 // Run after dotnet build. Optional: --capture-fixtures DIR or --baseline-fixtures DIR.
-#r "../bin/Debug/net10.0/PersonalSite.dll"
+#r "../bin/Debug/net11.0/PersonalSite.dll"
 
 open System
 open System.IO

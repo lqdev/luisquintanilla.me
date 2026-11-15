@@ -2,7 +2,7 @@
 // Run from the project root:
 //   dotnet fsi test-scripts/test-rss-generated-output.fsx
 
-#r "../bin/Debug/net10.0/PersonalSite.dll"
+#r "../bin/Debug/net11.0/PersonalSite.dll"
 
 open System
 open System.Globalization

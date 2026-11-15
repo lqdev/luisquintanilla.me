@@ -1,5 +1,5 @@
 // Validation for issue #2578: nested additionalFields survive parsing; books unchanged.
-#r "../bin/Debug/net10.0/PersonalSite.dll"
+#r "../bin/Debug/net11.0/PersonalSite.dll"
 
 open ASTParsing
 open CustomBlocks

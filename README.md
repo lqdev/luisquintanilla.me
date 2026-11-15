@@ -171,8 +171,7 @@ This is a production-ready IndieWeb site built with F# featuring:
 ## 🚀 Getting Started
 
 ### Prerequisites
-- .NET 10.0 SDK
-- F# compiler
+- .NET 11.0.100 SDK (selected by `global.json`; includes the F# compiler)
 
 ### Build Commands
 ```bash

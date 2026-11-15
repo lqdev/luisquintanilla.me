@@ -1,0 +1,61 @@
+name: Validate site and API
+
+on:
+  pull_request:
+    paths-ignore:
+      - '_src/**'
+      - 'projects/archive/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      - name: Restore locked dependencies
+        run: dotnet restore --locked-mode
+      - name: Build generator
+        run: dotnet build --no-restore
+      - name: Generate site without optional live services
+        env:
+          GITHUB_TOKEN: ''
+          ACTIVITYPUB_STORAGE_CONNECTION: ''
+        run: dotnet run --no-build -- --strict
+      - name: Run offline regression tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          for script in \
+            test-rss-generated-output \
+            test-rss-correctness \
+            test-rss-cdata \
+            test-rss-reply-threading \
+            test-rss-semantics \
+            test-social-discovery \
+            test-atproto-response-mapping \
+            test-atproto-media; do
+            dotnet fsi "test-scripts/$script.fsx"
+          done
+
+  api:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: api/package-lock.json
+      - run: npm ci
+      - run: npm audit
+      - name: Run offline SDK compatibility tests
+        run: npm test

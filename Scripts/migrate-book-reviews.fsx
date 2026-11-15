@@ -42,7 +42,7 @@
     :::
 *)
 
-#r "../bin/Debug/net10.0/PersonalSite.dll"
+#r "../bin/Debug/net11.0/PersonalSite.dll"
 
 open System
 open System.IO

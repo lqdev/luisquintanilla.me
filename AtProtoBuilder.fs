@@ -568,7 +568,7 @@ let private removeMarkdownImageLinks (markdown: string) =
     else
         let doc = ASTParsing.parseMarkdownAst markdown
         let ranges =
-            Markdig.Syntax.MarkdownObjectExtensions.Descendants<Markdig.Syntax.Inlines.LinkInline>(doc)
+            Markdig.Syntax.MarkdownObjectExtensions.Descendants<Markdig.Syntax.Inlines.LinkInline>(doc :> Markdig.Syntax.MarkdownObject)
             |> Seq.choose (fun link ->
                 if not link.IsImage && containsMarkdownImage (link :> Markdig.Syntax.Inlines.Inline) then
                     let start = max 0 link.Span.Start

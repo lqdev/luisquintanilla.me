@@ -6,7 +6,7 @@ An F# static site generator for a personal [IndieWeb](https://indieweb.org/) web
 
 The site is built with:
 
-- **F# / .NET 10** — core build logic (`PersonalSite.fsproj`)
+- **F# / .NET 11** — core build logic (`PersonalSite.fsproj`)
 - **Giraffe ViewEngine** — type-safe HTML generation
 - **Markdig** — Markdown-to-HTML processing with custom extensions
 - **YamlDotNet** — YAML frontmatter parsing
@@ -121,13 +121,33 @@ Tag-specific feeds are also generated at `/tags/{tag}/feed.xml`.
 
 ### Prerequisites
 
-- [.NET 10 SDK](https://dotnet.microsoft.com/download) (target framework: `net10.0`)
-- Node.js 20+ (for Playwright tests and Azure SWA CLI, if needed)
+- [.NET 11 SDK](https://dotnet.microsoft.com/download) (target framework: `net11.0`)
+- Node.js 22 (for Playwright tests and Azure SWA CLI, if needed)
+
+`global.json` pins stable SDK 11.0.100 without roll-forward. Workflows use that
+same file so a later SDK patch cannot silently change the locked package content. FSharp.Core
+is pinned to 11.0.101. Keep the CI-validated `packages.lock.json` hash when local
+package content differs. See
+[`Pattern: NuGet Lock File Hash Drift`](_src/resources/ai-memex/pattern-nuget-lock-hash-drift.md).
+For local validation, use an isolated lockfile instead of committing a
+machine-specific hash:
+
+```powershell
+$localLock = Join-Path $env:TEMP 'lqdev-net11-local.lock.json'
+Copy-Item packages.lock.json $localLock
+dotnet restore --force-evaluate -p:NuGetLockFilePath=$localLock
+dotnet build --no-restore -p:NuGetLockFilePath=$localLock
+dotnet run --no-build -- --strict
+```
+
+Review the isolated lockfile's package versions against the committed lock; only
+environment-specific hash differences are expected.
 
 ### Build
 
 ```bash
-dotnet build
+dotnet restore --locked-mode
+dotnet build --no-restore
 ```
 
 ### Run the generator
@@ -137,6 +157,16 @@ dotnet run
 ```
 
 This reads `_src/`, processes all content, and writes the static site to `_public/`.
+
+For a strict build without optional AI calls or Azure follower synchronization,
+clear `GITHUB_TOKEN` and `ACTIVITYPUB_STORAGE_CONNECTION` in the process environment
+and run `dotnet run --no-build -- --strict`.
+
+The read-only `Validate site and API` pull-request workflow runs the generator,
+RSS/social/ATProto regressions and Node 22 offline SDK tests. It has no deployment
+or live federation steps. Run API checks locally with `npm ci`, `npm audit` and
+`npm test` from `api/`. Do not use the production publish workflow or API maintenance
+scripts as validation commands.
 
 ### Local preview
 
