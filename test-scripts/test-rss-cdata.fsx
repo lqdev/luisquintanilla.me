@@ -6,7 +6,7 @@
 //   dotnet fsi test-scripts/test-rss-cdata.fsx
 // Exits 0 on success, 1 on any failure (CI-gateable).
 
-#r "../bin/Debug/net10.0/PersonalSite.dll"
+#r "../bin/Debug/net11.0/PersonalSite.dll"
 
 open System.Xml.Linq
 open GenericBuilder

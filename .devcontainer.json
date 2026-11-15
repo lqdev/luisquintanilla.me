@@ -2,10 +2,10 @@
     "image": "mcr.microsoft.com/devcontainers/base:debian",
     "features": {
         "ghcr.io/devcontainers/features/dotnet": {
-            "version": "9.0"
+            "version": "11.0.100"
         },
         "ghcr.io/prulloac/devcontainer-features/ollama:1": {
-            "pull": "smollm2:135m"   
+            "pull": "smollm2:135m"
         },
         "ghcr.io/devcontainers/features/git:1": {}
     },

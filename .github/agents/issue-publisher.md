@@ -176,7 +176,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '9.0.x'
+          global-json-file: global.json
 
       - name: Process note issue
         run: |
@@ -441,7 +441,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '9.0.x'
+          global-json-file: global.json
 
       - name: Test S3 Connection
         env:
@@ -566,7 +566,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '9.0.x'
+          global-json-file: global.json
 
       - name: Build site
         run: |

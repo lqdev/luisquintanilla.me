@@ -53,7 +53,7 @@ function extractFormValue(body, label) {
 ### 3. Python Environment Setup
 ```bash
 # Install uv package manager
-uses: astral-sh/setup-uv@v10
+uses: astral-sh/setup-uv@v10.3.3
 
 # Create virtual environment
 uv venv

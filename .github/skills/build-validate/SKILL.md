@@ -20,7 +20,8 @@ dotnet run
 ## Build Expectations
 
 ### `dotnet build`
-- **Target**: .NET 10 (net10.0)
+- **Target**: .NET 11 (net11.0)
+- **SDK**: 11.0.100, pinned by `global.json`
 - **Expected**: 0 errors
 - **Known warning**: 1 pre-existing FS1104 warning in ActivityPubBuilder.fs (ignore)
 - **Duration**: ~10 seconds
@@ -38,6 +39,12 @@ dotnet run
 - Before committing code changes (at minimum `dotnet build`)
 
 ## Common Issues
+
+### Local NuGet lock hash drift
+Keep the CI-validated repository lock hash. Use an isolated local lockfile when
+local package content differs; see
+`_src/resources/ai-memex/pattern-nuget-lock-hash-drift.md` and `CONTRIBUTING.md`.
+Verify that package versions are unchanged before treating the difference as hash drift.
 
 ### Missing module in project file
 If you create a new `.fs` file, add it to `PersonalSite.fsproj` in the `<ItemGroup>`.

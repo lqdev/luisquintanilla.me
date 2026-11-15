@@ -45,10 +45,10 @@ jobs:
           submodules: true
           lfs: false
       
-      - name: Setup .NET SDK 10.x
+      - name: Setup .NET SDK 11.x
         uses: actions/setup-dotnet@v6
         with: 
-          dotnet-version: '10.0.x'
+          global-json-file: global.json
           cache: false
       
       - name: Install Dependencies
@@ -297,10 +297,10 @@ jobs:
           submodules: true
           lfs: false
       
-      - name: Setup .NET SDK 10.x
+      - name: Setup .NET SDK 11.x
         uses: actions/setup-dotnet@v6
         with: 
-          dotnet-version: '10.0.x'
+          global-json-file: global.json
           cache: false
       
       - name: Download webmention data
@@ -421,10 +421,10 @@ jobs:
           submodules: true
           lfs: false
 
-      - name: Setup .NET SDK 10.x
+      - name: Setup .NET SDK 11.x
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '10.0.x'
+          global-json-file: global.json
           cache: false
 
       - name: Download AT Protocol document staging

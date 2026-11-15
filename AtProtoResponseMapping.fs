@@ -123,7 +123,7 @@ let containsUnsupportedQuoteMedia (markdownBody: string) : bool =
         |> Seq.isEmpty
         |> not
     let hasImage =
-        Markdig.Syntax.MarkdownObjectExtensions.Descendants<LinkInline>(doc)
+        Markdig.Syntax.MarkdownObjectExtensions.Descendants<LinkInline>(doc :> Markdig.Syntax.MarkdownObject)
         |> Seq.exists (fun link -> link.IsImage)
     hasMediaBlock || hasImage
 

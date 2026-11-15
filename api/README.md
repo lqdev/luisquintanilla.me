@@ -32,10 +32,15 @@ Quick test:
 
 ## Installation
 
-1. Install Node.js dependencies:
+Use Node.js 22 for local development and the managed Static Web Apps API
+(`platform.apiRuntime: node:22`). The Azure SDK dependency tree requires Node 22;
+`.npmrc` enforces engine compatibility. The Functions host and extension bundle
+remain on v4.
+
+1. Install the locked Node.js dependencies:
 ```bash
 cd api
-npm install
+npm ci
 ```
 
 2. Install Azure Functions Core Tools (if not already installed):
@@ -54,6 +59,20 @@ func start
 The API will be available at `http://localhost:7071/api/files/{filePath}`
 
 ## Testing
+
+Run the offline SDK compatibility tests on Node 22:
+
+```bash
+cd api
+npm ci
+npm audit
+npm test
+```
+
+These tests use in-memory transports and generated test keys, not Azure credentials
+or live federation endpoints. They check request serialization, signing, table and
+queue operations. They do not verify an Azure deployment; the maintenance scripts
+and other integration tests may contact live services and must not be run as smoke tests.
 
 Test the redirect functionality:
 

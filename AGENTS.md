@@ -4,7 +4,7 @@
 
 **lqdev.me** — A personal website and blog built as an F# static site generator.
 
-- **Framework**: .NET 10, Giraffe ViewEngine, Markdig
+- **Framework**: .NET 11, Giraffe ViewEngine, Markdig
 - **Standards**: IndieWeb (microformats2, Webmention), RSS/Atom feeds, OPML
 - **Source**: `_src/` (markdown content) → `_public/` (generated output)
 - **Build**: `dotnet build` (compile) → `dotnet run` (generate site)

@@ -16,10 +16,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Setup .NET 10
+      - name: Setup .NET 11
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '10.0.x'
+          global-json-file: global.json
           cache: false
 
       - name: Restore dependencies
@@ -170,10 +170,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Setup .NET 10
+      - name: Setup .NET 11
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '10.0.x'
+          global-json-file: global.json
           cache: false
 
       - name: Restore dependencies
@@ -341,10 +341,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Setup .NET 10
+      - name: Setup .NET 11
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '10.0.x'
+          global-json-file: global.json
           cache: false
 
       - name: Restore dependencies
@@ -501,10 +501,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Setup .NET 10
+      - name: Setup .NET 11
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '10.0.x'
+          global-json-file: global.json
           cache: false
 
       - name: Restore dependencies
@@ -680,10 +680,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup .NET 10
+      - name: Setup .NET 11
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '10.0.x'
+          global-json-file: global.json
           cache: false
 
       - name: Restore dependencies
@@ -884,10 +884,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Setup .NET 10
+      - name: Setup .NET 11
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '10.0.x'
+          global-json-file: global.json
           cache: false
 
       - name: Restore dependencies
@@ -1189,10 +1189,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup .NET 10
+      - name: Setup .NET 11
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: '10.0.x'
+          global-json-file: global.json
           cache: false
 
       - name: Parse issue and extract form data

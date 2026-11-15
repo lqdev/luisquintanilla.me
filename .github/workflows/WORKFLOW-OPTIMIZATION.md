@@ -27,7 +27,7 @@ build_and_deploy_job
 #### 1. `build_and_deploy_job` (Main Job)
 **Responsibilities:**
 - Checkout repository
-- Setup .NET SDK 10.x
+- Setup .NET SDK 11.x
 - Restore dependencies
 - Build F# project
 - Generate static website
@@ -45,7 +45,7 @@ build_and_deploy_job
 #### 2. `send_webmentions_job` (Independent)
 **Responsibilities:**
 - Checkout repository (for Scripts/)
-- Setup .NET SDK 10.x
+- Setup .NET SDK 11.x
 - Download `webmention-artifacts`
 - Execute `Scripts/send-webmentions.fsx`
 
@@ -170,7 +170,7 @@ Jobs run in separate runner instances with fresh filesystems. Artifacts enable s
 - **Storage Impact:** Minimal (~100KB for webmention artifacts, ~10KB for ActivityPub data)
 
 ### Artifact Download Paths
-- **Webmentions:** Downloads to workspace root (`.`) to match build layout expectations (`_src/responses/`, `bin/Debug/net10.0/`)
+- **Webmentions:** Downloads to workspace root (`.`) to match build layout expectations (`_src/responses/`, `bin/Debug/net11.0/`)
 - **ActivityPub:** Downloads to `_public/api/data/outbox/` (matching script expectations)
 
 ## Testing the Workflow
@@ -224,7 +224,7 @@ Jobs run in separate runner instances with fresh filesystems. Artifacts enable s
 1. Artifact download succeeded
 2. `_src/responses/` contains markdown files
 3. `PersonalSite.dll` exists in workspace
-4. .NET SDK 10.x is available
+4. .NET SDK 11.x is available
 5. Script execution logs for specific errors
 
 ### If ActivityPub Job Fails
