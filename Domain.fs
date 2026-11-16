@@ -282,6 +282,28 @@ module Domain
         Items: CollectionItem array
     }
 
+    type DirectorySourceCollection = {
+        Id: string
+        Title: string
+        Url: string
+        OpmlUrl: string
+    }
+
+    type DirectoryEntry = {
+        Id: string
+        Title: string
+        HomepageUrl: string
+        FeedUrls: string array
+        Description: string option
+        Tags: string array
+        Collections: DirectorySourceCollection array
+    }
+
+    type DirectoryIndexDocument = {
+        Version: string
+        Entries: DirectoryEntry array
+    }
+
     // Collection paths for output generation
     type CollectionPaths = {
         HtmlPath: string        // "/collections/blogroll/index.html"

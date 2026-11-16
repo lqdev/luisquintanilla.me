@@ -145,6 +145,10 @@
         "primary": {
           "type": "boolean"
         },
+        "did": {
+          "type": "string",
+          "description": "A decentralized identifier associated with this identity."
+        },
         "url": {
           "$ref": "#/$defs/url"
         },

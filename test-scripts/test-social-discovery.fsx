@@ -52,6 +52,9 @@ let generatedAiStarterPackPath = Path.Combine(projectRoot, "_public", "collectio
 let generatedVCardPath = Path.Combine(projectRoot, "_public", "vcard.vcf")
 let generatedProfilePath = Path.Combine(projectRoot, "_public", ".well-known", "profile.json")
 let generatedProfileSchemaPath = Path.Combine(projectRoot, "_public", ".well-known", "profile.schema.v1.json")
+let generatedHostMetaPath = Path.Combine(projectRoot, "_public", ".well-known", "host-meta")
+let webfingerDataPath = Path.Combine(projectRoot, "api", "data", "webfinger.json")
+let webfingerHandlerPath = Path.Combine(projectRoot, "api", "webfinger", "index.js")
 let generatedUnifiedRssPath = Path.Combine(projectRoot, "_public", "feed", "feed.xml")
 let generatedUnifiedJsonFeedPath = Path.Combine(projectRoot, "_public", "feed", "index.json")
 let configPath = Path.Combine(projectRoot, "staticwebapp.config.json")
@@ -199,6 +202,7 @@ let profileSchema = JsonDocument.Parse(profileSchemaText).RootElement
 let profileSchemaId = profileSchema.GetProperty("$id").GetString()
 let profileSchemaDefs = profileSchema.GetProperty("$defs")
 let profileSchemaProfile = profileSchemaDefs.GetProperty("profile")
+let profileSchemaIdentity = profileSchemaDefs.GetProperty("identity")
 let profileSchemaFeeds = profileSchema.GetProperty("properties").GetProperty("feeds")
 let profileSchemaServices = profileSchema.GetProperty("properties").GetProperty("services")
 let hasJsonProperty (element: JsonElement) (name: string) =
@@ -236,6 +240,29 @@ let actualFollowingUrlSet = followingUrls |> Set.ofArray
 checkRequiredProperties "Profile manifest profile object" profileObject profileSchemaProfile
 checkRequiredProperties "Profile manifest feeds object" feedsObject profileSchemaFeeds
 checkRequiredProperties "Profile manifest services object" servicesObject profileSchemaServices
+let identityProperties = profileSchemaIdentity.GetProperty("properties")
+let identityRequired = requiredProperties profileSchemaIdentity
+check "Profile identity schema allows an optional DID property" (
+    hasJsonProperty identityProperties "did"
+    && not (identityRequired |> Array.contains "did"))
+let atprotoIdentities =
+    profile.GetProperty("identities").EnumerateArray()
+    |> Seq.filter (fun identity ->
+        hasJsonProperty identity "protocol"
+        && identity.GetProperty("protocol").GetString() = "atproto")
+    |> Seq.toArray
+check "Profile manifest has exactly one AT Protocol identity" (atprotoIdentities.Length = 1)
+match atprotoIdentities |> Array.tryHead with
+| Some identity ->
+    check "AT Protocol identity publishes the existing DID" (
+        hasJsonProperty identity "did"
+        && identity.GetProperty("did").GetString() = "did:plc:pme7qquljcdx6i4zyawoxypd")
+    check "AT Protocol identity preserves its Bluesky URL and rel=me" (
+        identity.GetProperty("id").GetString() = "bluesky"
+        && identity.GetProperty("url").GetString()
+            = "https://bsky.app/profile/did:plc:pme7qquljcdx6i4zyawoxypd"
+        && identity.GetProperty("rel").GetString() = "me")
+| None -> ()
 check "Profile manifest advertises aggregate and direct following OPMLs" (
     Set.isSubset requiredFollowingUrls actualFollowingUrlSet)
 check "Profile manifest preserves the AI starter pack entry" (
@@ -253,6 +280,45 @@ check "Profile manifest links to standard discovery surfaces" (
     services.GetProperty("webfinger").GetString() = "https://lqdev.me/.well-known/webfinger"
     && services.GetProperty("activitypub").GetString() = "https://lqdev.me/api/activitypub/actor"
     && services.GetProperty("indieauth").GetString().StartsWith("https://", StringComparison.Ordinal))
+
+printfn "\nWebFinger discovery"
+let webfinger = JsonDocument.Parse(readUtf8 webfingerDataPath).RootElement
+let webfingerAliases = webfinger.GetProperty("aliases").EnumerateArray() |> Seq.map _.GetString() |> Set.ofSeq
+let webfingerMeLinks =
+    webfinger.GetProperty("links").EnumerateArray()
+    |> Seq.filter (fun link ->
+        hasJsonProperty link "rel"
+        && link.GetProperty("rel").GetString() = "me")
+    |> Seq.map (fun link -> link.GetProperty("href").GetString())
+    |> Set.ofSeq
+check "WebFinger subject remains the existing ActivityPub account" (
+    webfinger.GetProperty("subject").GetString() = "acct:lqdev@lqdev.me")
+check "WebFinger aliases retain the canonical website and existing DID" (
+    webfingerAliases.Contains("https://lqdev.me/")
+    && webfingerAliases.Contains("did:plc:pme7qquljcdx6i4zyawoxypd"))
+check "WebFinger retains existing rel=me links" (
+    Set.isSubset
+        (set [
+            "https://github.com/lqdev"
+            "https://bsky.app/profile/did:plc:pme7qquljcdx6i4zyawoxypd"
+            "https://toot.lqdev.tech/@lqdev"
+        ])
+        webfingerMeLinks)
+let webfingerHandler = readUtf8 webfingerHandlerPath
+check "WebFinger continues to accept the canonical URL with and without a slash" (
+    webfingerHandler.Contains("'https://lqdev.me'", StringComparison.Ordinal)
+    && webfingerHandler.Contains("'https://lqdev.me/'", StringComparison.Ordinal))
+let hostMeta = XDocument.Load(generatedHostMetaPath)
+let xrdNamespace = XNamespace.Get("http://docs.oasis-open.org/ns/xri/xrd-1.0")
+let lrddTemplate =
+    hostMeta.Descendants(xrdNamespace + "Link")
+    |> Seq.tryPick (fun link ->
+        let rel = link.Attribute(XName.Get "rel")
+        let template = link.Attribute(XName.Get "template")
+        if not (isNull rel) && rel.Value = "lrdd" && not (isNull template) then Some template.Value
+        else None)
+check "Host-meta continues to discover WebFinger" (
+    lrddTemplate = Some "https://lqdev.me/.well-known/webfinger?resource={uri}")
 
 printfn "\nPublished feed identifiers"
 let unifiedRss = XDocument.Load(generatedUnifiedRssPath)
@@ -291,6 +357,9 @@ let followingRoute = routeFor "/.well-known/following.opml"
 let aboutRoute = routeFor "/.well-known/about.md"
 let contactRoute = routeFor "/.well-known/contact.vcf"
 let profileRoute = routeFor "/.well-known/profile"
+let webfingerRoute = routeFor "/.well-known/webfinger"
+check "WebFinger route continues to rewrite to its handler" (
+    rewrite webfingerRoute = Some "/api/webfinger")
 let childOpmlPaths =
     [|
         "/collections/blogroll/index.opml"
@@ -420,6 +489,31 @@ let runLiveChecks (baseUrl: string) =
     check "Live contact response contains FN" (liveContact.Contains("FN:Luis Quintanilla", StringComparison.Ordinal))
     check "Live profile response parses as JSON" (try JsonDocument.Parse(liveProfile) |> ignore; true with _ -> false)
     check "Live profile response has no typo" (not (liveProfile.Contains("webmebtion", StringComparison.Ordinal)))
+    let liveWebFingerBodies =
+        [| "https://lqdev.me"; "https://lqdev.me/" |]
+        |> Array.map (fun resource ->
+            let path = "/.well-known/webfinger?resource=" + Uri.EscapeDataString(resource)
+            use response = send "GET" path "application/jrd+json"
+            let body = response.Content.ReadAsStringAsync().GetAwaiter().GetResult()
+            check ("Live WebFinger resource " + resource + " returns 200") (
+                response.StatusCode = HttpStatusCode.OK)
+            check ("Live WebFinger resource " + resource + " returns JRD") (
+                not (isNull response.Content.Headers.ContentType)
+                && response.Content.Headers.ContentType.MediaType = "application/jrd+json")
+            let validJrd =
+                try
+                    use jrd = JsonDocument.Parse(body)
+                    let root = jrd.RootElement
+                    let aliases = root.GetProperty("aliases").EnumerateArray() |> Seq.map _.GetString() |> Set.ofSeq
+                    root.GetProperty("subject").GetString() = "acct:lqdev@lqdev.me"
+                    && aliases.Contains("https://lqdev.me/")
+                    && aliases.Contains("did:plc:pme7qquljcdx6i4zyawoxypd")
+                with _ -> false
+            check ("Live WebFinger resource " + resource + " preserves the same account and DID alias") validJrd
+            body)
+    check "Live WebFinger URL resources return the same JRD" (
+        liveWebFingerBodies.Length = 2
+        && liveWebFingerBodies[0] = liveWebFingerBodies[1])
 
     for path in [| "/.well-known/following.opml"; "/.well-known/about.md"; "/.well-known/contact.vcf"; "/.well-known/profile" |] do
         use response = send "HEAD" path "*/*"

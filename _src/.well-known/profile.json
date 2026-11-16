@@ -29,6 +29,7 @@
     {
       "id": "bluesky",
       "protocol": "atproto",
+      "did": "did:plc:pme7qquljcdx6i4zyawoxypd",
       "url": "https://bsky.app/profile/did:plc:pme7qquljcdx6i4zyawoxypd",
       "rel": "me"
     }
