@@ -18,12 +18,13 @@
     <Compile Include="ReviewSchema.fs" />
     <Compile Include="ContentTypes.fs" />
     <Compile Include="CustomBlocks.fs" />
+    <Compile Include="Services\LinkClassification.fs" />
+    <Compile Include="Services\ExternalLinkDecoration.fs" />
     <Compile Include="MediaTypes.fs" />
     <Compile Include="ASTParsing.fs" />
     <Compile Include="Diagnostics.fs" />
     <Compile Include="BlockRenderers.fs" />
     <Compile Include="OutputComparison.fs" />
-    <Compile Include="Services\LinkClassification.fs" />
     <Compile Include="Services\Markdown.fs" />
     <Compile Include="Services\Tag.fs" />
     <Compile Include="Services\AtProtoMediaValidation.fs" />

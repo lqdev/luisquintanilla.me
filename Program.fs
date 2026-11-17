@@ -169,6 +169,23 @@ let main argv =
               playlist.Metadata.Description |> Option.defaultValue "")
           yield! descriptionEntries marketplaceFeedData (fun listing -> listing.Metadata.Description) ]
         |> Map.ofList
+
+    let presentationMarkdownByPath =
+        presentationsFeedData
+        |> List.choose (fun entry ->
+            match entry.RssXml with
+            | None -> None
+            | Some rssXml ->
+                let link = rssXml.Element(System.Xml.Linq.XName.Get("link"))
+                if isNull link then
+                    None
+                else
+                    LinkClassification.normalizeKey link.Value
+                    |> Option.map (fun pathKey ->
+                        pathKey,
+                        (entry.Content.MarkdownSource
+                         |> Option.defaultValue entry.Content.Content)))
+        |> Map.ofList
     
     // Generate unified feeds (fire-hose + type-specific)
     UnifiedFeeds.buildAllFeeds allUnifiedItems "_public"
@@ -340,7 +357,8 @@ let main argv =
     printfn $"✅ Search indexes generated: {searchIndexStats.SearchIndex.ItemCount} content items, {searchIndexStats.TagIndex.TagCount} tags"
 
     let siteLinkConfiguration = LinkRegistry.loadSiteConfiguration "staticwebapp.config.json"
-    let scannedContentPages = LinkRegistry.scanContentPages outputDir allUnifiedContent
+    let scannedContentPages =
+        LinkRegistry.scanContentPages outputDir allUnifiedContent presentationMarkdownByPath
     let previewStats =
         LinkPreview.buildPreviewBuckets
             outputDir

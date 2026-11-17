@@ -19,9 +19,14 @@ type ScannedPage =
       SummaryText: string
       Links: ScannedLink list }
 
+type SiteRoute =
+    { Pattern: string
+      Redirect: string option
+      Rewrite: string option }
+
 type SiteLinkConfiguration =
     { InternalRedirects: Map<string, string>
-      RoutePatterns: string list }
+      Routes: SiteRoute list }
 
 [<CLIMutable>]
 type RegistryEdge =
@@ -61,25 +66,30 @@ let loadSiteConfiguration (configPath: string) =
         document.RootElement.GetProperty("routes").EnumerateArray()
         |> Seq.toList
 
-    let routePatterns =
-        routes
-        |> List.choose (fun route -> tryGetString route "route")
-
-    let internalRedirects =
+    let configuredRoutes =
         routes
         |> List.choose (fun route ->
-            match tryGetString route "route", tryGetString route "redirect" with
-            | Some source, Some target
-                when not (source.Contains("*", StringComparison.Ordinal))
+            tryGetString route "route"
+            |> Option.map (fun pattern ->
+                { Pattern = pattern
+                  Redirect = tryGetString route "redirect"
+                  Rewrite = tryGetString route "rewrite" }))
+
+    let internalRedirects =
+        configuredRoutes
+        |> List.choose (fun route ->
+            match route.Redirect with
+            | Some target
+                when not (route.Pattern.Contains("*", StringComparison.Ordinal))
                      && not (target.Contains(":splat", StringComparison.Ordinal)) ->
-                match LinkClassification.normalizeKey source, LinkClassification.normalizeKey target with
+                match LinkClassification.normalizeKey route.Pattern, LinkClassification.normalizeKey target with
                 | Some sourceKey, Some targetKey -> Some(sourceKey, targetKey)
                 | _ -> None
             | _ -> None)
         |> Map.ofList
 
     { InternalRedirects = internalRedirects
-      RoutePatterns = routePatterns }
+      Routes = configuredRoutes }
 
 let resolveRedirectPath (redirects: Map<string, string>) (pathKey: string) =
     let rec resolve seen path =
@@ -91,14 +101,43 @@ let resolveRedirectPath (redirects: Map<string, string>) (pathKey: string) =
             | None -> path
     resolve Set.empty pathKey
 
-let private pageFilePath (outputDir: string) (pathKey: string) =
+let private rawPathFromUrl (url: string) =
+    let mutable uri = Unchecked.defaultof<Uri>
+    if Uri.TryCreate(url, UriKind.Absolute, &uri) then
+        uri.AbsolutePath
+    else
+        url.Split([| '?'; '#' |], 2)[0]
+
+let contentPageFilePath (outputDir: string) (url: string) =
     let segments =
-        pathKey.Trim('/')
+        (rawPathFromUrl url).Trim('/')
             .Split([| '/' |], StringSplitOptions.RemoveEmptyEntries)
+        |> Array.filter (fun segment ->
+            not (segment.Equals("index.html", StringComparison.OrdinalIgnoreCase)))
         |> Array.map Uri.UnescapeDataString
     Path.Combine(Array.concat [ [| outputDir |]; segments; [| "index.html" |] ])
 
-let scanContentPages (outputDir: string) (items: UnifiedFeedItem list) =
+let private contentPagePathsByKey (outputDir: string) (items: UnifiedFeedItem list) =
+    items
+    |> List.choose (fun item ->
+        match LinkClassification.normalizeKey item.Url with
+        | Some pathKey -> Some(pathKey, contentPageFilePath outputDir item.Url)
+        | None -> None)
+    |> Map.ofList
+
+let private scanMarkdownLinks (parser: HtmlParser) (markdown: string) =
+    let document = parser.ParseDocument(MarkdownService.convertMdToHtml markdown)
+    document.QuerySelectorAll("a[href]")
+    |> Seq.map (fun anchor ->
+        { Href = anchor.GetAttribute("href")
+          Text = anchor.TextContent.Trim() })
+    |> Seq.toList
+
+let scanContentPages
+    (outputDir: string)
+    (items: UnifiedFeedItem list)
+    (markdownByPath: Map<string, string>)
+    =
     let parser = HtmlParser()
 
     items
@@ -106,7 +145,7 @@ let scanContentPages (outputDir: string) (items: UnifiedFeedItem list) =
         match LinkClassification.normalizeKey item.Url with
         | None -> None
         | Some pathKey ->
-            let htmlPath = pageFilePath outputDir pathKey
+            let htmlPath = contentPageFilePath outputDir item.Url
             let pageDocument =
                 if File.Exists(htmlPath) then
                     Some(parser.ParseDocument(File.ReadAllText(htmlPath)))
@@ -123,7 +162,7 @@ let scanContentPages (outputDir: string) (items: UnifiedFeedItem list) =
                 |> Option.map (fun summary -> summary.TextContent)
                 |> Option.filter (String.IsNullOrWhiteSpace >> not)
 
-            let links =
+            let htmlLinks =
                 body
                 |> Option.map (fun content ->
                     content.QuerySelectorAll("a[href]")
@@ -133,40 +172,125 @@ let scanContentPages (outputDir: string) (items: UnifiedFeedItem list) =
                     |> Seq.toList)
                 |> Option.defaultValue []
 
+            let markdownLinks =
+                markdownByPath
+                |> Map.tryFind pathKey
+                |> Option.map (scanMarkdownLinks parser)
+                |> Option.defaultValue []
+
+            let mediaImageAlt =
+                if item.ContentType <> ContentTypes.Media then
+                    None
+                else
+                    body
+                    |> Option.bind (fun content ->
+                        content.QuerySelectorAll("img[alt]")
+                        |> Seq.tryPick (fun image ->
+                            let alt = image.GetAttribute("alt")
+                            if String.IsNullOrWhiteSpace(alt) then None else Some alt))
+
             let summaryText =
-                match explicitSummary, body with
-                | Some summary, _ -> summary
-                | None, Some content -> content.TextContent
-                | None, None -> SearchIndex.ContentProcessor.stripHtml item.Content
+                match mediaImageAlt, explicitSummary, body with
+                | Some alt, _, _ -> alt
+                | None, Some summary, _ -> summary
+                | None, None, Some content -> content.TextContent
+                | None, None, None -> SearchIndex.ContentProcessor.stripHtml item.Content
 
             Some
                 { Item = item
                   PathKey = pathKey
                   SummaryText = summaryText
-                  Links = links })
+                  Links = htmlLinks @ markdownLinks })
     |> List.distinctBy (fun page -> page.PathKey)
 
-let private outputPathExists (outputDir: string) (pathKey: string) =
-    let pathSegments =
-        pathKey.Trim('/')
-            .Split([| '/' |], StringSplitOptions.RemoveEmptyEntries)
-        |> Array.map Uri.UnescapeDataString
-    if pathSegments.Length = 0 then
-        File.Exists(Path.Combine(outputDir, "index.html"))
-    else
-        let target = Path.Combine(Array.append [| outputDir |] pathSegments)
-        File.Exists(Path.Combine(target, "index.html"))
-        || File.Exists(target + ".html")
-        || File.Exists(target)
+let private outputPathExists
+    (outputDir: string)
+    (contentPathsByKey: Map<string, string>)
+    (pathKey: string)
+    =
+    match Map.tryFind pathKey contentPathsByKey with
+    | Some pagePath -> File.Exists(pagePath)
+    | None ->
+        let pathSegments =
+            pathKey.Trim('/')
+                .Split([| '/' |], StringSplitOptions.RemoveEmptyEntries)
+            |> Array.map Uri.UnescapeDataString
+        if pathSegments.Length = 0 then
+            File.Exists(Path.Combine(outputDir, "index.html"))
+        else
+            let target = Path.Combine(Array.append [| outputDir |] pathSegments)
+            File.Exists(Path.Combine(target, "index.html"))
+            || File.Exists(target + ".html")
+            || File.Exists(target)
 
-let private routeMatches (patterns: string list) (pathKey: string) =
-    patterns
-    |> List.exists (fun pattern ->
-        let regex =
-            "^"
-            + Regex.Escape(pattern.ToLowerInvariant()).Replace("\\*", ".*")
-            + "$"
-        Regex.IsMatch(pathKey, regex, RegexOptions.CultureInvariant))
+type private RouteDestination =
+    | InternalPath of string
+    | ExternalUrl
+    | ApiEndpoint
+
+let private normalizeRouteTarget (target: string) =
+    let pathPart = target.Split([| '?'; '#' |], 2)[0]
+    if pathPart = "/" then
+        Some "/"
+    else
+        LinkClassification.normalizeKey target
+
+let private routeMatch (pattern: string) (pathKey: string) =
+    let regex =
+        "^"
+        + Regex.Escape(pattern.ToLowerInvariant()).Replace("\\*", "(?<splat>.*)")
+        + "$"
+    let matched = Regex.Match(pathKey, regex, RegexOptions.CultureInvariant)
+    if matched.Success then Some matched else None
+
+let private routeDestination (route: SiteRoute) (matched: Match) (pathKey: string) =
+    let expandSplat (target: string) =
+        let splat = matched.Groups["splat"].Value
+        target.Replace(":splat", splat, StringComparison.OrdinalIgnoreCase)
+
+    let destination target =
+        let expanded = expandSplat target
+        match normalizeRouteTarget expanded with
+        | Some targetPath when targetPath.StartsWith("/api/", StringComparison.Ordinal) ->
+            Some ApiEndpoint
+        | Some targetPath -> Some(InternalPath targetPath)
+        | None ->
+            let mutable uri = Unchecked.defaultof<Uri>
+            if Uri.TryCreate(expanded, UriKind.Absolute, &uri) then Some ExternalUrl
+            else None
+
+    match route.Redirect, route.Rewrite with
+    | Some target, _ -> destination target
+    | None, Some target -> destination target
+    | None, None when route.Pattern.StartsWith("/api/", StringComparison.OrdinalIgnoreCase) ->
+        Some ApiEndpoint
+    | _ -> None
+
+let private tryRouteDestination (configuration: SiteLinkConfiguration) (pathKey: string) =
+    configuration.Routes
+    |> List.tryPick (fun route ->
+        routeMatch route.Pattern pathKey
+        |> Option.bind (fun matched -> routeDestination route matched pathKey))
+
+let isDestinationValid
+    (outputDir: string)
+    (contentPathsByKey: Map<string, string>)
+    (configuration: SiteLinkConfiguration)
+    (pathKey: string)
+    =
+    let rec resolve seen path =
+        if outputPathExists outputDir contentPathsByKey path then
+            true
+        elif Set.contains path seen then
+            false
+        else
+            match tryRouteDestination configuration path with
+            | Some(InternalPath targetPath) ->
+                resolve (Set.add path seen) (resolveRedirectPath configuration.InternalRedirects targetPath)
+            | Some ExternalUrl
+            | Some ApiEndpoint -> true
+            | None -> false
+    resolve Set.empty pathKey
 
 let private jsonOptions =
     JsonSerializerOptions(
@@ -180,6 +304,7 @@ let buildRegistry
     (pages: ScannedPage list)
     (configuration: SiteLinkConfiguration)
     =
+    let contentPathsByKey = contentPagePathsByKey outputDir items
     let targetTypes =
         items
         |> List.choose (fun item ->
@@ -199,8 +324,7 @@ let buildRegistry
                 let broken =
                     match classified.Kind, resolvedPath with
                     | LinkClassification.LinkKind.Internal, Some targetPath ->
-                        not (outputPathExists outputDir targetPath)
-                        && not (routeMatches configuration.RoutePatterns targetPath)
+                        not (isDestinationValid outputDir contentPathsByKey configuration targetPath)
                     | _ -> false
                 let resolved =
                     match resolvedPath, classified.ResolvedUrl with

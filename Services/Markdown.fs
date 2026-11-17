@@ -4,47 +4,11 @@ module MarkdownService
     open System.IO
     open System.Linq
     open Markdig
-    open Markdig.Parsers
     open Markdig.Syntax
-    open Markdig.Syntax.Inlines
     open Markdig.Renderers.Html
     open Markdig.Extensions.Yaml
     open YamlDotNet.Serialization
     open Domain
-
-    let private hasVisibleLinkText (link: LinkInline) =
-        let isInsideImage (inlineNode: Inline) =
-            let rec loop (parent: ContainerInline) =
-                match parent with
-                | null -> false
-                | :? LinkInline as parentLink when parentLink.IsImage -> true
-                | _ -> loop parent.Parent
-            loop inlineNode.Parent
-
-        Markdig.Syntax.MarkdownObjectExtensions.Descendants<LiteralInline>(link :> MarkdownObject)
-        |> Seq.exists (fun literal ->
-            not (isInsideImage (literal :> Inline))
-            && not (String.IsNullOrWhiteSpace(literal.Content.ToString())))
-
-    type private ExternalLinkExtension() =
-        interface IMarkdownExtension with
-            member _.Setup(pipeline: MarkdownPipelineBuilder) =
-                pipeline.add_DocumentProcessed(
-                    Markdig.Parsers.ProcessDocumentDelegate(fun (document: MarkdownDocument) ->
-                        Markdig.Syntax.MarkdownObjectExtensions.Descendants<LinkInline>(
-                            document :> MarkdownObject
-                        )
-                        |> Seq.iter (fun link ->
-                            if not link.IsImage
-                               && hasVisibleLinkText link
-                               && (LinkClassification.classify
-                                       (Constants.Urls.canonical + "/")
-                                       link.Url).Kind = LinkClassification.LinkKind.External then
-                                HtmlAttributesExtensions.GetAttributes(link).AddClass("link-external"))
-                    )
-                )
-
-            member _.Setup(_pipeline: MarkdownPipeline, _renderer: Markdig.Renderers.IMarkdownRenderer) = ()
 
     let mdToHtmlPipeline = 
             let builder =
@@ -60,7 +24,7 @@ module MarkdownService
                     .UseBootstrap()
                     .UseFigures()
                     |> CustomBlocks.useCustomBlocks
-            builder.Extensions.Add(ExternalLinkExtension() :> IMarkdownExtension)
+            ExternalLinkDecoration.addToPipeline builder
             builder.Build()
 
     let summarizePost (content:string) = 

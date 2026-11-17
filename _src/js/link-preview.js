@@ -218,8 +218,7 @@
     const record = await loadRecord(key);
     if (thisOperation !== operation || activeLink !== link) return;
     if (!record) {
-      restoreLinkState(link);
-      activeLink = null;
+      hidePreview();
       return;
     }
     renderPreview(link, record);

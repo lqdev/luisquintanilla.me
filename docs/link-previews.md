@@ -13,16 +13,21 @@ and keyboard focus; they are not triggered by touch.
   third-party destinations do not receive internal previews.
 
 Authored descriptions are preferred when the source content type provides them.
-Media pages use the first image's description or alt text. Other pages fall back
-to the generated page's `.p-summary` or readable content text.
+For media without legacy description metadata, the first rendered image's
+nonblank alt text takes precedence over `.p-summary` and body text. Other pages
+fall back to the generated page's `.p-summary` or readable content.
 
 ## Build-time data
 
 After unified content has been generated, the build scans each content page's
-`.e-content` once. It writes the link graph to `obj/links/registry.json` and
-prints broken internal links as warnings without failing the build. Redirect
-routes from `staticwebapp.config.json` are resolved before checking whether an
-internal destination exists.
+`.e-content` once, and also parses presentation slide Markdown because Reveal.js
+renders slide links only in the browser. Filesystem checks retain the original
+URL path casing while registry and bucket keys remain normalized. The build
+writes the link graph to `obj/links/registry.json` and prints broken internal
+links as warnings without failing the build. Redirects and rewrites from
+`staticwebapp.config.json` are checked against their actual destinations;
+header-only routes do not by themselves make a missing file valid, while
+configured API endpoints and external redirects are treated as handled.
 
 Preview records are written to 64 JSON buckets under
 `_public/assets/previews/b00.json` through `b63.json`. The normalized path key
@@ -59,9 +64,11 @@ request. Tooltip content is inserted as text, the original link title and ARIA
 description state are restored when the tooltip closes, Escape dismisses it,
 and positioning is clamped to the viewport.
 
-The external indicator is applied by the Markdown extension to text-bearing
-external links. Raw HTML anchors are still part of the build-time link graph but
-are not decorated by that Markdown AST extension.
+The shared Markdown AST extension applies the external indicator to
+text-bearing external links in both the standard Markdown and AST-parsed
+content pipelines (including responses and bookmarks). Raw HTML anchors are
+still part of the build-time link graph but are not decorated by the Markdown
+AST extension.
 
 ## Validation
 
