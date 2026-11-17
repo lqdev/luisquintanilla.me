@@ -41,6 +41,7 @@ module Layouts
         link [_rel "stylesheet";_href "/assets/css/custom/permalink-buttons.css"]  // Permalink action buttons
         link [_rel "stylesheet";_href "/assets/css/custom/clipboard.css"]  // Code copy buttons
         link [_rel "stylesheet";_href "/assets/css/custom/share.css"]      // Content sharing
+        link [_rel "stylesheet";_href "/assets/css/custom/link-preview.css"]
         link [_rel "stylesheet";_href "/assets/css/custom/qrcode.css"]     // QR code modal
         link [_rel "stylesheet";_href "/assets/css/pwa.css"]              // PWA notifications and install prompts
         
@@ -111,6 +112,7 @@ module Layouts
         // Web API enhancements (progressive enhancement pattern)
         script [_src "/assets/js/clipboard.js"] []    // Code snippet copy buttons
         script [_src "/assets/js/share.js"] []        // Native content sharing
+        script [_src "/assets/js/link-preview.js"; attr "defer" "defer"] []
         // QR codes are pre-rendered at build time into
         // `/assets/images/qr/<type>/<slug>.svg` by `Builder.buildPerPageQRs`
         // and revealed by a pure-CSS `<details>` disclosure

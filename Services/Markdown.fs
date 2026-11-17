@@ -4,26 +4,28 @@ module MarkdownService
     open System.IO
     open System.Linq
     open Markdig
-    open Markdig.Parsers
     open Markdig.Syntax
+    open Markdig.Renderers.Html
     open Markdig.Extensions.Yaml
     open YamlDotNet.Serialization
     open Domain
 
     let mdToHtmlPipeline = 
-            MarkdownPipelineBuilder()
-                .UsePipeTables()
-                .UseTaskLists()
-                .UseDiagrams()
-                .UseMediaLinks()
-                .UseMathematics()
-                .UseMediaLinks()
-                .UseEmojiAndSmiley()
-                .UseEmphasisExtras()
-                .UseBootstrap()
-                .UseFigures()
-                |> CustomBlocks.useCustomBlocks
-                |> fun builder -> builder.Build()        
+            let builder =
+                MarkdownPipelineBuilder()
+                    .UsePipeTables()
+                    .UseTaskLists()
+                    .UseDiagrams()
+                    .UseMediaLinks()
+                    .UseMathematics()
+                    .UseMediaLinks()
+                    .UseEmojiAndSmiley()
+                    .UseEmphasisExtras()
+                    .UseBootstrap()
+                    .UseFigures()
+                    |> CustomBlocks.useCustomBlocks
+            ExternalLinkDecoration.addToPipeline builder
+            builder.Build()
 
     let summarizePost (content:string) = 
         let doc = Markdown.Parse(content)

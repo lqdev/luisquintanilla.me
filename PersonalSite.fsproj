@@ -18,6 +18,8 @@
     <Compile Include="ReviewSchema.fs" />
     <Compile Include="ContentTypes.fs" />
     <Compile Include="CustomBlocks.fs" />
+    <Compile Include="Services\LinkClassification.fs" />
+    <Compile Include="Services\ExternalLinkDecoration.fs" />
     <Compile Include="MediaTypes.fs" />
     <Compile Include="ASTParsing.fs" />
     <Compile Include="Diagnostics.fs" />
@@ -77,6 +79,8 @@
     <Compile Include="Collections.fs" />
     <Compile Include="DirectoryIndex.fs" />
     <Compile Include="SearchIndex.fs" />
+    <Compile Include="Services\LinkRegistry.fs" />
+    <Compile Include="Services\LinkPreview.fs" />
     <Compile Include="Loaders.fs" />
     <Compile Include="TextOnlyBuilder.fs" />
     <Compile Include="Builders\Common.fs" />

@@ -1,0 +1,65 @@
+.post-content a.link-external::after,
+.presentation-content a.link-external::after {
+  content: " ↗" / " (external site)";
+  font-size: 0.8em;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.link-preview {
+  position: fixed;
+  z-index: 1100;
+  width: min(22rem, calc(100vw - 1.5rem));
+  padding: var(--spacing-md);
+  color: var(--text-color);
+  background: var(--card-background);
+  border: 1px solid var(--card-border);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-lg);
+  pointer-events: auto;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.link-preview[hidden] {
+  display: none;
+}
+
+.link-preview-title,
+.link-preview-meta {
+  display: block;
+}
+
+.link-preview-title {
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.link-preview-meta {
+  margin-top: var(--spacing-xs);
+  color: var(--text-color);
+  opacity: 0.75;
+  font-size: 0.8rem;
+}
+
+.link-preview-summary {
+  margin: var(--spacing-sm) 0 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .link-preview {
+    animation: link-preview-appear 120ms ease-out;
+  }
+}
+
+@keyframes link-preview-appear {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

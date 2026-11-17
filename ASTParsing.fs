@@ -138,19 +138,21 @@ let private extractCustomBlocks (doc: MarkdownDocument) : Map<string, obj list> 
 /// Create markdown pipeline with extensions
 /// Uses same configuration as existing MarkdownService for consistency
 let private createMarkdownPipeline () : MarkdownPipeline =
-    MarkdownPipelineBuilder()
-        .UseYamlFrontMatter()
-        .UsePipeTables()
-        .UseTaskLists()
-        .UseDiagrams()
-        .UseMediaLinks()
-        .UseMathematics()
-        .UseEmojiAndSmiley()
-        .UseEmphasisExtras()
-        .UseBootstrap()
-        .UseFigures()
-        |> CustomBlocks.useCustomBlocks
-        |> fun builder -> builder.Build()
+    let builder =
+        MarkdownPipelineBuilder()
+            .UseYamlFrontMatter()
+            .UsePipeTables()
+            .UseTaskLists()
+            .UseDiagrams()
+            .UseMediaLinks()
+            .UseMathematics()
+            .UseEmojiAndSmiley()
+            .UseEmphasisExtras()
+            .UseBootstrap()
+            .UseFigures()
+            |> CustomBlocks.useCustomBlocks
+    ExternalLinkDecoration.addToPipeline builder
+    builder.Build()
 
 /// Remove, in place, the headings a timeline/preview card's own title would duplicate:
 /// every level-1 heading and any level-2 heading that is a bare title link
