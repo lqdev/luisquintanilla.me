@@ -1,8 +1,11 @@
 #r "nuget: Markdig"
 #r "nuget: YamlDotNet" 
 #load "../Domain.fs"
+#load "../Constants.fs"
 #load "../CustomBlocks.fs"
 #load "../MediaTypes.fs"
+#load "../Services/LinkClassification.fs"
+#load "../Services/ExternalLinkDecoration.fs"
 #load "../ASTParsing.fs"
 
 open System

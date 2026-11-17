@@ -17,6 +17,8 @@
 #load "../ContentTypes.fs"
 #load "../CustomBlocks.fs"
 #load "../MediaTypes.fs"
+#load "../Services/LinkClassification.fs"
+#load "../Services/ExternalLinkDecoration.fs"
 #load "../ASTParsing.fs"
 #load "../Services/Tag.fs"
 #load "../AtProtoResponseMapping.fs"

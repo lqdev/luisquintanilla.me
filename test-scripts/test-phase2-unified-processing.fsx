@@ -3,9 +3,12 @@
 #r "nuget: YamlDotNet, 16.3.0"
 
 #load "../Domain.fs"
+#load "../Constants.fs"
 #load "../Collections.fs"
 #load "../CustomBlocks.fs"
 #load "../MediaTypes.fs"
+#load "../Services/LinkClassification.fs"
+#load "../Services/ExternalLinkDecoration.fs"
 #load "../ASTParsing.fs"
 #load "../BlockRenderers.fs"
 #load "../GenericBuilder.fs"
