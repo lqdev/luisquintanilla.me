@@ -6,6 +6,14 @@
 echo "📊 Website Size Analysis"
 echo "========================"
 
+# Azure Static Web Apps allows up to 15,000 files per app.
+file_count=$(find ./_public -type f | wc -l | tr -d '[:space:]')
+echo ""
+echo "📄 Generated files: $file_count"
+if [ "$file_count" -ge 14000 ]; then
+    echo "⚠ Approaching Azure Static Web Apps' 15,000-file limit."
+fi
+
 # Total site size
 total_size=$(du -sh ./_public | cut -f1)
 echo ""

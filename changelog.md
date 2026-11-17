@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-11-16 - Lazy Link Previews and Link Registry
+
+Added internal content previews on hover and keyboard focus, plus visual
+indicators for external Markdown links. Build-time scanning now writes a
+non-published link registry, reports broken internal destinations as warnings,
+and creates 64 hashed preview buckets instead of one file per page. Preview
+summaries prefer authored descriptions and media alt text when available.
+
+The first-party preview assets add 66 generated files and approximately 1.5 MB
+to the local output snapshot. `Scripts/check-site-sizes.sh` now reports the
+generated file count and warns when it reaches 14,000, ahead of the Azure Static
+Web Apps limit of 15,000 files.
+
+---
+
 ## 2026-06-15 - Architecture Refactor 2026: Phase 3 Targeted Bets ✅
 
 **Project**: [Architecture Refactor 2026](projects/archive/2026-06-15-architecture-refactor-2026.md)

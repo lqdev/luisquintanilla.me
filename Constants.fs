@@ -22,6 +22,14 @@ module Urls =
     /// phase) and must keep redirecting so old links/feeds don't 404.
     let canonical = "https://lqdev.me"
 
+    /// Hostnames treated as first-party when resolving site links.
+    let siteHosts =
+        Set.ofList
+            [ "lqdev.me"
+              "www.lqdev.me"
+              "luisquintanilla.me"
+              "www.luisquintanilla.me" ]
+
     /// Legacy www origin — do not introduce new references; kept for the
     /// pending migration of existing feed/processor literals and documentation.
     let legacyWww = "https://www.lqdev.me"
@@ -123,6 +131,10 @@ module Pwa =
           "/assets/js/lazy-images.js"
           Avatar.displayPath
           "/manifest.json" ]
+
+module LinkPreview =
+    /// Number of static JSON files used to shard preview records.
+    let bucketCount = 64
 
 module Crawlers =
     // Crawler policy (single source of truth for the generated robots.txt).

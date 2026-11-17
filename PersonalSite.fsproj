@@ -23,6 +23,7 @@
     <Compile Include="Diagnostics.fs" />
     <Compile Include="BlockRenderers.fs" />
     <Compile Include="OutputComparison.fs" />
+    <Compile Include="Services\LinkClassification.fs" />
     <Compile Include="Services\Markdown.fs" />
     <Compile Include="Services\Tag.fs" />
     <Compile Include="Services\AtProtoMediaValidation.fs" />
@@ -77,6 +78,8 @@
     <Compile Include="Collections.fs" />
     <Compile Include="DirectoryIndex.fs" />
     <Compile Include="SearchIndex.fs" />
+    <Compile Include="Services\LinkRegistry.fs" />
+    <Compile Include="Services\LinkPreview.fs" />
     <Compile Include="Loaders.fs" />
     <Compile Include="TextOnlyBuilder.fs" />
     <Compile Include="Builders\Common.fs" />

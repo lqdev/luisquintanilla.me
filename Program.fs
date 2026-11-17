@@ -136,6 +136,39 @@ let main argv =
         |> List.map (fun item ->
             if isNull item.Tags then item
             else { item with Tags = item.Tags |> Array.map TagService.processTagName |> Array.distinct })
+
+    let descriptionEntries (feedData: FeedData<'T> list) (getDescription: 'T -> string) =
+        feedData
+        |> List.choose (fun entry ->
+            let description = getDescription entry.Content
+            if String.IsNullOrWhiteSpace(description) then
+                None
+            else
+                match entry.RssXml with
+                | None -> None
+                | Some rssXml ->
+                    let link = rssXml.Element(System.Xml.Linq.XName.Get("link"))
+                    if isNull link then
+                        None
+                    else
+                        LinkClassification.normalizeKey link.Value
+                        |> Option.map (fun pathKey -> pathKey, description.Trim()))
+
+    let descriptionsByPath =
+        [ yield! descriptionEntries postsFeedData (fun post -> post.Metadata.Description)
+          yield! descriptionEntries notesFeedData (fun note -> note.Metadata.Description)
+          yield! descriptionEntries aiMemexFeedData (fun entry -> entry.Metadata.Description)
+          yield! descriptionEntries mediaFeedData (fun album ->
+              if isNull album.Metadata.Images || album.Metadata.Images.Length = 0 then ""
+              else
+                  let image = album.Metadata.Images.[0]
+                  if String.IsNullOrWhiteSpace(image.Description) then image.AltText
+                  else image.Description)
+          yield! descriptionEntries albumCollectionsFeedData (fun collection -> collection.Metadata.Description)
+          yield! descriptionEntries playlistCollectionsFeedData (fun playlist ->
+              playlist.Metadata.Description |> Option.defaultValue "")
+          yield! descriptionEntries marketplaceFeedData (fun listing -> listing.Metadata.Description) ]
+        |> Map.ofList
     
     // Generate unified feeds (fire-hose + type-specific)
     UnifiedFeeds.buildAllFeeds allUnifiedItems "_public"
@@ -305,6 +338,26 @@ let main argv =
     let searchIndexStats = SearchIndex.buildSearchIndexes outputDir allUnifiedContent
     
     printfn $"✅ Search indexes generated: {searchIndexStats.SearchIndex.ItemCount} content items, {searchIndexStats.TagIndex.TagCount} tags"
+
+    let siteLinkConfiguration = LinkRegistry.loadSiteConfiguration "staticwebapp.config.json"
+    let scannedContentPages = LinkRegistry.scanContentPages outputDir allUnifiedContent
+    let previewStats =
+        LinkPreview.buildPreviewBuckets
+            outputDir
+            scannedContentPages
+            siteLinkConfiguration.InternalRedirects
+            descriptionsByPath
+    let registryStats =
+        LinkRegistry.buildRegistry
+            outputDir
+            allUnifiedContent
+            scannedContentPages
+            siteLinkConfiguration
+
+    printfn "✅ Link previews generated: %d records in %d buckets"
+        previewStats.RecordCount previewStats.BucketCount
+    printfn "✅ Link registry generated: %d links from %d content pages (%d broken)"
+        registryStats.EdgeCount registryStats.SourcePageCount registryStats.BrokenCount
 
     // F8 railway: report-loudly-keep-building. Individual error blocks were already
     // printed at parse time; here we summarise and gate the exit code. Default is
