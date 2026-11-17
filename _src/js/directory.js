@@ -211,6 +211,8 @@
     }
 
     function render() {
+        if (!fuse) return;
+
         const query = searchInput.value.trim();
         const selected = selectedCollectionIds();
         const browseMode = query.length === 0 && selected.length === 0;
