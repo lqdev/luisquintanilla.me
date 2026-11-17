@@ -73,14 +73,25 @@ module CollectionPagesBuilder
             | ex -> 
                 printfn "❌ Error building collection %s: %s" collection.Title ex.Message
 
+        let includedCollections = Collections.FollowingDirectory.getIncludedCollections ()
+        let directoryModified =
+            seq {
+                yield OpmlService.sourceModified "Collections.fs"
+                yield OpmlService.sourceModified "Builders/CollectionPages.fs"
+
+                for collection in includedCollections do
+                    yield OpmlService.sourceModified (Path.Join("Data", collection.DataFile))
+            }
+            |> Seq.max
+
         let metadata =
             {
                 Title = "Luis Quintanilla Following"
                 OwnerId = Constants.Urls.canonical
                 DocsUrl = Some $"{Constants.Urls.canonical}/collections/"
+                DateModified = Some directoryModified
             }
 
-        let includedCollections = Collections.FollowingDirectory.getIncludedCollections ()
         let missingChildOpmls =
             includedCollections
             |> Array.choose (fun collection ->

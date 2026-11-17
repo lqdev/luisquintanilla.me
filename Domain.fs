@@ -215,6 +215,7 @@ module Domain
             Title: string
             OwnerId: string
             DocsUrl: string option
+            DateModified: DateTimeOffset option
         }
 
     type Outline = 
