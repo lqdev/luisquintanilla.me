@@ -110,3 +110,4 @@ module CollectionPagesBuilder
         Directory.CreateDirectory(discoveryDir) |> ignore
         File.WriteAllText(Path.Join(discoveryDir, "following.opml"), followingContent)
         printfn "✅ Built following OPML directory (%d collections)" includeOutlines.Length
+        collections

@@ -8,6 +8,7 @@ open AssetsBuilder
 open AiMemexPagesBuilder
 open ResumePageBuilder
 open CollectionPagesBuilder
+open DirectoryPageBuilder
 open LegacyFeedsBuilder
 open TagPagesBuilder
 open LivestreamBuilder
@@ -43,6 +44,7 @@ let main argv =
     buildCollectionsPage ()
     buildContactPage ()
     buildSearchPage ()
+    buildDirectoryPage ()
     buildStarterPackPage ()
     buildTravelGuidesPage ()
     buildIRLStackPage ()
@@ -244,7 +246,8 @@ let main argv =
     // =============================================================================
     // Unified Collection System - Primary collection processing
     // =============================================================================
-    buildUnifiedCollections ()
+    let loadedCollections = buildUnifiedCollections ()
+    buildDirectoryIndex loadedCollections
 
     // Build event page
     buildEventPage ()

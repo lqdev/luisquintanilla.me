@@ -63,6 +63,7 @@
     <Compile Include="Views\FeedViews.fs" />
     <Compile Include="Views\ContentViews.fs" />
     <Compile Include="Views\CollectionViews.fs" />
+    <Compile Include="Views\DirectoryViews.fs" />
     <Compile Include="Views\TravelViews.fs" />
     <Compile Include="Views\TimelineViews.fs" />
     <Compile Include="Views\LayoutViews.fs" />
@@ -74,6 +75,7 @@
     <Compile Include="Views\Generator.fs" />
     <Compile Include="BuildDriver.fs" />
     <Compile Include="Collections.fs" />
+    <Compile Include="DirectoryIndex.fs" />
     <Compile Include="SearchIndex.fs" />
     <Compile Include="Loaders.fs" />
     <Compile Include="TextOnlyBuilder.fs" />
@@ -83,6 +85,7 @@
     <Compile Include="Builders\AiMemexPages.fs" />
     <Compile Include="Builders\ResumePage.fs" />
     <Compile Include="Builders\CollectionPages.fs" />
+    <Compile Include="Builders\DirectoryPage.fs" />
     <Compile Include="Builders\LegacyFeeds.fs" />
     <Compile Include="Builders\TagPages.fs" />
     <Compile Include="Builders\Livestream.fs" />

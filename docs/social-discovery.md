@@ -12,6 +12,12 @@ The site publishes the profile and subscription artifacts it already maintains a
 | `/.well-known/profile` | `_src/.well-known/profile.json` | Versioned site-specific JSON manifest |
 | `/.well-known/profile.schema.v1.json` | `_src/.well-known/profile.schema.v1.json` | Published JSON Schema for the profile manifest |
 
+## Local directory
+
+The site also publishes a searchable local directory at `/directory/` and its static data at `/directory/index.json`. It is generated only from the five collections included by `FollowingDirectory.getIncludedCollections()`: blogroll, podroll, YouTube, forums, and the AI starter pack. It does not crawl external sites or provide a global people/account lookup.
+
+Each result links to the listed site's homepage and any feed URLs present in the source collection. It also shows the source collection membership, a link to view that list, and a separate OPML link for subscribing to the collection. Membership documents provenance only; it is not identity verification or an endorsement. Search is performed in the browser over the generated static JSON; it does not change the existing `/search/` content index or require a search API.
+
 The following endpoint is an include-only OPML directory, not a flat RSS-reader import. Its five direct child outlines are:
 
 - `/collections/blogroll/index.opml`
@@ -33,12 +39,16 @@ Azure Static Web Apps serves the generated following artifact directly and rewri
 The profile manifest is deliberately a documented site-specific contract, not a new internet standard. It provides one machine-readable index of the established identity and social surfaces already hosted by the site:
 
 - profile name, canonical URL, About artifact, contact artifact, and avatar
-- ActivityPub accounts and `rel=me` links for GitHub and Bluesky
+- ActivityPub accounts and `rel=me` links for GitHub and Bluesky; the AT Protocol identity also names its existing `did:plc` DID explicitly
 - RSS feed URLs
 - WebFinger, Webmention, ActivityPub, and IndieAuth service URLs
 - The aggregate OPML following directory, individual OPML following lists, and the existing starter pack
 
 The manifest's `schema` property points to the published `/.well-known/profile.schema.v1.json` artifact. The schema uses JSON Schema 2020-12 and defines the required profile, identity, feed, service, following, and starter-pack shapes so consumers can validate and evolve their integration without confusing this convenience document with WebFinger, ActivityPub, IndieAuth, or another formal discovery protocol.
+
+The profile's AT Protocol `did` field describes the existing Bluesky account; it does not introduce a second DID or a `did:web` identity for the website. WebFinger continues to resolve the existing account subject from the accepted website and `acct:` resources, and its JRD aliases include the existing DID. The existing host-meta LRDD template continues to direct clients to WebFinger. These discovery links are not a substitute for checking the DID document's `alsoKnownAs` relationship: after the updated profile manifest is deployed, the account owner must append `https://lqdev.me/` to the existing PLC DID document's `alsoKnownAs`, preserving `at://lqdev.me`, the verification keys, and services, then verify the published document. This account-side edit is not performed by the site generator or CI.
+
+The website↔DID relationship is distinct from any Mastodon↔DID relationship. Mastodon's existing verified `rel=me` links remain separate assertions; adding the website to the DID document does not establish a Mastodon account relationship or legal identity.
 
 The canonical HTML layout emits `rel="canonical"` only for pages generated with explicit page metadata. Legacy layout callers intentionally omit the link rather than incorrectly declaring the homepage as their canonical URL.
 
@@ -76,6 +86,7 @@ Run the generator and focused artifact checks from the repository root:
 dotnet build --no-restore
 dotnet run --no-build
 dotnet fsi .\test-scripts\test-social-discovery.fsx
+dotnet fsi .\test-scripts\test-directory-index.fsx
 ```
 
 The focused script validates:
@@ -83,11 +94,13 @@ The focused script validates:
 - About summary parsing, body-only rendering, source parity, and invalid metadata rejection
 - OPML 2.0 validity, include-directory structure, required `text` attributes, collection counts, and XML escaping
 - vCard version, `FN`, and source parity
-- Profile manifest schema/version, canonical URLs, service links, and typo regression
+- Profile manifest schema/version, optional AT Protocol DID field, canonical URLs, service links, and typo regression
+- WebFinger JRD subject, aliases, and `rel=me` links; host-meta LRDD template and both canonical website resource forms
 - Published profile schema, required manifest fields, and stable RSS/JSON Feed identifiers
 - Static Web Apps routes, rewrites, extension-based MIME mappings, CORS, and `/.well-known/*` fallback exclusion
 - Homepage h-card identity fields, page-specific Open Graph/Twitter metadata, and canonical links
 - Unified RSS autodiscovery and preservation of the existing feed links
+- Directory index URL normalization, duplicate merging, feed/provenance retention, deterministic output, and invalid-source rejection
 
 After deployment, pass the site origin to run HTTP smoke tests for GET, HEAD, CORS, media types, redirects, and unknown well-known paths:
 
@@ -95,7 +108,7 @@ After deployment, pass the site origin to run HTTP smoke tests for GET, HEAD, CO
 dotnet fsi .\test-scripts\test-social-discovery.fsx --base-url https://lqdev.me
 ```
 
-The local checks do not require network access. The `--base-url` checks must be run against the deployed site because Static Web Apps rewrites are not reproduced by the local generator.
+The local checks do not require network access. The `--base-url` checks must be run against the deployed site because Static Web Apps rewrites are not reproduced by the local generator. The live checks also request WebFinger with `resource=https://lqdev.me` and `resource=https://lqdev.me/` and confirm that both return the same JRD. Verify the reciprocal PLC DID-document change separately after the account owner has made it; it is not automated by the site build or deployment.
 
 ## Related infrastructure
 

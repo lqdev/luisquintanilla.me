@@ -100,6 +100,8 @@ let desktopSections : NavSection list =
 
         // Collections dropdown
         DropdownGroup("collections-dropdown", "Collections", collectionsIcon, [
+            item "/directory/" "Directory"
+            MenuDivider
             // Rolls (content-type)
             item "/collections/blogroll" "Blogroll"
             item "/collections/podroll" "Podroll"
