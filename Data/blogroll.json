@@ -131,5 +131,12 @@
         "HtmlUrl": "https://ellanew.com/",
         "XmlUrl": "https://ellanew.com/feed.rss",
         "Added": "2026-10-30"
+    },
+    {
+        "Title": "A Purple Life",
+        "Type": "rss",
+        "HtmlUrl": "https://apurplelife.com/",
+        "XmlUrl": "https://apurplelife.com/feed/",
+        "Added": "2026-11-22"
     }
 ]
