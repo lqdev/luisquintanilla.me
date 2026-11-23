@@ -177,9 +177,8 @@ jobs:
           URL: ${{ steps.extract-data.outputs.url }}
         with:
           script: |
+            const prNumber = Number(process.env.PR_NUMBER);
             try {
-              const prNumber = Number(process.env.PR_NUMBER);
-
               console.log(`Attempting to merge PR #${prNumber}`);
 
               // Wait a moment for GitHub to process the PR
@@ -409,9 +408,8 @@ jobs:
           NEW_COUNT: ${{ steps.cleanup.outputs.new_count }}
         with:
           script: |
+            const prNumber = Number(process.env.PR_NUMBER);
             try {
-              const prNumber = Number(process.env.PR_NUMBER);
-              
               console.log(`Attempting to merge PR #${prNumber}`);
               
               // Wait a moment for GitHub to process the PR
@@ -666,9 +664,8 @@ jobs:
           NEW_COUNT: ${{ steps.cleanup.outputs.new_count }}
         with:
           script: |
+            const prNumber = Number(process.env.PR_NUMBER);
             try {
-              const prNumber = Number(process.env.PR_NUMBER);
-              
               console.log(`Attempting to merge PR #${prNumber}`);
               
               // Wait a moment for GitHub to process the PR

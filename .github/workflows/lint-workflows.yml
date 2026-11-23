@@ -29,7 +29,13 @@ jobs:
         run: |
           set +e
           uvx zizmor==1.33.1 --offline --format json .github/ > zizmor.json
+          ZIZMOR_EXIT_CODE=$?
           set -e
+
+          if ! jq -e -s 'length == 1 and (.[0] | type == "array")' zizmor.json >/dev/null; then
+            echo "zizmor did not produce exactly one valid JSON array (exit $ZIZMOR_EXIT_CODE)."
+            exit 1
+          fi
 
           TOTAL_COUNT=$(jq 'length' zizmor.json)
           TEMPLATE_COUNT=$(jq '[.[] | select(.ident == "template-injection" and .ignored == false)] | length' zizmor.json)
