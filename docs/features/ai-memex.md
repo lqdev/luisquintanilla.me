@@ -123,7 +123,7 @@ copilot plugin install lqdev/luisquintanilla.me:.agents
 
 When working in the lqdev.me repo, the import skill consolidates entries from other projects:
 
-1. Reads `~/.agents/skills/import-ai-memex/import-sources.json` (user-local, never committed)
+1. Reads `~/.copilot/ai-memex/import-sources.json` (user-local, never committed)
 2. Scans each source `.ai-memex/` directory for `.md` files
 3. Copies new entries to `_src/resources/ai-memex/` (skips existing)
 4. Sets `source_project` in frontmatter during import

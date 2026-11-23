@@ -11,6 +11,9 @@ import-sources.json
 research-caching-strategies.md
 reference-api-auth-patterns.md
 project-report-v2-migration.md
+# Paths relative to portable skill directories, not the repository root.
+scripts/import.ps1
+scripts/audit-memex.ps1
 # Tag normalization examples in docs/reference/tags.md (Services/Tag.fs rewrites them).
 node.js
 next.js

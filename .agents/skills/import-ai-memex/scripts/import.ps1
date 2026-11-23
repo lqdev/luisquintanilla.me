@@ -10,7 +10,7 @@
 #   - Validates required frontmatter fields
 
 param(
-    [string]$ConfigPath = "$HOME\.agents\skills\import-ai-memex\import-sources.json",
+    [string]$ConfigPath = (Join-Path $HOME ".copilot/ai-memex/import-sources.json"),
     [switch]$DryRun,
     [switch]$Force
 )
@@ -24,7 +24,7 @@ if (-not (Test-Path "PersonalSite.fsproj")) {
 
 if (-not (Test-Path $ConfigPath)) {
     Write-Warning "Import sources config not found at: $ConfigPath"
-    Write-Host "Create it from the example: .agents/skills/import-ai-memex/assets/import-sources.example.json"
+    Write-Host "Create it from the example: $(Join-Path $PSScriptRoot '../assets/import-sources.example.json')"
     exit 1
 }
 

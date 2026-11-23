@@ -18,10 +18,11 @@ lqdev.me repo root where `_src/resources/ai-memex/` and `graph.json` are availab
 
 ## Quick Audit
 
-Run the backing script from the lqdev.me repo root:
+Run the backing script from the lqdev.me repo root. Set `$skillDir` to the directory containing
+this `SKILL.md`, whether it is the project copy or the plugin copy:
 
 ```powershell
-& "$HOME/.agents/skills/audit-ai-memex/scripts/audit-memex.ps1"
+& (Join-Path $skillDir "scripts/audit-memex.ps1")
 ```
 
 The script outputs a structured report covering:
@@ -40,9 +41,10 @@ may be stable. Focus on:
 - Entries whose `tags` reference fast-moving technologies
 
 ### Spoke-Hub Drift
-If a spoke entry is newer, use the import script to update:
+If a spoke entry is newer, use the import skill to update. Set `$importSkillDir` to its skill
+directory:
 ```powershell
-& "$HOME/.agents/skills/import-ai-memex/scripts/import.ps1"
+& (Join-Path $importSkillDir "scripts/import.ps1")
 ```
 
 ### Broken References

@@ -25,6 +25,8 @@ copilot plugin install lqdev/luisquintanilla.me:.agents
 ```
 
 Copy `.agents/user-instructions.md` to `~/.copilot/copilot-instructions.md` once, after Luis reviews it.
+If you used the old installer, move `~/.agents/skills/import-ai-memex/import-sources.json` to
+`~/.copilot/ai-memex/import-sources.json` before deleting the old skill folders.
 
 Update the installed plugin:
 

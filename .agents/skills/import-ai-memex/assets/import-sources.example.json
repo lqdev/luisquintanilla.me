@@ -1,5 +1,5 @@
 {
-  "description": "AI Memex import sources. Copy this file to ~/.agents/skills/import-ai-memex/import-sources.json and customize paths.",
+  "description": "AI Memex import sources. Copy this file to ~/.copilot/ai-memex/import-sources.json and customize paths.",
   "target": "C:\\Dev\\website\\_src\\resources\\ai-memex",
   "sources": [
     {
