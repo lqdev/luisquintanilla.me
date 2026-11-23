@@ -33,8 +33,9 @@ jobs:
       
       - name: Run ActivityPub production tests
         id: test
+        env:
+          TEST_DOMAIN: ${{ inputs.test_domain || 'https://lqdev.me' }}
         run: |
-          TEST_DOMAIN="${{ inputs.test_domain || 'https://lqdev.me' }}"
           echo "Testing domain: $TEST_DOMAIN"
           
           # Run the test script with domain parameter
@@ -60,6 +61,9 @@ jobs:
       - name: Create issue on failure
         if: failure() && github.event_name == 'schedule'
         uses: actions/github-script@v9
+        env:
+          RUN_ID: ${{ github.run_id }}
+          RUN_DATE: ${{ github.event.head_commit.timestamp || github.run_id }}
         with:
           script: |
             await github.rest.issues.create({
@@ -70,13 +74,13 @@ jobs:
               
               The scheduled ActivityPub endpoint health check has detected issues.
               
-              **Workflow Run**: [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+              **Workflow Run**: [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${process.env.RUN_ID})
               **Test Domain**: https://lqdev.me
-              **Run Date**: ${{ github.event.head_commit.timestamp || github.run_id }}
+              **Run Date**: ${process.env.RUN_DATE}
               
               ### Required Actions
               
-              1. Review the [workflow logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+              1. Review the [workflow logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${process.env.RUN_ID})
               2. Run manual tests: \`./Scripts/test-activitypub-production.sh\`
               3. Check Azure Functions deployment status
               4. Review Application Insights for errors

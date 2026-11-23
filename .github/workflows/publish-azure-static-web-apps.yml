@@ -143,7 +143,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EVENT_BEFORE: ${{ github.event.before }}
         run: |
-          BASE_SHA=$(gh run list --workflow "${{ github.workflow }}" --branch main --status success --limit 1 --json headSha -q '.[0].headSha' 2>/dev/null || true)
+          BASE_SHA=$(gh run list --workflow "$GITHUB_WORKFLOW" --branch main --status success --limit 1 --json headSha -q '.[0].headSha' 2>/dev/null || true)
           if [ -z "$BASE_SHA" ]; then
             BASE_SHA="$EVENT_BEFORE"
           fi

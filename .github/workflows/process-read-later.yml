@@ -68,8 +68,9 @@ jobs:
       - name: Fetch title from URL if not provided
         id: fetch-title
         if: steps.extract-data.outputs.title == ''
+        env:
+          URL: ${{ steps.extract-data.outputs.url }}
         run: |
-          URL="${{ steps.extract-data.outputs.url }}"
           echo "Fetching title from: $URL"
 
           # Fetch the page and extract title
@@ -81,58 +82,64 @@ jobs:
           fi
 
           echo "Fetched title: $TITLE"
-          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          DELIMITER="TITLE_${RANDOM}_${RANDOM}_$$"
+          {
+            printf 'title<<%s\n' "$DELIMITER"
+            printf '%s\n' "$TITLE"
+            printf '%s\n' "$DELIMITER"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Determine final title
         id: final-title
+        env:
+          PROVIDED_TITLE: ${{ steps.extract-data.outputs.title }}
+          FETCHED_TITLE: ${{ steps.fetch-title.outputs.title }}
         run: |
-          if [ -n "${{ steps.extract-data.outputs.title }}" ]; then
-            FINAL_TITLE="${{ steps.extract-data.outputs.title }}"
+          if [ -n "$PROVIDED_TITLE" ]; then
+            FINAL_TITLE="$PROVIDED_TITLE"
             echo "Using provided title: $FINAL_TITLE"
           else
-            FINAL_TITLE="${{ steps.fetch-title.outputs.title }}"
+            FINAL_TITLE="$FETCHED_TITLE"
             echo "Using fetched title: $FINAL_TITLE"
           fi
-          echo "title=$FINAL_TITLE" >> $GITHUB_OUTPUT
+          DELIMITER="TITLE_${RANDOM}_${RANDOM}_$$"
+          {
+            printf 'title<<%s\n' "$DELIMITER"
+            printf '%s\n' "$FINAL_TITLE"
+            printf '%s\n' "$DELIMITER"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Check for duplicates and add to JSON
         id: update-json
+        env:
+          URL: ${{ steps.extract-data.outputs.url }}
+          TITLE: ${{ steps.final-title.outputs.title }}
         run: |
-          URL="${{ steps.extract-data.outputs.url }}"
-          TITLE="${{ steps.final-title.outputs.title }}"
           JSON_FILE="Data/read-later.json"
 
           # Check if URL already exists in the JSON file
-          if grep -q "\"$URL\"" "$JSON_FILE"; then
-            echo "duplicate=true" >> $GITHUB_OUTPUT
+          if jq -e --arg url "$URL" 'any(.[]; .url == $url)' "$JSON_FILE" >/dev/null; then
+            echo "duplicate=true" >> "$GITHUB_OUTPUT"
             echo "URL already exists in read-later list"
             exit 0
           fi
 
-          echo "duplicate=false" >> $GITHUB_OUTPUT
+          echo "duplicate=false" >> "$GITHUB_OUTPUT"
 
           # Generate ISO 8601 timestamp
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-          # Create new entry
-          NEW_ENTRY=$(cat <<EOF
-          {
-            "url": "$URL",
-            "title": "$TITLE",
-            "dateAdded": "$TIMESTAMP"
-          }
-          EOF
-          )
-
-          # Read existing JSON, add new entry, and write back
-          # Use jq to properly handle JSON manipulation
           TMP_FILE=$(mktemp)
-          jq --argjson entry "$NEW_ENTRY" '. += [$entry]' "$JSON_FILE" > "$TMP_FILE"
+          jq \
+            --arg url "$URL" \
+            --arg title "$TITLE" \
+            --arg dateAdded "$TIMESTAMP" \
+            '. += [{url: $url, title: $title, dateAdded: $dateAdded}]' \
+            "$JSON_FILE" > "$TMP_FILE"
           mv "$TMP_FILE" "$JSON_FILE"
 
           echo "Added new entry to $JSON_FILE"
-          echo "title=$TITLE" >> $GITHUB_OUTPUT
-          echo "timestamp=$TIMESTAMP" >> $GITHUB_OUTPUT
+          echo "timestamp=$TIMESTAMP" >> "$GITHUB_OUTPUT"
 
       - name: Create Pull Request
         id: create-pr
@@ -164,11 +171,14 @@ jobs:
       - name: Auto-merge Pull Request
         if: steps.create-pr.outputs.pull-request-number != ''
         uses: actions/github-script@v9
+        env:
+          PR_NUMBER: ${{ steps.create-pr.outputs.pull-request-number }}
+          TITLE: ${{ steps.final-title.outputs.title }}
+          URL: ${{ steps.extract-data.outputs.url }}
         with:
           script: |
+            const prNumber = Number(process.env.PR_NUMBER);
             try {
-              const prNumber = ${{ steps.create-pr.outputs.pull-request-number }};
-
               console.log(`Attempting to merge PR #${prNumber}`);
 
               // Wait a moment for GitHub to process the PR
@@ -202,8 +212,8 @@ jobs:
                 repo: context.repo.repo,
                 pull_number: prNumber,
                 merge_method: 'squash',
-                commit_title: `Add to read later: ${{ steps.final-title.outputs.title }} (#${prNumber})`,
-                commit_message: `Automated merge of read later link\n\nURL: ${{ steps.extract-data.outputs.url }}\nTitle: ${{ steps.final-title.outputs.title }}`
+                commit_title: `Add to read later: ${process.env.TITLE} (#${prNumber})`,
+                commit_message: `Automated merge of read later link\n\nURL: ${process.env.URL}\nTitle: ${process.env.TITLE}`
               });
 
               console.log('✅ PR merged successfully');
@@ -244,7 +254,7 @@ jobs:
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  issue_number: ${{ steps.create-pr.outputs.pull-request-number }},
+                  issue_number: prNumber,
                   body: '⚠️ Automatic merge failed. The PR was created successfully but requires manual merge.'
                 });
               } catch (commentError) {
@@ -392,11 +402,14 @@ jobs:
       - name: Auto-merge Pull Request
         if: steps.create-pr.outputs.pull-request-number != ''
         uses: actions/github-script@v9
+        env:
+          PR_NUMBER: ${{ steps.create-pr.outputs.pull-request-number }}
+          REMOVED_COUNT: ${{ steps.cleanup.outputs.removed_count }}
+          NEW_COUNT: ${{ steps.cleanup.outputs.new_count }}
         with:
           script: |
+            const prNumber = Number(process.env.PR_NUMBER);
             try {
-              const prNumber = ${{ steps.create-pr.outputs.pull-request-number }};
-              
               console.log(`Attempting to merge PR #${prNumber}`);
               
               // Wait a moment for GitHub to process the PR
@@ -431,7 +444,7 @@ jobs:
                 pull_number: prNumber,
                 merge_method: 'squash',
                 commit_title: `Clean up old read later entries (#${prNumber})`,
-                commit_message: `Automated cleanup of read later entries older than 14 days\n\nRemoved: ${{ steps.cleanup.outputs.removed_count }} entries\nRemaining: ${{ steps.cleanup.outputs.new_count }} entries`
+                commit_message: `Automated cleanup of read later entries older than 14 days\n\nRemoved: ${process.env.REMOVED_COUNT} entries\nRemaining: ${process.env.NEW_COUNT} entries`
               });
               
               console.log('✅ PR merged successfully');
@@ -458,7 +471,7 @@ jobs:
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  issue_number: ${{ steps.create-pr.outputs.pull-request-number }},
+                  issue_number: prNumber,
                   body: '⚠️ Automatic merge failed. The PR was created successfully but requires manual merge.'
                 });
               } catch (commentError) {
@@ -468,22 +481,27 @@ jobs:
 
       - name: Log cleanup summary
         if: always()
+        env:
+          ORIGINAL_COUNT: ${{ steps.cleanup.outputs.original_count }}
+          REMOVED_COUNT: ${{ steps.cleanup.outputs.removed_count }}
+          NEW_COUNT: ${{ steps.cleanup.outputs.new_count }}
+          HAS_CHANGES: ${{ steps.cleanup.outputs.has_changes }}
+          REMOVED_ENTRIES_FILE: ${{ steps.cleanup.outputs.removed_entries_file }}
         run: |
           echo "## 🧹 Read Later Cleanup Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- **Original entries:** ${{ steps.cleanup.outputs.original_count }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Entries removed:** ${{ steps.cleanup.outputs.removed_count }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Remaining entries:** ${{ steps.cleanup.outputs.new_count }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Original entries:** $ORIGINAL_COUNT" >> $GITHUB_STEP_SUMMARY
+          echo "- **Entries removed:** $REMOVED_COUNT" >> $GITHUB_STEP_SUMMARY
+          echo "- **Remaining entries:** $NEW_COUNT" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           
-          if [ "${{ steps.cleanup.outputs.has_changes }}" = "true" ]; then
+          if [ "$HAS_CHANGES" = "true" ]; then
             echo "✅ Old entries were removed and a PR was created." >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "### 🗑️ Removed Entries" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             
             # Read and display removed entries
-            REMOVED_ENTRIES_FILE="${{ steps.cleanup.outputs.removed_entries_file }}"
             if [ -f "$REMOVED_ENTRIES_FILE" ]; then
               # Process each removed entry and format as markdown list
               # Use URL as link text if title is empty or null
@@ -544,9 +562,10 @@ jobs:
 
       - name: Clean up entries matching responses/bookmarks
         id: cleanup
+        env:
+          TARGET_URLS_FILE: ${{ steps.extract-urls.outputs.target_urls_file }}
         run: |
           JSON_FILE="Data/read-later.json"
-          TARGET_URLS_FILE="${{ steps.extract-urls.outputs.target_urls_file }}"
           
           # Count original entries
           ORIGINAL_COUNT=$(jq 'length' "$JSON_FILE")
@@ -639,11 +658,14 @@ jobs:
       - name: Auto-merge Pull Request
         if: steps.create-pr.outputs.pull-request-number != ''
         uses: actions/github-script@v9
+        env:
+          PR_NUMBER: ${{ steps.create-pr.outputs.pull-request-number }}
+          REMOVED_COUNT: ${{ steps.cleanup.outputs.removed_count }}
+          NEW_COUNT: ${{ steps.cleanup.outputs.new_count }}
         with:
           script: |
+            const prNumber = Number(process.env.PR_NUMBER);
             try {
-              const prNumber = ${{ steps.create-pr.outputs.pull-request-number }};
-              
               console.log(`Attempting to merge PR #${prNumber}`);
               
               // Wait a moment for GitHub to process the PR
@@ -678,7 +700,7 @@ jobs:
                 pull_number: prNumber,
                 merge_method: 'squash',
                 commit_title: `Clean up read later entries matching responses/bookmarks (#${prNumber})`,
-                commit_message: `Automated cleanup of read later entries that match responses/bookmarks\n\nRemoved: ${{ steps.cleanup.outputs.removed_count }} entries\nRemaining: ${{ steps.cleanup.outputs.new_count }} entries`
+                commit_message: `Automated cleanup of read later entries that match responses/bookmarks\n\nRemoved: ${process.env.REMOVED_COUNT} entries\nRemaining: ${process.env.NEW_COUNT} entries`
               });
               
               console.log('✅ PR merged successfully');
@@ -705,7 +727,7 @@ jobs:
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  issue_number: ${{ steps.create-pr.outputs.pull-request-number }},
+                  issue_number: prNumber,
                   body: '⚠️ Automatic merge failed. The PR was created successfully but requires manual merge.'
                 });
               } catch (commentError) {
@@ -715,23 +737,29 @@ jobs:
 
       - name: Log cleanup summary
         if: always()
+        env:
+          ORIGINAL_COUNT: ${{ steps.cleanup.outputs.original_count }}
+          REMOVED_COUNT: ${{ steps.cleanup.outputs.removed_count }}
+          NEW_COUNT: ${{ steps.cleanup.outputs.new_count }}
+          URL_COUNT: ${{ steps.extract-urls.outputs.url_count }}
+          HAS_CHANGES: ${{ steps.cleanup.outputs.has_changes }}
+          REMOVED_ENTRIES_FILE: ${{ steps.cleanup.outputs.removed_entries_file }}
         run: |
           echo "## 🧹 Read Later Cleanup Summary (Responses/Bookmarks)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- **Original entries:** ${{ steps.cleanup.outputs.original_count }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Entries removed:** ${{ steps.cleanup.outputs.removed_count }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Remaining entries:** ${{ steps.cleanup.outputs.new_count }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Target URLs checked:** ${{ steps.extract-urls.outputs.url_count }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Original entries:** $ORIGINAL_COUNT" >> $GITHUB_STEP_SUMMARY
+          echo "- **Entries removed:** $REMOVED_COUNT" >> $GITHUB_STEP_SUMMARY
+          echo "- **Remaining entries:** $NEW_COUNT" >> $GITHUB_STEP_SUMMARY
+          echo "- **Target URLs checked:** $URL_COUNT" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           
-          if [ "${{ steps.cleanup.outputs.has_changes }}" = "true" ]; then
+          if [ "$HAS_CHANGES" = "true" ]; then
             echo "✅ Matching entries were removed and a PR was created." >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "### 🗑️ Removed Entries" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             
             # Read and display removed entries
-            REMOVED_ENTRIES_FILE="${{ steps.cleanup.outputs.removed_entries_file }}"
             if [ -f "$REMOVED_ENTRIES_FILE" ]; then
               # Process each removed entry and format as markdown list
               # Use URL as link text if title is empty or null

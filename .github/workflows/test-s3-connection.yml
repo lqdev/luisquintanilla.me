@@ -33,8 +33,9 @@ jobs:
           LINODE_STORAGE_ENDPOINT_URL: ${{ secrets.LINODE_STORAGE_ENDPOINT_URL }}
           LINODE_STORAGE_BUCKET_NAME: ${{ secrets.LINODE_STORAGE_BUCKET_NAME }}
           LINODE_STORAGE_CUSTOM_DOMAIN: ${{ secrets.LINODE_STORAGE_CUSTOM_DOMAIN }}
+          VERBOSE: ${{ inputs.verbose }}
         run: |
-          if [ "${{ inputs.verbose }}" = "true" ]; then
+          if [ "$VERBOSE" = "true" ]; then
             python .github/scripts/test_s3_connection.py --verbose
           else
             python .github/scripts/test_s3_connection.py
