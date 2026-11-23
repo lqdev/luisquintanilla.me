@@ -1,0 +1,49 @@
+---
+post_type: "article"
+title: "A Low-Friction Follow Workflow for My Website"
+description: "Using GitHub Issues to add follows to my blogroll and podroll, publish them with OPML, and send follow Webmentions."
+published_date: "2026-10-30 16:27 -05:00"
+tags: ["github","indieweb","rss","opml","webmentions","workflow"]
+---
+
+In a [previous post](/posts/github-issue-publishing-workflow/), I described my GitHub Issues-based CMS and mobile publishing flow. I want to use that same foundation for follows.
+
+Social apps bundle follows: I add someone to my list, subscribe to their updates, and they may be notified. I want that simplicity but on my own site and using open standards.
+
+My site is my digital home and hub for my identity and content. Networks and protocols are spokes that help me reach others, not replacements for the hub. If one disappears, my site and work remain. My [FOSDEM reflections](/posts/fosdem-2026-social-web-thoughts/) explain the model. I want this model to also apply to follows.
+
+DISCLAIMER: AI was used to help me organize and improve the flow of this post. Ideas and thoughts expressed are my own.
+
+## Building a follow on the open web
+
+A [blogroll](https://indieweb.org/blogroll) is a curated list of links to blogs and sites I follow. It helps people discover what I read, but a list alone neither subscribes me to updates nor notifies the site owner.
+
+Feeds like RSS let me subscribe with the reader I choose. The blogroll is public and aids discovery; the feed provides updates. I wrote more in [Rediscovering the RSS protocol](/posts/rediscovering-rss-user-freedom/).
+
+The [`u-follow-of`](https://indieweb.org/u-follow-of) microformat marks a blogroll link as a follow. [Webmention](https://indieweb.org/Webmention) lets one site notify another when it links to it. If the site accepts follow Webmentions, it can notify its owner or display the follow.
+
+OPML is a file format that lets readers import or export feed lists, making them portable between clients. Lists can include blogs, podcasts, YouTube, or social services that publish feeds. I wrote about RSS, OPML, and Bluesky starter packs in [this post](/posts/rss-opml-starter-packs/).
+
+Put together, these standards make a follow possible without one app owning all of it: my site holds the public list, RSS lets my reader subscribe, Webmention can notify the other site, and OPML makes the list portable.
+
+## Reusing what I already have
+
+My [collections](/collections/) include a [blogroll](/collections/blogroll/), [podroll](/collections/podroll/), [YouTube channels](/collections/youtube/), [forums](/collections/forums/), and topic-based [starter packs](/collections/starter-packs/). This follow workflow updates only the blogroll or podroll. The OPML collections are the public source of truth for feeds I choose to share, not every reader subscription. Importing OPML is a snapshot; later changes do not update copies in clients.
+
+I want to improve manual list maintenance and synchronization, but this post focuses on the first. Finding a feed URL can take more effort than editing a file; without one, I cannot add a site. I still copy the URL and site details into the form. The [RSS Browser Extension](https://github.com/lqdev/rss-browser-extension) detects feeds on pages, as I wrote in [my post about building it](/posts/taking-claude-code-web-for-a-spin/), but I still have to submit a follow issue.
+
+I already use GitHub issues to create posts, and my site sends Webmentions for interactions like responses and RSVPs during publishing. I reused those pieces rather than add another service. The [follow issue template](https://github.com/lqdev/luisquintanilla.me/blob/main/.github/ISSUE_TEMPLATE/follow.yml) starts the process:
+
+1. I enter the feed URL, site URL, and title, then choose blogroll or podroll.
+2. A GitHub Action runs an F# script to validate the input and feed, avoid duplicates, update the matching data file, and open a PR for review.
+3. After merge, the site build updates the collection and OPML. The entry gets `u-follow-of` markup, and the publish workflow detects added or removed follows and sends a Webmention from the collection page to the site.
+
+[PR #2942](https://github.com/lqdev/luisquintanilla.me/pull/2942) added this workflow. [Following Ellane W.](https://github.com/lqdev/luisquintanilla.me/pull/2944) was a successful example: after merge, the publish workflow detected the new blogroll entry and sent a follow Webmention.
+
+## What comes next
+
+I want to connect feed discovery in the [RSS Browser Extension](https://github.com/lqdev/rss-browser-extension) to the issue flow in [GitHub Post PWA](https://github.com/lqdev/github-post-pwa), which I already use to start other posts. The follow form accepts a prefilled feed URL, but I still submit the issue myself. It is not one click yet.
+
+I am also exploring OPML over [WebSub](https://www.w3.org/TR/websub/) for synchronization. WebSub is a W3C standard that uses hubs to notify subscribers when content changes. I want compatible clients to learn when my OPML list changes instead of requiring a new import. That is still in progress and deserves its own post.
+
+This builds on my mobile publishing flow. GitHub gives me a low-friction form and review step; my site publishes the list and sends the notification. My website stays the hub, with open feeds and standards connecting it to the people and tools around it.
