@@ -145,5 +145,12 @@
         "HtmlUrl": "https://www.manton.org/",
         "XmlUrl": "https://www.manton.org/feed.xml",
         "Added": "2026-11-22"
+    },
+    {
+        "Title": "Maggie Appleton",
+        "Type": "rss",
+        "HtmlUrl": "https://maggieappleton.com/",
+        "XmlUrl": "https://maggieappleton.com/rss.xml",
+        "Added": "2026-11-22"
     }
 ]
