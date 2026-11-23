@@ -20,7 +20,7 @@ let scopeDirs : string list = [ "docs" ]
 /// Individual files checked for links and paths. Empty at first; layers add the files they fix:
 /// layer 4 adds the sub-READMEs, layer 6 README.md and CONTRIBUTING.md, layer 7 AGENTS.md.
 let scopeFiles : string list =
-    [ "api/README.md"; "Scripts/README.md"; "test-scripts/README.md"; "projects/backlog.md" ]
+    [ "README.md"; "CONTRIBUTING.md"; "api/README.md"; "Scripts/README.md"; "test-scripts/README.md"; "projects/backlog.md" ]
 
 /// Checked for links but not for path tokens: decision records describe the code as it was
 /// when the decision was made, so old file names in them are correct.
@@ -33,7 +33,7 @@ let excludedPrefixes : string list =
 /// Files and directories held to the voice rules (see docs/contributing/voice.md).
 /// Starts small on purpose. Each layer adds the prose it rewrites.
 let styleFiles : string list =
-    [ "docs/README.md"; "docs/principles.md"; "docs/architecture.md"; "docs/getting-started.md"
+    [ "README.md"; "CONTRIBUTING.md"; "docs/README.md"; "docs/principles.md"; "docs/architecture.md"; "docs/getting-started.md"
       "docs/reference/content-types.md"; "docs/reference/build.md" ]
 let styleDirs : string list = [ "docs/contributing" ]
 
@@ -43,7 +43,7 @@ let allowedDocsRootFiles : string list =
 
 /// Maximum line counts. Empty until the layer that rewrites each file adds its entry:
 /// layer 6 adds "README.md", 150 and "CONTRIBUTING.md", 80; layer 7 adds "AGENTS.md", 150.
-let lineBudgets : (string * int) list = []
+let lineBudgets : (string * int) list = [ "README.md", 150; "CONTRIBUTING.md", 80 ]
 let instructionFileBudget = 60
 let skillFileBudget = 500
 

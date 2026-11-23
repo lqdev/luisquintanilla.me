@@ -59,6 +59,25 @@ All feeds follow uniform URL structure `/[type]/feed.xml → /[alias].rss` for c
 - OPML integration with unified feed as first entry in feeds.json
 - Backward compatibility maintained through dual file generation
 
+### Feed aliases
+
+`staticwebapp.config.json` redirects these short URLs with a 301:
+
+| Alias | Redirects to |
+| --- | --- |
+| `/all.rss` | `/feed/feed.xml` |
+| `/blog.rss` | `/posts/feed.xml` |
+| `/microblog.rss` | `/notes/feed.xml` |
+| `/responses.rss` | `/responses/feed.xml` |
+| `/reviews.rss` | `/reviews/feed.xml` |
+| `/media.rss` | `/media/feed.xml` |
+| `/bookmarks.rss` | `/bookmarks/feed.xml` |
+| `/rsvp.rss` | `/rsvp/feed.xml` |
+| `/ai-memex.rss` | `/resources/ai-memex/feed.xml` |
+| `/mastodon.rss` | `https://toot.lqdev.tech/@lqdev.rss` |
+| `/bluesky.rss` | `https://bsky.app/profile/did:plc:pme7qquljcdx6i4zyawoxypd/rss` |
+| `/youtube.rss` | `https://youtube.com/feeds/videos.xml?channel_id=UCkA5fHdQ4cf3D1J19UNgV7A` |
+
 ### 3. Tag-Based Feeds
 **Implementation**: 2025-07-25  
 **Coverage**: 1,187 individual tag feeds  
