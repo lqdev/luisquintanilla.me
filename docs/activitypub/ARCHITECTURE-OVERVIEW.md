@@ -47,7 +47,7 @@ This repository implements ActivityPub federation for a static website built wit
 3. **Queue-Based Delivery**: Async processing with exponential backoff retry for reliability
 4. **Table Storage as Truth**: Persistent follower state with static `followers.json` regenerated during builds
 5. **Cost-Optimized**: ~$0.02/month operational cost using Azure free tiers
-6. **Object Unwrapping Pattern**: Azure Function dynamically unwraps Create activities to return embedded Note/Article objects for Mastodon URL search compatibility (see [Phase 5 docs](phase5-fediverse-native-expansion-plan.md#azure-function-object-unwrapping-pattern))
+6. **Object Unwrapping Pattern**: Azure Function dynamically unwraps Create activities to return embedded Note/Article objects for Mastodon URL search compatibility (see [Phase 5 docs](../../archive/docs/activitypub/phase5-fediverse-native-expansion-plan.md#azure-function-object-unwrapping-pattern))
 
 ---
 
@@ -280,7 +280,7 @@ This repository implements ActivityPub federation for a static website built wit
 - Feature flag security logic must ENFORCE requirements, not just verify when present
 - Azure Static Web Apps `x-ms-original-url` header critical for path reconstruction
 
-**Documentation**: See `docs/activitypub/phase4-http-signature-verification-complete.md` for complete implementation details, production testing results, and technical specifications.
+**Documentation**: See [`phase4-http-signature-verification-complete.md`](../../archive/docs/activitypub/phase4-http-signature-verification-complete.md) for complete implementation details, production testing results, and technical specifications.
 
 ---
 
@@ -340,7 +340,7 @@ Reduction: 80% fewer outbound requests
 - `api/scripts/process-delivery.js` - Handle coveredActors
 - `api/scripts/backfill-shared-inbox.js` - Migration script (new)
 
-**Documentation**: See `docs/activitypub/phase4d-shared-inbox-research.md` for research notes and best practices.
+**Documentation**: See [`phase4d-shared-inbox-research.md`](../../archive/docs/activitypub/phase4d-shared-inbox-research.md) for research notes and best practices.
 
 ---
 
@@ -754,27 +754,14 @@ az storage entity query \
 
 **Detailed Technical Docs**:
 - [`follower-management-architecture.md`](./follower-management-architecture.md) - Why static sites need dynamic backends
-- [`phase4-kickoff-summary.md`](./phase4-kickoff-summary.md) - Phase 4 preparation and decisions
-- [`phase4-implementation-plan.md`](./phase4-implementation-plan.md) - Detailed Phase 4 implementation guide
 
 **Operational Guides**:
 - [`deployment-guide.md`](./deployment-guide.md) - Azure setup and deployment procedures
 - [`keyvault-setup.md`](./keyvault-setup.md) - Azure Key Vault configuration details
 
-**Phase Completion Summaries**:
-- [`phase3-implementation-complete.md`](./phase3-implementation-complete.md) - Outbox automation
-- [`phase4a-complete-summary.md`](./phase4a-complete-summary.md) - Inbox handler & Table Storage
-- [`phase4b-4c-complete-summary.md`](./phase4b-4c-complete-summary.md) - Delivery infrastructure & GitHub Actions
-
 ### Historical Documentation (Reference)
 
-**Archived for Context**:
-- [`historical/implementation-plan.md`](./historical/implementation-plan.md) - Original 8-week phased plan
-- [`historical/az-fn-implementation-plan.md`](./historical/az-fn-implementation-plan.md) - Azure Functions strategy
-- [`historical/fix-summary.md`](./historical/fix-summary.md) - Phase 1-2 completion (superseded by phase summaries)
-- [`historical/reconciliation-summary.md`](./historical/reconciliation-summary.md) - Documentation reconciliation
-
-**Purpose**: Historical documents provide valuable context about decision-making process, alternative approaches considered, and evolution of the implementation.
+Phase plans, kickoff notes, completion summaries, and the original plans are in [`../../archive/docs/activitypub/`](../../archive/docs/activitypub/).
 
 ### Testing & Scripts
 

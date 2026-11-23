@@ -441,7 +441,7 @@ When adding templates, maintain this hierarchy for consistency.
 
 ### Repository Documentation
 - `docs/README.md` - General site documentation
-- `docs/core-infrastructure-architecture.md` - F# architecture overview
+- `archive/docs/core-infrastructure-architecture.md` - F# architecture overview
 - `.vscode/metadata.code-snippets` - VS Code alternative snippets
 - `Domain.fs` - F# type definitions for all content types
 

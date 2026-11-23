@@ -32,9 +32,9 @@
 /// (/api/activitypub/*) consistent with current implementation.
 ///
 /// For more information:
-/// - Current implementation status: /docs/activitypub-implementation-status.md
+/// - Status and history: docs/activitypub/implementation-status.md
 /// - API documentation: /api/ACTIVITYPUB.md
-/// - Phase 3 planning: /docs/activitypub-implementation-plan.md (Phase 3 section)
+/// - Status and history: docs/activitypub/implementation-status.md
 ///
 /// Based on the ActivityPub implementation guide by Maho Pacheco
 /// Converts RSS feeds to ActivityPub outbox and notes for static site integration

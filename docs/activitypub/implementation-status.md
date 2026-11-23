@@ -2,7 +2,7 @@
 
 **Last Updated**: January 23, 2026  
 **Current Phase**: Phase 4 Complete (HTTP Signature Verification) 🔒  
-**Primary Reference**: `docs/activitypub/http-signature-verification-plan.md`
+**Primary Reference**: [`http-signature-verification-plan.md`](../../archive/docs/activitypub/http-signature-verification-plan.md) (archived)
 
 ---
 
@@ -254,8 +254,8 @@ ActivityPubBuilder.buildOutbox allUnifiedContent "_public"
 
 ### Documentation
 
-- **Implementation Details**: `docs/activitypub/phase3-implementation-complete.md`
-- **Research Summary**: `docs/activitypub/phase3-research-summary.md`
+- **Implementation Details**: [`phase3-implementation-complete.md`](../../archive/docs/activitypub/phase3-implementation-complete.md)
+- **Research Summary**: [`phase3-research-summary.md`](../../archive/docs/activitypub/phase3-research-summary.md)
 - **Source Code**: `ActivityPubBuilder.fs`
 
 ---
@@ -293,7 +293,7 @@ Deliver new content activities to follower inboxes when published, with producti
 
 ### Implementation Plan
 
-📄 **Complete Documentation**: [Phase 4 Implementation Plan](./phase4-implementation-plan.md)
+📄 **Complete Documentation**: [Phase 4 Implementation Plan](../../archive/docs/activitypub/phase4-implementation-plan.md)
 
 **Azure Resources Required**:
 - Storage Account: `lqdevactivitypub`
@@ -527,15 +527,11 @@ When migrating from `/api/*` to `/api/activitypub/*`:
 
 ### Implementation Plans (Detailed Context)
 
-**`/docs/activitypub/follower-management-architecture.md`** - Why static sites need dynamic backends  
-**`/docs/activitypub/phase4-implementation-plan.md`** - Phase 4 detailed implementation guide  
-**`/docs/activitypub/phase4-kickoff-summary.md`** - Phase 4 preparation and decisions
+**`/docs/activitypub/follower-management-architecture.md`** - Why static sites need dynamic backends
 
 ### Status & Completion Summary
 
-**`/docs/activitypub/phase3-implementation-complete.md`** - Phase 3 outbox automation completion  
-**`/docs/activitypub/phase4a-complete-summary.md`** - Phase 4A inbox handler completion  
-**`/docs/activitypub/phase4b-4c-complete-summary.md`** - Phase 4B/C delivery infrastructure completion
+Phase plans, kickoff notes, and completion summaries are in [`../../archive/docs/activitypub/`](../../archive/docs/activitypub/).
 
 ### Deployment & Operations
 
@@ -553,7 +549,7 @@ When migrating from `/api/*` to `/api/activitypub/*`:
 
 ### Historical Documentation (Archived)
 
-**`/docs/activitypub/historical/`** - Archived planning documents and early summaries for historical reference
+**`/archive/docs/activitypub/`** - Archived planning documents and early summaries for historical reference
 
 ---
 
@@ -576,11 +572,11 @@ When migrating from `/api/*` to `/api/activitypub/*`:
 5. Check logs in `api/data/activities/` for debugging
 
 **Implement Phase 3 (Outbox Automation)**
-1. Read: `/docs/activitypub/implementation-plan.md` (Phase 3 section)
+1. Read: `/archive/docs/activitypub/historical/implementation-plan.md` (Phase 3 section)
 2. Reference: `Scripts/rss-to-activitypub.fsx` for conversion patterns
 3. Create F# module for ActivityPub generation
 4. Integrate with `Program.fs` build pipeline
-5. Update `/docs/activitypub/fix-summary.md` when complete
+5. Update `/archive/docs/activitypub/historical/fix-summary.md` when complete
 
 **Update ActivityPub documentation**
 1. Primary updates go in `/api/ACTIVITYPUB.md`
@@ -593,6 +589,15 @@ When migrating from `/api/*` to `/api/activitypub/*`:
 2. Test from Mastodon: Search and Follow `@lqdev@lqdev.me`
 3. Check follower collection: `curl https://lqdev.me/api/activitypub/followers`
 4. Review activity logs: `api/data/activities/`
+
+---
+
+## Remaining work
+
+The status table above is older than the phase 5 plan. That plan, [`phase5-fediverse-native-expansion-plan.md`](../../archive/docs/activitypub/phase5-fediverse-native-expansion-plan.md),
+last updated January 31, 2026, records phases 5A, 5B, 5C, 5D, and 5F as done and 5E as in progress.
+Research for phase 6 (RSVPs) is in [`phase6a-rsvp-research.md`](../../archive/docs/activitypub/phase6a-rsvp-research.md).
+See the archived plan for phases not yet built.
 
 ---
 

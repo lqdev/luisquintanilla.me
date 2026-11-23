@@ -170,8 +170,8 @@ Then update `test-slug-generation.sh` to include the new post type.
 ## Related Documentation
 
 - [SLUG_GENERATION_GUIDE.md](../docs/SLUG_GENERATION_GUIDE.md) - User guide
-- [SLUG_GENERATION_AUDIT.md](../docs/SLUG_GENERATION_AUDIT.md) - Technical audit
-- [SLUG_GENERATION_IMPLEMENTATION.md](../docs/SLUG_GENERATION_IMPLEMENTATION.md) - Implementation details
+- [SLUG_GENERATION_AUDIT.md](../archive/docs/SLUG_GENERATION_AUDIT.md) - Technical audit
+- [SLUG_GENERATION_IMPLEMENTATION.md](../archive/docs/SLUG_GENERATION_IMPLEMENTATION.md) - Implementation details
 
 ## History
 

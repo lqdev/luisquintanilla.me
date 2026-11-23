@@ -484,9 +484,9 @@ The text-only system is designed for easy enhancement:
 
 ## Related Documentation
 
-- [Enhanced Content Discovery](enhanced-content-discovery-implementation.md) - Main site search (not in text-only)
+- [Enhanced Content Discovery](../archive/docs/enhanced-content-discovery-implementation.md) - Main site search (not in text-only)
 - [Feed Architecture](feed-architecture.md) - RSS feeds work across both sites
-- [Core Infrastructure](core-infrastructure-architecture.md) - Shared content pipeline
+- [Core Infrastructure](../archive/docs/core-infrastructure-architecture.md) - Shared content pipeline
 - [Collections System](how-to-create-collections.md) - Collections in text-only format
 
 ## Resources

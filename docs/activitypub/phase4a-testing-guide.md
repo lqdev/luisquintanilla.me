@@ -209,7 +209,7 @@ After successful testing:
 
 After successful testing, update:
 - [ ] `docs/activitypub/implementation-status.md` - Mark Phase 4A as complete
-- [ ] `docs/activitypub/phase4-implementation-plan.md` - Update progress
+- [ ] `archive/docs/activitypub/phase4-implementation-plan.md` - Update progress
 - [ ] `api/ACTIVITYPUB.md` - Document any API changes
 - [ ] `projects/active/phase-4a-inbox-handler.md` - Final status update
 
