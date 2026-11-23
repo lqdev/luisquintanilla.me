@@ -39,9 +39,12 @@ jobs:
             test-rss-semantics \
             test-social-discovery \
             test-atproto-response-mapping \
-            test-atproto-media; do
+            test-atproto-media \
+            test-follow-yaml; do
             dotnet fsi "test-scripts/$script.fsx"
           done
+          node test-scripts/test-follow-choice.js
+          node test-scripts/test-follow-processing.js
 
   api:
     runs-on: ubuntu-latest

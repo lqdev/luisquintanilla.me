@@ -1,0 +1,134 @@
+name: Process Follow Feed Choice
+
+on:
+  issues:
+    types: [edited]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  process-follow-choice:
+    if: >-
+      github.event.issue.state == 'open' &&
+      github.event.issue.pull_request == null &&
+      contains(github.event.issue.labels.*.name, 'follow') &&
+      github.event.sender.login == 'lqdev' &&
+      github.event.sender.login != 'github-actions[bot]' &&
+      (
+        (github.event_name == 'issues' && github.event.action == 'edited') ||
+        (github.event_name == 'issue_comment' && github.event.action == 'created')
+      )
+    runs-on: ubuntu-latest
+    concurrency:
+      group: follow-issue-${{ github.event.issue.number }}
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Resolve selected feed
+        id: select
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const {
+              FOLLOW_CANDIDATES_MARKER,
+              extractFollowFields,
+              parseCheckedCandidate,
+              parseFollowCommand,
+              resolveFollowCommand
+            } = require('./.github/scripts/follow-choice.js');
+
+            const liveIssue = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number
+            });
+            const labels = liveIssue.data.labels
+              .map((label) => typeof label === 'string' ? label : label.name);
+            if (
+              liveIssue.data.state !== 'open' ||
+              liveIssue.data.pull_request ||
+              !labels.includes('follow')
+            ) {
+              core.info(`Skipping stale choice event because issue #${liveIssue.data.number} is no longer open and labeled follow.`);
+              core.setOutput('process', 'false');
+              return;
+            }
+
+            const issueBody = liveIssue.data.body || '';
+            let selection = { state: 'none' };
+
+            if (context.eventName === 'issues') {
+              if (!issueBody.includes(FOLLOW_CANDIDATES_MARKER)) {
+                core.setOutput('process', 'false');
+                return;
+              }
+              selection = parseCheckedCandidate(issueBody);
+              if (selection.state === 'invalid') {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.payload.issue.number,
+                  body: `Exactly one feed candidate must be checked (currently ${selection.count}).`
+                });
+                core.setOutput('process', 'false');
+                return;
+              }
+              if (selection.state === 'none') {
+                core.setOutput('process', 'false');
+                return;
+              }
+            } else {
+              const command = parseFollowCommand(context.payload.comment.body || '');
+              if (!command) {
+                core.setOutput('process', 'false');
+                return;
+              }
+              selection = resolveFollowCommand(command, [issueBody]);
+              if (selection.state === 'invalid') {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.payload.issue.number,
+                  body: selection.reason
+                });
+                core.setOutput('process', 'false');
+                return;
+              }
+            }
+
+            if (selection.state !== 'selected') {
+              core.setOutput('process', 'false');
+              return;
+            }
+
+            const fields = extractFollowFields(issueBody);
+            core.setOutput('process', 'true');
+            core.setOutput('feed_url', selection.url);
+            core.setOutput('site_url', fields.siteUrl);
+            core.setOutput('title', fields.title);
+            core.setOutput('roll', fields.roll);
+
+      - name: Setup .NET 11
+        if: steps.select.outputs.process == 'true'
+        uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+          cache: false
+
+      - name: Process selected feed
+        if: steps.select.outputs.process == 'true'
+        uses: ./.github/actions/process-follow
+        with:
+          feed_url: ${{ steps.select.outputs.feed_url }}
+          site_url: ${{ steps.select.outputs.site_url }}
+          title: ${{ steps.select.outputs.title }}
+          roll: ${{ steps.select.outputs.roll }}
+          issue_number: ${{ github.event.issue.number }}
