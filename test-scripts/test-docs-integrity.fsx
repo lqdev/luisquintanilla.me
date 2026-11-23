@@ -1,6 +1,7 @@
 // Docs integrity test.
 // Run from the repo root:  dotnet fsi test-scripts/test-docs-integrity.fsx
 // Add --all to print every finding instead of the first 15 per check.
+// Add --self-test to run the checks on the planted problems in test-scripts/fixtures/docs-integrity.
 // Exits 1 when any failing check has findings. Warnings never fail the run.
 //
 open System
@@ -113,15 +114,26 @@ let fail (check: string) (file: string) (line: int) (message: string) =
 let warn (check: string) (file: string) (line: int) (message: string) =
     warnings.Add { Check = check; File = file; Line = line; Message = message }
 
+/// A fence line: its run of backticks or tildes, then the rest of the line.
+let fenceRx = Regex(@"^\s*(`{3,}|~{3,})(.*)$")
+
 /// Every line of a Markdown file with its 1-based number and whether it is inside a code fence.
+/// A fence closes only on a run of the same character at least as long as the one that opened it,
+/// so a shorter fence inside a longer fenced example stays part of the example.
 let markdownLines (relative: string) : (int * string * bool) list =
     let result = ResizeArray<int * string * bool>()
-    let mutable inFence = false
+    let mutable fence : (char * int) option = None
     let lines = File.ReadAllLines(Path.Combine(repoRoot, relative))
     for i in 0 .. lines.Length - 1 do
-        let t = lines.[i].TrimStart()
-        if t.StartsWith "```" || t.StartsWith "~~~" then inFence <- not inFence
-        else result.Add((i + 1, lines.[i], inFence))
+        let m = fenceRx.Match lines.[i]
+        let run = m.Groups.[1].Value
+        let rest = m.Groups.[2].Value
+        match fence with
+        | None when m.Success && not (run.[0] = '`' && rest.Contains "`") ->
+            fence <- Some(run.[0], run.Length)
+        | Some(c, length) when m.Success && run.[0] = c && run.Length >= length && rest.Trim() = "" ->
+            fence <- None
+        | _ -> result.Add((i + 1, lines.[i], fence.IsSome))
     List.ofSeq result
 
 /// Lines outside fenced code blocks.
@@ -179,7 +191,8 @@ let hasExtension (extensions: string list) (token: string) : bool =
 /// Reports a token that looks like a repo path or file name but does not exist.
 let checkToken (extensions: string list) (relative: string) (n: int) (raw: string) =
     let token = norm (raw.Trim())
-    // "./name" points at the repo root, so a file with that name elsewhere does not count.
+    // "./name" and "./dir/name" point at the repo root: the path must exist there, even when
+    // "dir" is not a top-level folder, and a file with that name elsewhere does not count.
     let rootRelative = token.StartsWith "./"
     let token = if rootRelative then token.Substring 2 else token
     let skip =
@@ -189,7 +202,7 @@ let checkToken (extensions: string list) (relative: string) (n: int) (raw: strin
     if not skip then
         if token.Contains "/" then
             let first = token.Split('/').[0]
-            if topLevel.Contains first && not (existsInRepo token) then
+            if (rootRelative || topLevel.Contains first) && not (existsInRepo token) then
                 fail "2-paths" relative n $"path does not exist: {token}"
         elif bareNameRx.IsMatch token && hasExtension extensions token then
             let found = existsInRepo token || (not rootRelative && baseNames.Contains token)
@@ -257,33 +270,55 @@ let checkBudgets () =
                 fail "5-budgets" rel 1 $"{lineCount rel} lines; budget is {instructionFileBudget}"
 
 let skillNameRx = Regex(@"^[a-z0-9]+(-[a-z0-9]+)*$")
+/// A YAML block scalar indicator such as "|", ">-" or "|2"; its value spans several lines.
+let blockScalarRx = Regex(@"^[|>][+\-]?[0-9]?[+\-]?$")
+
+/// The lines between a leading "---" and the next "---", or None when the file does not open
+/// with a closed frontmatter block. Metadata is read only from here, never from the body.
+let frontmatter (lines: string[]) : string[] option =
+    if lines.Length > 0 && lines.[0].Trim() = "---" then
+        lines.[1..]
+        |> Array.tryFindIndex (fun l -> l.Trim() = "---")
+        |> Option.map (fun close -> lines.[1..close])
+    else None
+
+let checkSkillFields (rel: string) (dirName: string) (block: string[]) =
+    let field (key: string) =
+        block
+        |> Array.tryFind (fun l -> l.StartsWith(key + ":"))
+        |> Option.map (fun l -> l.Substring(key.Length + 1).Trim())
+    let unquote (v: string) = v.Trim('"', '\'')
+    match field "name" with
+    | None -> fail "6-skills" rel 1 "frontmatter has no name"
+    | Some v when blockScalarRx.IsMatch v -> fail "6-skills" rel 1 "name must be a single line"
+    | Some v when unquote v <> dirName -> fail "6-skills" rel 1 $"name '{unquote v}' must equal directory name '{dirName}'"
+    | Some v when not (skillNameRx.IsMatch(unquote v)) || (unquote v).Length > 64 -> fail "6-skills" rel 1 $"name '{unquote v}' is not lowercase-hyphenated or is over 64 characters"
+    | Some _ -> ()
+    match field "description" with
+    | None -> fail "6-skills" rel 1 "frontmatter has no single-line description"
+    | Some v when blockScalarRx.IsMatch v -> fail "6-skills" rel 1 "description must be a single line"
+    | Some v when (unquote v).Length = 0 || (unquote v).Length > 1024 -> fail "6-skills" rel 1 $"description is {(unquote v).Length} characters; must be 1 to 1024"
+    | Some _ -> ()
+
+let checkSkillRoot (root: string) =
+    let full = Path.Combine(repoRoot, root)
+    if Directory.Exists full then
+        for dir in Directory.EnumerateDirectories full do
+            let dirName = Path.GetFileName dir
+            let rel = $"{root}/{dirName}/SKILL.md"
+            if not (File.Exists(Path.Combine(dir, "SKILL.md"))) then
+                fail "6-skills" $"{root}/{dirName}" 1 "skill directory has no SKILL.md (skills must be immediate children)"
+            else
+                let lines = File.ReadAllLines(Path.Combine(dir, "SKILL.md"))
+                match frontmatter lines with
+                | None -> fail "6-skills" rel 1 "no frontmatter: the file must open with a --- block closed by ---"
+                | Some block -> checkSkillFields rel dirName block
+                if lines.Length > skillFileBudget then
+                    fail "6-skills" rel 1 $"{lines.Length} lines; budget is {skillFileBudget}"
 
 let checkSkills () =
     for root in skillRoots do
-        let full = Path.Combine(repoRoot, root)
-        if Directory.Exists full then
-            for dir in Directory.EnumerateDirectories full do
-                let dirName = Path.GetFileName dir
-                let rel = $"{root}/{dirName}/SKILL.md"
-                if not (File.Exists(Path.Combine(dir, "SKILL.md"))) then
-                    fail "6-skills" $"{root}/{dirName}" 1 "skill directory has no SKILL.md (skills must be immediate children)"
-                else
-                    let lines = File.ReadAllLines(Path.Combine(dir, "SKILL.md"))
-                    let field (key: string) =
-                        lines
-                        |> Array.tryFind (fun l -> l.StartsWith(key + ":"))
-                        |> Option.map (fun l -> l.Substring(key.Length + 1).Trim().Trim('"', '\''))
-                    match field "name" with
-                    | None -> fail "6-skills" rel 1 "frontmatter has no name"
-                    | Some n when n <> dirName -> fail "6-skills" rel 1 $"name '{n}' must equal directory name '{dirName}'"
-                    | Some n when not (skillNameRx.IsMatch n) || n.Length > 64 -> fail "6-skills" rel 1 $"name '{n}' is not lowercase-hyphenated or is over 64 characters"
-                    | Some _ -> ()
-                    match field "description" with
-                    | None -> fail "6-skills" rel 1 "frontmatter has no single-line description"
-                    | Some d when d.Length = 0 || d.Length > 1024 -> fail "6-skills" rel 1 $"description is {d.Length} characters; must be 1 to 1024"
-                    | Some _ -> ()
-                    if lines.Length > skillFileBudget then
-                        fail "6-skills" rel 1 $"{lines.Length} lines; budget is {skillFileBudget}"
+        checkSkillRoot root
 
 // ---------------------------------------------------------------------------
 // Check 7: voice. Fails on marks the author's own writing does not use.
@@ -319,6 +354,60 @@ let checkVoice (relative: string) =
     if words >= 200 && float bold * 1000.0 / float words > 8.0 then
         let perThousand = float bold * 1000.0 / float words
         warn "7-voice" relative 1 (sprintf "%.1f bold spans per 1,000 words; the author's posts average 1.5" perThousand)
+
+// ---------------------------------------------------------------------------
+// Self test: dotnet fsi test-scripts/test-docs-integrity.fsx --self-test
+// Runs the checks on planted problems in the fixture folder and compares the findings.
+// ---------------------------------------------------------------------------
+
+let fixtureDir = "test-scripts/fixtures/docs-integrity"
+
+let runSelfTest () =
+    let paths = $"{fixtureDir}/selftest-paths.md"
+    let fences = $"{fixtureDir}/selftest-fences.md"
+    for file in [ paths; fences ] do
+        checkLinks file
+        checkPathTokens file
+        checkVoice file
+    checkSkillRoot $"{fixtureDir}/skills"
+    let skill (name: string) = $"{fixtureDir}/skills/{name}/SKILL.md"
+    let all = Seq.append findings warnings |> List.ofSeq
+    // (expected, file, line or 0 for any, check, message fragment)
+    let cases : (bool * string * int * string * string) list =
+        [ true, paths, 3, "2-paths", "no file with this name: Builder.fs"
+          true, paths, 3, "2-paths", "path does not exist: missing-directory/run.ps1"
+          true, paths, 8, "2-paths", "no file with this name: start-server.ps1"
+          true, paths, 9, "2-paths", "path does not exist: missing-directory/run.ps1"
+          false, paths, 0, "2-paths", "test-docs-integrity.fsx"
+          false, paths, 0, "2-paths", "other-repo/run.ps1"
+          false, fences, 0, "1-links", ""
+          false, fences, 0, "7-voice", "seamless"
+          false, fences, 0, "7-voice", "leverage"
+          true, fences, 14, "7-voice", "phrase to cut: \"robust\""
+          false, skill "valid-skill", 0, "6-skills", ""
+          true, skill "no-frontmatter", 1, "6-skills", "no frontmatter"
+          false, skill "no-frontmatter", 0, "6-skills", "name"
+          true, skill "unclosed-frontmatter", 1, "6-skills", "no frontmatter"
+          true, skill "body-description", 1, "6-skills", "frontmatter has no single-line description"
+          true, skill "block-scalar", 1, "6-skills", "description must be a single line" ]
+    let mutable failed = 0
+    for expected, file, line, check, text in cases do
+        let found =
+            all |> List.exists (fun f ->
+                f.File = file && f.Check = check && (line = 0 || f.Line = line) && f.Message.Contains text)
+        let ok = found = expected
+        if not ok then failed <- failed + 1
+        let verb = if expected then "reports" else "does not report"
+        printfn "%s %s:%d %s %s \"%s\"" (if ok then "PASS" else "FAIL") file line verb check text
+    if failed > 0 then
+        printfn "Findings:"
+        for f in all do printfn "  %s %s:%d: %s" f.Check f.File f.Line f.Message
+        printfn "SELF-TEST FAILED: %d of %d case(s)" failed cases.Length
+        exit 1
+    printfn "SELF-TEST OK: %d case(s)" cases.Length
+    exit 0
+
+if fsi.CommandLineArgs |> Array.contains "--self-test" then runSelfTest ()
 
 // ---------------------------------------------------------------------------
 // Run

@@ -28,6 +28,7 @@ dotnet fsi test-scripts\test-rss-reply-threading.fsx # Reply threading and feed 
 dotnet fsi test-scripts\test-rss-semantics.fsx       # Five-kind annotations, independent consumer and compatibility
 dotnet fsi test-scripts\test-social-discovery.fsx   # SocialSpec discovery artifacts and config
 dotnet fsi test-scripts\test-docs-integrity.fsx     # Links, file paths, and voice in README and docs
+dotnet fsi test-scripts\test-docs-integrity.fsx --self-test # Docs integrity checks against planted problems in fixtures/docs-integrity
 ```
 
 ## RSS Semantics Compatibility
