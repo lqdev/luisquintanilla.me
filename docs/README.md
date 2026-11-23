@@ -6,10 +6,16 @@ Everything here describes the site as it is now. How things got built is in
 
 ## Understand it
 
+- [Principles](principles.md): why the site is built the way it is
+- [Architecture](architecture.md): how a Markdown file becomes pages, feeds, and federated posts
 - [Architecture decision records](adr/README.md): the decisions behind the design, one page each
 - [FEDERATION.md](../FEDERATION.md): what the site federates and how
 - [ActivityPub](activitypub/README.md), [AT Protocol](atproto/README.md),
   [follows](follow/ARCHITECTURE-OVERVIEW.md), [WebSub](websub/ARCHITECTURE-OVERVIEW.md)
+
+## Run it
+
+- [Getting started](getting-started.md): build and preview the site on your machine
 
 ## Publish something
 
@@ -37,6 +43,7 @@ Everything here describes the site as it is now. How things got built is in
 
 ## Look something up
 
+- [Content types](reference/content-types.md), [build flags](reference/build.md)
 - [Feeds](reference/feeds.md), [URL structure](reference/url-structure.md)
 - [Tags](reference/tags.md), [slugs](reference/slugs.md)
 - [Reviews schema](reference/reviews-schema.md), [issue templates](reference/issue-templates.md)
@@ -51,4 +58,5 @@ Everything here describes the site as it is now. How things got built is in
 ## Change the docs
 
 - [Voice](contributing/voice.md): how prose here should sound
+- [Docs style](contributing/docs-style.md): where a page goes and how to check it
 - Check your changes with `dotnet fsi test-scripts/test-docs-integrity.fsx`
