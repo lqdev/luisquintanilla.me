@@ -20,7 +20,8 @@
         "Sets InTimeline = false in the contentRoster row",
         "Adds recipes to the ActivityPub exclusion filter (let activityPubContent) in Program.fs",
         "Adds a type-specific feed entry in UnifiedFeeds.fs",
-        "Does not add timeline.js or TimelineViews.fs changes"
+        "Does not add timeline.js or TimelineViews.fs changes",
+        "Verifies the exclusion in _public/api/data/outbox/page-*.json, not only index.json"
       ]
     }
   ]

@@ -110,8 +110,16 @@ Select-String -Path _public/text/content/{type}/index.html -Pattern '<h1>' | Sel
 
 For a timeline type, also check that `_public/index.html` contains `data-filter="{type}"`, and
 either `data-type="{type}"` or `id="remainingContentData-{type}"`. The page renders only the 50
-newest items; older ones sit in that JSON script and `timeline.js` loads them. For a type
-that doesn't federate, check that `_public/api/data/outbox/index.json` has no URL under `/{type}/`.
+newest items; older ones sit in that JSON script and `timeline.js` loads them.
+
+For a type that doesn't federate, check the outbox pages. `index.json` holds only the `first` and
+`last` links, so checking it proves nothing. `notes` federates, so its count must be above 0:
+
+```powershell
+$outbox = (Get-ChildItem _public/api/data/outbox -Filter 'page-*.json' | Get-Content -Raw) -join ''
+"notes: $(([regex]::Matches($outbox, 'lqdev\.me/notes/')).Count)"     # must be > 0
+"{type}: $(([regex]::Matches($outbox, 'lqdev\.me/{type}/')).Count)"  # must be 0
+```
 
 ## Finish
 
