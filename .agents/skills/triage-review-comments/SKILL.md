@@ -1,6 +1,6 @@
 ---
 name: triage-review-comments
-description: Use when asked to validate, address, or respond to pull request review comments, including Copilot code review comments, for example "validate the code review comments on #123" or "you know the drill". Checks each comment against the code, decides accept, reject, or defer with evidence, applies accepted fixes without regressions, files an issue for each deferral, and replies in every thread.
+description: 'Use when asked to validate, address, or respond to pull request review comments, including Copilot code review comments, for example "validate the code review comments on #123" or "you know the drill". Checks each comment against the code, decides accept, reject, or defer with evidence, applies accepted fixes without regressions, files an issue for each deferral, and replies in every thread.'
 ---
 
 # Triage pull request review comments
@@ -9,13 +9,19 @@ A review comment is a claim, not an instruction. Some are right. Some are wrong.
 
 ## Steps
 
-1. List the open threads. Replace `{owner}`, `{repo}`, and `{number}`.
+1. Load every review thread and every comment before filtering resolved threads or deciding what to do. Replace `{owner}`, `{repo}`, and `{number}`. GitHub GraphQL connections are paginated; a first page is not a complete review.
 
    ```text
-   gh api graphql -f query='query($owner:String!,$name:String!,$number:Int!){repository(owner:$owner,name:$name){pullRequest(number:$number){reviewThreads(first:100){nodes{id isResolved isOutdated path line comments(first:20){nodes{databaseId body author{login}}}}}}}}' -F owner={owner} -F name={repo} -F number={number}
+   gh api graphql -f query='query($owner:String!,$name:String!,$number:Int!,$after:String){repository(owner:$owner,name:$name){pullRequest(number:$number){reviewThreads(first:100,after:$after){nodes{id isResolved isOutdated path line comments(first:100){nodes{databaseId body author{login}} pageInfo{hasNextPage endCursor}}} pageInfo{hasNextPage endCursor}}}}}' -F owner={owner} -F name={repo} -F number={number}
    ```
 
-   Skip threads where `isResolved` is true.
+   Start without `-F after=...`, then pass the returned `reviewThreads.pageInfo.endCursor` as `-F after={cursor}` and repeat until `hasNextPage` is false. Record every thread ID and cursor. For each thread whose comments report `hasNextPage: true`, load its remaining comments with this query, passing the thread ID and then each returned comments cursor until exhausted:
+
+   ```text
+   gh api graphql -f query='query($threadId:ID!,$after:String){node(id:$threadId){... on PullRequestReviewThread{id comments(first:100,after:$after){nodes{databaseId body author{login}} pageInfo{hasNextPage endCursor}}}}}' -F threadId={thread_id}
+   ```
+
+   Start without `-F after=...`; for later pages add `-F after={cursor}`. Do not filter resolved threads, decide, reply, or resolve any thread until all review-thread pages and every comments page have been loaded. Then skip threads where `isResolved` is true.
 2. Record a baseline before changing anything: run the project's build and tests and note the result.
 3. For each thread, test the claim. Open the file at that line and read enough around it. If the comment says there is a bug, try to show it with a failing test, a small script, or a traced input.
 4. Decide.

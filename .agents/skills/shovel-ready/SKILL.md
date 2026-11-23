@@ -9,7 +9,7 @@ The reader is a junior developer who has never seen this code and can't ask you 
 
 ## Steps
 
-1. Verify before you write. Open every file you will name. Run every command you will give. If you couldn't run one, say so next to it.
+1. Verify before you write. Open every file you will name. Check proposed commands with read-only inspection, a dry run, or an isolated disposable sandbox. Do not execute migrations, deletes, pushes, or other commands that mutate the user's working tree or external/shared state just to verify a future task. If a safe check is unavailable, mark the claim "not verified". A request to write a plan or issue does not authorize implementation or other mutations; get separate, explicit authorization before running them.
 2. Pick the template: `assets/issue.md` for one piece of work, `assets/plan.md` for work with several steps or pull requests.
 3. Fill in every section. Write "None" where a section doesn't apply; don't delete it.
 4. Check it against the list below.
@@ -19,7 +19,7 @@ The reader is a junior developer who has never seen this code and can't ask you 
 
 - Every file is named by path, and a line number where it helps.
 - Every step starts with a verb and changes one thing.
-- Every command can be copied and run, and the expected result is stated.
+- Every proposed command can be copied and run, and the expected result is stated. Label mutating commands as implementation steps, not verification, and do not run them without separate, explicit authorization.
 - "Done when" is a list of checks a person or a script can run, not a description.
 - Decisions are made. If a choice is open, say who decides, and give your default.
 - It says what is out of scope.

@@ -13,7 +13,11 @@ The error, test, measurement, or code reference (`path:line`) that shows it.
 - [ ] Complete this check.
 
 ## How to validate
-Commands to run, and what each should print.
+Read-only checks, dry runs, or isolated sandbox commands, and what each should print. Do not run
+migrations, deletes, pushes, or other commands that mutate the user's working tree or
+external/shared state just to verify the issue. Mark a check "not verified" if there is no safe
+way to run it. Writing the issue does not authorize implementation; require separate, explicit
+authorization before making changes.
 
 ## Out of scope
 What this issue does not cover.
