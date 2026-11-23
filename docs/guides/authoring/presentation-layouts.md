@@ -1,8 +1,6 @@
-# Custom Presentation Layouts for Reveal.js
+# Lay out presentation slides
 
-## Overview
-
-The Custom Presentation Layouts System provides 15 pre-built CSS layout classes designed specifically for creating professional, structured slides in Reveal.js presentations. These layouts eliminate the need for manual CSS styling and provide consistent, responsive designs across all presentations.
+`_src/css/presentation-layouts.css` has 15 layout classes for common slide structures in Reveal.js presentations, so slides don't need their own CSS.
 
 ## Features
 

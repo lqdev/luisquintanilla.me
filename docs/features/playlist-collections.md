@@ -1,8 +1,6 @@
-# Playlist Collections
+# Playlist collections
 
-## Overview
-
-Playlist Collections are curated music playlists organized by theme or time period (typically monthly "Crate Finds"). Each playlist provides YouTube and Spotify links for maximum accessibility, allowing listeners to enjoy music regardless of their preferred platform. The system generates individual pages for each playlist with proper formatting and links.
+A playlist is a Markdown file in `_src/playlists/` that lists tracks with YouTube and Spotify links. The build writes a page for each one.
 
 ## Features
 
@@ -50,7 +48,7 @@ Playlists use a standardized markdown format for tracks:
 
 ### Using VS Code Snippets
 
-1. Create a new file in `_src/playlists/playlist-name.md`
+1. Create a new file in `_src/playlists/{slug}.md`
 2. Type `playlist-collection` to trigger the snippet
 3. Fill in the frontmatter fields
 4. Add your track list
@@ -374,7 +372,7 @@ Playlists are indexed for site-wide search:
 - `Domain.fs` - `PlaylistDetails` and `PlaylistCollection` types
 
 **Builder Functions:**
-- `Builder.fs` - Playlist processing and page generation
+- `Builders/ContentTypePages.fs` - `buildPlaylistCollections`: playlist processing and page generation
 
 **View Functions:**
 - `Views/CollectionViews.fs` - `playlistCollectionsPageView` and `playlistCollectionDetailView`

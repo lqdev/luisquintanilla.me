@@ -1,4 +1,4 @@
-# Link Previews
+# Link previews
 
 The site provides lightweight previews for first-party content links and a visual
 indicator for external Markdown links. Previews are available on pointer hover
@@ -30,7 +30,7 @@ header-only routes do not by themselves make a missing file valid, while
 configured API endpoints and external redirects are treated as handled.
 
 Preview records are written to 64 JSON buckets under
-`_public/assets/previews/b00.json` through `b63.json`. The normalized path key
+`_public/assets/previews/b00.json` through `_public/assets/previews/b63.json`. The normalized path key
 is lowercased, origin-free, and stripped of query strings, fragments,
 `index.html`, and trailing slashes. FNV-1a over the UTF-8 path key selects the
 bucket. Each file has this shape:

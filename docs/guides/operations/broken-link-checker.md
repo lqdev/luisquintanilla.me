@@ -1,6 +1,6 @@
-# Broken Link Checker Documentation
+# Broken link checker
 
-This repository includes an automated broken link checker that scans all markdown files in the `_src` directory and identifies broken links.
+`Scripts/check-broken-links.fsx` scans the Markdown files in `_src/` for broken links. The `check-broken-links.yml` workflow runs it every Monday.
 
 ## Overview
 

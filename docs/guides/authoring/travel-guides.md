@@ -1,6 +1,6 @@
-# How-To Guide: Creating Travel Guides
+# Create a travel guide
 
-This comprehensive guide explains how to author and publish travel guides on the website. Travel guides provide personalized recommendations with GPS coordinates, practical information, and downloadable GPX files for offline navigation.
+A travel guide is a collection of places with GPS coordinates, notes, and practical tips. The build also writes a GPX file you can download for offline navigation.
 
 ## Overview
 

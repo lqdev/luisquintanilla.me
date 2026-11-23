@@ -1,6 +1,6 @@
-# Response Publishing Workflow
+# Publish a reply, like, or reshare
 
-This document explains how to use the GitHub Issue Forms workflow to publish response posts (replies, reshares, stars) to your website.
+To publish a reply, reshare, or star (a like), open an issue with the "💬 Post a Response" form. The `process-content-issue.yml` workflow writes the post to `_src/responses/` and opens a pull request.
 
 ## How to Create a Response Post
 

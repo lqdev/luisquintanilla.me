@@ -1,7 +1,7 @@
 # ADR-NNNN: Title
 
 ## Status
-Proposed | Accepted | Deprecated | Superseded by [ADR-NNNN](NNNN-title.md)
+Proposed | Accepted | Deprecated | Superseded by ADR-NNNN (link to its file)
 
 ## Context
 What is the issue that we're seeing that is motivating this decision or change?

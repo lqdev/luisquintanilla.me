@@ -19,7 +19,8 @@ let scopeDirs : string list = [ "docs" ]
 
 /// Individual files checked for links and paths. Empty at first; layers add the files they fix:
 /// layer 4 adds the sub-READMEs, layer 6 README.md and CONTRIBUTING.md, layer 7 AGENTS.md.
-let scopeFiles : string list = []
+let scopeFiles : string list =
+    [ "api/README.md"; "Scripts/README.md"; "test-scripts/README.md"; "projects/backlog.md" ]
 
 /// Checked for links but not for path tokens: decision records describe the code as it was
 /// when the decision was made, so old file names in them are correct.

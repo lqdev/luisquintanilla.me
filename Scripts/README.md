@@ -25,17 +25,17 @@ Automated configuration script that sets up GitHub Secrets and Azure Static Web 
 - Authenticated to Azure (`az login`)
 - Existing resource group
 
-**Usage:**
+**Usage** (from the repo root):
 
 ```powershell
 # Basic usage (default parameters)
-.\setup-activitypub-azure-resources.ps1
+.\Scripts\setup-activitypub-azure-resources.ps1
 
 # Dry run (preview changes without creating resources)
-.\setup-activitypub-azure-resources.ps1 -DryRun
+.\Scripts\setup-activitypub-azure-resources.ps1 -DryRun
 
 # Custom parameters
-.\setup-activitypub-azure-resources.ps1 `
+.\Scripts\setup-activitypub-azure-resources.ps1 `
     -ResourceGroup "my-resource-group" `
     -StorageAccountName "myactivitypub" `
     -Location "westus2"
@@ -72,20 +72,20 @@ Automated configuration script that sets up GitHub Secrets and Azure Static Web 
 - GitHub CLI installed and authenticated (`gh auth login`)
 - Resources already created (run `setup-activitypub-azure-resources.ps1` first)
 
-**Usage:**
+**Usage** (from the repo root):
 
 ```powershell
 # Configure both GitHub secrets and Azure Static Web App settings
-.\configure-activitypub-secrets.ps1
+.\Scripts\configure-activitypub-secrets.ps1
 
 # Only configure GitHub secrets (skip Azure)
-.\configure-activitypub-secrets.ps1 -SkipAzure
+.\Scripts\configure-activitypub-secrets.ps1 -SkipAzure
 
 # Only configure Azure Static Web App (skip GitHub)
-.\configure-activitypub-secrets.ps1 -SkipGitHub
+.\Scripts\configure-activitypub-secrets.ps1 -SkipGitHub
 
 # Custom parameters
-.\configure-activitypub-secrets.ps1 `
+.\Scripts\configure-activitypub-secrets.ps1 `
     -StaticWebAppName "my-static-web-app" `
     -GitHubRepo "myuser/myrepo"
 ```
@@ -129,7 +129,7 @@ The script automatically:
 Use the automated script to configure both GitHub secrets and Azure Static Web App settings:
 
 ```powershell
-.\configure-activitypub-secrets.ps1
+.\Scripts\configure-activitypub-secrets.ps1
 ```
 
 This will:
@@ -201,7 +201,7 @@ az group create --name luisquintanillameblog-rg --location eastus
 **Storage account name already taken:**
 Storage account names must be globally unique. Use a different name:
 ```powershell
-.\setup-activitypub-azure-resources.ps1 -StorageAccountName "myuniquename123"
+.\Scripts\setup-activitypub-azure-resources.ps1 -StorageAccountName "myuniquename123"
 ```
 
 **Retrieve connection strings manually:**
@@ -238,22 +238,16 @@ az monitor app-insights component delete `
     --resource-group luisquintanillameblog-rg
 ```
 
-## Next Steps
+## What runs on these resources
 
-After running these scripts successfully:
+The scripts only create and configure Azure resources. The ActivityPub code that uses them is in
+`api/`, written as JavaScript Azure Functions, not F#:
 
-1. ✅ Azure resources created (`setup-activitypub-azure-resources.ps1`)
-2. ✅ Secrets configured (`configure-activitypub-secrets.ps1`)
-3. 🔄 **Proceed to Phase 4A: Implement Inbox Handler**
-   - Create F# service modules (`Services/HttpSignature.fs`, `Services/FollowerStore.fs`, `Services/ActivityQueue.fs`)
-   - Implement Azure Functions (`api/InboxHandler/index.js` or F# equivalent)
-   - Set up HTTP signature validation
-4. 🔄 **Phase 4B: Implement Post Delivery**
-   - Queue-based async delivery to all followers
-   - Implement delivery status tracking
-5. 🔄 **Phase 4C: Integration Testing**
-   - Test Follow workflow with real Mastodon instance
-   - Validate delivery and monitoring
+- `api/inbox/` receives activities such as Follow and Undo, and verifies HTTP signatures with `api/utils/signatures.js`.
+- `api/utils/tableStorage.js` stores followers in Table Storage.
+- `api/QueueDeliveryTasks/` and `api/utils/queueStorage.js` queue post delivery to followers' inboxes.
+
+See [`docs/activitypub/`](../docs/activitypub/README.md) for how these fit together.
 
 ## Reference
 

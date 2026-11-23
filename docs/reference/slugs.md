@@ -1,8 +1,6 @@
-# Slug Generation Guide
+# Slugs
 
-## Overview
-
-This document explains how slugs are generated for content posts created through GitHub issue templates. Understanding slug generation helps you predict filenames and avoid conflicts.
+A slug is the part of a post's filename and URL that names it. This page explains how the issue workflows make slugs, so you can predict filenames.
 
 ## What is a Slug?
 
@@ -20,11 +18,11 @@ All post types follow these standardized rules:
 
 1. **Custom Slug Provided**: If you provide a custom slug in the issue template, it will be used as-is (after sanitization)
    - Input: Custom slug = "my-custom-slug"
-   - Output: `my-custom-slug.md`
+   - Output: my-custom-slug.md
 
 2. **No Custom Slug**: If you leave the slug field blank, the system auto-generates a slug from the title and appends the current date
    - Input: Title = "My Awesome Post", Slug = (blank)
-   - Output: `my-awesome-post-2024-01-15.md`
+   - Output: my-awesome-post-2024-01-15.md
 
 ### Slug Sanitization
 

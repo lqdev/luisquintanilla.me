@@ -1,8 +1,6 @@
-# Text-Only Accessibility Site
+# Text-only site
 
-## Overview
-
-The Text-Only Accessibility Site is a complete parallel version of the website optimized for universal access, providing full content parity while targeting 2G networks, flip phones, screen readers, and users preferring minimal interfaces. Every page is under 50KB with zero JavaScript dependencies for core functionality.
+The text-only site at `/text/` is a plain version of the site for slow networks, basic phones, and screen readers. Its pages aim to stay under 50KB and need no JavaScript.
 
 ## Quick Access
 
@@ -62,7 +60,7 @@ Easy toggle between versions available on every page.
 
 **F# Source:**
 - `TextOnlyBuilder.fs` - Main build orchestration
-- `Views/TextOnlyViews.fs` - All view functions for text-only pages
+- `Views/TextOnly/Content.fs` and `Views/TextOnly/Pages.fs` - View functions for text-only pages
 - `Services/Tag.fs` - Tag processing shared with main site
 
 **Generated Output:**
@@ -477,7 +475,7 @@ let sanitizeTagForPath (tag: string) : string =
 ### Architectural Extensibility
 
 The text-only system is designed for easy enhancement:
-- Add new view functions to `TextOnlyViews.fs`
+- Add new view functions to `Views/TextOnly/Content.fs` or `Views/TextOnly/Pages.fs`
 - Extend `buildTextOnlySite` orchestration
 - Modify CSS for styling changes
 - All changes isolated from main site

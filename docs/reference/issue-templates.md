@@ -1,4 +1,6 @@
-# GitHub Issue Template Posting Configuration
+# Issue templates
+
+Each content type you can publish from an issue has a form in `.github/ISSUE_TEMPLATE/`. This page lists each form, the directory its post goes to, and how its filename is built.
 
 ## Supported Post Types
 
@@ -22,7 +24,7 @@ The system is designed to be extensible. Here's how to add support for additiona
    - Customize validation rules
 
 2. **Update Workflow**:
-   - Modify `process-post-issue.yml` to detect new post type
+   - Modify `.github/workflows/process-content-issue.yml` to detect new post type
    - Add conditional logic for different post types
    - Update file paths and frontmatter structure
 

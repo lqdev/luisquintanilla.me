@@ -1,6 +1,6 @@
-# Media Publishing Workflow
+# Publish photos and video
 
-This document explains how to use the GitHub Issue Forms workflow to publish media posts (images, videos, audio) to your website using GitHub's built-in attachment functionality.
+To publish images, video, or audio, open an issue with the "📷 Post Media" form and attach the files to the issue. The `process-content-issue.yml` workflow writes the post to `_src/media/` and opens a pull request.
 
 ## How to Create a Media Post
 

@@ -1,9 +1,6 @@
-# Development Workflow Enhancement - VS Code Snippets Modernization
+# Write with VS Code snippets
 
-**Project**: VS Code Snippets Modernization  
-**Date**: 2025-08-05  
-**Status**: Complete  
-**Impact**: Significant development workflow efficiency improvement
+The snippet files in `.vscode/`, such as `.vscode/content.code-snippets`, insert the frontmatter for each content type. The rest of this page records the 2025 rework that matched the snippets to the types in `Domain.fs`.
 
 ## Overview
 

@@ -1,6 +1,4 @@
-# Tag Standardization Guidelines
-
-## Overview
+# Tags
 
 All tags are automatically normalized at build time by `TagService.processTagName` in `Services/Tag.fs`. This means you can write tags naturally in content frontmatter — the system handles casing, spacing, and deduplication.
 

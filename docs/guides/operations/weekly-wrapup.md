@@ -1,6 +1,6 @@
-# Weekly Summary GitHub Action Test
+# Weekly wrap-up workflow
 
-This document explains how to test the weekly summary GitHub Action.
+Every Sunday at 23:00 UTC, `.github/workflows/weekly-wrapup.yml` runs `Scripts/weekly-wrapup.fsx`, which writes a note in `_src/notes/` summarizing the week's posts, then opens a pull request. This page explains how to test it.
 
 ## Manual Testing
 

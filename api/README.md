@@ -6,8 +6,7 @@ This directory contains Azure Functions for:
 
 ## ActivityPub Federation
 
-**📋 Documentation Home**: [`/docs/activitypub/`](../docs/activitypub/)  
-**Current Status**: Phase 2 Complete (Discovery + Follow/Accept Workflow + Key Vault Security)
+**📋 Documentation Home**: [`/docs/activitypub/`](../docs/activitypub/)
 
 See the dedicated [ActivityPub README](ACTIVITYPUB.md) for complete documentation on:
 - Endpoint structure and usage

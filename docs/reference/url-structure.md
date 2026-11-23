@@ -1,7 +1,6 @@
-# URL Alignment Architecture Decisions
+# URL structure
 
-**Created**: 2025-07-13  
-**Purpose**: Reference documentation for URL structure standards and implementation decisions
+This page lists the URL patterns the site uses for content, collections, and feeds, and the reasons for them.
 
 ## URL Structure Standards
 

@@ -1,4 +1,4 @@
-# AI Memex System
+# AI Memex and the knowledge graph
 
 The AI Memex is a distributed knowledge capture system where AI coding agents help write entries about patterns, research, decisions, and project outcomes. Entries are published at [lqdev.me/resources/ai-memex/](https://www.lqdev.me/resources/ai-memex/).
 
@@ -185,7 +185,7 @@ Use `[[slug]]` syntax in entry content to create inline links to other Memex ent
 
 - `KnowledgeGraph.fs` — Graph construction, edge discovery, serialization, JSON-LD, wikilinks
 - Must compile before `Views/` in `PersonalSite.fsproj`
-- `buildAiMemex()` in `Builder.fs` orchestrates graph building + wikilink resolution
+- `buildAiMemexPages` in `Builders/AiMemexPages.fs` builds the graph, resolves wikilinks, and writes the pages
 - JSON-LD maps entry types to Schema.org: pattern→TechArticle, research→ScholarlyArticle, project-report→Article, blog-post→BlogPosting
 
 ### JSON-LD / Linked Data

@@ -64,9 +64,9 @@ talks to an assistant, not how he writes for readers.
 
 | Page | Person | Notes |
 | --- | --- | --- |
-| `README.md`, `docs/principles.md` | "I" | These are his claims and his reasons. Use his words from the interview. |
-| `docs/getting-started.md`, guides | "you", with "I" for his own setup | Walk the reader through it. Give the command, then what they should see. |
-| `docs/architecture.md`, feature pages | "I" for decisions, plain description for mechanics | "I put content-type identity in one file because…" then describe the file. |
+| `README.md`, the principles page | "I" | These are his claims and his reasons. Use his words from the interview. |
+| The getting-started page, guides | "you", with "I" for his own setup | Walk the reader through it. Give the command, then what they should see. |
+| The architecture page, feature pages | "I" for decisions, plain description for mechanics | "I put content-type identity in one file because…" then describe the file. |
 | Reference pages | none | Tables and exact values. No persona, no adjectives. |
 | `AGENTS.md`, instruction files, skills | imperative; "I" only in the working agreements | Written for agents. Short. Still no marks from the list below. |
 
@@ -139,5 +139,5 @@ the build writes them to JSON and the page loads them in chunks as you scroll.
 4. For each paragraph ask: could this appear unchanged in someone else's repo? If yes, make it
    specific or delete it.
 5. Check each claim against the code. If you can't verify it, remove it.
-6. In `README.md` and `docs/principles.md`, replace any sentence Luis didn't say or approve with
+6. In `README.md` and the principles page, replace any sentence Luis didn't say or approve with
    his wording from the interview.

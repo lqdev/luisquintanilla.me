@@ -40,7 +40,8 @@ jobs:
             test-social-discovery \
             test-atproto-response-mapping \
             test-atproto-media \
-            test-follow-yaml; do
+            test-follow-yaml \
+            test-docs-integrity; do
             dotnet fsi "test-scripts/$script.fsx"
           done
           node test-scripts/test-follow-choice.js

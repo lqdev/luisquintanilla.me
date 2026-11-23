@@ -13,7 +13,7 @@ interact with the site from another server.
 | [`follower-management-architecture.md`](follower-management-architecture.md) | Why can't a static site manage followers on its own, and where do they live? |
 | [`deployment-guide.md`](deployment-guide.md) | How do I set up the Azure resources and deploy the Functions? |
 | [`keyvault-setup.md`](keyvault-setup.md) | How is the signing key stored in Azure Key Vault and read at delivery time? |
-| [`notes-function-proxy.md`](notes-function-proxy.md) | Why do note files go through a Function, and how does it fix their Content-Type? |
+| [`notes-function-proxy.md`](notes-function-proxy.md) | Why do activity files go through a Function, and how does it fix their Content-Type? |
 | [`free-tier-monitoring-guide.md`](free-tier-monitoring-guide.md) | What can I monitor with the Static Web Apps free tier, without Application Insights? |
 | [`phase4a-testing-guide.md`](phase4a-testing-guide.md) | How do I test Follow, Accept, and follower storage end to end with a real Mastodon account? |
 

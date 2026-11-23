@@ -1,8 +1,6 @@
-# Read Later Cleanup Documentation
+# Read-later cleanup jobs
 
-## Overview
-
-The read-later workflow now includes two automated cleanup jobs that run daily:
+Two jobs in `.github/workflows/process-read-later.yml` run every day at midnight UTC to keep `Data/read-later.json` short:
 
 1. **Time-based cleanup** (`cleanup-old-entries`): Removes entries older than 14 days
 2. **Content-based cleanup** (`cleanup-by-responses-bookmarks`): Removes entries that have been shared as responses or bookmarks
@@ -29,7 +27,7 @@ Automatically removes read-later entries when their URL appears in a response or
 
 If you have:
 - A read-later entry: `https://example.com/article`
-- A response in `_src/responses/my-response.md` with `targeturl: https://example.com/article`
+- A response in `_src/responses/{slug}.md` with `targeturl: https://example.com/article`
 
 The cleanup job will:
 1. Find the matching URL

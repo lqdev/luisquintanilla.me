@@ -1,8 +1,6 @@
-# Org Capture Templates Documentation
+# Write with Emacs org-capture templates
 
-## Overview
-
-The `.templates` directory contains **Emacs org-capture templates** for rapid content authoring in this static site. These templates are specifically designed for this repository and provide consistent frontmatter structure for all content types supported by the F# static site generator.
+The `.templates/` directory holds Emacs org-capture templates. Each one creates a content file with the frontmatter its content type needs, and `.templates/emacs-config.el` adds them to org-capture.
 
 ## Purpose
 
@@ -257,7 +255,7 @@ _src/
 1. Press `C-c c l p n` (Capture → lqdev → posts → note)
 2. Enter filename slug: `my-first-note`
 3. Prompted for: Title, Tags
-4. File created at: `_src/notes/2024-11-02-my-first-note.md`
+4. File created at: `_src/notes/{YYYY-MM-DD}-my-first-note.md`
 5. Cursor positioned after frontmatter for content entry
 
 ### Example Workflow: Creating a Bookmark
@@ -265,7 +263,7 @@ _src/
 1. Press `C-c c l r b` (Capture → lqdev → response → bookmark)
 2. Enter filename slug: `interesting-article`
 3. Prompted for: Title, Target URL, Tags
-4. File created at: `_src/bookmarks/2024-11-02-interesting-article.md`
+4. File created at: `_src/bookmarks/{YYYY-MM-DD}-interesting-article.md`
 5. Add optional commentary after frontmatter
 
 ### Using Custom Block Templates
@@ -295,7 +293,7 @@ Templates can be customized directly in the `.templates/` directory:
 
 To add a new template:
 
-1. **Create template file**: `.templates/my-template.txt`
+1. **Create template file**: `.templates/{name}.txt`
 2. **Add to Emacs config**: Insert new capture template entry
 3. **Follow naming conventions**: Use descriptive prompts
 4. **Test thoroughly**: Verify file creation and prompt flow
@@ -323,8 +321,8 @@ All templates use **EST/EDT (`-05:00`)** to match:
 ### Filename Conventions
 
 Templates use date-prefixed filenames for chronological organization:
-- Format: `YYYY-MM-DD-slug.md`
-- Example: `2024-11-02-my-article.md`
+- Format: `{YYYY-MM-DD}-{slug}.md`
+- Example: 2024-11-02-my-article.md
 
 The `slug` should be:
 - Lowercase with hyphens

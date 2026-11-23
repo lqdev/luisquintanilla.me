@@ -1,6 +1,6 @@
-# Bookmark Publishing Workflow
+# Publish a bookmark
 
-This document explains how to use the GitHub Issue Forms workflow to publish bookmark posts to your website.
+To publish a bookmark, open an issue with the "🔖 Post a Bookmark" form. The `process-content-issue.yml` workflow writes the post to `_src/bookmarks/` and opens a pull request.
 
 ## How to Create a Bookmark Post
 
