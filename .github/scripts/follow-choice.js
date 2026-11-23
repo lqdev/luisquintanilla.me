@@ -1,9 +1,10 @@
 const FOLLOW_CANDIDATES_MARKER = '<!-- follow-candidates:v1 -->';
+const FOLLOW_CANDIDATES_END = '<!-- follow-candidates:end -->';
 
 function extractFormValue(body, label) {
   const escapedLabel = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const match = String(body || '').match(
-    new RegExp(`### (?:${escapedLabel})\\s*\\n\\s*\\n([\\s\\S]*?)(?=\\n\\n###|\\n\\n---|$)`, 'i')
+    new RegExp(`### (?:${escapedLabel})\\s*\\n\\s*\\n([\\s\\S]*?)(?=\\n\\n###|\\n\\n---|\\n\\n${FOLLOW_CANDIDATES_MARKER}|$)`, 'i')
   );
   const value = match && match[1] ? match[1].trim() : '';
   return value.replace(/^_No response_$/i, '').trim();
@@ -18,20 +19,23 @@ function extractFollowFields(body) {
   };
 }
 
-function parseCandidateComment(body) {
+function parseCandidateChecklist(body) {
   const text = String(body || '');
-  if (!text.includes(FOLLOW_CANDIDATES_MARKER)) {
+  const start = text.indexOf(FOLLOW_CANDIDATES_MARKER);
+  if (start === -1) {
     return [];
   }
+  const end = text.indexOf(FOLLOW_CANDIDATES_END, start);
+  const block = end === -1 ? text.slice(start) : text.slice(start, end + FOLLOW_CANDIDATES_END.length);
 
-  return [...text.matchAll(/^\s*-\s+\[([ xX])\]\s+`([^`]+)`(?:\s|$)/gm)].map((match) => ({
+  return [...block.matchAll(/^\s*-\s+\[([ xX])\]\s+`([^`]+)`(?:\s|$)/gm)].map((match) => ({
     checked: match[1].toLowerCase() === 'x',
     url: match[2].trim()
   }));
 }
 
 function parseCheckedCandidate(body) {
-  const candidates = parseCandidateComment(body);
+  const candidates = parseCandidateChecklist(body);
   const checked = candidates.filter((candidate) => candidate.checked);
   if (checked.length === 0) {
     return { state: 'none' };
@@ -47,7 +51,7 @@ function parseFollowCommand(body) {
   return match ? match[1] : null;
 }
 
-function resolveFollowCommand(command, markedComments) {
+function resolveFollowCommand(command, markedBodies) {
   if (!command) {
     return { state: 'none' };
   }
@@ -56,8 +60,8 @@ function resolveFollowCommand(command, markedComments) {
   }
 
   const index = Number(command);
-  for (let commentIndex = markedComments.length - 1; commentIndex >= 0; commentIndex -= 1) {
-    const candidates = parseCandidateComment(markedComments[commentIndex]);
+  for (let bodyIndex = markedBodies.length - 1; bodyIndex >= 0; bodyIndex -= 1) {
+    const candidates = parseCandidateChecklist(markedBodies[bodyIndex]);
     if (candidates.length === 0) {
       continue;
     }
@@ -66,29 +70,47 @@ function resolveFollowCommand(command, markedComments) {
     }
     return { state: 'selected', url: candidates[index - 1].url };
   }
-  return { state: 'invalid', reason: 'No feed candidate comment is available.' };
+  return { state: 'invalid', reason: 'No feed candidate checklist is available in the issue description.' };
 }
 
-function buildCandidateComment(urls) {
+function buildCandidateIssueBody(issueBody, urls) {
   const checklist = urls
     .map((url, index) => `- [ ] \`${url}\` (candidate ${index + 1})`)
     .join('\n');
-  return [
+  const block = [
+    '---',
+    '',
     FOLLOW_CANDIDATES_MARKER,
-    'I found multiple feeds for this site. Select **exactly one**:',
+    '### Choose a feed',
+    '',
+    'Select **exactly one** candidate:',
     '',
     checklist,
     '',
-    'Tick exactly one checkbox, or reply with `/follow N` or `/follow <url>`.'
+    'Then update this issue description. As a fallback, comment with `/follow N` or `/follow <url>`.',
+    FOLLOW_CANDIDATES_END
   ].join('\n');
+
+  const text = String(issueBody || '').trimEnd();
+  const start = text.indexOf(FOLLOW_CANDIDATES_MARKER);
+  const base =
+    start === -1
+      ? text
+      : (() => {
+          const end = text.indexOf(FOLLOW_CANDIDATES_END, start);
+          const prefix = text.slice(0, start).replace(/\n\n---\s*$/, '');
+          return (end === -1 ? prefix : prefix + text.slice(end + FOLLOW_CANDIDATES_END.length)).trimEnd();
+        })();
+  return `${base}\n\n${block}`;
 }
 
 module.exports = {
+  FOLLOW_CANDIDATES_END,
   FOLLOW_CANDIDATES_MARKER,
-  buildCandidateComment,
+  buildCandidateIssueBody,
   extractFormValue,
   extractFollowFields,
-  parseCandidateComment,
+  parseCandidateChecklist,
   parseCheckedCandidate,
   parseFollowCommand,
   resolveFollowCommand

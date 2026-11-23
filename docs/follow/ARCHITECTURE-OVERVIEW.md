@@ -60,10 +60,10 @@ Android share sheet → github-post PWA Follow action
                  └─ Scripts/process-follow-issue.fsx -- feed site title roll
                       ├─ exit 0: one verified feed → append + PR + close issue
                       ├─ exit 1: hard error → comment; leave issue open
-                      ├─ exit 2: many feeds → marked checkbox choice comment
+                      ├─ exit 2: many feeds → marked checklist appended to issue body
                       │          └─ process-follow-choice.yml
-                      │               ├─ edited marker + exactly one tick → selected URL
-                      │               └─ lqdev /follow N or /follow URL → selected URL
+                      │               ├─ lqdev edits issue; exactly one [x] → selected URL
+                      │               └─ lqdev comments /follow N or /follow URL → selected URL
                       │                    └─ re-enter the same composite action
                       └─ exit 3: no feed → comment + close "not planned"; no data/branch/PR
 ```
@@ -93,8 +93,11 @@ environment values before the F# script is invoked.
    `process-follow-issue.fsx` never writes unless a non-empty feed has passed the check.
 
 The processor has no `PersonalSite.dll` dependency. The initial workflow trigger is `opened`/`reopened`;
-reopening after an error remains the supported full retry. Initial choice events and comment selections
-share `concurrency: follow-issue-<number>` so repeated deliveries do not race.
+reopening after an error remains the supported full retry. The choice workflow accepts `issues.edited`
+from lqdev for checklist changes and `issue_comment.created` from lqdev for `/follow` commands; the
+Action's own issue-body edit is excluded because its sender is not lqdev. Zero checked items is a no-op,
+while multiple checked items receive an "exactly one" correction comment. Initial processing and both
+choice paths share `concurrency: follow-issue-<number>` so repeated deliveries do not race.
 
 JavaScript-injected links are invisible to Action-side static discovery. A manual `feed_url` remains the
 escape hatch. No hosted discovery service or third-party proxy participates.

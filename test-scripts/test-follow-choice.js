@@ -1,8 +1,8 @@
 const assert = require('node:assert/strict');
 const {
-  buildCandidateComment,
+  buildCandidateIssueBody,
   extractFollowFields,
-  parseCandidateComment,
+  parseCandidateChecklist,
   parseCheckedCandidate,
   parseFollowCommand,
   resolveFollowCommand
@@ -37,7 +37,7 @@ I found feeds.
 - [ ] \`https://example.test/feed.xml\` (candidate 1)
 - [x] \`https://example.test/atom.xml\` (candidate 2)`;
 
-assert.deepEqual(parseCandidateComment(marker), [
+assert.deepEqual(parseCandidateChecklist(marker), [
   { checked: false, url: 'https://example.test/feed.xml' },
   { checked: true, url: 'https://example.test/atom.xml' }
 ]);
@@ -67,16 +67,35 @@ assert.deepEqual(
 );
 assert.deepEqual(resolveFollowCommand('1', []), {
   state: 'invalid',
-  reason: 'No feed candidate comment is available.'
+  reason: 'No feed candidate checklist is available in the issue description.'
 });
-const formatted = buildCandidateComment([
+const issueWithChecklist = buildCandidateIssueBody(issueBody, [
   'https://example.test/feed.xml',
   'https://example.test/atom.xml'
 ]);
-assert.deepEqual(parseCandidateComment(formatted).map((candidate) => candidate.url), [
+assert.ok(issueWithChecklist.startsWith(issueBody));
+assert.deepEqual(extractFollowFields(issueWithChecklist), extractFollowFields(issueBody));
+assert.deepEqual(parseCandidateChecklist(issueWithChecklist).map((candidate) => candidate.url), [
   'https://example.test/feed.xml',
   'https://example.test/atom.xml'
 ]);
-assert.match(formatted, /<!-- follow-candidates:v1 -->/);
+assert.match(issueWithChecklist, /<!-- follow-candidates:v1 -->/);
+assert.deepEqual(parseCheckedCandidate(issueWithChecklist), { state: 'none' });
+const refreshedChecklist = buildCandidateIssueBody(issueWithChecklist, [
+  'https://example.test/replacement.xml'
+]);
+assert.equal((refreshedChecklist.match(/<!-- follow-candidates:v1 -->/g) || []).length, 1);
+assert.deepEqual(extractFollowFields(refreshedChecklist), extractFollowFields(issueBody));
+assert.deepEqual(parseCandidateChecklist(refreshedChecklist), [{
+  checked: false,
+  url: 'https://example.test/replacement.xml'
+}]);
+const oneChecked = issueWithChecklist.replace('[ ] `https://example.test/feed.xml`', '[x] `https://example.test/feed.xml`');
+assert.deepEqual(parseCheckedCandidate(oneChecked), {
+  state: 'selected',
+  url: 'https://example.test/feed.xml'
+});
+const severalChecked = oneChecked.replace('[ ] `https://example.test/atom.xml`', '[x] `https://example.test/atom.xml`');
+assert.deepEqual(parseCheckedCandidate(severalChecked), { state: 'invalid', count: 2 });
 
 console.log('Follow choice parser checks passed.');

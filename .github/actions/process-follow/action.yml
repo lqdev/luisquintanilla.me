@@ -65,7 +65,7 @@ runs:
             ;;
         esac
 
-    - name: Ask for one feed candidate
+    - name: Add feed checklist to issue description
       if: steps.process.outputs.outcome == 'choice'
       uses: actions/github-script@v9
       env:
@@ -77,13 +77,24 @@ runs:
           if (!Array.isArray(candidates) || candidates.length < 2) {
             throw new Error('Expected at least two feed candidates.');
           }
-          const { buildCandidateComment } = require('./.github/scripts/follow-choice.js');
+          const { buildCandidateIssueBody } = require('./.github/scripts/follow-choice.js');
           const issueNumber = Number(process.env.ISSUE_NUMBER);
+          const issue = await github.rest.issues.get({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issueNumber
+          });
+          await github.rest.issues.update({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issueNumber,
+            body: buildCandidateIssueBody(issue.data.body || '', candidates)
+          });
           await github.rest.issues.createComment({
             owner: context.repo.owner,
             repo: context.repo.repo,
             issue_number: issueNumber,
-            body: buildCandidateComment(candidates)
+            body: 'I found multiple feeds and added a checklist to this issue description. Edit the issue and check exactly one feed, or comment with `/follow N` or `/follow <url>`.'
           });
 
     - name: Close request when no feed exists

@@ -1,8 +1,10 @@
 name: Process Follow Feed Choice
 
 on:
+  issues:
+    types: [edited]
   issue_comment:
-    types: [created, edited]
+    types: [created]
 
 permissions:
   contents: write
@@ -15,7 +17,12 @@ jobs:
       github.event.issue.state == 'open' &&
       github.event.issue.pull_request == null &&
       contains(github.event.issue.labels.*.name, 'follow') &&
-      github.event.sender.login == 'lqdev'
+      github.event.sender.login == 'lqdev' &&
+      github.event.sender.login != 'github-actions[bot]' &&
+      (
+        (github.event_name == 'issues' && github.event.action == 'edited') ||
+        (github.event_name == 'issue_comment' && github.event.action == 'created')
+      )
     runs-on: ubuntu-latest
     concurrency:
       group: follow-issue-${{ github.event.issue.number }}
@@ -39,15 +46,14 @@ jobs:
             } = require('./.github/scripts/follow-choice.js');
 
             const issueBody = context.payload.issue.body || '';
-            const commentBody = context.payload.comment.body || '';
             let selection = { state: 'none' };
 
-            if (context.payload.action === 'edited') {
-              if (!commentBody.includes(FOLLOW_CANDIDATES_MARKER)) {
+            if (context.eventName === 'issues') {
+              if (!issueBody.includes(FOLLOW_CANDIDATES_MARKER)) {
                 core.setOutput('process', 'false');
                 return;
               }
-              selection = parseCheckedCandidate(commentBody);
+              selection = parseCheckedCandidate(issueBody);
               if (selection.state === 'invalid') {
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
@@ -63,21 +69,12 @@ jobs:
                 return;
               }
             } else {
-              const command = parseFollowCommand(commentBody);
+              const command = parseFollowCommand(context.payload.comment.body || '');
               if (!command) {
                 core.setOutput('process', 'false');
                 return;
               }
-              const comments = await github.paginate(github.rest.issues.listComments, {
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.issue.number,
-                per_page: 100
-              });
-              selection = resolveFollowCommand(
-                command,
-                comments.map((comment) => comment.body || '')
-              );
+              selection = resolveFollowCommand(command, [issueBody]);
               if (selection.state === 'invalid') {
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,

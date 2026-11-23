@@ -44,11 +44,13 @@ Two design questions had to be settled:
    relative links and `<base>`, and probes common feed paths. Every candidate is revalidated by the
    existing defensive feed GET. Comment feeds sort last, candidates are deduplicated and capped at 15.
 3. **Ambiguous discovery requires an explicit human choice.** One verified feed continues directly.
-   Multiple candidates produce a marked issue comment with checkboxes; editing the comment to tick one,
-   or replying `/follow N` or `/follow <url>`, re-enters the same processor with one selected URL. A site
-   with no verified feed is commented on and closed as not planned, without a branch, PR, or data change.
-   Hard input/validation errors leave the issue open. A local composite action owns processing, PR,
-   comment, and close behavior for both initial issues and comment choices.
+   Multiple candidates are appended as a marker-scoped checklist to the lqdev-authored issue body.
+   Editing the issue to tick exactly one candidate, or replying `/follow N` or `/follow <url>`, re-enters
+   the same processor with one selected URL. The Action posts explanatory comments but never asks users
+   to edit its own comments. Zero checked candidates is a no-op; several candidates produce a clear
+   correction message. A site with no verified feed is commented on and closed as not planned, without a
+   branch, PR, or data change. Hard input/validation errors leave the issue open. A local composite
+   action owns processing, PR, comment, and close behavior for initial issues and choices.
 4. **Follow and unfollow webmentions are sent on publish from a roll diff.**
    `Scripts/identify-follow-webmentions.fsx` compares `HtmlUrl` membership of both rolls between the last
    successfully deployed commit and the current one. Added *and* removed URLs each get

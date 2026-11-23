@@ -47,5 +47,18 @@ check "Form explains mandatory-feed no-feed closure" (
     templateText.Contains("A feed is still mandatory", StringComparison.Ordinal)
     && templateText.Contains("closed as not planned", StringComparison.Ordinal)
 )
+let choiceText = File.ReadAllText(choiceWorkflow)
+check "Choice workflow handles issue body edits and created comments" (
+    choiceText.Contains("issues:", StringComparison.Ordinal)
+    && choiceText.Contains("types: [edited]", StringComparison.Ordinal)
+    && choiceText.Contains("issue_comment:", StringComparison.Ordinal)
+    && choiceText.Contains("types: [created]", StringComparison.Ordinal)
+)
+check "Choice workflow is restricted to lqdev and open follow issues" (
+    choiceText.Contains("github.event.sender.login == 'lqdev'", StringComparison.Ordinal)
+    && choiceText.Contains("github.event.sender.login != 'github-actions[bot]'", StringComparison.Ordinal)
+    && choiceText.Contains("github.event.issue.state == 'open'", StringComparison.Ordinal)
+    && choiceText.Contains("github.event.issue.pull_request == null", StringComparison.Ordinal)
+)
 
 if failures > 0 then exit 1
