@@ -4,11 +4,14 @@ How changes get made to this repo, and what to check before one goes in.
 
 ## Build and check your change
 
-Restore, build, and generate the site the way CI does:
+Restore, build, and generate the site the way CI does. Clearing the two variables turns off the
+optional services, as CI does for pull requests:
 
 ```powershell
 dotnet restore --locked-mode
 dotnet build --no-restore
+$env:GITHUB_TOKEN = ''
+$env:ACTIVITYPUB_STORAGE_CONNECTION = ''
 dotnet run --no-build -- --strict
 ```
 

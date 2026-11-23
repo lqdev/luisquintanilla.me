@@ -37,7 +37,7 @@ package with a different hash. So restore against a copy of the lock file kept o
 and leave the committed one alone:
 
 ```powershell
-$localLock = Join-Path $env:TEMP 'lqdev-net11-local.lock.json'
+$localLock = Join-Path ([IO.Path]::GetTempPath()) 'lqdev-net11-local.lock.json'
 Copy-Item packages.lock.json $localLock
 dotnet restore --force-evaluate -p:NuGetLockFilePath=$localLock
 ```

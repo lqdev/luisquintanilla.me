@@ -72,7 +72,7 @@ repo in the dev container.
 ```powershell
 git clone https://github.com/lqdev/luisquintanilla.me.git
 cd luisquintanilla.me
-$localLock = Join-Path $env:TEMP 'lqdev-net11-local.lock.json'
+$localLock = Join-Path ([IO.Path]::GetTempPath()) 'lqdev-net11-local.lock.json'
 Copy-Item packages.lock.json $localLock
 dotnet restore --force-evaluate -p:NuGetLockFilePath=$localLock
 $env:GITHUB_TOKEN = ''
