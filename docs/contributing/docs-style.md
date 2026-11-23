@@ -33,9 +33,8 @@ It exits 1 if any check fails. Add `--all` to see every finding instead of the f
 3. Docs root: no other Markdown files sit directly in `docs/`.
 4. Orphans: every page under `docs/` is reachable from `docs/README.md` in two hops.
 5. Budgets: files with a line budget stay under it.
-6. Skills: each skill folder has a `SKILL.md` with a valid name and description.
+6. Skills: each skill folder under the roots in `skillRoots` has a `SKILL.md` with a valid name and description. The list stays empty until the skills move to `.agents/skills/`, and the check doesn't run before then.
 7. Voice: pages in the voice scope have no em dashes, curly quotes, emoji, or phrases on the cut list.
 
 If a path token is an example or a generated file that git doesn't track, add it to
-`test-scripts/docs-integrity-allow.txt` with a comment saying why. Don't list a real file that is
-missing. Fix the page instead.
+`test-scripts/docs-integrity-allow.txt` with a comment saying why. If a real file is missing, fix the page.

@@ -136,8 +136,9 @@ decisions are on the [principles page](principles.md).
 ## Old code you should not extend
 
 `Loaders.fs` holds the loaders from before the processors existed. Only a few are still called:
-`Program.fs` uses it for livestreams, the OPML feed list, read-later links, and media albums, and
-`Program.fs` and the home page both use its pinned-posts loader. The other loaders in the file aren't called by the
+`Program.fs` uses it for livestreams, the OPML feed list, read-later links, and media albums;
+`Program.fs` and the home page both use its pinned-posts loader; and `Builders/ResumePage.fs` uses
+its resume loader, which runs on every build. The other loaders in the file aren't called by the
 build. New content types get a processor in `Processors/` instead.
 
 `Builders/LegacyFeeds.fs` copies the posts, notes, responses, and all-content feeds to the old
