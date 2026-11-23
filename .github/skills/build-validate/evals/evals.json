@@ -1,0 +1,26 @@
+{
+  "skill_name": "build-validate",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I changed UnifiedFeeds.fs to add a field to every RSS item. Make sure I didn't break anything.",
+      "expected_output": "Builds with a private lock file, generates with --strict, runs the test-rss scripts, and shows an item from a generated feed.",
+      "assertions": [
+        "Does not modify packages.lock.json",
+        "Runs dotnet run with --strict",
+        "Runs at least the test-rss-* scripts",
+        "Shows content read from a file under _public"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "dotnet restore --locked-mode fails with a package hash error on my machine. What do I do?",
+      "expected_output": "Explains the hash difference and uses the private lock file route without changing the committed lock file.",
+      "assertions": [
+        "Uses NuGetLockFilePath",
+        "Says not to commit the lock file",
+        "Does not suggest deleting packages.lock.json or turning off RestorePackagesWithLockFile"
+      ]
+    }
+  ]
+}

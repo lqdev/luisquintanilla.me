@@ -1,0 +1,27 @@
+{
+  "skill_name": "add-content-type",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add a quotes content type that shows on the home timeline. Plan it first.",
+      "expected_output": "A plan that settles timeline, federation, and feed decisions first, then lists the files in compile order, including the timeline sites and the string-keyed sites the compiler won't catch.",
+      "assertions": [
+        "States the timeline, federation, and feed decisions before listing files",
+        "Names ContentTypes.fs (literal and union case) and the contentRoster row in Program.fs with InTimeline = true",
+        "Names _src/js/timeline.js and Views/TimelineViews.fs",
+        "Names at least three of Builders/TagPages.fs, Services/LinkPreview.fs, TextOnlyBuilder.fs, Views/TextOnly/Pages.fs, staticwebapp.config.json"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Add a recipes type that has its own page and feed but stays off the timeline and out of the Fediverse.",
+      "expected_output": "Sets InTimeline = false and InAllFeeds = true, adds a feed entry in UnifiedFeeds.fs, adds recipes to the ActivityPub exclusion filter in Program.fs, and notes AT Protocol needs nothing.",
+      "assertions": [
+        "Sets InTimeline = false in the contentRoster row",
+        "Adds recipes to the ActivityPub exclusion filter (let activityPubContent) in Program.fs",
+        "Adds a type-specific feed entry in UnifiedFeeds.fs",
+        "Does not add timeline.js or TimelineViews.fs changes"
+      ]
+    }
+  ]
+}

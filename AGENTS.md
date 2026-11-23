@@ -67,6 +67,7 @@ Tests:
 | --- | --- |
 | Build, validate, inspect output | skill `build-validate` |
 | Add a content type | skill `add-content-type` |
+| A GitHub Actions run failed or didn't trigger | skill `investigate-actions-run` |
 | How the build works | `docs/architecture.md` |
 | Why a decision was made | `docs/principles.md`, `docs/adr/README.md` |
 | ActivityPub | `docs/activitypub/README.md`, `FEDERATION.md` |

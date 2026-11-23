@@ -15,7 +15,7 @@ open System.Text.RegularExpressions
 // ---------------------------------------------------------------------------
 
 /// Directories whose Markdown files are checked for links and paths.
-let scopeDirs : string list = [ "docs"; ".github/instructions" ]
+let scopeDirs : string list = [ "docs"; ".github/instructions"; ".github/skills" ]
 
 /// Individual files checked for links and paths. Empty at first; layers add the files they fix:
 /// layer 4 adds the sub-READMEs, layer 6 README.md and CONTRIBUTING.md, layer 7 AGENTS.md.
@@ -35,7 +35,9 @@ let excludedPrefixes : string list =
 /// Starts small on purpose. Each layer adds the prose it rewrites.
 let styleFiles : string list =
     [ "README.md"; "CONTRIBUTING.md"; "docs/README.md"; "docs/principles.md"; "docs/architecture.md"; "docs/getting-started.md"
-      "docs/reference/content-types.md"; "docs/reference/build.md"; "AGENTS.md" ]
+      "docs/reference/content-types.md"; "docs/reference/build.md"; "AGENTS.md"
+      ".github/skills/build-validate/SKILL.md"; ".github/skills/add-content-type/SKILL.md"
+      ".github/skills/investigate-actions-run/SKILL.md" ]
 let styleDirs : string list = [ "docs/contributing"; ".github/instructions" ]
 
 /// Markdown files allowed to sit directly in docs/.

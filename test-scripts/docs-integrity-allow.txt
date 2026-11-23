@@ -10,3 +10,8 @@ api/data/outbox/index.json
 node.js
 next.js
 vue.js
+# .github/skills/universal/ examples (import config and sample entry names). Layer 9 moves these skills; revisit then.
+import-sources.json
+research-caching-strategies.md
+reference-api-auth-patterns.md
+project-report-v2-migration.md
