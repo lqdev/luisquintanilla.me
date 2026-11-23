@@ -24,4 +24,4 @@ An ADR is a short document capturing an important architectural decision along w
 
 ## Creating a New ADR
 
-Copy `template.md` and follow the numbering convention. Use the next available number.
+Copy [`template.md`](template.md) and follow the numbering convention. Use the next available number.

@@ -501,10 +501,10 @@ playlist-creator --spotify-url "https://open.spotify.com/playlist/..." --output 
 
 ## Related Documentation
 
-- [Album Collections](ALBUM_COLLECTIONS.md) - Photo/media collections
-- [Collections System](how-to-create-collections.md) - Overall collections architecture
-- [Content Creation](../README.md#content-creation) - VS Code snippets
-- [Tag System](../README.md#key-features) - Tag-based organization
+- [Album Collections](album-collections.md) - Photo/media collections
+- [Collections System](../guides/authoring/collections.md) - Overall collections architecture
+- [Content Creation](../../README.md#content-creation) - VS Code snippets
+- [Tag System](../../README.md#key-features) - Tag-based organization
 
 ## Success Metrics
 

@@ -74,7 +74,7 @@ The About parser is intentionally separate from the global Markdown parser. Enab
 
 ## Feed discovery
 
-The shared HTML layout advertises `/feed/feed.xml` as the first RSS alternate link. Existing `/blog.rss`, `/microblog.rss`, and `/responses.rss` links remain in place. This provides a single default feed for consumers while preserving existing subscriptions; see [Feed Architecture](feed-architecture.md).
+The shared HTML layout advertises `/feed/feed.xml` as the first RSS alternate link. Existing `/blog.rss`, `/microblog.rss`, and `/responses.rss` links remain in place. This provides a single default feed for consumers while preserving existing subscriptions; see [Feed Architecture](../reference/feeds.md).
 
 No `rel="following"` link is emitted. SocialSpec's published discovery flow uses a direct GET to `/.well-known/following.opml`, and the relation is not required by the current published guidance.
 

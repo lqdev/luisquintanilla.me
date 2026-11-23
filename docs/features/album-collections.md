@@ -242,6 +242,6 @@ Potential future features (not currently implemented):
 
 ## Related Documentation
 
-- [Media Publishing Workflow](media-publishing-workflow.md) - Publishing individual media posts
-- [Collections System](how-to-create-collections.md) - Overall collections architecture
-- [Enhanced Content Discovery](../archive/docs/enhanced-content-discovery-implementation.md) - Search functionality
+- [Media Publishing Workflow](../guides/publishing/media.md) - Publishing individual media posts
+- [Collections System](../guides/authoring/collections.md) - Overall collections architecture
+- [Enhanced Content Discovery](../../archive/docs/enhanced-content-discovery-implementation.md) - Search functionality

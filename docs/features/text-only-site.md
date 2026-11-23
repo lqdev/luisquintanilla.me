@@ -484,10 +484,10 @@ The text-only system is designed for easy enhancement:
 
 ## Related Documentation
 
-- [Enhanced Content Discovery](../archive/docs/enhanced-content-discovery-implementation.md) - Main site search (not in text-only)
-- [Feed Architecture](feed-architecture.md) - RSS feeds work across both sites
-- [Core Infrastructure](../archive/docs/core-infrastructure-architecture.md) - Shared content pipeline
-- [Collections System](how-to-create-collections.md) - Collections in text-only format
+- [Enhanced Content Discovery](../../archive/docs/enhanced-content-discovery-implementation.md) - Main site search (not in text-only)
+- [Feed Architecture](../reference/feeds.md) - RSS feeds work across both sites
+- [Core Infrastructure](../../archive/docs/core-infrastructure-architecture.md) - Shared content pipeline
+- [Collections System](../guides/authoring/collections.md) - Collections in text-only format
 
 ## Resources
 

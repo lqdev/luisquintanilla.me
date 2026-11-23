@@ -581,10 +581,10 @@ Buttons respond to theme changes:
 
 ## Related Documentation
 
-- [Desert Theme](../README.md#performance--ux) - Theme integration details
-- [Progressive Enhancement](PWA_IMPLEMENTATION.md) - Web API usage patterns
+- [Desert Theme](../../README.md#performance--ux) - Theme integration details
+- [Progressive Enhancement](pwa.md) - Web API usage patterns
 - [Accessibility](text-only-site.md) - Accessibility compliance
-- [Component System](../Views/ComponentViews.fs) - Button generation functions
+- [Component System](../../Views/ComponentViews.fs) - Button generation functions
 
 ## Success Metrics
 

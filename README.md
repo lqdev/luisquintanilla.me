@@ -23,7 +23,7 @@ A modern F# static site generator implementing IndieWeb principles with unified 
 > 
 > **Note for Playlists**: Requires repository secrets `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET` to be configured for Spotify API access.
 
-📖 [**Publishing Guide**](docs/github-issue-posting-guide.md) - Complete documentation on GitHub Issue Template posting
+📖 [**Publishing Guide**](docs/guides/publishing/github-issues.md) - Complete documentation on GitHub Issue Template posting
 
 GitHub Issue publishing provides native version control, better review workflows, and automated PR creation, replacing the previous Discord-based publishing system.
 
@@ -161,7 +161,7 @@ This is a production-ready IndieWeb site built with F# featuring:
 
 ### Development Workflow
 - **Custom Copilot Agents**: Multi-agentic system with orchestrator + 5 specialist agents for enhanced development assistance (see `.github/agents/`)
-- **Emacs Org-capture Templates**: 33 hierarchical templates for rapid content creation with 3-key navigation (see `docs/org-capture-templates.md`)
+- **Emacs Org-capture Templates**: 33 hierarchical templates for rapid content creation with 3-key navigation (see `docs/guides/authoring/emacs-org-capture.md`)
 - **VS Code Integration**: Complete snippet library aligned with Domain.fs (17 content types + layout snippets)
 - **Build Validation**: Automated testing and output comparison
 - **Azure Integration**: Native redirects via Static Web Apps configuration
@@ -197,7 +197,7 @@ Hierarchical 3-key navigation with automatic file creation:
 - **Custom Blocks** (15): media, reviews, resume components
 - **Markdown Helpers** (6): code blocks, blockquotes, links, images
 
-**Setup:** See `docs/org-capture-templates.md` for complete Emacs configuration
+**Setup:** See `docs/guides/authoring/emacs-org-capture.md` for complete Emacs configuration
 **Usage:** `C-c c l` → category → specific type
 
 #### VS Code Snippets (17+ templates)

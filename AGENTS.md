@@ -96,7 +96,7 @@ related_entries: slug-1, slug-2, slug-3
 - Use `[[slug]]` in content to link between Memex entries (resolved at build time)
 - Use `[[slug|display text]]` for custom link text
 - Build-time graph: `KnowledgeGraph.fs` computes edges, backlinks, JSON-LD, and `graph.json`
-- See `docs/ai-memex-system.md` for full Knowledge Graph documentation
+- See `docs/features/ai-memex.md` for full Knowledge Graph documentation
 
 ### Quality Standards
 
@@ -104,7 +104,7 @@ related_entries: slug-1, slug-2, slug-3
 - **Evidence-based**: Reference actual discoveries, not hypothetical scenarios
 - **No filler**: Clear, direct prose — no marketing language or padding
 - **Updateable**: Set `last_updated_date` when making substantive changes
-- **Tagged properly**: Use the tag taxonomy (see `docs/ai-memex-system.md`)
+- **Tagged properly**: Use the tag taxonomy (see `docs/features/ai-memex.md`)
 
 ### Distributed Capture Convention
 
