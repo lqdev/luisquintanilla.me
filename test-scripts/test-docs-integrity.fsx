@@ -32,7 +32,9 @@ let excludedPrefixes : string list =
 
 /// Files and directories held to the voice rules (see docs/contributing/voice.md).
 /// Starts small on purpose. Each layer adds the prose it rewrites.
-let styleFiles : string list = []
+let styleFiles : string list =
+    [ "docs/README.md"; "docs/principles.md"; "docs/architecture.md"; "docs/getting-started.md"
+      "docs/reference/content-types.md"; "docs/reference/build.md" ]
 let styleDirs : string list = [ "docs/contributing" ]
 
 /// Markdown files allowed to sit directly in docs/.
