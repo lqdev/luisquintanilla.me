@@ -2,6 +2,29 @@
 
 You can publish notes, bookmarks, responses, media, playlists, and reviews by filling in an issue form in this repository. A workflow turns the issue into a Markdown file and opens a pull request with it.
 
+## Templates
+
+There are 13 forms in `.github/ISSUE_TEMPLATE/`. Each link opens a new issue with that form.
+
+| Form | What it posts |
+| --- | --- |
+| [Post a Note](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-note.yml) | A note |
+| [Post a Bookmark](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-bookmark.yml) | A bookmark |
+| [Post a Response](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-response.yml) | A reply, reshare, star, or RSVP |
+| [Post Media](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-media.yml) | An image, video, or audio post |
+| [Post a Playlist](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-playlist.yml) | A playlist with Spotify and YouTube links |
+| [Post a Book Review](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-book.yml) | A book review |
+| [Post a Movie Review](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-movie.yml) | A movie review |
+| [Post a Music Review](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-music.yml) | A music review |
+| [Post a Business Review](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-business.yml) | A business review |
+| [Post a Product Review](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-product.yml) | A product review |
+| [Post For Sale Item](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-for-sale.yml) | A marketplace listing |
+| [Add to Read Later](https://github.com/lqdev/luisquintanilla.me/issues/new?template=add-read-later.yml) | A link on the read-later list |
+| [Follow a Site](https://github.com/lqdev/luisquintanilla.me/issues/new?template=follow.yml) | A blogroll or podroll entry, and a follow webmention on publish ([ADR 0011](../../adr/0011-follows-as-blogroll-state.md)) |
+
+Each review form applies its labels for you, and the workflow checks that both labels are there
+before it processes the issue. The playlist form needs the repository secrets `SPOTIFY_CLIENT_ID`
+and `SPOTIFY_CLIENT_SECRET` for the Spotify API.
 ## How to Create a Note Post
 
 ### Step 1: Create a New Issue

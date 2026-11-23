@@ -1,305 +1,129 @@
-# Personal IndieWeb Website
+# lqdev.me
 
-A modern F# static site generator implementing IndieWeb principles with unified content architecture, comprehensive RSS feeds, and progressive loading capabilities.
+This is the source for [lqdev.me](https://www.lqdev.me), my personal website, and the static site
+generator I wrote in F# to build it. The site is my digital home and my identity on the web: I
+publish here first, and from here the same posts reach people through RSS, the Fediverse, and
+Bluesky, which the IndieWeb calls [POSSE](https://indieweb.org/POSSE). I'm a little extreme about
+owning the whole stack, so the generator, the Webmention service, and the ActivityPub support are
+all my own code.
 
-## ✨ Quick Publishing
+This README is as much for me as it is for anyone looking at the repo for the first time. It says
+what the site is, how it works, and how to run it, and links to the page that covers each topic.
 
-**GitHub Issue Publishing**: Create content directly through GitHub Issues with automated workflows! 
+## Principles
 
-### Available Issue Templates
-- 📝 [**Post a Note**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-note.yml) - Quick note publishing
-- 🔖 [**Post a Bookmark**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-bookmark.yml) - Share interesting links
-- 💬 [**Post a Response**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-response.yml) - Replies, likes, and reposts
-- 📸 [**Post Media**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-media.yml) - Photos and media content
-- 🎵 [**Post a Playlist**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-playlist.yml) - Music playlists with Spotify and YouTube links
-- 📚 [**Post a Book Review**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-book.yml) - Share book reviews
-- 🎬 [**Post a Movie Review**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-movie.yml) - Share movie reviews
-- 🎵 [**Post a Music Review**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-music.yml) - Share music reviews
-- 🏢 [**Post a Business Review**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-business.yml) - Share business reviews
-- 🛍️ [**Post a Product Review**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=post-review-product.yml) - Share product reviews
-- ➕ [**Follow a Site**](https://github.com/lqdev/luisquintanilla.me/issues/new?template=follow.yml) - Add to the blogroll/podroll; sends a follow webmention on publish ([ADR-0011](docs/adr/0011-follows-as-blogroll-state.md))
+- Start as a website, add social features as components.
+- One identity, many post types.
+- Own the whole stack.
+- Keep it light, with a text-only site that aims for pages under 50 KB.
+- A person can maintain it without AI.
+- Don't let perfect be the enemy of good.
 
-> **Note for Reviews**: Use the appropriate review template link above - each template automatically applies the correct labels. The workflow validates that both labels are present before processing.
-> 
-> **Note for Playlists**: Requires repository secrets `SPOTIFY_CLIENT_ID` and `SPOTIFY_CLIENT_SECRET` to be configured for Spotify API access.
+More in [docs/principles.md](docs/principles.md).
 
-📖 [**Publishing Guide**](docs/guides/publishing/github-issues.md) - Complete documentation on GitHub Issue Template posting
+## How it works
 
-GitHub Issue publishing provides native version control, better review workflows, and automated PR creation, replacing the previous Discord-based publishing system.
-
-## 🏗️ Architecture Overview
-
-This is a production-ready IndieWeb site built with F# featuring:
-- **Unified Content Processing**: AST-based GenericBuilder pattern for all 8+ content types
-- **Comprehensive Feed Architecture**: RSS 2.0 feeds with tag-based filtering (1,187+ feeds)
-- **Progressive Loading**: Handles 1000+ content items without performance issues
-- **Desert Theme Integration**: Modern responsive design with IndieWeb microformats2
-- **External Library Support**: Proven patterns for integrating JavaScript libraries
-
-## 📂 Repository Structure
-
-### Core Application Files
-- **Program.fs** - Main application entrypoint and build orchestration
-- **Builder.fs** - High-level build functions coordinating content generation
-- **Domain.fs** - Core types and ITaggable interface for unified content processing
-- **GenericBuilder.fs** - Unified AST-based content processors for all content types
-- **Loaders.fs** - File system operations and content loading utilities
-
-### Infrastructure Modules
-- **ASTParsing.fs** - Abstract Syntax Tree parsing for Markdown content
-- **CustomBlocks.fs** - Custom Markdig extensions (media, reviews, venues, RSVP blocks)
-- **BlockRenderers.fs** - HTML rendering for custom block types
-- **MediaTypes.fs** - Media type detection and handling
-- **OutputComparison.fs** - Build validation and output comparison utilities
-- **SearchIndex.fs** - Build-time search index generation for client-side search
-- **TextOnlyBuilder.fs** - Accessibility-first text-only site generation
-- **Collections.fs** - Collections system (travel guides, starter packs, blogroll)
-- **StarterPackSystem.fs** - Starter pack configuration and generation
-
-### Views Architecture (Modular)
-- **Views/LayoutViews.fs** - Page-level layouts and structural views
-- **Views/ContentViews.fs** - Individual content type view functions
-- **Views/CollectionViews.fs** - Collection and listing views with progressive loading
-- **Views/ComponentViews.fs** - Reusable UI components and utilities
-- **Views/FeedViews.fs** - RSS feed and aggregation views
-- **Views/TagViews.fs** - Tag-related view functions
-- **Views/TextOnlyViews.fs** - Accessibility-first text-only site views
-- **Views/TravelViews.fs** - Travel collection-specific views with GPS integration
-- **Views/Partials.fs** - Re-export layer maintaining backward compatibility
-- **Views/Layouts.fs** - Base layout components
-- **Views/Generator.fs** - View generation utilities
-
-### Services
-- **Services/Markdown.fs** - Markdown processing with custom block support
-- **Services/Tag.fs** - Tag management and RSS feed generation
-- **Services/Opml.fs** - OPML feed aggregation for subscription management
-- **Services/Webmention.fs** - IndieWeb webmention integration
-
-### Content Structure
-- **_src/** - Source content in Markdown with YAML frontmatter
-  - **posts/** - Long-form blog posts
-  - **notes/** - Microblog note posts (IndieWeb notes)
-  - **responses/** - Social responses (replies, likes, bookmarks, reposts)
-  - **snippets/** - Code snippets with syntax highlighting
-  - **wiki/** - Knowledge base and reference notes
-  - **resources/presentations/** - Reveal.js presentations with custom layouts and resources
-  - **media/** - Photo albums and media collections
-  - **albums/** - Curated media collections with location metadata
-  - **playlists/** - Music playlist collections with YouTube/Spotify links
-  - **resources/** - Books, tools, and reference materials
-  - **streams/** - Live stream recordings and resources
-
-### Build Output
-- **_public/** - Generated static site (deployment target)
-  - Semantic URL structure following W3C "Cool URIs" principles
-  - RSS feeds for all content types and tags
-  - Progressive loading assets and JSON data files
-  - Optimized CSS and JavaScript assets
-  - `/text/` - Text-only accessibility site (<50KB pages)
-  - `/collections/` - Curated collections (starter packs, travel guides, albums)
-  - Service worker and PWA manifest for offline functionality
-
-### Development Support
-- **Data/** - JSON data files (blogroll, events, feeds, etc.)
-- **Scripts/** - Development and maintenance scripts
-- **docs/** - Architecture documentation and decision records
-- **docs/adr/** - Architecture Decision Records (ADRs) for key technical decisions
-- **projects/** - Project management and development logs
-- **archive/** - Historical implementation summaries and demo files
-- **test-scripts/** - F# test scripts for validation
-- **_scratch/** - Development scratchpad for ideas and drafts
-
-## 🔧 Key Features
-
-### Content Management & Publishing
-- **9 Content Types**: Posts, notes, responses, snippets, wiki, presentations, media, albums, playlists, resources
-- **GitHub Issue Publishing**: Create note posts directly through GitHub Issues with automated PR workflow
-- **Pinned Posts**: Pin important content to the top of your timeline via JSON configuration
-- **Album Collections**: Curated photo/media groupings with location metadata and timeline integration
-- **Playlist Collections**: Monthly music discoveries with YouTube/Spotify dual links for platform-agnostic listening
-- **AST-Based Processing**: Unified GenericBuilder pattern replacing legacy repetitive functions
-- **Custom Blocks**: Media galleries, reviews, venue information, RSVP responses
-- **Tag System**: Automatic tag extraction and RSS feed generation (1,187+ tag feeds)
-- **Untagged Content Discovery**: Automatic detection and organization of content needing tags
-
-### Feed Architecture & Discovery
-- **Comprehensive RSS**: Individual feeds for each content type
-- **Tag-Based Filtering**: RSS feeds for every tag with proper category metadata
-- **Unified Feed**: Combined feed of all content types
-- **OPML Support**: Subscription management with feed discovery
-- **Starter Packs System**: Curated RSS feed collections for easy topic-based subscriptions
-- **Site-wide Search**: Client-side fuzzy search with Fuse.js for 1,130+ content items
-
-### Collections & Organization
-- **Travel Collections**: GPS-enabled travel guides with GPX file generation and map integration
-- **Blogroll/Podroll**: Curated link collections with RSS/OPML export
-- **Starter Packs**: Topic-based RSS feed collections inspired by BlueSky
-- **Album Collections**: Photo/media galleries with location metadata
-- **Playlist Collections**: Monthly music discoveries ("Crate Finds") with YouTube/Spotify links
-- **Content Collections**: Flexible grouping system for any content organization
-
-### Performance & UX
-- **Progressive Loading**: Client-side chunked loading for large content volumes
-- **Progressive Web App (PWA)**: Offline-first functionality with service worker caching
-- **Content Sharing**: QR code generation, Web Share API, and copy permalink buttons on every page
-- **Back to Top Button**: Scroll-based navigation with mobile optimization
-- **Explicit Home Navigation**: Research-backed navigation improvements for mixed audiences
-- **Desert Theme**: Modern responsive design with accessibility features
-- **IndieWeb Compliance**: Full microformats2 markup and webmention support
-- **Timezone-Aware Parsing**: Consistent date handling across all environments
-
-### Accessibility & Universal Design
-- **Text-Only Site**: Complete accessibility-first website at `/text/` subdirectory
-- **WCAG 2.1 AA Compliance**: Full keyboard navigation, screen reader support, reduced motion
-- **2G Network Optimization**: <50KB page loads for universal device compatibility
-- **Flip Phone Support**: Core functionality accessible through basic mobile browsers
-
-### Presentations
-- **Custom Layout System**: 15 pre-built CSS layout classes for Reveal.js presentations
-- **VS Code Snippets**: Quick slide creation with layout templates
-- **Responsive Design**: Mobile-optimized presentation viewing
-
-### Development Workflow
-- **Custom Copilot Agents**: Multi-agentic system with orchestrator + 5 specialist agents for enhanced development assistance (see `.github/agents/`)
-- **Emacs Org-capture Templates**: 33 hierarchical templates for rapid content creation with 3-key navigation (see `docs/guides/authoring/emacs-org-capture.md`)
-- **VS Code Integration**: Complete snippet library aligned with Domain.fs (17 content types + layout snippets)
-- **Build Validation**: Automated testing and output comparison
-- **Azure Integration**: Native redirects via Static Web Apps configuration
-- **GitHub Actions**: Automated workflows for content publishing, broken link checking, and deployments
-- **Migration Patterns**: Proven feature flag approach for safe updates
-
-## 🚀 Getting Started
-
-### Prerequisites
-- .NET 11.0.100 SDK (selected by `global.json`; includes the F# compiler)
-
-### Build Commands
-```bash
-# Restore packages
-dotnet restore
-
-# Build and generate site
-dotnet run
-
-# Start development server
-./start-server.ps1    # Windows
+```mermaid
+flowchart LR
+  src["_src/ Markdown and YAML"] --> proc["Processors/ parse into Domain.fs types"]
+  proc --> typepages["Per-type pages: BuildDriver.fs, Builders/, Views/"]
+  proc --> feed["FeedData per content type"]
+  feed --> unified["UnifiedFeeds.fs: one item shape for all types"]
+  unified --> roster["Content roster in Program.fs"]
+  roster --> home["Home page timeline"]
+  roster --> feeds["RSS, JSON, and tag feeds"]
+  roster --> text["Text-only site"]
+  roster --> search["Search index, link registry, link previews"]
+  roster --> ap["ActivityPub JSON"]
+  feed --> tags["Tag pages"]
+  feed --> at["AT Protocol staging records"]
+  data["Data/ JSON files"] --> other["OPML, collections, read later"]
+  typepages --> out["_public/"]
+  home --> out
+  feeds --> out
+  text --> out
+  search --> out
+  ap --> out
+  tags --> out
+  at --> out
+  other --> out
+  out --> host["Azure Static Web Apps"]
+  ap -. "copied into api/data at deploy" .-> api["api/ Azure Functions"]
+  api --> host
+  at --> sync["Scripts/sync-atproto.fsx, run in CI"]
 ```
 
-### Content Creation
+Content is Markdown with YAML frontmatter in `_src/`. Each of the 14 content types has a processor
+in `Processors/` that parses its files into the types in `Domain.fs` and renders that type's pages.
+`UnifiedFeeds.fs` then turns every type into one shared item shape, and the home page, the RSS and
+JSON feeds, the text-only site, the search index, and the ActivityPub JSON are all built from it,
+alongside the AT Protocol records that a CI script posts to Bluesky. Everything is written to
+`_public/` and served by Azure Static Web Apps, and 10 Azure Functions in `api/` handle the parts of
+ActivityPub that need a server, such as the inbox and WebFinger.
 
-**Two powerful authoring systems** for your editor preference:
+More in [docs/architecture.md](docs/architecture.md). The decisions behind it are in
+[docs/adr/](docs/adr/README.md).
 
-#### Emacs Org-capture (33 templates)
-Hierarchical 3-key navigation with automatic file creation:
-- **Content Types** (9): articles, notes, media, albums, playlists, presentations, wiki, etc.
-- **Response Types** (2): responses (with type selection), bookmarks
-- **Reviews** (1): reviews using :::review::: blocks
-- **Custom Blocks** (15): media, reviews, resume components
-- **Markdown Helpers** (6): code blocks, blockquotes, links, images
+## Run it locally
 
-**Setup:** See `docs/guides/authoring/emacs-org-capture.md` for complete Emacs configuration
-**Usage:** `C-c c l` → category → specific type
+You need the .NET SDK version in `global.json` (11.0.100) and Node.js for the preview, or open the
+repo in the dev container.
 
-#### VS Code Snippets (17+ templates)
-Visual editor snippets for inline expansion:
-- `post` - Blog post template
-- `note` - Microblog note
-- `response` - Social response (bookmark, like, reply)
-- `snippet` - Code snippet
-- `wiki` - Knowledge base entry
-- `album-collection` - Photo/media album with location metadata
-- `travel-collection` - Travel guide with GPS coordinates
-- `presentation` - Reveal.js presentation with custom layouts
-- Plus content blocks, metadata helpers, and presentation layouts
-
-### Presentation Layouts
-Create professional presentations with 15 custom layout classes:
-- `layout-two-column` / `layout-three-column` - Multi-column layouts
-- `layout-split-70-30` / `layout-split-30-70` - Asymmetric splits
-- `layout-image-left` / `layout-image-right` - Image + content layouts
-- `layout-centered` / `layout-big-text` - Impact layouts
-- And 7 more specialized layouts with VS Code snippets
-
-## 🤖 Custom Copilot Agents
-
-This repository features a **multi-agentic Copilot workflow system** with specialized agents for enhanced development assistance. The system includes an orchestrator agent that routes tasks to domain specialists, enabling contextually-aware code suggestions and automated workflows.
-
-### Agent Architecture
-
-**Orchestrator Agent** (`@orchestrator`)
-- Meta-coordinator that analyzes requests and routes to appropriate specialists
-- Coordinates multi-step workflows across multiple agents
-- Maintains architectural consistency across changes
-- Provides decision trees for single vs multi-agent tasks
-
-**Specialist Agents**:
-1. **Content Creator** (`@content-creator`) - Content types, markdown blocks, YAML frontmatter, IndieWeb standards
-2. **F# Generator** (`@fsharp-generator`) - F# codebase, GenericBuilder pattern, AST processing, RSS feeds, ViewEngine rendering
-3. **Issue Publisher** (`@issue-publisher`) - GitHub Actions workflows, issue templates, S3 integration, automation pipelines
-4. **Build Automation** (`@build-automation`) - Build scripts, validation, testing, performance optimization, orchestration
-
-### Usage Examples
-
-**Content-Only Changes**:
-```
-"Create a new presentation with custom layout blocks" → @content-creator
+```powershell
+git clone https://github.com/lqdev/luisquintanilla.me.git
+cd luisquintanilla.me
+$localLock = Join-Path ([IO.Path]::GetTempPath()) 'lqdev-net11-local.lock.json'
+Copy-Item packages.lock.json $localLock
+dotnet restore --force-evaluate -p:NuGetLockFilePath=$localLock
+$env:GITHUB_TOKEN = ''
+$env:ACTIVITYPUB_STORAGE_CONNECTION = ''
+dotnet build --no-restore -p:NuGetLockFilePath=$localLock
+dotnet run --no-build -- --strict
+npx serve _public
 ```
 
-**F# Code Changes**:
-```
-"Add a new content type to GenericBuilder" → @fsharp-generator
-```
+The restore uses a copy of the lock file because a local NuGet cache can hold a package whose hash
+doesn't match the committed one, and the committed file shouldn't change. On 2026-11-23 the build
+took 10 seconds with one expected warning (FS1104), generating took 95 seconds and wrote 14,645
+files to `_public/`, and the preview served it at http://localhost:3000. If restore fails, see
+[docs/getting-started.md](docs/getting-started.md).
 
-**GitHub Workflow Changes**:
-```
-"Fix the S3 upload workflow for media files" → @issue-publisher
-```
+## What's in the repo
 
-**Build & Testing**:
-```
-"Add validation for RSS feed generation" → @build-automation
-```
+| Path | What it is |
+| --- | --- |
+| `_src/` | The content: Markdown with YAML frontmatter, plus the site's CSS and JavaScript |
+| `Program.fs` | The entry point. Runs every build step in order and sets the exit code |
+| `Domain.fs`, `ContentTypes.fs` | The types for every content type, and the one place their names live |
+| `Processors/` | One processor per content type: parse, render, and build the RSS item |
+| `Builders/`, `Views/` | Page builders, and the Giraffe ViewEngine views that produce the HTML |
+| `Services/` | Shared helpers: tags, Markdown, OPML, Webmentions, link previews, follower sync |
+| `api/` | Azure Functions for ActivityPub: the inbox, outbox, actor, followers, and WebFinger |
+| `Scripts/`, `test-scripts/` | Maintenance scripts, and the F# regression tests CI runs |
+| `.github/` | Workflows that build, deploy, and publish, and the issue templates I post from |
+| `docs/` | The documentation |
 
-**Multi-Agent Workflows**:
-```
-"Implement a new content type"
-→ @orchestrator coordinates:
-  1. @content-creator: Define YAML schema and custom blocks
-  2. @fsharp-generator: Implement Domain type and processor
-  3. @build-automation: Create validation tests
-  4. @issue-publisher: Create GitHub issue template (optional)
-```
+## Publishing
 
-### Agent Configuration
+The main way I post notes, responses, bookmarks, and media is to open a GitHub issue from one of the
+13 templates in `.github/ISSUE_TEMPLATE/`. A workflow turns the issue into a Markdown file in `_src/`
+and opens a pull request with it. See
+[docs/guides/publishing/github-issues.md](docs/guides/publishing/github-issues.md).
 
-All agents are defined in `.github/agents/` with YAML frontmatter following GitHub's Custom Agents specification. Each agent includes:
-- Domain expertise and responsibilities
-- Integration patterns with other agents
-- Code examples and validation checklists
-- Reference resources and documentation links
+## Documentation
 
-**Documentation**: See individual agent files in `.github/agents/` for complete specifications and usage patterns.
+Start at [docs/README.md](docs/README.md). It's organized by what you want to do: understand the
+site, run it, publish something, set up content, read about a feature, look something up, maintain
+it, or change the docs.
 
-## 📊 Project Stats
+## Working with AI agents
 
-- **Build Performance**: ~1.3s build times (89% improvement from architecture cleanup)
-- **Content Scale**: 1,130+ content items across 9 content types  
-- **Feed Generation**: 1,187+ RSS feeds (content types + tags + unified)
-- **Code Quality**: 445+ lines of legacy code removed, unified patterns throughout
-- **URL Health**: 97.8% reduction in broken links through comprehensive redirect strategy
-- **Search Capability**: Site-wide search across all 1,130+ content items with sub-100ms performance
-- **Accessibility**: Complete text-only site with <50KB page loads for universal device compatibility
-- **PWA Support**: Offline-first functionality with intelligent caching strategies
+A lot of this repo is written with AI coding agents. Of the last 500 commits on 2026-11-23, 148 of
+the 200 that weren't made by the publishing bot credit Copilot. The instructions those agents follow
+are in [AGENTS.md](AGENTS.md).
 
-## 🤝 Contributing
+## Links
 
-See **[CONTRIBUTING.md](CONTRIBUTING.md)** for the complete project guide, including content type reference, frontmatter formats, build instructions, and AI coding assistant guidelines.
-
-## 🔗 Links
-
-- **Live Site**: [https://www.lqdev.me](https://www.lqdev.me)
-- **Contributing Guide**: [CONTRIBUTING.md](CONTRIBUTING.md)
-- **Architecture Decisions**: [docs/adr/](docs/adr/)
-- **Architecture Docs**: `archive/docs/core-infrastructure-architecture.md`
-- **Development Logs**: `projects/archive/` and `changelog.md`
-- **Migration History**: Complete 8-phase migration documented in project archives
+- Site: <https://www.lqdev.me>
+- What the site federates: [FEDERATION.md](FEDERATION.md)
+- History: [changelog.md](changelog.md)
