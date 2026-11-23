@@ -138,5 +138,12 @@
         "HtmlUrl": "https://apurplelife.com/",
         "XmlUrl": "https://apurplelife.com/feed/",
         "Added": "2026-11-22"
+    },
+    {
+        "Title": "Manton Reece",
+        "Type": "rss",
+        "HtmlUrl": "https://www.manton.org/",
+        "XmlUrl": "https://www.manton.org/feed.xml",
+        "Added": "2026-11-22"
     }
 ]
