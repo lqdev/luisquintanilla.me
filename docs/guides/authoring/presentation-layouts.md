@@ -410,9 +410,9 @@ Content
 
 ## Related Documentation
 
-- [How to Create Presentations](../README.md#content-creation) - General presentation creation guide
+- [How to Create Presentations](../../../README.md#content-creation) - General presentation creation guide
 - [Reveal.js Documentation](https://revealjs.com/) - Reveal.js framework documentation
-- [VS Code Snippets Guide](vs-code-snippets-modernization.md) - VS Code snippets system
+- [VS Code Snippets Guide](vs-code-snippets.md) - VS Code snippets system
 
 ## Future Enhancements
 

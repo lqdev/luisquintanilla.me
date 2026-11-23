@@ -154,6 +154,6 @@ When adding new content types:
 
 ## Related Documentation
 
-- [Domain.fs](../Domain.fs) - Type definitions and field structures
-- [copilot-instructions.md](../.github/copilot-instructions.md) - Development workflow patterns
-- [changelog.md](../changelog.md) - Implementation completion record
+- [Domain.fs](../../../Domain.fs) - Type definitions and field structures
+- [copilot-instructions.md](../../../.github/copilot-instructions.md) - Development workflow patterns
+- [changelog.md](../../../changelog.md) - Implementation completion record

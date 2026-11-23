@@ -980,11 +980,11 @@ Refer to existing block implementations as templates.
 
 ## Related Documentation
 
-- **[How to Create Starter Packs](how-to-create-starter-packs.md)** - Creating curated content collections
-- **[Custom Presentation Layouts](custom-presentation-layouts.md)** - Presentation system with custom blocks
-- **[Travel Guide How-To](travel-guide-howto.md)** - Location-based content with GPS
-- **[VS Code Snippets](vs-code-snippets-modernization.md)** - Content creation shortcuts
-- **[Core Infrastructure Architecture](../archive/docs/core-infrastructure-architecture.md)** - System overview
+- **[How to Create Starter Packs](starter-packs.md)** - Creating curated content collections
+- **[Custom Presentation Layouts](presentation-layouts.md)** - Presentation system with custom blocks
+- **[Travel Guide How-To](travel-guides.md)** - Location-based content with GPS
+- **[VS Code Snippets](vs-code-snippets.md)** - Content creation shortcuts
+- **[Core Infrastructure Architecture](../../../archive/docs/core-infrastructure-architecture.md)** - System overview
 
 ## Support and Feedback
 

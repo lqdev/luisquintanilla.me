@@ -446,9 +446,9 @@ When adding templates, maintain this hierarchy for consistency.
 - `Domain.fs` - F# type definitions for all content types
 
 ### Related Workflows
-- `docs/github-issue-posting-guide.md` - GitHub Issue publishing workflow
-- `docs/media-publishing-workflow.md` - Media content workflow
-- `docs/response-publishing-workflow.md` - Response content workflow
+- `docs/guides/publishing/github-issues.md` - GitHub Issue publishing workflow
+- `docs/guides/publishing/media.md` - Media content workflow
+- `docs/guides/publishing/responses.md` - Response content workflow
 
 ## Contributing
 

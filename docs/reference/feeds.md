@@ -147,7 +147,7 @@ For example, the new reply block is:
 ```
 
 Namespace URI plus local name is authoritative, not prefix spelling or declaration
-placement. The [five-item synthetic fixture](../test-scripts/fixtures/rss-semantics.xml)
+placement. The [five-item synthetic fixture](../../test-scripts/fixtures/rss-semantics.xml)
 shows every mapping, alongside the independent consumer in
 `test-scripts\test-rss-semantics.fsx`. These fixtures are not published content.
 
@@ -251,7 +251,7 @@ The site also publishes profile and subscription artifacts at:
 - `/.well-known/about.md` - About Markdown with a machine-readable `summary`
 - `/.well-known/contact.vcf` - vCard 3.0 contact artifact
 
-See [Social discovery endpoints](social-discovery.md) for source ownership, Azure route behavior, media types, CORS, and validation commands.
+See [Social discovery endpoints](../features/social-discovery.md) for source ownership, Azure route behavior, media types, CORS, and validation commands.
 
 ## Migration History
 

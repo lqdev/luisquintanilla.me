@@ -57,7 +57,7 @@ This directory contains **Emacs org-capture templates** for rapid content creati
 
 ## Documentation
 
-See **[docs/org-capture-templates.md](../docs/org-capture-templates.md)** for:
+See **[docs/guides/authoring/emacs-org-capture.md](../docs/guides/authoring/emacs-org-capture.md)** for:
 - Complete setup instructions
 - Emacs configuration
 - Hierarchical keybinding structure
@@ -73,7 +73,7 @@ See **[docs/org-capture-templates.md](../docs/org-capture-templates.md)** for:
 3. Add `(load-file "~/.emacs.d/org-capture-templates.el")` to your `init.el`
 
 ### Option 2: Add to Existing Config
-1. Copy the configuration from `docs/org-capture-templates.md` to your `~/.emacs.d/init.el`
+1. Copy the configuration from `docs/guides/authoring/emacs-org-capture.md` to your `~/.emacs.d/init.el`
 2. Set `lqdev-site-path` to point to this repository
 
 ### Usage

@@ -59,7 +59,7 @@ annotations and valid UTC channel build-time changes. Compare JSON Feed bytes an
 BAR ZIP member payloads (ZIP timestamps themselves vary per build). Keep the
 existing RSS correctness, CDATA, threading, generated-output, and social-discovery
 checks intact. Live XML/reader verification remains gated on separately approved
-publication; see `docs\feed-architecture.md`.
+publication; see `docs\reference\feeds.md`.
 
 ## Core Infrastructure Tests
 

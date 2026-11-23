@@ -457,10 +457,10 @@ Pinned posts also appear in text-only version at `/text/` with accessible pin in
 
 ## Related Documentation
 
-- [Timeline System](../README.md#performance--ux) - Overall timeline architecture
-- [Feed Architecture](feed-architecture.md) - RSS feed generation
-- [Content Types](../README.md#content-structure) - All supported content types
-- [VS Code Snippets](vs-code-snippets-modernization.md) - Content creation workflow
+- [Timeline System](../../../README.md#performance--ux) - Overall timeline architecture
+- [Feed Architecture](../../reference/feeds.md) - RSS feed generation
+- [Content Types](../../../README.md#content-structure) - All supported content types
+- [VS Code Snippets](vs-code-snippets.md) - Content creation workflow
 
 ## Examples in the Wild
 
