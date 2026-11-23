@@ -15,7 +15,7 @@
     Feed selectors. Common feed paths are then probed.
 
     Environment:
-      FOLLOW_SKIP_FEED_CHECK=1   Skip network validation (local testing only).
+      FOLLOW_SKIP_FEED_CHECK=1   Skip validation for an explicitly supplied feed (local testing only).
 *)
 
 open System
@@ -112,11 +112,18 @@ let supportedFeedTypes =
 
 type FetchResult =
     {
+        FinalUri: Uri
         Status: int
         ContentType: string
         Body: string
+        Truncated: bool
         Error: string option
     }
+
+type FeedVerdict =
+    | ValidFeed of Uri
+    | NotFeed
+    | UnverifiableFeed of string
 
 let looksLikeFeed (contentType: string) (body: string) =
     let ct = contentType.ToLowerInvariant()
@@ -130,7 +137,7 @@ let looksLikeFeed (contentType: string) (body: string) =
     || head.Contains("<rdf:RDF", StringComparison.OrdinalIgnoreCase)
     || (head.StartsWith("{", StringComparison.Ordinal) && head.Contains("jsonfeed.org", StringComparison.OrdinalIgnoreCase))
 
-let fetch (client: HttpClient) (uri: Uri) =
+let fetch (client: HttpClient) (maxBytes: int) (uri: Uri) =
     try
         use cancellation = new System.Threading.CancellationTokenSource(TimeSpan.FromSeconds(20.0))
         use response = client.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, cancellation.Token).GetAwaiter().GetResult()
@@ -139,42 +146,53 @@ let fetch (client: HttpClient) (uri: Uri) =
             | null -> ""
             | ct -> ct.ToString()
         use stream = response.Content.ReadAsStreamAsync(cancellation.Token).GetAwaiter().GetResult()
-        let buffer = Array.zeroCreate<byte> 8192
+        let buffer = Array.zeroCreate<byte> (maxBytes + 1)
         let mutable bytesRead = 0
         let mutable reachedEnd = false
         while bytesRead < buffer.Length && not reachedEnd do
             let read = stream.ReadAsync(buffer, bytesRead, buffer.Length - bytesRead, cancellation.Token).GetAwaiter().GetResult()
             if read = 0 then reachedEnd <- true else bytesRead <- bytesRead + read
         {
+            FinalUri =
+                match response.RequestMessage with
+                | null -> uri
+                | request ->
+                    match request.RequestUri with
+                    | null -> uri
+                    | finalUri -> finalUri
             Status = int response.StatusCode
             ContentType = contentType
-            Body = Encoding.UTF8.GetString(buffer, 0, bytesRead)
+            Body = Encoding.UTF8.GetString(buffer, 0, min maxBytes bytesRead)
+            Truncated = bytesRead > maxBytes
             Error = None
         }
     with
     | :? HttpRequestException as ex ->
-        { Status = 0; ContentType = ""; Body = ""; Error = Some $"request failed: {ex.Message}" }
+        { FinalUri = uri; Status = 0; ContentType = ""; Body = ""; Truncated = false; Error = Some $"request failed: {ex.Message}" }
     | :? OperationCanceledException ->
-        { Status = 0; ContentType = ""; Body = ""; Error = Some "request timed out after 20 seconds" }
+        { FinalUri = uri; Status = 0; ContentType = ""; Body = ""; Truncated = false; Error = Some "request timed out after 20 seconds" }
 
-let validateFeedResult (uri: Uri) (result: FetchResult) =
-    if Environment.GetEnvironmentVariable("FOLLOW_SKIP_FEED_CHECK") = "1" then
-        printfn "Feed check skipped: %s (FOLLOW_SKIP_FEED_CHECK=1)" uri.AbsoluteUri
-        true, "Feed check skipped."
-    else
-        match result.Error with
-        | Some error -> false, error
-        | None when result.Status >= 200 && result.Status < 300 ->
-            if looksLikeFeed result.ContentType result.Body then
-                printfn "Feed check passed: %d %s %s" result.Status result.ContentType uri.AbsoluteUri
-                true, ""
-            else
-                false, $"responded {result.Status} but the content does not look like RSS/Atom/JSON Feed"
-        | None when result.Status = 404 || result.Status = 410 ->
-            false, $"returned HTTP {result.Status}"
-        | None ->
-            printfn "Feed check warning: HTTP %d for %s; proceeding because the server may block automated requests." result.Status uri.AbsoluteUri
-            true, ""
+let isSoftFeedStatus status =
+    status = 401 || status = 403 || status = 429 || status >= 500
+
+let validateFeedResult (allowSoftFailure: bool) (result: FetchResult) =
+    match result.Error with
+    | Some error -> UnverifiableFeed error
+    | None when result.Status >= 200 && result.Status < 300 ->
+        if looksLikeFeed result.ContentType result.Body then
+            printfn "Feed check passed: %d %s %s" result.Status result.ContentType result.FinalUri.AbsoluteUri
+            ValidFeed result.FinalUri
+        elif result.Truncated then
+            UnverifiableFeed $"response was truncated by the bounded read before feed discovery could confirm its content ({result.FinalUri.AbsoluteUri})"
+        else
+            NotFeed
+    | None when result.Status = 404 || result.Status = 410 -> NotFeed
+    | None when isSoftFeedStatus result.Status && allowSoftFailure ->
+        printfn "Feed check warning: HTTP %d for %s; proceeding because an explicitly supplied feed may block automated requests." result.Status result.FinalUri.AbsoluteUri
+        ValidFeed result.FinalUri
+    | None when isSoftFeedStatus result.Status ->
+        UnverifiableFeed $"returned HTTP {result.Status} ({result.FinalUri.AbsoluteUri})"
+    | None -> NotFeed
 
 let getAttribute (name: string) (tag: string) =
     let pattern =
@@ -240,10 +258,10 @@ let parseFeedLinks (documentUri: Uri) (html: string) =
                 | _ -> None))
     |> Array.toList
 
-let pathProbes =
+let pathProbes (documentUri: Uri) =
     [ "/feed"; "/feed/"; "/rss.xml"; "/atom.xml"; "/index.xml"; "/feed.xml"; "/rss"; "/feed.json" ]
     |> List.choose (fun path ->
-        match Uri.TryCreate(siteUri, path) with
+        match Uri.TryCreate(documentUri, path) with
         | true, uri -> Some uri
         | _ -> None)
 
@@ -258,6 +276,10 @@ let handler = new HttpClientHandler(AllowAutoRedirect = true, MaxAutomaticRedire
 let client = new HttpClient(handler, Timeout = System.Threading.Timeout.InfiniteTimeSpan)
 client.DefaultRequestHeaders.UserAgent.ParseAdd("lqdev.me-follow-check/1.0 (+https://lqdev.me/collections/blogroll/)")
 client.DefaultRequestHeaders.Accept.ParseAdd("application/rss+xml, application/atom+xml, application/feed+json, text/html;q=0.9, application/xml;q=0.8, */*;q=0.5")
+
+let feedReadLimit = 8192
+let htmlReadLimit = 1024 * 1024
+let maxCandidateChecks = 15
 
 let ensureNotDuplicateFeed (candidate: Uri) =
     let candidateKey = normalizeForCompare candidate.AbsoluteUri
@@ -274,43 +296,67 @@ let mutable discoveredFeeds: Uri list = []
 if not (String.IsNullOrWhiteSpace(feedInput)) then
     let feedUri = parseAbsoluteHttpUrl "Feed URL" feedInput
     ensureNotDuplicateFeed feedUri
-    let valid, reason = validateFeedResult feedUri (fetch client feedUri)
-    if not valid then fail $"Feed URL could not be verified: {reason}."
-    discoveredFeeds <- [ feedUri ]
-else
-    let siteResult = fetch client siteUri
-    if siteResult.Error.IsNone
-       && siteResult.Status >= 200
-       && siteResult.Status < 300
-       && looksLikeFeed siteResult.ContentType siteResult.Body then
-        discoveredFeeds <- [ siteUri ]
+    if Environment.GetEnvironmentVariable("FOLLOW_SKIP_FEED_CHECK") = "1" then
+        printfn "Feed check skipped: %s (FOLLOW_SKIP_FEED_CHECK=1)" feedUri.AbsoluteUri
+        discoveredFeeds <- [ feedUri ]
     else
+        match validateFeedResult true (fetch client feedReadLimit feedUri) with
+        | ValidFeed finalUri -> discoveredFeeds <- [ finalUri ]
+        | NotFeed -> fail "Feed URL responded successfully but the content does not look like RSS/Atom/JSON Feed."
+        | UnverifiableFeed reason -> fail $"Feed URL could not be verified: {reason}."
+else
+    let siteResult = fetch client htmlReadLimit siteUri
+    match validateFeedResult false siteResult with
+    | ValidFeed finalUri ->
+        discoveredFeeds <- [ finalUri ]
+    | UnverifiableFeed reason ->
+        fail $"Feed discovery could not be completed for the Site URL: {reason}."
+    | NotFeed ->
         let parsed =
-            if siteResult.Error.IsNone
-               && siteResult.Status >= 200
-               && siteResult.Status < 300 then
-                parseFeedLinks siteUri siteResult.Body
+            if siteResult.Status >= 200 && siteResult.Status < 300 && siteResult.Error.IsNone then
+                parseFeedLinks siteResult.FinalUri siteResult.Body
             else
                 []
 
-        let rawCandidates = parsed @ pathProbes
-        let seen = HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        let rawCandidates = parsed @ pathProbes siteResult.FinalUri
+        let seen = HashSet<string>(StringComparer.Ordinal)
         let deduped =
             rawCandidates
-            |> List.filter (fun uri -> seen.Add(normalizeForCompare uri.AbsoluteUri))
+            |> List.filter (fun uri -> seen.Add(uri.AbsoluteUri))
+
+        if deduped.Length > maxCandidateChecks then
+            fail $"Feed discovery exceeded its {maxCandidateChecks}-request validation budget after URL deduplication. Supply a specific Feed URL to continue."
+
+        let validatedSeen = HashSet<string>(StringComparer.Ordinal)
+        let mutable validated: Uri list = []
+        let mutable unverifiableReasons: string list = []
+        for candidate in deduped do
+            match validateFeedResult false (fetch client feedReadLimit candidate) with
+            | ValidFeed finalUri when validatedSeen.Add(finalUri.AbsoluteUri) ->
+                validated <- finalUri :: validated
+            | ValidFeed _ -> ()
+            | NotFeed -> ()
+            | UnverifiableFeed reason ->
+                unverifiableReasons <- $"{candidate.AbsoluteUri}: {reason}" :: unverifiableReasons
+
+        if validated.IsEmpty && not unverifiableReasons.IsEmpty then
+            let details = unverifiableReasons |> List.rev |> String.concat "; "
+            fail $"Feed discovery could not be completed because no candidate was verified: {details}."
 
         discoveredFeeds <-
-            deduped
-            |> List.choose (fun uri ->
-                let valid, _ = validateFeedResult uri (fetch client uri)
-                if valid then Some uri else None)
+            validated
+            |> List.rev
             |> List.sortBy (fun uri -> if isCommentFeed uri then 1 else 0)
-            |> List.truncate 15
+            |> List.truncate maxCandidateChecks
 
 let candidateUrls =
     discoveredFeeds
-    |> List.map (fun uri -> uri.AbsoluteUri)
-    |> List.distinctBy (fun url -> normalizeForCompare url)
+    |> List.fold (fun (seen, urls) (uri: Uri) ->
+        if (seen: HashSet<string>).Add(uri.AbsoluteUri) then seen, uri.AbsoluteUri :: urls
+        else seen, urls
+    ) (HashSet<string>(StringComparer.Ordinal), [])
+    |> snd
+    |> List.rev
     |> List.toArray
 
 if candidateUrls.Length = 0 then

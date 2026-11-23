@@ -77,18 +77,23 @@ environment values before the F# script is invoked.
 1. Validate Site URL, Title, and Roll. Normalize the Site URL with `Uri.AbsoluteUri`.
 2. Read both rolls and reject a duplicate normalized `HtmlUrl` before making any discovery request.
 3. If `feed_url` is present, validate that URL and continue only if the defensive check passes.
-4. Otherwise GET the Site URL. If the URL itself is RSS/Atom/JSON Feed, it is the one candidate.
+4. Otherwise GET the Site URL with a bounded 1 MiB HTML read. If the URL itself redirects to and
+   returns RSS/Atom/JSON Feed, its final response URL is the one candidate.
 5. For a static HTML response, inspect `link[rel="alternate"]` and `a` elements with
    `application/rss+xml`, `application/atom+xml`, or `application/feed+json`. Resolve relative `href`
-   values against the document or first `<base href>`.
+   values against the final document URL or first `<base href>`.
 6. Add `/feed`, `/feed/`, `/rss.xml`, `/atom.xml`, `/index.xml`, `/feed.xml`, `/rss`, and
    `/feed.json` probes.
-7. Deduplicate candidates. Re-run the defensive GET on each candidate:
+7. Deduplicate exact `Uri.AbsoluteUri` strings with ordinal comparison, preserving slash, path-case,
+   and query-distinct endpoints. Reject more than 15 candidates before entering the network loop.
+   Re-run the defensive GET on each remaining candidate:
    - 2xx + `<rss`, `<feed`, `<rdf:RDF`, or JSON containing `jsonfeed.org` → valid
-   - 2xx but not feed-like, 404, 410, DNS/connection error, or timeout → reject candidate
-   - 401/403/429/5xx → warn and accept, preserving the original defensive-check behavior
-8. Sort comment feeds after primary feeds and cap the list at 15. Zero exits 3, one exits 0, and
-   multiple produce `CANDIDATES_JSON` and exit 2.
+   - 2xx but not feed-like, 404, or 410 → reject candidate as a completed absence
+   - DNS/connection error, timeout, truncated read, 401/403/429, or 5xx → omit the unverifiable
+     candidate; if none verify, exit 1 because absence is not proven
+8. The legacy 401/403/429/5xx warning-and-proceed policy remains for an explicitly supplied Feed URL
+   only. For discovery, sort valid comment feeds after primary feeds. Zero validated candidates after a
+   complete search exits 3, one exits 0, and multiple produce `CANDIDATES_JSON` and exit 2.
 9. On exit 0, append `{Title, Type:"rss", HtmlUrl, XmlUrl, Added}` with 4-space indentation.
    `process-follow-issue.fsx` never writes unless a non-empty feed has passed the check.
 
@@ -97,7 +102,10 @@ reopening after an error remains the supported full retry. The choice workflow a
 from lqdev for checklist changes and `issue_comment.created` from lqdev for `/follow` commands; the
 Action's own issue-body edit is excluded because its sender is not lqdev. Zero checked items is a no-op,
 while multiple checked items receive an "exactly one" correction comment. Initial processing and both
-choice paths share `concurrency: follow-issue-<number>` so repeated deliveries do not race.
+choice paths share `concurrency: follow-issue-<number>` so repeated deliveries do not race. After serialization,
+the choice workflow refetches the issue and parses its current body, and the shared composite action
+refetches it again before writing anything. If either refetch finds a closed/non-follow/PR issue, it
+does no work.
 
 JavaScript-injected links are invisible to Action-side static discovery. A manual `feed_url` remains the
 escape hatch. No hosted discovery service or third-party proxy participates.

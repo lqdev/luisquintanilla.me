@@ -22,14 +22,47 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Refetch live follow issue
+      id: live-issue
+      uses: actions/github-script@v9
+      env:
+        ISSUE_NUMBER: ${{ inputs.issue_number }}
+        PRESELECTED_FEED_URL: ${{ inputs.feed_url }}
+      with:
+        script: |
+          const { extractFollowFields } = require('./.github/scripts/follow-choice.js');
+          const issue = await github.rest.issues.get({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: Number(process.env.ISSUE_NUMBER)
+          });
+          const labels = issue.data.labels
+            .map((label) => typeof label === 'string' ? label : label.name);
+          if (
+            issue.data.state !== 'open' ||
+            issue.data.pull_request ||
+            !labels.includes('follow')
+          ) {
+            core.info(`Skipping follow processing because issue #${issue.data.number} is no longer an open, labeled issue.`);
+            core.setOutput('open', 'false');
+            return;
+          }
+          const fields = extractFollowFields(issue.data.body || '');
+          core.setOutput('open', 'true');
+          core.setOutput('feed_url', process.env.PRESELECTED_FEED_URL || fields.feedUrl);
+          core.setOutput('site_url', fields.siteUrl);
+          core.setOutput('title', fields.title);
+          core.setOutput('roll', fields.roll);
+
     - name: Process follow request
       id: process
+      if: steps.live-issue.outputs.open == 'true'
       shell: bash
       env:
-        FOLLOW_FEED_URL: ${{ inputs.feed_url }}
-        FOLLOW_SITE_URL: ${{ inputs.site_url }}
-        FOLLOW_TITLE: ${{ inputs.title }}
-        FOLLOW_ROLL: ${{ inputs.roll }}
+        FOLLOW_FEED_URL: ${{ steps.live-issue.outputs.feed_url }}
+        FOLLOW_SITE_URL: ${{ steps.live-issue.outputs.site_url }}
+        FOLLOW_TITLE: ${{ steps.live-issue.outputs.title }}
+        FOLLOW_ROLL: ${{ steps.live-issue.outputs.roll }}
       run: |
         set +e
         output_file="$(mktemp)"
@@ -65,8 +98,29 @@ runs:
             ;;
         esac
 
+    - name: Recheck issue before side effects
+      id: post-process-issue
+      if: steps.live-issue.outputs.open == 'true'
+      uses: actions/github-script@v9
+      env:
+        ISSUE_NUMBER: ${{ inputs.issue_number }}
+      with:
+        script: |
+          const issue = await github.rest.issues.get({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: Number(process.env.ISSUE_NUMBER)
+          });
+          core.setOutput(
+            'proceed',
+            issue.data.state === 'open' && !issue.data.pull_request ? 'true' : 'false'
+          );
+          if (issue.data.state !== 'open') {
+            core.info(`Skipping follow side effects because issue #${issue.data.number} closed during processing.`);
+          }
+
     - name: Add feed checklist to issue description
-      if: steps.process.outputs.outcome == 'choice'
+      if: steps.post-process-issue.outputs.proceed == 'true' && steps.process.outputs.outcome == 'choice'
       uses: actions/github-script@v9
       env:
         ISSUE_NUMBER: ${{ inputs.issue_number }}
@@ -98,11 +152,11 @@ runs:
           });
 
     - name: Close request when no feed exists
-      if: steps.process.outputs.outcome == 'no-feed'
+      if: steps.post-process-issue.outputs.proceed == 'true' && steps.process.outputs.outcome == 'no-feed'
       uses: actions/github-script@v9
       env:
         ISSUE_NUMBER: ${{ inputs.issue_number }}
-        SITE_URL: ${{ inputs.site_url }}
+        SITE_URL: ${{ steps.live-issue.outputs.site_url }}
       with:
         script: |
           const issueNumber = Number(process.env.ISSUE_NUMBER);
@@ -121,34 +175,34 @@ runs:
           });
 
     - name: Create follow pull request
-      if: steps.process.outputs.outcome == 'written'
+      if: steps.post-process-issue.outputs.proceed == 'true' && steps.process.outputs.outcome == 'written'
       uses: peter-evans/create-pull-request@v8
       with:
         token: ${{ github.token }}
-        commit-message: "Follow: ${{ inputs.title }} (${{ inputs.roll }})"
-        title: "Follow: ${{ inputs.title }}"
+        commit-message: "Follow: ${{ steps.live-issue.outputs.title }} (${{ steps.live-issue.outputs.roll }})"
+        title: "Follow: ${{ steps.live-issue.outputs.title }}"
         body: |
           ## Follow a Site
 
-          **Title:** ${{ inputs.title }}
-          **Roll:** ${{ inputs.roll }}
-          **Site URL (follow target):** ${{ inputs.site_url }}
+          **Title:** ${{ steps.live-issue.outputs.title }}
+          **Roll:** ${{ steps.live-issue.outputs.roll }}
+          **Site URL (follow target):** ${{ steps.live-issue.outputs.site_url }}
           **Feed URL:** ${{ steps.process.outputs.feed_url }}
           **File:** `${{ steps.process.outputs.filename }}`
 
           On publish, a follow webmention is sent from
-          `https://lqdev.me/collections/${{ inputs.roll }}/` to the Site URL.
+          `https://lqdev.me/collections/${{ steps.live-issue.outputs.roll }}/` to the Site URL.
 
           **Created via GitHub Issue Template #${{ inputs.issue_number }}**
         branch: content/issue-${{ inputs.issue_number }}/follow
         delete-branch: true
 
     - name: Complete successful follow request
-      if: steps.process.outputs.outcome == 'written'
+      if: steps.post-process-issue.outputs.proceed == 'true' && steps.process.outputs.outcome == 'written'
       uses: actions/github-script@v9
       env:
         ISSUE_NUMBER: ${{ inputs.issue_number }}
-        FOLLOW_ROLL: ${{ inputs.roll }}
+        FOLLOW_ROLL: ${{ steps.live-issue.outputs.roll }}
       with:
         script: |
           const issueNumber = Number(process.env.ISSUE_NUMBER);
@@ -166,7 +220,7 @@ runs:
           });
 
     - name: Report processing error
-      if: steps.process.outputs.outcome == 'error'
+      if: steps.post-process-issue.outputs.proceed == 'true' && steps.process.outputs.outcome == 'error'
       uses: actions/github-script@v9
       env:
         ISSUE_NUMBER: ${{ inputs.issue_number }}

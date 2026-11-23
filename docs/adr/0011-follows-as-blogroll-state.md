@@ -42,14 +42,22 @@ Two design questions had to be settled:
    The processor rejects a duplicate Site URL before any network discovery, checks the site URL itself,
    then parses static `link[rel="alternate"]` and `a` elements for RSS/Atom/JSON Feed URLs, resolves
    relative links and `<base>`, and probes common feed paths. Every candidate is revalidated by the
-   existing defensive feed GET. Comment feeds sort last, candidates are deduplicated and capped at 15.
+   defensive feed GET. Discovered/probed URLs require a successful feed-like response; the legacy
+   401/403/429/5xx allowance applies only to an explicitly supplied Feed URL. Redirect final URLs are
+   preserved, comment feeds sort last, and endpoint discovery deduplicates exact absolute URLs with
+   ordinal comparison. Incomplete HTML reads, transport failures, transient candidate failures, and a
+   deduplicated candidate set exceeding the 15-request validation budget are hard retryable errors.
+   An unverifiable candidate is omitted; if at least one candidate verifies, verified choices continue,
+   while an all-unverifiable set exits as a hard error rather than a confirmed absence.
 3. **Ambiguous discovery requires an explicit human choice.** One verified feed continues directly.
    Multiple candidates are appended as a marker-scoped checklist to the lqdev-authored issue body.
    Editing the issue to tick exactly one candidate, or replying `/follow N` or `/follow <url>`, re-enters
    the same processor with one selected URL. The Action posts explanatory comments but never asks users
    to edit its own comments. Zero checked candidates is a no-op; several candidates produce a clear
    correction message. A site with no verified feed is commented on and closed as not planned, without a
-   branch, PR, or data change. Hard input/validation errors leave the issue open. A local composite
+   branch, PR, or data change. Hard input/validation errors leave the issue open. Both the choice
+   workflow and shared composite action refetch the live issue after concurrency serialization and skip
+   it if it is already closed; the choice path extracts fields from the live body. A local composite
    action owns processing, PR, comment, and close behavior for initial issues and choices.
 4. **Follow and unfollow webmentions are sent on publish from a roll diff.**
    `Scripts/identify-follow-webmentions.fsx` compares `HtmlUrl` membership of both rolls between the last

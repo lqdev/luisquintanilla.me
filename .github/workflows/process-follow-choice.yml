@@ -45,7 +45,24 @@ jobs:
               resolveFollowCommand
             } = require('./.github/scripts/follow-choice.js');
 
-            const issueBody = context.payload.issue.body || '';
+            const liveIssue = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number
+            });
+            const labels = liveIssue.data.labels
+              .map((label) => typeof label === 'string' ? label : label.name);
+            if (
+              liveIssue.data.state !== 'open' ||
+              liveIssue.data.pull_request ||
+              !labels.includes('follow')
+            ) {
+              core.info(`Skipping stale choice event because issue #${liveIssue.data.number} is no longer open and labeled follow.`);
+              core.setOutput('process', 'false');
+              return;
+            }
+
+            const issueBody = liveIssue.data.body || '';
             let selection = { state: 'none' };
 
             if (context.eventName === 'issues') {

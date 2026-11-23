@@ -14,8 +14,8 @@ function fixture(name) {
   return fs.readFileSync(path.join(fixtureRoot, name), 'utf8');
 }
 
-function response(body, contentType) {
-  return { status: 200, body, contentType };
+function response(body, contentType, extra = {}) {
+  return { status: 200, body, contentType, ...extra };
 }
 
 function startServer(routes) {
@@ -28,8 +28,13 @@ function startServer(routes) {
       serverResponse.end('not found');
       return;
     }
+    if (route.destroy) {
+      request.socket.destroy();
+      return;
+    }
     serverResponse.writeHead(route.status || 200, {
-      'Content-Type': route.contentType || 'text/html; charset=utf-8'
+      'Content-Type': route.contentType || 'text/html; charset=utf-8',
+      ...(route.headers || {})
     });
     serverResponse.end(route.body);
   });
@@ -147,12 +152,36 @@ async function main() {
   assert.equal(noFeed.afterBlogroll, noFeed.blogroll);
   assert.equal(noFeed.afterPodroll, noFeed.podroll);
 
+  const confirmedNonFeed = await runCase('confirmed non-feed candidate', {
+    routes: {
+      '/site': response(
+        '<!doctype html><a type="application/rss+xml" href="/not-a-feed">Feed</a>',
+        'text/html'
+      ),
+      '/not-a-feed': htmlOnly
+    }
+  });
+  assert.equal(confirmedNonFeed.code, 3, confirmedNonFeed.output);
+  assert.equal(confirmedNonFeed.afterBlogroll, confirmedNonFeed.blogroll);
+
   const explicit = await runCase('explicit feed', {
     routes: { '/site': htmlOnly, '/manual.xml': mainFeed },
     feedUrl: (origin) => `${origin}/manual.xml`
   });
   assert.equal(explicit.code, 0, explicit.output);
   assert.equal(JSON.parse(explicit.afterBlogroll)[0].XmlUrl, `${explicit.origin}/manual.xml`);
+
+  for (const status of [401, 403, 429, 503]) {
+    const blockedExplicit = await runCase(`explicit blocked feed ${status}`, {
+      routes: {
+        '/site': htmlOnly,
+        '/manual.xml': response('', 'text/plain', { status })
+      },
+      feedUrl: (origin) => `${origin}/manual.xml`
+    });
+    assert.equal(blockedExplicit.code, 0, blockedExplicit.output);
+    assert.equal(JSON.parse(blockedExplicit.afterBlogroll)[0].XmlUrl, `${blockedExplicit.origin}/manual.xml`);
+  }
 
   const probed = await runCase('path probe', {
     routes: {
@@ -179,6 +208,111 @@ async function main() {
   });
   assert.equal(relative.code, 0, relative.output);
   assert.match(JSON.parse(relative.afterBlogroll)[0].XmlUrl, /\/alternate\/relative\.json$/);
+
+  const redirectedSite = await runCase('redirect-relative discovery', {
+    routes: {
+      '/blog': response('', 'text/html', {
+        status: 302,
+        headers: { Location: '/blog/' }
+      }),
+      '/blog/': response(
+        '<!doctype html><a type="application/rss+xml" href="updates.rss">Feed</a>',
+        'text/html'
+      ),
+      '/blog/updates.rss': mainFeed
+    },
+    siteUrl: (origin) => `${origin}/blog`
+  });
+  assert.equal(redirectedSite.code, 0, redirectedSite.output);
+  assert.equal(
+    JSON.parse(redirectedSite.afterBlogroll)[0].XmlUrl,
+    `${redirectedSite.origin}/blog/updates.rss`
+  );
+
+  const redirectedFeed = await runCase('redirected discovered feed', {
+    routes: {
+      '/site': response(
+        '<!doctype html><a type="application/rss+xml" href="/temporary.xml">Feed</a>',
+        'text/html'
+      ),
+      '/temporary.xml': response('', 'text/plain', {
+        status: 302,
+        headers: { Location: '/actual.xml' }
+      }),
+      '/actual.xml': mainFeed
+    }
+  });
+  assert.equal(redirectedFeed.code, 0, redirectedFeed.output);
+  assert.equal(JSON.parse(redirectedFeed.afterBlogroll)[0].XmlUrl, `${redirectedFeed.origin}/actual.xml`);
+
+  const lateHtmlLink = await runCase('large HTML feed link', {
+    routes: {
+      '/site': response(
+        `<!doctype html><style>${'x'.repeat(24 * 1024)}</style><link rel="alternate" type="application/rss+xml" href="/late.xml">`,
+        'text/html'
+      ),
+      '/late.xml': mainFeed
+    }
+  });
+  assert.equal(lateHtmlLink.code, 0, lateHtmlLink.output);
+  assert.equal(JSON.parse(lateHtmlLink.afterBlogroll)[0].XmlUrl, `${lateHtmlLink.origin}/late.xml`);
+
+  const truncatedHtml = await runCase('truncated HTML', {
+    routes: {
+      '/site': response(
+        `<!doctype html>${'x'.repeat((1024 * 1024) + 1)}<link rel="alternate" type="application/rss+xml" href="/late.xml">`,
+        'text/html'
+      ),
+      '/late.xml': mainFeed
+    }
+  });
+  assert.equal(truncatedHtml.code, 1, truncatedHtml.output);
+  assert.match(truncatedHtml.output, /discovery could not be completed/i);
+  assert.equal(truncatedHtml.requests.length, 1);
+  assert.equal(truncatedHtml.afterBlogroll, truncatedHtml.blogroll);
+
+  const blockedDiscovered = await runCase('blocked discovered feed', {
+    routes: {
+      '/site': htmlOnly,
+      '/feed': response('', 'text/plain', { status: 503 })
+    }
+  });
+  assert.equal(blockedDiscovered.code, 1, blockedDiscovered.output);
+  assert.match(blockedDiscovered.output, /discovery could not be completed/i);
+  assert.equal(blockedDiscovered.afterBlogroll, blockedDiscovered.blogroll);
+
+  const validWithBlockedProbe = await runCase('valid feed with blocked speculative probe', {
+    routes: {
+      '/site': response(fixture('one-feed.html'), 'text/html'),
+      '/main.xml': mainFeed,
+      '/feed': response('', 'text/plain', { status: 503 })
+    }
+  });
+  assert.equal(validWithBlockedProbe.code, 0, validWithBlockedProbe.output);
+  assert.equal(
+    JSON.parse(validWithBlockedProbe.afterBlogroll)[0].XmlUrl,
+    `${validWithBlockedProbe.origin}/main.xml`
+  );
+
+  const unreachableSite = await runCase('unreachable site', {
+    routes: { '/site': { destroy: true } }
+  });
+  assert.equal(unreachableSite.code, 1, unreachableSite.output);
+  assert.match(unreachableSite.output, /discovery could not be completed/i);
+  assert.equal(unreachableSite.afterBlogroll, unreachableSite.blogroll);
+
+  const truncatedCandidate = await runCase('truncated discovered feed response', {
+    routes: {
+      '/site': response(
+        '<!doctype html><a type="application/rss+xml" href="/candidate.xml">Feed</a>',
+        'text/html'
+      ),
+      '/candidate.xml': response('x'.repeat(8193), 'text/plain')
+    }
+  });
+  assert.equal(truncatedCandidate.code, 1, truncatedCandidate.output);
+  assert.match(truncatedCandidate.output, /truncated/i);
+  assert.equal(truncatedCandidate.afterBlogroll, truncatedCandidate.blogroll);
 
   const htmlAsFeed = await runCase('HTML passed as explicit feed', {
     routes: { '/site': htmlOnly },
@@ -212,8 +346,34 @@ async function main() {
   }
   capRoutes['/site'] = response(`<!doctype html><html>${capLinks.join('')}</html>`, 'text/html');
   const capped = await runCase('candidate cap', { routes: capRoutes });
-  assert.equal(capped.code, 2, capped.output);
-  assert.equal(candidates(capped).length, 15);
+  assert.equal(capped.code, 1, capped.output);
+  assert.match(capped.output, /validation budget/i);
+  assert.equal(capped.requests.length, 1);
+  assert.equal(capped.afterBlogroll, capped.blogroll);
+
+  const ordinalCandidates = [
+    '/Feed',
+    '/feed',
+    '/feed/',
+    '/same?version=1',
+    '/same?version=2'
+  ];
+  const ordinalRoutes = {
+    '/site': response(
+      `<!doctype html>${ordinalCandidates.map((href) => `<a type="application/rss+xml" href="${href}">Feed</a>`).join('')}`,
+      'text/html'
+    )
+  };
+  for (const candidate of ordinalCandidates) {
+    ordinalRoutes[candidate] = mainFeed;
+  }
+  const ordinal = await runCase('ordinal URL dedupe', { routes: ordinalRoutes });
+  assert.equal(ordinal.code, 2, ordinal.output);
+  const ordinalUrls = candidates(ordinal);
+  assert.equal(ordinalUrls.length, 5);
+  for (const candidate of ordinalCandidates) {
+    assert.ok(ordinalUrls.includes(`${ordinal.origin}${candidate}`), candidate);
+  }
 
   console.log('Follow processor fixture checks passed.');
 }
