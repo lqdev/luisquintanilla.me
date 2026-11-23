@@ -1,70 +1,81 @@
 ---
 name: build-validate
-description: "Build and validate the lqdev.me static site generator — dotnet build, dotnet run, and output verification"
+description: Use when you changed F# code, views, CSS, feeds, or workflows in lqdev/luisquintanilla.me and need to build, generate the site, run the regression tests, or check what was written to _public. Also use when a restore fails with a lock file or package hash error.
 ---
 
-# Build & Validate lqdev.me
+# Build and validate lqdev.me
 
-Standard build and validation workflow for the F# static site generator.
+Run every command from the repository root in PowerShell.
 
-## Quick Reference
+## Build and generate
+
+Use a private copy of the lock file. A plain `dotnet restore --locked-mode` often fails on local
+machines with a package hash mismatch (NU1403), and the fix is not to change the committed lock file.
+CI restores with `--locked-mode` against the committed file and passes.
 
 ```powershell
-# Compile (fast, catches type errors)
-dotnet build
-
-# Generate site (full pipeline, outputs to _public/)
-dotnet run
+$localLock = Join-Path $env:TEMP 'lqdev-local.lock.json'
+Copy-Item packages.lock.json $localLock
+dotnet restore --force-evaluate -p:NuGetLockFilePath=$localLock
+dotnet build --no-restore -p:NuGetLockFilePath=$localLock
+$env:GITHUB_TOKEN = ''; $env:ACTIVITYPUB_STORAGE_CONNECTION = ''
+dotnet run --no-build -- --strict
 ```
 
-## Build Expectations
+Expect 0 errors and one `FS1104` warning from `ActivityPubBuilder.fs`. The build takes about
+10 seconds and the run about a minute. The run ends with lines about link previews and the link
+registry, and exits 0.
 
-### `dotnet build`
-- **Target**: .NET 11 (net11.0)
-- **SDK**: 11.0.100, pinned by `global.json`
-- **Expected**: 0 errors
-- **Known warning**: 1 pre-existing FS1104 warning in ActivityPubBuilder.fs (ignore)
-- **Duration**: ~10 seconds
+`--strict` turns content parse errors into a failed run (`Diagnostics.fs`). Clearing the two
+variables skips AI entity extraction and follower sync, so the run needs no network or secrets.
 
-### `dotnet run`
-- **What it does**: Runs the full static site generator pipeline
-- **Output**: All generated files in `_public/` directory
-- **Duration**: ~60-90 seconds
-- **Expected**: Exit code 0 with content generation summary
+## Run the tests that match your change
 
-## When to Build
+Most scripts read `_public/`, so generate first.
 
-- After modifying any `.fs` file
-- After adding new content to `_src/`
-- Before committing code changes (at minimum `dotnet build`)
+| You changed | Run |
+| --- | --- |
+| Feeds (`UnifiedFeeds.fs`, `Services/FeedSemantics.fs`, a processor's `RenderRss`) | every `test-scripts/test-rss-*.fsx` |
+| AT Protocol code | `test-atproto-response-mapping.fsx`, `test-atproto-media.fsx` |
+| Social discovery files or `staticwebapp.config.json` | `test-social-discovery.fsx` |
+| Follow handling | `test-follow-yaml.fsx`, `node test-scripts/test-follow-choice.js`, `node test-scripts/test-follow-processing.js` |
+| Markdown outside `_src/` | `test-docs-integrity.fsx` |
+| Anything under `api/` | in `api/`: `npm ci`, then `npm test` |
 
-## Common Issues
+Run a script with `dotnet fsi test-scripts/{name}.fsx`; a nonzero exit code is a failure. To run
+all the RSS scripts:
 
-### Local NuGet lock hash drift
-Keep the CI-validated repository lock hash. Use an isolated local lockfile when
-local package content differs; see
-`_src/resources/ai-memex/pattern-nuget-lock-hash-drift.md` and `CONTRIBUTING.md`.
-Verify that package versions are unchanged before treating the difference as hash drift.
+```powershell
+Get-ChildItem test-scripts/test-rss-*.fsx | ForEach-Object { dotnet fsi $_.FullName; "$($_.Name) exit=$LASTEXITCODE" }
+```
 
-### Missing module in project file
-If you create a new `.fs` file, add it to `PersonalSite.fsproj` in the `<ItemGroup>`.
-F# project files require explicit file ordering.
+The full list CI runs is in `.github/workflows/validate-site-upgrade.yml`; if this table and that
+file disagree, the workflow wins.
 
-### Type inference errors
-Use explicit type annotations in F# code. The compiler sometimes can't infer types
-across module boundaries.
-For whole-document Markdig inline traversal, see the
-[explicit overload-selection pattern](../../../_src/resources/ai-memex/pattern-markdig-inline-traversal-overload-selection.md).
+## Check the output
 
-### Content not appearing
-Check that:
-1. Source file is in the correct `_src/` subdirectory
-2. YAML frontmatter is valid (no tabs, correct indentation)
-3. The build function for that content type is called in `Program.fs`
+Pages are written as a single line of HTML, so search the whole file, not line by line. Replace
+`{slug}` with a folder name from `_public/posts/`.
 
-## Output Verification
+```powershell
+$html = Get-Content _public/posts/{slug}/index.html -Raw
+[regex]::Matches($html, 'class="[^"]*\b(h-entry|p-name|dt-published|e-content)\b[^"]*"').Value | Select-Object -Unique
+[regex]::Matches($html, '(?s)<script type="application/ld\+json">(.*?)</script>') | ForEach-Object { $j = $_.Groups[1].Value | ConvertFrom-Json; if ($j.'@graph') { $j.'@graph'.'@type' -join ',' } else { $j.'@type' } }
+Select-Xml -Path _public/posts/feed.xml -XPath '/rss/channel/item[position()<=3]' | ForEach-Object { '{0} | {1} | {2}' -f $_.Node.title, $_.Node.pubDate, $_.Node.SelectSingleNode('link').InnerText }
+(Get-ChildItem _public -Recurse -File).Count
+```
 
-After `dotnet run`, spot-check:
-- `_public/index.html` — homepage renders
-- `_public/feed/feed.xml` — unified feed has entries
-- Content-specific directories exist with `index.html` files
+The same commands work for other types: swap `posts` for `notes`, `responses`, `reviews`, and so on.
+Compare before and after for the page you changed. Azure Static Web Apps allows 15,000 files;
+`Scripts/check-site-sizes.sh` warns at 14,000.
+
+## Gotchas
+
+- Never commit `packages.lock.json` after a local restore. If `git status` shows it changed, run `git restore packages.lock.json`.
+- `dotnet run` without `--no-build` restores against the committed lock file, which can fail or rewrite it. Always pass `--no-build` after the build above.
+- An RSS item has two `link` children (the RSS one and an Atom `link`), so `$item.link` returns both. Use `SelectSingleNode('link')` as above.
+- A post page carries two JSON-LD blocks: the site's `WebSite` and `Person`, then the page's own (`BlogPosting` for a post).
+- `_public/` is generated and ignored by git. Never edit it; change the source and regenerate.
+- An incomplete pattern match (`FS0025`) is an error in this project.
+- If content doesn't appear, check that the file is in the right `_src/` folder and that its frontmatter is valid YAML (no tabs). The run prints the file that failed to parse; without `--strict` it drops that file and still exits 0.
+- Don't validate with the publish workflow. It deploys and federates.

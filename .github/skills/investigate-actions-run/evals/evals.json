@@ -1,0 +1,27 @@
+{
+  "skill_name": "investigate-actions-run",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "https://github.com/lqdev/luisquintanilla.me/actions/runs/45144507279 Please investigate this",
+      "expected_output": "Identifies the two failed jobs in the scheduled Test ActivityPub Deployment run, traces each to a file that moved, and reports in the skill's format.",
+      "assertions": [
+        "Names the failed steps: Validate outbox structure and Check documentation files exist",
+        "Says api/data/outbox/index.json is not in the repository (the outbox is generated, not committed)",
+        "Says docs/activitypub/POST-DEPLOYMENT-TEST-RESULTS.md was moved or archived",
+        "Does not re-run, cancel, or dispatch any workflow"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I merged a PR an hour ago and I don't see any rebuild. Did the AT Protocol sync run?",
+      "expected_output": "Finds the latest publish run on main, reports the conclusion of the Sync AT Protocol Records job, and explains its staging condition.",
+      "assertions": [
+        "Lists runs of publish-azure-static-web-apps.yml on main",
+        "Reports the conclusion of the Sync AT Protocol Records job for a specific run",
+        "Explains the sync job's if: condition or the staging check",
+        "Does not trigger the publish workflow"
+      ]
+    }
+  ]
+}
