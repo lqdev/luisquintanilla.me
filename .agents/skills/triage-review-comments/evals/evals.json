@@ -1,0 +1,26 @@
+{
+  "skill_name": "triage-review-comments",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Triage every thread on pull request #123, including old and long threads.",
+      "expected_output": "Loads reviewThreads and comments pages to exhaustion before filtering, deciding, replying, or resolving.",
+      "assertions": [
+        "Paginates reviewThreads until hasNextPage is false",
+        "Paginates every thread's comments until hasNextPage is false",
+        "Does not filter resolved threads or make a decision until all pages are loaded",
+        "Uses the first comment database ID when replying to a thread"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Which situations should trigger this skill?",
+      "expected_output": "The complete skill description is valid YAML and includes both the #123 example and the 'you know the drill' trigger.",
+      "assertions": [
+        "Parses the description as one complete YAML scalar",
+        "Description includes the '#123' example",
+        "Description includes the 'you know the drill' trigger and workflow summary"
+      ]
+    }
+  ]
+}

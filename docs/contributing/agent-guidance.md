@@ -10,6 +10,7 @@ How the instructions for AI coding agents in this repo are split up, and where a
 | `.github/copilot-instructions.md` | every session | 3 lines, pointing at `AGENTS.md` |
 | `.github/instructions/*.instructions.md` | only when a matching file is being worked on | 60 lines or fewer each |
 | `.github/skills/` | when an agent picks the skill for a task | one procedure per skill |
+| `.agents/skills/` | portable skills in this repo and in the `lqdev-toolkit` plugin | one procedure per skill |
 
 I keep the always-loaded part short on purpose. Short, specific, non-obvious instructions get
 followed; long files and repo overviews cost tokens without improving results (Gloaguen et al.,
@@ -27,6 +28,9 @@ If it could learn it by reading the code, leave it out.
 | Something that must never happen | A CI check |
 | Useful in every repo | The plugin in `.agents/` (layer 9) |
 | Reasons a person wants | `docs/` |
+
+If a skill only makes sense in this repository, put it in `.github/skills/`. If it would help in
+any repository, put it in `.agents/skills/` so the project copy and plugin copy stay in one place.
 
 ## Adding an instruction file
 

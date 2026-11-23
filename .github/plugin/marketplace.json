@@ -1,0 +1,13 @@
+{
+  "name": "lqdev",
+  "owner": { "name": "Luis Quintanilla" },
+  "metadata": { "description": "Agent plugins from lqdev/luisquintanilla.me", "version": "0.1.0" },
+  "plugins": [
+    {
+      "name": "lqdev-toolkit",
+      "description": "AI Memex capture and search, pull request review triage, shovel-ready plans and issues, and research briefs.",
+      "version": "0.1.0",
+      "source": ".agents"
+    }
+  ]
+}

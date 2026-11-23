@@ -1,6 +1,6 @@
 ---
 name: audit-ai-memex
-description: "Audit AI Memex health — detect stale entries, spoke-hub drift, broken references, and dependency propagation risks across the knowledge base"
+description: "Audit AI Memex health: detect stale entries, spoke-hub drift, broken references, and dependency propagation risks across the knowledge base"
 ---
 
 # Audit AI Memex
@@ -18,31 +18,33 @@ lqdev.me repo root where `_src/resources/ai-memex/` and `graph.json` are availab
 
 ## Quick Audit
 
-Run the backing script from the lqdev.me repo root:
+Run the backing script from the lqdev.me repo root. Set `$skillDir` to the directory containing
+this `SKILL.md`, whether it is the project copy or the plugin copy:
 
 ```powershell
-& "$HOME/.agents/skills/audit-ai-memex/scripts/audit-memex.ps1"
+& (Join-Path $skillDir "scripts/audit-memex.ps1")
 ```
 
 The script outputs a structured report covering:
-1. **Entry freshness** — age since last update, flagging entries older than 90 days
-2. **Spoke-hub drift** — entries where spoke has a newer `last_updated_date`
-3. **Broken references** — `related_entries` pointing to non-existent files
-4. **Orphan entries** — entries with 0 inbound references (isolated knowledge)
-5. **Critical hubs** — entries with 3+ inbound references (high propagation risk)
+1. **Entry freshness**: age since last update, flagging entries older than 90 days
+2. **Spoke-hub drift**: entries where spoke has a newer `last_updated_date`
+3. **Broken references**: `related_entries` pointing to non-existent files
+4. **Orphan entries**: entries with 0 inbound references (isolated knowledge)
+5. **Critical hubs**: entries with 3+ inbound references (high propagation risk)
 
 ## Interpreting Results
 
 ### Staleness
-Entries unchanged for 90+ days aren't necessarily stale — patterns and references
+Entries unchanged for 90+ days aren't necessarily stale: patterns and references
 may be stable. Focus on:
 - `project-report` entries (likely outdated as projects evolve)
 - Entries whose `tags` reference fast-moving technologies
 
 ### Spoke-Hub Drift
-If a spoke entry is newer, use the import script to update:
+If a spoke entry is newer, use the import skill to update. Set `$importSkillDir` to its skill
+directory:
 ```powershell
-& "$HOME/.agents/skills/import-ai-memex/scripts/import.ps1"
+& (Join-Path $importSkillDir "scripts/import.ps1")
 ```
 
 ### Broken References
@@ -59,6 +61,6 @@ Read `references/REPORT-FORMAT.md` for the dependency impact template.
 - `graph.json` must exist at `_public/resources/ai-memex/graph.json` for dependency
   analysis. Run `dotnet run` first if it's missing.
 - Entries written directly in the hub (no spoke equivalent) are never flagged as
-  drifted — they're hub-only by design.
+  drifted: they're hub-only by design.
 - The `related_entries` field is seeded by the knowledge graph at build time.
   An entry showing 0 inbound refs may gain connections after the next build.

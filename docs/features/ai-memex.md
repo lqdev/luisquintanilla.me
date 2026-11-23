@@ -107,19 +107,23 @@ Skills provide procedural "how-to" instructions loaded on-demand:
 
 | Skill | Scope | Purpose |
 |-------|-------|---------|
-| `write-ai-memex` | Universal (`~/.agents/skills/`) | Write entries anywhere |
-| `query-ai-memex` | Universal (`~/.agents/skills/`) | Search knowledge base |
-| `import-ai-memex` | Universal (`~/.agents/skills/`) | Consolidate spokes to hub |
+| `write-ai-memex` | Portable plugin (`.agents/skills/`) | Write entries anywhere |
+| `query-ai-memex` | Portable plugin (`.agents/skills/`) | Search knowledge base |
+| `import-ai-memex` | Portable plugin (`.agents/skills/`) | Consolidate spokes to hub |
 | `add-content-type` | Repo (`.github/skills/`) | Add new content types |
 | `build-validate` | Repo (`.github/skills/`) | Build and validate site |
 
-Install universal skills: `.\Scripts\install-skills.ps1`
+Install the plugin locally:
+
+```text
+copilot plugin install lqdev/luisquintanilla.me:.agents
+```
 
 ## Import Flow
 
 When working in the lqdev.me repo, the import skill consolidates entries from other projects:
 
-1. Reads `~/.agents/skills/import-ai-memex/import-sources.json` (user-local, never committed)
+1. Reads `~/.copilot/ai-memex/import-sources.json` (user-local, never committed)
 2. Scans each source `.ai-memex/` directory for `.md` files
 3. Copies new entries to `_src/resources/ai-memex/` (skips existing)
 4. Sets `source_project` in frontmatter during import

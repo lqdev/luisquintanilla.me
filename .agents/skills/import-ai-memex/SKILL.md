@@ -11,23 +11,24 @@ the central store at `_src/resources/ai-memex/` in the lqdev.me repo.
 ## Prerequisites
 
 - Must be run from the lqdev.me repo (verify `PersonalSite.fsproj` exists)
-- Import sources configured in `~/.agents/skills/import-ai-memex/import-sources.json`
+- Import sources configured in `~/.copilot/ai-memex/import-sources.json`
 
 ## Import Process
 
 ### Option A: Use the import script
 
-Run from the lqdev.me repo root:
+Run from the lqdev.me repo root. Set `$skillDir` to the directory containing this `SKILL.md`,
+whether it is the project copy or the plugin copy:
 
 ```powershell
 # Normal import (new entries + updates where spoke is newer)
-& "$HOME/.agents/skills/import-ai-memex/scripts/import.ps1"
+& (Join-Path $skillDir "scripts/import.ps1")
 
 # Preview what would change
-& "$HOME/.agents/skills/import-ai-memex/scripts/import.ps1" -DryRun
+& (Join-Path $skillDir "scripts/import.ps1") -DryRun
 
 # Force-overwrite all spoke entries (bulk resync)
-& "$HOME/.agents/skills/import-ai-memex/scripts/import.ps1" -Force
+& (Join-Path $skillDir "scripts/import.ps1") -Force
 ```
 
 ### Option B: Manual import
@@ -35,7 +36,7 @@ Run from the lqdev.me repo root:
 2. For each source, find `.md` files in the `.ai-memex/` directory
 3. Check if an entry with the same filename already exists in `_src/resources/ai-memex/`
 4. If new: copy to `_src/resources/ai-memex/`, adding `source_project` if missing
-5. If exists: compare `last_updated_date` — update hub if spoke is newer
+5. If exists: compare `last_updated_date`: update hub if spoke is newer
 6. Report what was imported, updated, or skipped
 
 ### Post-import
@@ -47,7 +48,7 @@ After importing, remind the user:
 ## Import Sources Configuration
 
 The `import-sources.json` file is user-local (never committed to any repo).
-Location: `~/.agents/skills/import-ai-memex/import-sources.json`
+Location: `~/.copilot/ai-memex/import-sources.json`
 
 See `assets/import-sources.example.json` for the format.
 
@@ -64,6 +65,6 @@ When a file already exists in the hub:
 
 - The `related_entries` field in hub entries is seeded by the knowledge graph at build time.
   The import script merges spoke + hub values to avoid losing graph-generated connections.
-- Running `install-skills.ps1 -Force` preserves `import-sources.json` (user-local config).
+- Keep `import-sources.json` outside the plugin directory so plugin updates do not replace it.
 - Entries in `_src/resources/ai-memex/` with no spoke equivalent are hub-only entries
   (written directly in this repo). The import script never touches these.

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "lqdev-toolkit",
+  "version": "0.1.0",
+  "description": "Luis Quintanilla's portable agent skills: AI Memex capture and search, pull request review triage, shovel-ready plans and issues, and research briefs.",
+  "author": { "name": "Luis Quintanilla", "url": "https://www.lqdev.me" },
+  "homepage": "https://github.com/lqdev/luisquintanilla.me/tree/main/.agents",
+  "repository": "https://github.com/lqdev/luisquintanilla.me",
+  "keywords": ["ai-memex", "code-review", "planning", "research"]
+}

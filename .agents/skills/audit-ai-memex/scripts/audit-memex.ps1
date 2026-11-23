@@ -4,11 +4,11 @@
 # Checks: entry freshness, spoke-hub drift, broken references,
 #          orphan entries, and critical hub entries
 #
-# Usage: & "$HOME/.agents/skills/audit-ai-memex/scripts/audit-memex.ps1"
+# Usage: & "<audit-ai-memex skill directory>/scripts/audit-memex.ps1"
 # Must be run from the lqdev.me repo root.
 
 param(
-    [string]$ConfigPath = (Join-Path $HOME ".agents/skills/import-ai-memex/import-sources.json"),
+    [string]$ConfigPath = (Join-Path $HOME ".copilot/ai-memex/import-sources.json"),
     [int]$StaleDays = 90
 )
 

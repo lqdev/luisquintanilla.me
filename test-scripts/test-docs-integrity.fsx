@@ -15,7 +15,7 @@ open System.Text.RegularExpressions
 // ---------------------------------------------------------------------------
 
 /// Directories whose Markdown files are checked for links and paths.
-let scopeDirs : string list = [ "docs"; ".github/instructions"; ".github/skills" ]
+let scopeDirs : string list = [ "docs"; ".github/instructions"; ".github/skills"; ".agents" ]
 
 /// Individual files checked for links and paths. Empty at first; layers add the files they fix:
 /// layer 4 adds the sub-READMEs, layer 6 README.md and CONTRIBUTING.md, layer 7 AGENTS.md.
@@ -38,7 +38,7 @@ let styleFiles : string list =
       "docs/reference/content-types.md"; "docs/reference/build.md"; "AGENTS.md"
       ".github/skills/build-validate/SKILL.md"; ".github/skills/add-content-type/SKILL.md"
       ".github/skills/investigate-actions-run/SKILL.md" ]
-let styleDirs : string list = [ "docs/contributing"; ".github/instructions" ]
+let styleDirs : string list = [ "docs/contributing"; ".github/instructions"; ".agents" ]
 
 /// Markdown files allowed to sit directly in docs/.
 let allowedDocsRootFiles : string list =
@@ -50,10 +50,8 @@ let lineBudgets : (string * int) list = [ "README.md", 150; "CONTRIBUTING.md", 8
 let instructionFileBudget = 60
 let skillFileBudget = 500
 
-/// Directories that hold one skill per immediate subdirectory. Empty until layer 9, because
-/// .github/skills/universal/ is a container folder, not a skill, until it moves to .agents/.
-/// Layer 9 sets this to [ ".github/skills"; ".agents/skills" ].
-let skillRoots : string list = []
+/// Directories that hold one skill per immediate subdirectory.
+let skillRoots : string list = [ ".github/skills"; ".agents/skills" ]
 
 /// Path-looking tokens that are allowed even though no such file exists.
 let allowFile = "test-scripts/docs-integrity-allow.txt"

@@ -1,11 +1,11 @@
 ---
 name: write-ai-memex
-description: "Write knowledge entries to the AI Memex — capture patterns, research, decisions, and project outcomes during any coding session"
+description: "Write knowledge entries to the AI Memex: capture patterns, research, decisions, and project outcomes during any coding session"
 ---
 
 # Write AI Memex Entry
 
-You are helping the user capture knowledge in their AI Memex — a distributed knowledge system published at lqdev.me/resources/ai-memex/.
+You are helping the user capture knowledge in their AI Memex, a distributed knowledge system published at lqdev.me/resources/ai-memex/.
 
 ## Context Detection
 
