@@ -1,0 +1,6 @@
+# Tokens that look like repo paths but are examples or generated files.
+# One per line. Add a comment saying why. Do not list a real file that is missing: fix the doc.
+graph.json
+plugin.json
+marketplace.json
+mcp.json
