@@ -23,7 +23,7 @@ it had just built, and additional regexes scraped structured facts out of render
 
 The progressive-load JSON was *also* hand-built with `sprintf` + a bespoke `escapeJson`.
 
-This is finding **F7** in `docs/architecture-assessment-2026.md`: a render→reparse→re-render
+This is finding **F7** in [`docs/architecture-assessment-2026.md`](../../archive/docs/architecture-assessment-2026.md): a render→reparse→re-render
 round-trip that is fragile (double-encoding bugs, `</script>` break-out risk, heading
 duplication) and impossible to reason about locally. It is the **only output-changing bet** in the
 2026 refactor — every other bet (Phases 0–2, B1) is byte-identical. B2 is therefore the one

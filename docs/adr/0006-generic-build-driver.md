@@ -18,7 +18,7 @@ boilerplate each. Every one repeated the same shape:
 4. write an index page (sometimes sorted)
 5. return `FeedData` for downstream feeds
 
-This was finding **F1** in `docs/architecture-assessment-2026.md`: duplicated build
+This was finding **F1** in [`docs/architecture-assessment-2026.md`](../../archive/docs/architecture-assessment-2026.md): duplicated build
 drivers. The differences between content types are small and *data-shaped*: source/output
 directory, which processor, which date/title/view to use, and whether the index is sorted.
 

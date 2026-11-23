@@ -168,4 +168,4 @@ Check function logs in Azure Portal:
 ## References
 
 - ActivityPub spec: https://www.w3.org/TR/activitypub/
-- Phase 4B/4C documentation: `docs/activitypub/phase4b-4c-complete-summary.md`
+- Phase 4B/4C documentation: `archive/docs/activitypub/phase4b-4c-complete-summary.md`

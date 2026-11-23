@@ -1,6 +1,6 @@
 # ActivityPub Deployment Guide
 
-> **📋 Implementation Status**: For complete phase breakdown and current state, see [`activitypub-implementation-status.md`](activitypub-implementation-status.md)  
+> **📋 Implementation Status**: For complete phase breakdown and current state, see [`implementation-status.md`](implementation-status.md)  
 > **API Reference**: See [`/api/ACTIVITYPUB.md`](../../api/ACTIVITYPUB.md)
 
 ## Overview
@@ -330,7 +330,7 @@ The current implementation handles **discovery and following**. Future phases wi
 
 ## Additional Resources
 
-- **Implementation Status:** [`activitypub-implementation-status.md`](activitypub-implementation-status.md) - Current phase breakdown and roadmap
+- **Implementation Status:** [`implementation-status.md`](implementation-status.md) - Current phase breakdown and roadmap
 - **ActivityPub Specification:** https://www.w3.org/TR/activitypub/
 - **WebFinger Specification (RFC 7033):** https://tools.ietf.org/html/rfc7033
 - **HTTP Signatures:** https://datatracker.ietf.org/doc/html/draft-cavage-http-signatures
@@ -350,4 +350,4 @@ If you encounter issues during deployment:
 3. Verify all configuration settings match this guide
 4. Test endpoints individually to isolate the problem
 
-For questions about all implementation phases, refer to `ARCHITECTURE-OVERVIEW.md` for comprehensive architecture details, or `phase3-implementation-complete.md` and `phase4b-4c-complete-summary.md` for phase completion summaries.
+For questions about all implementation phases, refer to `ARCHITECTURE-OVERVIEW.md` for comprehensive architecture details, or [`phase3-implementation-complete.md`](../../archive/docs/activitypub/phase3-implementation-complete.md) and [`phase4b-4c-complete-summary.md`](../../archive/docs/activitypub/phase4b-4c-complete-summary.md) for phase completion summaries.

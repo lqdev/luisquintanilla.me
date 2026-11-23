@@ -984,7 +984,7 @@ Refer to existing block implementations as templates.
 - **[Custom Presentation Layouts](custom-presentation-layouts.md)** - Presentation system with custom blocks
 - **[Travel Guide How-To](travel-guide-howto.md)** - Location-based content with GPS
 - **[VS Code Snippets](vs-code-snippets-modernization.md)** - Content creation shortcuts
-- **[Core Infrastructure Architecture](core-infrastructure-architecture.md)** - System overview
+- **[Core Infrastructure Architecture](../archive/docs/core-infrastructure-architecture.md)** - System overview
 
 ## Support and Feedback
 

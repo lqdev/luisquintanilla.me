@@ -300,6 +300,6 @@ See **[CONTRIBUTING.md](CONTRIBUTING.md)** for the complete project guide, inclu
 - **Live Site**: [https://www.lqdev.me](https://www.lqdev.me)
 - **Contributing Guide**: [CONTRIBUTING.md](CONTRIBUTING.md)
 - **Architecture Decisions**: [docs/adr/](docs/adr/)
-- **Architecture Docs**: `docs/core-infrastructure-architecture.md`
+- **Architecture Docs**: `archive/docs/core-infrastructure-architecture.md`
 - **Development Logs**: `projects/archive/` and `changelog.md`
 - **Migration History**: Complete 8-phase migration documented in project archives

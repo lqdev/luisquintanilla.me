@@ -299,7 +299,7 @@ curl -H "Accept: application/activity+json" "https://lqdev.me/api/activitypub/in
 - **Solution**: Added workflow step to copy generated data from `_public` to `api` directory
 - **Result**: Endpoint now returns all 1548+ fresh items correctly
 
-For detailed Phase 3 implementation, see [`/docs/activitypub/phase3-implementation-complete.md`](../docs/activitypub/phase3-implementation-complete.md).
+For detailed Phase 3 implementation, see [`/archive/docs/activitypub/phase3-implementation-complete.md`](../archive/docs/activitypub/phase3-implementation-complete.md).
 
 **Current Outbox Status**: Contains all website content (1548+ items) auto-generated from unified feed system.
 
@@ -368,9 +368,9 @@ For detailed Phase 3 implementation, see [`/docs/activitypub/phase3-implementati
 ### Related Documentation
 - [ActivityPub Architecture Overview](../docs/activitypub/ARCHITECTURE-OVERVIEW.md) - **Comprehensive architecture and implementation guide**
 - [ActivityPub Implementation Status](../docs/activitypub/implementation-status.md) - **Current phase breakdown, roadmap, and decisions**
-- [ActivityPub Implementation Plan](../docs/activitypub/historical/implementation-plan.md) - Original 8-week phased plan (historical reference)
-- [ActivityPub Azure Functions Plan](../docs/activitypub/historical/az-fn-implementation-plan.md) - Azure-specific implementation strategy (historical reference)
-- [ActivityPub Fix Summary](../docs/activitypub/historical/fix-summary.md) - Phase 1 & 2 completion summary (historical reference)
+- [ActivityPub Implementation Plan](../archive/docs/activitypub/historical/implementation-plan.md) - Original 8-week phased plan (historical reference)
+- [ActivityPub Azure Functions Plan](../archive/docs/activitypub/historical/az-fn-implementation-plan.md) - Azure-specific implementation strategy (historical reference)
+- [ActivityPub Fix Summary](../archive/docs/activitypub/historical/fix-summary.md) - Phase 1 & 2 completion summary (historical reference)
 - [ActivityPub Deployment Guide](../docs/activitypub/deployment-guide.md) - Post-merge Azure setup and testing
 - [ActivityPub Key Vault Setup](../docs/activitypub/keyvault-setup.md) - Detailed Key Vault configuration
 - [RSS to ActivityPub Script](../Scripts/rss-to-activitypub.fsx) - Prototype conversion script for Phase 3 reference

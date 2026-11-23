@@ -145,13 +145,13 @@ The script provides detailed output with color-coded results:
 - ❌ **Red (FAIL)**: Test failed, requires attention
 
 Failed tests include troubleshooting guidance pointing to:
-- `/docs/activitypub/POST-DEPLOYMENT-TEST-RESULTS.md` (troubleshooting guide)
+- `/archive/docs/activitypub/historical/POST-DEPLOYMENT-TEST-RESULTS.md` (troubleshooting guide)
 - `/docs/activitypub/deployment-guide.md` (deployment instructions)
 - Application Insights logs (for Azure Function errors)
 
 ### Related Documentation
 
-- **Test Results Template**: `/docs/activitypub/POST-DEPLOYMENT-TEST-RESULTS.md`
+- **Test Results Template**: `/archive/docs/activitypub/historical/POST-DEPLOYMENT-TEST-RESULTS.md`
 - **Troubleshooting Guide**: Same document, includes common issues and resolutions
 - **Deployment Guide**: `/docs/activitypub/deployment-guide.md`
 - **Implementation Status**: `/docs/activitypub/implementation-status.md`
@@ -303,9 +303,9 @@ The script output matches the production endpoint structure documented in `/api/
 ### Implementation Status
 - **Architecture Overview**: `/docs/activitypub/ARCHITECTURE-OVERVIEW.md` - Comprehensive guide
 - **Current Phase Breakdown**: `/docs/activitypub/implementation-status.md`
-- **Phase 3 Completion**: `/docs/activitypub/phase3-implementation-complete.md`
-- **Historical Planning**: `/docs/activitypub/historical/implementation-plan.md` (Phase 3 section - archived)
-- **Historical Summaries**: `/docs/activitypub/historical/fix-summary.md` (archived)
+- **Phase 3 Completion**: `/archive/docs/activitypub/phase3-implementation-complete.md`
+- **Historical Planning**: `/archive/docs/activitypub/historical/implementation-plan.md` (Phase 3 section - archived)
+- **Historical Summaries**: `/archive/docs/activitypub/historical/fix-summary.md` (archived)
 
 ### API Documentation
 - **Endpoint Reference**: `/api/ACTIVITYPUB.md`

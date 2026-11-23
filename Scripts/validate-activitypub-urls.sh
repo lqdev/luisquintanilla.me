@@ -113,7 +113,7 @@ echo ""
 validate_file "api/ACTIVITYPUB.md" "API Documentation"
 validate_file "docs/activitypub/implementation-status.md" "Implementation Status"
 validate_file "docs/activitypub/deployment-guide.md" "Deployment Guide"
-validate_file "docs/activitypub/ACTIVITYPUB-DOCS.md" "ActivityPub Docs"
+validate_file "archive/docs/activitypub/historical/ACTIVITYPUB-DOCS.md" "ActivityPub Docs"
 
 echo ""
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"

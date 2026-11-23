@@ -55,7 +55,6 @@ jobs:
           name: activitypub-test-results-${{ github.run_number }}
           path: |
             Scripts/test-activitypub-production.sh
-            docs/activitypub/POST-DEPLOYMENT-TEST-RESULTS.md
           retention-days: 30
       
       - name: Create issue on failure
@@ -84,7 +83,7 @@ jobs:
               2. Run manual tests: \`./Scripts/test-activitypub-production.sh\`
               3. Check Azure Functions deployment status
               4. Review Application Insights for errors
-              5. Consult \`/docs/activitypub/POST-DEPLOYMENT-TEST-RESULTS.md\` troubleshooting guide
+              5. Consult \`/archive/docs/activitypub/historical/POST-DEPLOYMENT-TEST-RESULTS.md\` troubleshooting guide
               
               ### Test Coverage
               
@@ -213,7 +212,6 @@ jobs:
             "docs/activitypub/implementation-status.md"
             "docs/activitypub/phase4a-testing-guide.md"
             "docs/activitypub/deployment-guide.md"
-            "docs/activitypub/POST-DEPLOYMENT-TEST-RESULTS.md"
             "api/ACTIVITYPUB.md"
             "Scripts/ACTIVITYPUB-SCRIPTS.md"
           )

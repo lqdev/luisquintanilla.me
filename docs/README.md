@@ -32,7 +32,6 @@ This directory contains guides and reference documentation for the website's fea
 - **[Content Sharing Features](content-sharing-features.md)** - QR code generation, Web Share API, and permalink buttons
 - **[Album Collections](ALBUM_COLLECTIONS.md)** - Photo/media collections with location metadata
 - **[Playlist Collections](playlist-collections.md)** - Monthly music discoveries with YouTube/Spotify dual links
-- **[Enhanced Content Discovery](enhanced-content-discovery-implementation.md)** - Site-wide search functionality
 - **[Text-Only Site](text-only-site.md)** - Complete accessibility-first website (<50KB pages)
 - **[Pinned Posts Feature](pinned-posts-feature.md)** - Pin important content to timeline top
 - **[Social Discovery](social-discovery.md)** - SocialSpec profile, following, contact, and feed discovery endpoints
@@ -40,14 +39,9 @@ This directory contains guides and reference documentation for the website's fea
 
 ### 🏗️ Architecture & Technical
 
-- **[Architecture Assessment 2026](architecture-assessment-2026.md)** - Consultant-style review: findings F1–F11, Fable evaluation, prioritized roadmap (execution plan archived at [`projects/archive/`](../projects/archive/2026-06-15-architecture-refactor-2026.md))
 - **[Architecture Decision Records](adr/)** - Key technical decisions and their rationale (ADRs)
-- **[Core Infrastructure Architecture](core-infrastructure-architecture.md)** - System architecture overview
 - **[Feed Architecture](feed-architecture.md)** - RSS feed generation and organization
 - **[URL Alignment Architecture](url-alignment-architecture-decisions.md)** - URL structure decisions
-- **[Review System Architecture](review-system-architecture-recommendation.md)** - Review system design
-- **[Web API Implementation](WEB_API_IMPLEMENTATION_REPORT.md)** - API enhancements and endpoints
-- **[Web API Enhancements Summary](WEB_API_ENHANCEMENTS_SUMMARY.md)** - API feature additions
 
 ### 🌐 ActivityPub / Fediverse
 
@@ -64,7 +58,6 @@ This directory contains guides and reference documentation for the website's fea
 ### 🤖 Development & AI
 
 - **[AI Memex System](ai-memex-system.md)** - AI-authored content type and Knowledge Graph documentation
-- **[Custom Agents Implementation](custom-agents-implementation.md)** - Multi-agentic Copilot workflow system
 
 ## 📋 Documentation Standards
 

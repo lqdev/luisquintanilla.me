@@ -271,5 +271,5 @@ This format ensures:
 **Last Updated**: 2024-01-15  
 **Maintainer**: Issue Publisher Agent  
 **Related Docs**: 
-- [SLUG_GENERATION_AUDIT.md](./SLUG_GENERATION_AUDIT.md) - Technical audit report
+- [SLUG_GENERATION_AUDIT.md](../archive/docs/SLUG_GENERATION_AUDIT.md) - Technical audit report
 - [GitHub Workflows Guide](./../.github/workflows/README.md) - Workflow documentation

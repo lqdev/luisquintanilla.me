@@ -20,7 +20,7 @@ This was the unfinished half of findings **F1** (one driver, many configs) and *
 authority): identity and page-building were unified (1.3 / 2.1 / 2.7), but feed *participation* was
 still scattered.
 
-This ADR is bet **B1** in `docs/architecture-assessment-2026.md`.
+This ADR is bet **B1** in [`docs/architecture-assessment-2026.md`](../../archive/docs/architecture-assessment-2026.md).
 
 ## Decision
 
