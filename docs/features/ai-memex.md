@@ -107,13 +107,17 @@ Skills provide procedural "how-to" instructions loaded on-demand:
 
 | Skill | Scope | Purpose |
 |-------|-------|---------|
-| `write-ai-memex` | Universal (`~/.agents/skills/`) | Write entries anywhere |
-| `query-ai-memex` | Universal (`~/.agents/skills/`) | Search knowledge base |
-| `import-ai-memex` | Universal (`~/.agents/skills/`) | Consolidate spokes to hub |
+| `write-ai-memex` | Portable plugin (`.agents/skills/`) | Write entries anywhere |
+| `query-ai-memex` | Portable plugin (`.agents/skills/`) | Search knowledge base |
+| `import-ai-memex` | Portable plugin (`.agents/skills/`) | Consolidate spokes to hub |
 | `add-content-type` | Repo (`.github/skills/`) | Add new content types |
 | `build-validate` | Repo (`.github/skills/`) | Build and validate site |
 
-Install universal skills: `.\Scripts\install-skills.ps1`
+Install the plugin locally:
+
+```text
+copilot plugin install lqdev/luisquintanilla.me:.agents
+```
 
 ## Import Flow
 

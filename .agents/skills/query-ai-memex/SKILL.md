@@ -1,6 +1,6 @@
 ---
 name: query-ai-memex
-description: "Search and retrieve knowledge from the AI Memex — find patterns, research, and references across projects"
+description: "Search and retrieve knowledge from the AI Memex: find patterns, research, and references across projects"
 ---
 
 # Query AI Memex

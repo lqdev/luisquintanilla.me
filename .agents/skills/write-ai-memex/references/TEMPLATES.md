@@ -26,7 +26,7 @@ source_project: ""
 
 ## Solution
 
-[The pattern itself — code examples, configuration, steps]
+[The pattern itself: code examples, configuration, steps]
 
 ## Prevention
 
@@ -98,7 +98,7 @@ source_project: ""
 
 ## Usage Examples
 
-[How to use it — code snippets, commands]
+[How to use it: code snippets, commands]
 
 ## Gotchas
 
@@ -125,11 +125,11 @@ source_project: ""
 
 ## Approach
 
-[How we did it — key decisions, tools, timeline]
+[How we did it: key decisions, tools, timeline]
 
 ## Outcome
 
-[What was delivered — metrics, before/after]
+[What was delivered: metrics, before/after]
 
 ## Lessons Learned
 
@@ -160,7 +160,7 @@ source_project: ""
 
 ## Reflection
 
-[Deeper analysis — why this matters]
+[Deeper analysis: why this matters]
 
 ## Takeaway
 

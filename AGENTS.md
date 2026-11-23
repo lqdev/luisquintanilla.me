@@ -60,6 +60,7 @@ Tests:
 - If you defer something, write it up as an issue a junior developer could finish without asking a question.
 - When I ask about a new technology, explain the idea first, then what it means for this site.
 - Prefer an existing standard over inventing one.
+- Never print or commit secrets, credentials, or personal information.
 
 ## Where to look
 
@@ -68,6 +69,9 @@ Tests:
 | Build, validate, inspect output | skill `build-validate` |
 | Add a content type | skill `add-content-type` |
 | A GitHub Actions run failed or didn't trigger | skill `investigate-actions-run` |
+| Triage pull request review comments | skill `triage-review-comments` |
+| Write a plan or an issue | skill `shovel-ready` |
+| Research a standard or technology | skill `research-brief` |
 | How the build works | `docs/architecture.md` |
 | Why a decision was made | `docs/principles.md`, `docs/adr/README.md` |
 | ActivityPub | `docs/activitypub/README.md`, `FEDERATION.md` |

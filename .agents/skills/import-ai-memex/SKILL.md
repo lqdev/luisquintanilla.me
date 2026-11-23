@@ -35,7 +35,7 @@ Run from the lqdev.me repo root:
 2. For each source, find `.md` files in the `.ai-memex/` directory
 3. Check if an entry with the same filename already exists in `_src/resources/ai-memex/`
 4. If new: copy to `_src/resources/ai-memex/`, adding `source_project` if missing
-5. If exists: compare `last_updated_date` — update hub if spoke is newer
+5. If exists: compare `last_updated_date`: update hub if spoke is newer
 6. Report what was imported, updated, or skipped
 
 ### Post-import
@@ -64,6 +64,6 @@ When a file already exists in the hub:
 
 - The `related_entries` field in hub entries is seeded by the knowledge graph at build time.
   The import script merges spoke + hub values to avoid losing graph-generated connections.
-- Running `install-skills.ps1 -Force` preserves `import-sources.json` (user-local config).
+- Reinstalling `lqdev-toolkit` preserves `import-sources.json` (user-local config).
 - Entries in `_src/resources/ai-memex/` with no spoke equivalent are hub-only entries
   (written directly in this repo). The import script never touches these.

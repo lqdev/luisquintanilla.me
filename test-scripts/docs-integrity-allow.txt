@@ -6,12 +6,12 @@ graph.json
 api/data/activities/
 # Build output: ActivityPubBuilder.fs writes it; the publish workflow copies it into api/.
 api/data/outbox/index.json
-# Tag normalization examples in docs/reference/tags.md (Services/Tag.fs rewrites them).
-node.js
-next.js
-vue.js
-# .github/skills/universal/ examples (import config and sample entry names). Layer 9 moves these skills; revisit then.
+# Portable skill examples and user-local files that are not checked by this repository.
 import-sources.json
 research-caching-strategies.md
 reference-api-auth-patterns.md
 project-report-v2-migration.md
+# Tag normalization examples in docs/reference/tags.md (Services/Tag.fs rewrites them).
+node.js
+next.js
+vue.js
