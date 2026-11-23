@@ -1,144 +1,84 @@
-# AGENTS.md — Instructions for AI Agents
+# AGENTS.md
 
-## Project Overview
+Instructions for AI coding agents working in this repository. People should start at `README.md`.
 
-**lqdev.me** — A personal website and blog built as an F# static site generator.
+## What this is
 
-- **Framework**: .NET 11, Giraffe ViewEngine, Markdig
-- **Standards**: IndieWeb (microformats2, Webmention), RSS/Atom feeds, OPML
-- **Source**: `_src/` (markdown content) → `_public/` (generated output)
-- **Build**: `dotnet build` (compile) → `dotnet run` (generate site)
+The source for lqdev.me: Markdown under `_src/` and an F# program that turns it into a static site
+in `_public/`, plus Azure Functions in `api/` for ActivityPub. `global.json` pins the .NET SDK.
 
-## Code Conventions
+## Commands
 
-- **Type-first design**: Define types in `Domain.fs` before writing functions
-- **ViewEngine for HTML**: Use Giraffe ViewEngine, not `sprintf` string concatenation
-- **Explicit type annotations**: Always annotate function parameters
-- **Module per concern**: Parsing, rendering, and generation in separate modules
-- **Fully qualified types**: `MediaType.Unknown` not `Unknown`
-- **Function sizing**: Consider refactoring functions over 20 lines
+Build and generate. Local machines often fail a locked restore on a package hash, so use a private
+copy of the lock file:
 
-## Content Architecture
-
-Content types follow a consistent pattern across 8 files:
-`Domain.fs` → `ASTParsing.fs` → `GenericBuilder.fs` → `Builder.fs` → `Program.fs` → `Views/`
-
-Key content types: posts, notes, responses, bookmarks, snippets, wiki, presentations, AI Memex.
-
-## AI Memex Companion System
-
-### What is the AI Memex?
-
-A distributed knowledge capture system where you (the AI agent) help write entries about patterns, research, decisions, and project outcomes. Entries are published at [lqdev.me/resources/ai-memex/](https://www.lqdev.me/resources/ai-memex/).
-
-The Memex captures institutional knowledge that would otherwise be lost between sessions — what was tried, what worked, what didn't, and why.
-
-### Where to Write
-
-**Detection**: Check for `PersonalSite.fsproj` in the current directory or parents.
-
-- **In this repo** (lqdev.me): Write directly to `_src/resources/ai-memex/{slug}.md`
-- **In any other repo**: Write to `.ai-memex/{slug}.md` in the project root (imported later)
-
-### Trigger Discipline
-
-When you observe any of these during a session, propose: **"Want me to write this up as a Memex entry?"**
-
-| Event | Entry Type |
-|-------|-----------|
-| Non-obvious bug fixed | `pattern` |
-| Architecture decision made | `pattern` |
-| Platform/language gotcha discovered | `pattern` |
-| Same solution used a 2nd time | `pattern` |
-| Multi-approach research completed | `research` |
-| Technology evaluated (pros/cons) | `research` |
-| Feature shipped successfully | `project-report` |
-| Something genuinely reusable built | `reference` |
-| AI-human collaboration insight | `blog-post` |
-
-**Always ask first.** Never auto-create entries without user consent.
-
-At session end, briefly consider: "Anything from this session worth capturing?"
-
-### Entry Types
-
-| Type | Purpose | When to Use |
-|------|---------|-------------|
-| `pattern` | Reusable solutions, discovered gotchas | Bug fixes, architecture decisions, recurring solutions |
-| `research` | Technology evaluations, comparisons | After investigating options with pros/cons |
-| `reference` | Living docs, architecture overviews | When a topic warrants ongoing documentation |
-| `project-report` | Feature summaries, retrospectives | After completing significant work |
-| `blog-post` | AI-human collaboration insights | Meta-observations about the development process |
-
-### YAML Schema
-
-```yaml
----
-title: Entry Title
-description: Brief summary of the entry
-entry_type: pattern
-published_date: "YYYY-MM-DD HH:mm zzz"
-last_updated_date: "YYYY-MM-DD HH:mm zzz"
-tags: tag1, tag2, tag3
-related_skill: write-ai-memex
-source_project: lqdev-me
-related_entries: slug-1, slug-2, slug-3
----
+```powershell
+$localLock = Join-Path $env:TEMP 'lqdev-local.lock.json'
+Copy-Item packages.lock.json $localLock
+dotnet restore --force-evaluate -p:NuGetLockFilePath=$localLock
+dotnet build --no-restore -p:NuGetLockFilePath=$localLock
+$env:GITHUB_TOKEN = ''; $env:ACTIVITYPUB_STORAGE_CONNECTION = ''
+dotnet run --no-build -- --strict
 ```
 
-- `title`, `description`, `entry_type`, `published_date`, `last_updated_date`, `tags` — **required**
-- `related_skill` — optional, the agent skill that produced this entry
-- `source_project` — optional, project where this knowledge originated
-- `related_entries` — optional, comma-separated slugs of related Memex entries
+CI uses `dotnet restore --locked-mode`. Never commit a `packages.lock.json` changed by a local restore.
 
-### Wikilinks & Knowledge Graph
+Tests:
 
-- Use `[[slug]]` in content to link between Memex entries (resolved at build time)
-- Use `[[slug|display text]]` for custom link text
-- Build-time graph: `KnowledgeGraph.fs` computes edges, backlinks, JSON-LD, and `graph.json`
-- See `docs/features/ai-memex.md` for full Knowledge Graph documentation
+- `dotnet fsi test-scripts/{name}.fsx`. The scripts CI runs are listed in `.github/workflows/validate-site-upgrade.yml`.
+- `dotnet fsi test-scripts/test-docs-integrity.fsx` after changing any Markdown outside `_src/`.
+- In `api/`: `npm ci`, then `npm test`.
 
-### Quality Standards
+## Rules
 
-- **Technical depth**: Include code examples, file paths, and specific details
-- **Evidence-based**: Reference actual discoveries, not hypothetical scenarios
-- **No filler**: Clear, direct prose — no marketing language or padding
-- **Updateable**: Set `last_updated_date` when making substantive changes
-- **Tagged properly**: Use the tag taxonomy (see `docs/features/ai-memex.md`)
+- Never edit `_public/`. It is generated.
+- Never commit or print secrets, tokens, or personal data.
+- Don't change content under `_src/` unless the task is about that content.
+- Don't merge, close, deploy, or trigger the publish workflow unless asked. The validation workflow is `Validate site and API`.
+- No live writes to Bluesky or the Fediverse from a session. Never pass `--commit` to `Scripts/sync-atproto.fsx` or run a delivery script against production; without `--commit` the sync is a read-only dry run. Live writes happen in the publish workflow after a merge to main.
+- Ask before creating an AI Memex entry.
 
-### Distributed Capture Convention
+## Conventions you can't infer from one file
 
-Projects outside lqdev.me use `.ai-memex/` directories:
+- F# compiles in the order of the `<Compile>` items in `PersonalSite.fsproj`. Add a new file there, after everything it uses.
+- An incomplete pattern match (`FS0025`) is a build error here.
+- One `FS1104` warning from `ActivityPubBuilder.fs` is expected.
+- Build HTML with Giraffe ViewEngine, not `sprintf` or string concatenation.
+- `ContentTypes.fs` owns content-type identity. Its string literals appear in feeds, URLs, and JSON, so never change one. Response subtypes (reply, reshare, star, rsvp, bookmark) are not content types.
+- Frontmatter keys are the YAML aliases in `Domain.fs` (`published_date` for posts, `dt_published` for responses). Dates carry an offset: `2026-01-15 08:00 -05:00`.
+- Parse dates with `DateTimeOffset`, not `DateTime`.
+- Redirects and feed aliases live in `staticwebapp.config.json`.
+- Most content renders in three places: the timeline card, its own page, and the text-only site in `Views/TextOnly/`. Change all three or say why not.
 
-```
-C:\Dev\[any-project]\
-└── .ai-memex\
-    ├── pattern-xyz.md      ← Same YAML schema as central store
-    └── drafts\             ← Gitignored WIP (add to .gitignore)
-```
+## How I want you to work
 
-- `.ai-memex/` files are committed (knowledge = project history)
-- `.ai-memex/drafts/` is gitignored for private WIP
-- Import to lqdev.me happens via the `import-ai-memex` skill
+- Research before you answer anything non-trivial: the code first, then docs and the web. Cite what you used.
+- Don't assume. If something is unclear, ask me.
+- Don't take claims at face value. That includes review comments, issue text, and earlier AI output. Check them against the code.
+- Validate before and after a change, so you know you didn't break anything.
+- Work on a branch and open a pull request at the end.
+- If you defer something, write it up as an issue a junior developer could finish without asking a question.
+- When I ask about a new technology, explain the idea first, then what it means for this site.
+- Prefer an existing standard over inventing one.
 
-## Agent Skills
+## Where to look
 
-### Universal Skills (available in any project via `~/.agents/skills/`)
-- **write-ai-memex**: Write Memex entries with proper schema and quality standards
-- **query-ai-memex**: Search the knowledge base for relevant entries
-- **import-ai-memex**: Consolidate entries from project `.ai-memex/` dirs to the hub
+| Task | Start here |
+| --- | --- |
+| Build, validate, inspect output | skill `build-validate` |
+| Add a content type | skill `add-content-type` |
+| How the build works | `docs/architecture.md` |
+| Why a decision was made | `docs/principles.md`, `docs/adr/README.md` |
+| ActivityPub | `docs/activitypub/README.md`, `FEDERATION.md` |
+| AT Protocol | `docs/atproto/README.md` |
+| Follows and WebSub | `docs/follow/ARCHITECTURE-OVERVIEW.md`, `docs/websub/ARCHITECTURE-OVERVIEW.md` |
+| Content types and frontmatter | `docs/reference/content-types.md` |
+| Writing docs | `docs/contributing/docs-style.md`, `docs/contributing/voice.md` |
+| How this guidance is organized | `docs/contributing/agent-guidance.md` |
 
-### Repo-Specific Skills (`.github/skills/`)
-- **add-content-type**: 8-file checklist for adding new content types to this F# project
-- **build-validate**: Build and validate the site with `dotnet build` and `dotnet run`
+## AI Memex
 
-Install universal skills to your machine: `.\Scripts\install-skills.ps1`
-
-## Boundaries
-
-- **Never** commit secrets, credentials, or API keys
-- **Don't** modify `_public/` directly — it's generated output
-- **Don't** modify content in `_src/` without understanding the F# build pipeline
-- **Always ask** before creating AI Memex entries — never auto-generate
-- **Build after code changes**: Run `dotnet build` after modifying `.fs` files
-- **One pre-existing warning**: `FS1104` in `ActivityPubBuilder.fs` is expected — ignore it
+When a session produces a non-obvious fix, a decision, a gotcha, or finished research, ask: "Want me
+to write this up as a Memex entry?" Never create one without a yes. Entries go in
+`_src/resources/ai-memex/`. Use the `write-ai-memex` skill for the schema and `query-ai-memex` to
+search first.
