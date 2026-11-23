@@ -1,6 +1,10 @@
 # Publish a playlist
 
-Open an issue with the playlist form and paste a Spotify playlist URL. The `process-playlist-issue.yml` workflow runs `Scripts/process-playlist-issue.fsx`, which fetches the tracks, finds a YouTube link for each one, and opens a pull request with the new post.
+Open an issue with the playlist form and paste a Spotify playlist URL. The `process-playlist-issue.yml` workflow works in three steps:
+
+1. It installs the external [playlist-creator](https://github.com/lqdev/playlist-creator) tool and runs it. The tool fetches the tracks from Spotify, finds a YouTube link for each one, and writes the track list as Markdown.
+2. It passes that track list to `Scripts/process-playlist-issue.fsx`. The script only checks the inputs and writes the post to `_src/playlists/`. It does not call Spotify or YouTube.
+3. A separate step uses `peter-evans/create-pull-request` to open a pull request with the new post.
 
 ## Architecture
 

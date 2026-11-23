@@ -4,25 +4,28 @@ This directory contains validation and testing scripts for the website's core in
 
 ## Usage
 
-Run test scripts from the project root directory:
+Run test scripts from the project root directory. Several tests load `bin/Debug/net11.0/PersonalSite.dll` and read the generated `_public/` folder (`test-rss-generated-output.fsx` fails if `_public/` is missing), so build and generate the site first, as CI does:
 
 ```bash
+dotnet build
+dotnet run
+
 # Offline regression tests (CI runs these in validate-site-upgrade.yml)
-dotnet fsi test-scripts\test-rss-generated-output.fsx # Generated feed output
-dotnet fsi test-scripts\test-rss-correctness.fsx      # RSS correctness
-dotnet fsi test-scripts\test-rss-cdata.fsx            # RSS CDATA regression guard
-dotnet fsi test-scripts\test-rss-reply-threading.fsx  # Reply threading and feed propagation
-dotnet fsi test-scripts\test-rss-semantics.fsx        # Five-kind annotations, independent consumer and compatibility
-dotnet fsi test-scripts\test-social-discovery.fsx     # SocialSpec discovery artifacts and config
-dotnet fsi test-scripts\test-atproto-response-mapping.fsx # AT Protocol response mapping
-dotnet fsi test-scripts\test-atproto-media.fsx        # AT Protocol media
-dotnet fsi test-scripts\test-follow-yaml.fsx          # Follow workflow YAML
-dotnet fsi test-scripts\test-docs-integrity.fsx       # Links, file paths, and voice in README and docs
-dotnet fsi test-scripts\test-docs-integrity.fsx --self-test # Docs integrity checks against planted problems in fixtures/docs-integrity
+dotnet fsi test-scripts/test-rss-generated-output.fsx # Generated feed output
+dotnet fsi test-scripts/test-rss-correctness.fsx      # RSS correctness
+dotnet fsi test-scripts/test-rss-cdata.fsx            # RSS CDATA regression guard
+dotnet fsi test-scripts/test-rss-reply-threading.fsx  # Reply threading and feed propagation
+dotnet fsi test-scripts/test-rss-semantics.fsx        # Five-kind annotations, independent consumer and compatibility
+dotnet fsi test-scripts/test-social-discovery.fsx     # SocialSpec discovery artifacts and config
+dotnet fsi test-scripts/test-atproto-response-mapping.fsx # AT Protocol response mapping
+dotnet fsi test-scripts/test-atproto-media.fsx        # AT Protocol media
+dotnet fsi test-scripts/test-follow-yaml.fsx          # Follow workflow YAML
+dotnet fsi test-scripts/test-docs-integrity.fsx       # Links, file paths, and voice in README and docs
+dotnet fsi test-scripts/test-docs-integrity.fsx --self-test # Docs integrity checks against planted problems in fixtures/docs-integrity
 
 # Parser checks
-dotnet fsi test-scripts\test-ast-parsing.fsx          # AST parsing functionality
-dotnet fsi test-scripts\test-context-validation.fsx   # Custom blocks in different contexts
+dotnet fsi test-scripts/test-ast-parsing.fsx          # AST parsing functionality
+dotnet fsi test-scripts/test-context-validation.fsx   # Custom blocks in different contexts
 ```
 
 ## RSS Semantics Compatibility

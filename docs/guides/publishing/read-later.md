@@ -176,6 +176,8 @@ Once a day, the `cleanup-by-responses-bookmarks` job in `.github/workflows/proce
 
 The match is exact, so `https://example.com/a` and `https://example.com/a/` count as different links. [Read-later cleanup jobs](../operations/read-later-cleanup.md) has the details.
 
+The job reads `targeturl` with `grep` and `sed`, not a YAML parser, so it doesn't remove the quotes around a quoted value. A post with `targeturl: "https://example.com/a"` doesn't match `https://example.com/a`, and the link stays on the list. The issue forms write the URL without quotes. The Emacs capture templates in `.templates/` and the VS Code snippets in `.vscode/metadata.code-snippets` write it with quotes. To have the job remove a link, leave the URL unquoted or remove the entry by hand.
+
 ## Migration Notes
 
 ### Previous Implementation (v1):
