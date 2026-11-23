@@ -63,11 +63,14 @@ jobs:
       - name: Create GitHub issue for broken links
         if: steps.check-links.outputs.broken_count > 0
         uses: actions/github-script@v9
+        env:
+          RESULTS_FILE: ${{ steps.check-links.outputs.results_file }}
+          BROKEN_COUNT: ${{ steps.check-links.outputs.broken_count }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
-            const resultsFile = '${{ steps.check-links.outputs.results_file }}';
+            const resultsFile = process.env.RESULTS_FILE;
 
             // Read the full results
             const fullOutput = fs.readFileSync(resultsFile, 'utf8');
@@ -85,7 +88,7 @@ jobs:
               // Fallback if the format section is not found
               issueBody = `## Broken Links Found
 
-            The automated link checker found ${{ steps.check-links.outputs.broken_count }} broken links.
+            The automated link checker found ${process.env.BROKEN_COUNT} broken links.
 
             \`\`\`
             ${fullOutput}

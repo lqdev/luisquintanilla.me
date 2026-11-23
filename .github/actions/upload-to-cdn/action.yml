@@ -49,7 +49,8 @@ runs:
         LINODE_STORAGE_ENDPOINT_URL: ${{ inputs.endpoint-url }}
         LINODE_STORAGE_BUCKET_NAME: ${{ inputs.bucket-name }}
         LINODE_STORAGE_CUSTOM_DOMAIN: ${{ inputs.custom-domain }}
+        CONTENT_FILE: ${{ inputs.content-file }}
       run: |
         # Run the upload script (transforms the content file in place,
         # rewriting attachment URLs into :::media blocks with CDN URLs).
-        uv run python .github/scripts/upload_media.py "${{ inputs.content-file }}"
+        uv run python .github/scripts/upload_media.py "$CONTENT_FILE"

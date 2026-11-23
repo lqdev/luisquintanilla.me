@@ -38,14 +38,17 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Display results summary
+        env:
+          UNIQUE_DOMAINS: ${{ steps.analyze.outputs.unique_domains }}
+          TOP_DOMAINS: ${{ steps.analyze.outputs.top_domains }}
         run: |
           echo "📊 External Domain Analysis Results"
           echo "===================================="
           echo ""
-          echo "Total unique domains: ${{ steps.analyze.outputs.unique_domains }}"
+          echo "Total unique domains: $UNIQUE_DOMAINS"
           echo ""
           echo "Top 10 domains:"
-          echo "${{ steps.analyze.outputs.top_domains }}"
+          echo "$TOP_DOMAINS"
 
       - name: Upload results as artifact
         uses: actions/upload-artifact@v7
@@ -55,10 +58,12 @@ jobs:
           retention-days: 90
 
       - name: Add job summary
+        env:
+          UNIQUE_DOMAINS: ${{ steps.analyze.outputs.unique_domains }}
         run: |
           echo "# 🔍 External Domain Analysis Report" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Total unique domains:** ${{ steps.analyze.outputs.unique_domains }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Total unique domains:** $UNIQUE_DOMAINS" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "## Top 10 Domains" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY

@@ -88,11 +88,12 @@ jobs:
         env:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_URL: ${{ steps.extract-data.outputs.spotify_url }}
         run: |
           # Run playlist-creator to generate markdown content
           # The tool creates a markdown file in the output/ directory
           # Use --choice 1 for markdown output (batch mode is implicit via python -m)
-          uv run python -m playlist_creator.main --url "${{ steps.extract-data.outputs.spotify_url }}" --choice 1
+          uv run python -m playlist_creator.main --url "$SPOTIFY_URL" --choice 1
           
           # Find the generated markdown file in output/ directory
           MARKDOWN_FILE=$(find output -name "*.md" -type f | head -n 1)
@@ -131,6 +132,7 @@ jobs:
           echo "$PLAYLIST_CONTENT" > /tmp/playlist_content.txt
           
           # Run F# script with file-based parameters
+          set +e
           OUTPUT=$(dotnet fsi Scripts/process-playlist-issue.fsx -- \
             "$(cat /tmp/title.txt)" \
             "$(cat /tmp/spotify_url.txt)" \
@@ -139,6 +141,7 @@ jobs:
             "$(cat /tmp/tags.txt)" \
             "$(cat /tmp/playlist_content.txt)" 2>&1)
           EXIT_CODE=$?
+          set -e
           
           # Clean up temporary files and output directory
           rm -f /tmp/title.txt /tmp/spotify_url.txt /tmp/commentary.txt /tmp/slug.txt /tmp/tags.txt /tmp/playlist_content.txt /tmp/playlist_tracks.md
@@ -148,13 +151,14 @@ jobs:
           echo "$OUTPUT"
           
           if [ $EXIT_CODE -eq 0 ]; then
-            echo "success=true" >> $GITHUB_OUTPUT
+            printf 'success=true\n' >> "$GITHUB_OUTPUT"
             # Extract filename from output
             FILENAME=$(echo "$OUTPUT" | grep "📁 File:" | sed 's/.*📁 File: _src\/playlists\///' | sed 's/ .*//')
-            echo "filename=$FILENAME" >> $GITHUB_OUTPUT
+            printf 'filename=%s\n' "$FILENAME" >> "$GITHUB_OUTPUT"
           else
-            echo "success=false" >> $GITHUB_OUTPUT
-            echo "error=$OUTPUT" >> $GITHUB_OUTPUT
+            ERROR_B64=$(printf '%s' "$OUTPUT" | base64 -w0)
+            printf 'success=false\n' >> "$GITHUB_OUTPUT"
+            printf 'error_b64=%s\n' "$ERROR_B64" >> "$GITHUB_OUTPUT"
             exit 1
           fi
           
@@ -206,13 +210,16 @@ jobs:
             });
             
       - name: Handle processing errors
-        if: steps.process-issue.outputs.success == 'false'
+        if: failure() && steps.process-issue.outputs.success == 'false'
         uses: actions/github-script@v9
+        env:
+          ERROR_B64: ${{ steps.process-issue.outputs.error_b64 }}
         with:
           script: |
+            const output = Buffer.from(process.env.ERROR_B64, 'base64').toString('utf8');
             github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.issue.number,
-              body: `❌ **Error processing playlist request**\n\n\`\`\`\n${{ steps.process-issue.outputs.error }}\n\`\`\`\n\nPlease check your issue format and Spotify URL, then try again. The issue will remain open for you to edit and resubmit.`
+              body: `❌ **Error processing playlist request**\n\n\`\`\`\n${output}\n\`\`\`\n\nPlease check your issue format and Spotify URL, then try again. The issue will remain open for you to edit and resubmit.`
             });

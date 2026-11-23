@@ -1,0 +1,50 @@
+name: Lint GitHub Actions workflows
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/**'
+  pull_request:
+    paths:
+      - '.github/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  zizmor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10.3.3
+
+      - name: Audit workflow expressions
+        run: |
+          set +e
+          uvx zizmor==1.33.1 --offline --format json .github/ > zizmor.json
+          set -e
+
+          TOTAL_COUNT=$(jq 'length' zizmor.json)
+          TEMPLATE_COUNT=$(jq '[.[] | select(.ident == "template-injection" and .ignored == false)] | length' zizmor.json)
+
+          {
+            echo "## Zizmor workflow audit"
+            echo ""
+            echo "- Total findings: $TOTAL_COUNT"
+            echo "- Template injection findings: $TEMPLATE_COUNT"
+            echo ""
+            jq -r '.[] | "- **\(.ident)** (\(.determinations.severity)): \(.desc)"' zizmor.json
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$TEMPLATE_COUNT" -gt 0 ]; then
+            echo "Template injection findings detected:"
+            jq -r '.[] | select(.ident == "template-injection" and .ignored == false) | [.locations[0].symbolic.key.Local.verbatim_path, .locations[0].concrete.location.start_point.row] | @tsv' zizmor.json
+            exit 1
+          fi

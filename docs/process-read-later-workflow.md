@@ -17,6 +17,20 @@ This workflow automatically processes "Read Later" issues, creates PRs with the 
 5. **Auto-merge**: Automatically merges the PR if there are no conflicts
 6. **Close Issue**: Closes the original issue with a success message
 
+### Handling Issue Data Safely
+
+Issue form values are untrusted input. The workflow passes URLs, titles, and step
+outputs to shell and JavaScript steps through environment variables instead of
+interpolating `${{ ... }}` expressions directly into executable source. JSON data
+is built with `jq --arg`, which preserves quotes, apostrophes, and other special
+characters without corrupting shell syntax or JSON.
+
+The workflow also uses randomly delimited multi-line GitHub step outputs for page
+titles. Pull request metadata still receives the resulting plain-text title, but
+the title cannot change how the workflow's shell or JavaScript is parsed.
+`.github/workflows/lint-workflows.yml` runs an offline zizmor audit and blocks
+pull requests that reintroduce template-injection findings.
+
 ### 2. Automatic Cleanup (Scheduled)
 
 **Trigger**: Daily at midnight UTC (cron: `0 0 * * *`) or manual workflow dispatch
