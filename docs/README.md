@@ -59,4 +59,5 @@ Everything here describes the site as it is now. How things got built is in
 
 - [Voice](contributing/voice.md): how prose here should sound
 - [Docs style](contributing/docs-style.md): where a page goes and how to check it
+- [Agent guidance](contributing/agent-guidance.md): how `AGENTS.md`, instruction files, and skills are split up
 - Check your changes with `dotnet fsi test-scripts/test-docs-integrity.fsx`

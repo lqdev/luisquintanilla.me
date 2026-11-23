@@ -15,12 +15,13 @@ open System.Text.RegularExpressions
 // ---------------------------------------------------------------------------
 
 /// Directories whose Markdown files are checked for links and paths.
-let scopeDirs : string list = [ "docs" ]
+let scopeDirs : string list = [ "docs"; ".github/instructions" ]
 
 /// Individual files checked for links and paths. Empty at first; layers add the files they fix:
 /// layer 4 adds the sub-READMEs, layer 6 README.md and CONTRIBUTING.md, layer 7 AGENTS.md.
 let scopeFiles : string list =
-    [ "README.md"; "CONTRIBUTING.md"; "api/README.md"; "Scripts/README.md"; "test-scripts/README.md"; "projects/backlog.md" ]
+    [ "README.md"; "CONTRIBUTING.md"; "api/README.md"; "Scripts/README.md"; "test-scripts/README.md"; "projects/backlog.md"
+      "AGENTS.md"; ".github/copilot-instructions.md" ]
 
 /// Checked for links but not for path tokens: decision records describe the code as it was
 /// when the decision was made, so old file names in them are correct.
@@ -34,8 +35,8 @@ let excludedPrefixes : string list =
 /// Starts small on purpose. Each layer adds the prose it rewrites.
 let styleFiles : string list =
     [ "README.md"; "CONTRIBUTING.md"; "docs/README.md"; "docs/principles.md"; "docs/architecture.md"; "docs/getting-started.md"
-      "docs/reference/content-types.md"; "docs/reference/build.md" ]
-let styleDirs : string list = [ "docs/contributing" ]
+      "docs/reference/content-types.md"; "docs/reference/build.md"; "AGENTS.md" ]
+let styleDirs : string list = [ "docs/contributing"; ".github/instructions" ]
 
 /// Markdown files allowed to sit directly in docs/.
 let allowedDocsRootFiles : string list =
@@ -43,7 +44,7 @@ let allowedDocsRootFiles : string list =
 
 /// Maximum line counts. Empty until the layer that rewrites each file adds its entry:
 /// layer 6 adds "README.md", 150 and "CONTRIBUTING.md", 80; layer 7 adds "AGENTS.md", 150.
-let lineBudgets : (string * int) list = [ "README.md", 150; "CONTRIBUTING.md", 80 ]
+let lineBudgets : (string * int) list = [ "README.md", 150; "CONTRIBUTING.md", 80; "AGENTS.md", 150 ]
 let instructionFileBudget = 60
 let skillFileBudget = 500
 
