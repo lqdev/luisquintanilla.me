@@ -27,6 +27,7 @@ dotnet fsi test-scripts\test-rss-cdata.fsx          # RSS CDATA regression guard
 dotnet fsi test-scripts\test-rss-reply-threading.fsx # Reply threading and feed propagation
 dotnet fsi test-scripts\test-rss-semantics.fsx       # Five-kind annotations, independent consumer and compatibility
 dotnet fsi test-scripts\test-social-discovery.fsx   # SocialSpec discovery artifacts and config
+dotnet fsi test-scripts\test-docs-integrity.fsx     # Links, file paths, and voice in README and docs
 ```
 
 ## RSS Semantics Compatibility
