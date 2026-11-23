@@ -306,7 +306,7 @@ Deliver new content activities to follower inboxes when published, with producti
 - [x] Phase 4 comprehensive research (HTTP signatures, Mastodon validation, delivery patterns)
 - [x] Follower management architecture documentation
 - [x] Phase 4 implementation plan (production-ready, Option A, phased approach)
-- [x] Azure resource provisioning script (`scripts/setup-activitypub-azure-resources.ps1`)
+- [x] Azure resource provisioning script (`Scripts/setup-activitypub-azure-resources.ps1`)
 - [ ] Execute Azure resource creation (Storage Account, Tables, Queues, App Insights)
 - [ ] Create F# service modules (HttpSignature.fs, FollowerStore.fs, ActivityQueue.fs)
 - [ ] Implement InboxHandler Azure Function (POST /api/activitypub/inbox)
