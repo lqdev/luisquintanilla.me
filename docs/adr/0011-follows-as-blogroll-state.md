@@ -37,17 +37,24 @@ Two design questions had to be settled:
    `HtmlUrl`; `dt-published` comes from a new optional `Added` field (`YYYY-MM-DD`). The page is an
    `h-feed` with a hidden `p-author h-card`. Other rolls (YouTube, forums, starter packs) are unchanged.
 2. **Entries are added through a GitHub issue form** (`follow.yml`, label `follow`) mirroring the existing
-   content-issue pipeline: `Scripts/process-follow-issue.fsx` validates both URLs, normalizes the site URL,
-   performs **one defensive GET** on the feed (reachable and sniffs as RSS/Atom/JSON Feed — no
-   autodiscovery; the form already carries the fields), rejects duplicates across both rolls, appends the
-   entry with `Added = today`, and the workflow opens a PR. The RSS browser extension's custom-reader URL
-   can prefill `feed_url`.
-3. **Follow and unfollow webmentions are sent on publish from a roll diff.**
+   content-issue pipeline. `site_url`, `site_title`, `feed_url`, and `roll` are the form contract
+   (`site_title` retains the visible **Title** heading). `feed_url` is optional, but a feed is mandatory.
+   The processor rejects a duplicate Site URL before any network discovery, checks the site URL itself,
+   then parses static `link[rel="alternate"]` and `a` elements for RSS/Atom/JSON Feed URLs, resolves
+   relative links and `<base>`, and probes common feed paths. Every candidate is revalidated by the
+   existing defensive feed GET. Comment feeds sort last, candidates are deduplicated and capped at 15.
+3. **Ambiguous discovery requires an explicit human choice.** One verified feed continues directly.
+   Multiple candidates produce a marked issue comment with checkboxes; editing the comment to tick one,
+   or replying `/follow N` or `/follow <url>`, re-enters the same processor with one selected URL. A site
+   with no verified feed is commented on and closed as not planned, without a branch, PR, or data change.
+   Hard input/validation errors leave the issue open. A local composite action owns processing, PR,
+   comment, and close behavior for both initial issues and comment choices.
+4. **Follow and unfollow webmentions are sent on publish from a roll diff.**
    `Scripts/identify-follow-webmentions.fsx` compares `HtmlUrl` membership of both rolls between the last
    successfully deployed commit and the current one. Added *and* removed URLs each get
    `source=https://lqdev.me/collections/{roll}/ target=HtmlUrl`. Removal is sent by default (the receiver
    re-fetches the source, finds no link, and drops the follow). Field-only edits never notify.
-4. **Historical entries are backfilled, not announced.** `Scripts/backfill-roll-dates.fsx` derives `Added`
+5. **Historical entries are backfilled, not announced.** `Scripts/backfill-roll-dates.fsx` derives `Added`
    from `git log -S` (25 entries sit on the 2022-08-14 file-creation floor). The backfill commit changes
    no `HtmlUrl`, so the diff step sends nothing. A deliberate one-time announce exists as a manual
    `--all` flag and is never invoked by CI.
@@ -68,8 +75,11 @@ Two design questions had to be settled:
   the honest truth of the page and is within the spec.
 - A feed that blocks bots (403/429) passes the defensive check with a warning rather than failing, so a
   bad feed URL behind a WAF can still be followed. The failure mode is "no updates", visible immediately.
+- Static Action discovery cannot see feeds injected after page load by JavaScript; the optional manual
+  `feed_url` and the desktop extension remain the escape hatches.
 
 **Out of scope (tracked in `projects/backlog.md`)**
-- YouTube roll, `Data/feeds.json` (own feeds), and any autodiscovery.
-- Changes to the browser extension itself (secondary "Follow" action, `%u`/`%t` placeholders).
+- YouTube roll and `Data/feeds.json` (own feeds).
+- Mobile browser extension support. Android Chrome/Brave uses the PWA share target; the desktop extension
+  and its Follow action are a separate workstream.
 - A "new follows" feed and a follower-side (`/followers`) view.

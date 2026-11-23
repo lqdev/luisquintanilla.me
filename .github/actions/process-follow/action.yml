@@ -1,0 +1,173 @@
+name: "Process follow issue"
+description: "Discover or validate one feed, update a roll, and complete the follow issue workflow."
+
+inputs:
+  feed_url:
+    description: "Optional preselected RSS, Atom, or JSON Feed URL."
+    required: false
+    default: ""
+  site_url:
+    description: "The followed site's absolute URL."
+    required: true
+  title:
+    description: "Display title for the roll entry."
+    required: true
+  roll:
+    description: "Either blogroll or podroll."
+    required: true
+  issue_number:
+    description: "GitHub issue number for PR and comment updates."
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Process follow request
+      id: process
+      shell: bash
+      env:
+        FOLLOW_FEED_URL: ${{ inputs.feed_url }}
+        FOLLOW_SITE_URL: ${{ inputs.site_url }}
+        FOLLOW_TITLE: ${{ inputs.title }}
+        FOLLOW_ROLL: ${{ inputs.roll }}
+      run: |
+        set +e
+        output_file="$(mktemp)"
+        dotnet fsi Scripts/process-follow-issue.fsx -- \
+          "$FOLLOW_FEED_URL" \
+          "$FOLLOW_SITE_URL" \
+          "$FOLLOW_TITLE" \
+          "$FOLLOW_ROLL" >"$output_file" 2>&1
+        exit_code=$?
+        set -e
+
+        cat "$output_file"
+        {
+          echo "output_b64=$(base64 -w0 "$output_file")"
+          echo "exit_code=$exit_code"
+        } >>"$GITHUB_OUTPUT"
+
+        case "$exit_code" in
+          0)
+            echo "outcome=written" >>"$GITHUB_OUTPUT"
+            echo "filename=$(sed -n 's/^File: //p' "$output_file" | tail -1)" >>"$GITHUB_OUTPUT"
+            echo "feed_url=$(sed -n 's/^SELECTED_FEED_URL=//p' "$output_file" | tail -1)" >>"$GITHUB_OUTPUT"
+            ;;
+          2)
+            echo "outcome=choice" >>"$GITHUB_OUTPUT"
+            echo "candidates=$(sed -n 's/^CANDIDATES_JSON=//p' "$output_file" | tail -1)" >>"$GITHUB_OUTPUT"
+            ;;
+          3)
+            echo "outcome=no-feed" >>"$GITHUB_OUTPUT"
+            ;;
+          *)
+            echo "outcome=error" >>"$GITHUB_OUTPUT"
+            ;;
+        esac
+
+    - name: Ask for one feed candidate
+      if: steps.process.outputs.outcome == 'choice'
+      uses: actions/github-script@v9
+      env:
+        ISSUE_NUMBER: ${{ inputs.issue_number }}
+        CANDIDATES_JSON: ${{ steps.process.outputs.candidates }}
+      with:
+        script: |
+          const candidates = JSON.parse(process.env.CANDIDATES_JSON);
+          if (!Array.isArray(candidates) || candidates.length < 2) {
+            throw new Error('Expected at least two feed candidates.');
+          }
+          const { buildCandidateComment } = require('./.github/scripts/follow-choice.js');
+          const issueNumber = Number(process.env.ISSUE_NUMBER);
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issueNumber,
+            body: buildCandidateComment(candidates)
+          });
+
+    - name: Close request when no feed exists
+      if: steps.process.outputs.outcome == 'no-feed'
+      uses: actions/github-script@v9
+      env:
+        ISSUE_NUMBER: ${{ inputs.issue_number }}
+        SITE_URL: ${{ inputs.site_url }}
+      with:
+        script: |
+          const issueNumber = Number(process.env.ISSUE_NUMBER);
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issueNumber,
+            body: `Couldn't find a feed for ${process.env.SITE_URL}. Nothing was added.`
+          });
+          await github.rest.issues.update({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issueNumber,
+            state: 'closed',
+            state_reason: 'not_planned'
+          });
+
+    - name: Create follow pull request
+      if: steps.process.outputs.outcome == 'written'
+      uses: peter-evans/create-pull-request@v8
+      with:
+        token: ${{ github.token }}
+        commit-message: "Follow: ${{ inputs.title }} (${{ inputs.roll }})"
+        title: "Follow: ${{ inputs.title }}"
+        body: |
+          ## Follow a Site
+
+          **Title:** ${{ inputs.title }}
+          **Roll:** ${{ inputs.roll }}
+          **Site URL (follow target):** ${{ inputs.site_url }}
+          **Feed URL:** ${{ steps.process.outputs.feed_url }}
+          **File:** `${{ steps.process.outputs.filename }}`
+
+          On publish, a follow webmention is sent from
+          `https://lqdev.me/collections/${{ inputs.roll }}/` to the Site URL.
+
+          **Created via GitHub Issue Template #${{ inputs.issue_number }}**
+        branch: content/issue-${{ inputs.issue_number }}/follow
+        delete-branch: true
+
+    - name: Complete successful follow request
+      if: steps.process.outputs.outcome == 'written'
+      uses: actions/github-script@v9
+      env:
+        ISSUE_NUMBER: ${{ inputs.issue_number }}
+        FOLLOW_ROLL: ${{ inputs.roll }}
+      with:
+        script: |
+          const issueNumber = Number(process.env.ISSUE_NUMBER);
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issueNumber,
+            body: `Follow request processed. A pull request has been created that adds the entry to the ${process.env.FOLLOW_ROLL}. The follow webmention is sent after the PR is merged and the site publishes.`
+          });
+          await github.rest.issues.update({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issueNumber,
+            state: 'closed'
+          });
+
+    - name: Report processing error
+      if: steps.process.outputs.outcome == 'error'
+      uses: actions/github-script@v9
+      env:
+        ISSUE_NUMBER: ${{ inputs.issue_number }}
+        SCRIPT_OUTPUT_B64: ${{ steps.process.outputs.output_b64 }}
+      with:
+        script: |
+          const issueNumber = Number(process.env.ISSUE_NUMBER);
+          const output = Buffer.from(process.env.SCRIPT_OUTPUT_B64, 'base64').toString('utf8');
+          await github.rest.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issueNumber,
+            body: `**Error processing follow request**\n\n\`\`\`\n${output}\n\`\`\`\n\nEdit the issue to fix the fields, then close and reopen it to retry. The issue remains open.`
+          });
+          core.setFailed('Follow request processing failed.');

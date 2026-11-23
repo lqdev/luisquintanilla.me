@@ -53,35 +53,64 @@ are put on the same element (they would attach to the h-entry, not the h-card). 
 ## 3. Adding a follow (issue pipeline)
 
 ```
-issue (template follow.yml, label follow, author lqdev)
-  └─ .github/workflows/process-content-issue.yml :: process-follow
-       ├─ extract Feed URL / Site URL / Title / Roll from the form body
-       ├─ dotnet fsi Scripts/process-follow-issue.fsx -- feed site title roll
-       │    1. both URLs absolute http(s)
-       │    2. site URL normalized via Uri.AbsoluteUri (lowercase host, trailing slash on bare origin)
-       │    3. duplicate check across BOTH rolls on normalized HtmlUrl or XmlUrl
-       │       ("Already following '<title>' in <roll> (added YYYY-MM-DD)")
-       │    4. one defensive GET on the feed URL (20 s, UA set, 8 KB read):
-       │         2xx + sniff <rss | <feed | <rdf:RDF | JSON with jsonfeed.org  → ok
-       │         2xx but not feed-like                                        → fail
-       │         404 / 410 / DNS / connection error / timeout                 → fail
-       │         401 / 403 / 429 / 5xx                                        → warn, proceed
-       │    5. append {Title, Type:"rss", HtmlUrl, XmlUrl, Added: today(America/New_York)}
-       │       written with 4-space indent, relaxed escaping, trailing newline
-       ├─ peter-evans/create-pull-request → branch content/issue-N/follow
-       └─ comment + close issue (success) | comment + fail job (error)
+Android share sheet → github-post PWA Follow action
+  └─ issue (follow.yml; feed_url optional, site_url/site_title/roll required)
+       └─ process-content-issue.yml :: process-follow
+            └─ .github/actions/process-follow/action.yml
+                 └─ Scripts/process-follow-issue.fsx -- feed site title roll
+                      ├─ exit 0: one verified feed → append + PR + close issue
+                      ├─ exit 1: hard error → comment; leave issue open
+                      ├─ exit 2: many feeds → marked checkbox choice comment
+                      │          └─ process-follow-choice.yml
+                      │               ├─ edited marker + exactly one tick → selected URL
+                      │               └─ lqdev /follow N or /follow URL → selected URL
+                      │                    └─ re-enter the same composite action
+                      └─ exit 3: no feed → comment + close "not planned"; no data/branch/PR
 ```
 
-No PersonalSite.dll dependency, so the job does not build the site. Workflow triggers are
-`opened`/`reopened`; to retry after an error, edit the issue and close/reopen it.
+The issue form's field ids are `feed_url`, `site_url`, `site_title`, and `roll`; `site_title` keeps the
+visible label and generated body heading **Title**. All untrusted values enter the composite action as
+environment values before the F# script is invoked.
 
-**Browser extension prefill.** Set the custom reader URL in
-[`lqdev/rss-browser-extension`](https://github.com/lqdev/rss-browser-extension) to
+### Discovery and validation
+
+1. Validate Site URL, Title, and Roll. Normalize the Site URL with `Uri.AbsoluteUri`.
+2. Read both rolls and reject a duplicate normalized `HtmlUrl` before making any discovery request.
+3. If `feed_url` is present, validate that URL and continue only if the defensive check passes.
+4. Otherwise GET the Site URL. If the URL itself is RSS/Atom/JSON Feed, it is the one candidate.
+5. For a static HTML response, inspect `link[rel="alternate"]` and `a` elements with
+   `application/rss+xml`, `application/atom+xml`, or `application/feed+json`. Resolve relative `href`
+   values against the document or first `<base href>`.
+6. Add `/feed`, `/feed/`, `/rss.xml`, `/atom.xml`, `/index.xml`, `/feed.xml`, `/rss`, and
+   `/feed.json` probes.
+7. Deduplicate candidates. Re-run the defensive GET on each candidate:
+   - 2xx + `<rss`, `<feed`, `<rdf:RDF`, or JSON containing `jsonfeed.org` → valid
+   - 2xx but not feed-like, 404, 410, DNS/connection error, or timeout → reject candidate
+   - 401/403/429/5xx → warn and accept, preserving the original defensive-check behavior
+8. Sort comment feeds after primary feeds and cap the list at 15. Zero exits 3, one exits 0, and
+   multiple produce `CANDIDATES_JSON` and exit 2.
+9. On exit 0, append `{Title, Type:"rss", HtmlUrl, XmlUrl, Added}` with 4-space indentation.
+   `process-follow-issue.fsx` never writes unless a non-empty feed has passed the check.
+
+The processor has no `PersonalSite.dll` dependency. The initial workflow trigger is `opened`/`reopened`;
+reopening after an error remains the supported full retry. Initial choice events and comment selections
+share `concurrency: follow-issue-<number>` so repeated deliveries do not race.
+
+JavaScript-injected links are invisible to Action-side static discovery. A manual `feed_url` remains the
+escape hatch. No hosted discovery service or third-party proxy participates.
+
+**Desktop extension prefill.** The custom reader URL in
+[`lqdev/rss-browser-extension`](https://github.com/lqdev/rss-browser-extension) is
 `https://github.com/lqdev/luisquintanilla.me/issues/new?template=follow.yml&feed_url=%s`.
-GitHub prefills form fields by id from the query string. Site URL and Title are typed in by hand.
-Extension-side changes (a second "Follow" action, `%u`/`%t` placeholders) are deferred.
+This is the existing desktop handoff; the separate Follow action workstream will prefill Site URL and
+Title as well as the feed. Android Chrome/Brave uses the PWA share target; there is no mobile extension
+flow.
 
-**Local test:** `FOLLOW_SKIP_FEED_CHECK=1 dotnet fsi Scripts/process-follow-issue.fsx -- <feed> <site> <title> blogroll`.
+**Focused validation:**
+
+- `node test-scripts/test-follow-choice.js`
+- `node test-scripts/test-follow-processing.js`
+- `dotnet fsi test-scripts/test-follow-yaml.fsx` (after `dotnet build`)
 
 ## 4. Sending follow / unfollow webmentions (publish pipeline)
 
