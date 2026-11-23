@@ -1,6 +1,6 @@
-# Resume Feature Documentation
+# Edit the resume page
 
-This comprehensive guide explains how to create, customize, and maintain your professional resume page using the custom resume system. The resume feature provides a clean, professional presentation with structured sections and support for rich content including work experience, projects, skills, education, and testimonials.
+The resume page is built from `_src/resume/resume.md`. Its sections use custom Markdown blocks such as `:::experience` and `:::project`, which `Builders/ResumePage.fs` turns into the page.
 
 ## Overview
 

@@ -1,8 +1,6 @@
-# Content Sharing Features: QR Code and Permalink Buttons
+# Content sharing
 
-## Overview
-
-The Content Sharing Features provide three integrated sharing mechanisms available on every content page: Copy Permalink, Web Share, and QR Code generation. These features enable users to easily share content across devices and platforms using modern web APIs with progressive enhancement and full accessibility support.
+Every content page has three ways to share it: Copy Permalink, Web Share, and a QR code. Copy and Share use browser APIs. The QR code is an SVG made at build time and shown with a plain HTML `<details>` element, so it needs no JavaScript.
 
 ## Features
 
@@ -19,10 +17,9 @@ The Content Sharing Features provide three integrated sharing mechanisms availab
 - **Graceful fallback** when API unavailable
 
 ### 3. QR Code Button (📱)
-- **Dynamic QR code generation** for any page URL
-- **Modal interface** with preview and actions
-- **Download capability** for QR code images
-- **Responsive design** optimized for all screen sizes
+- **Pre-rendered SVG** for every content page, made during the build
+- **`<details>` disclosure**: clicking the button opens a panel with the QR image
+- **No JavaScript or CDN library** at runtime; the image loads lazily when the panel opens
 
 ## Visual Design
 
@@ -58,18 +55,18 @@ All three buttons share a unified design system:
 
 **CSS Files:**
 - `_src/css/custom/permalink-buttons.css` - Unified button styling (211 lines)
-- `_src/css/custom/qrcode.css` - QR modal styling (287 lines)
+- `_src/css/custom/qrcode.css` - QR disclosure panel styling
 
 **JavaScript Files:**
 - `_src/js/clipboard.js` - Copy to clipboard functionality
 - `_src/js/share.js` - Web Share API integration (6KB)
-- `_src/js/qrcode.js` - QR code generation and modal (9.4KB)
 
 **F# View Components:**
-- `Views/ComponentViews.fs` - Button generation functions:
-  - `copyPermalinkButton` (lines 63-73)
-  - `webShareButton` (lines 76-86)
-  - `qrCodeButton` (lines 89-99)
+- `Views/ComponentViews.fs` - Button generation functions: `copyPermalinkButton`, `webShareButton`, `qrCodeButton`
+
+**F# Build Step (QR images):**
+- `Builders/Assets.fs` - `buildPerPageQRs` writes one SVG per content page
+- `Services/QRStyled.fs` - the SVG renderer
 
 ### Integration Points
 
@@ -101,13 +98,7 @@ if (navigator.share) {
 }
 ```
 
-**QR Code:**
-```javascript
-if (typeof QRCodeStyling === 'undefined') {
-    // Show message about library availability
-    // Button still visible for consistency
-}
-```
+**QR Code:** no script involved. `<details>` works in every current browser without JavaScript.
 
 ## Copy Permalink Button
 
@@ -234,105 +225,49 @@ The system intelligently extracts metadata from page structure:
 
 ### How It Works
 
-1. User clicks "📱 QR Code" button
-2. Modal overlay appears with loading spinner
-3. QR code generated using QRCodeStyling library
-4. Modal shows:
-   - Page URL in readable format
-   - Generated QR code (256x256)
-   - Copy URL button
-   - Download QR image button
-5. User can scan with phone camera or download image
+1. During the build, `buildPerPageQRs` in `Builders/Assets.fs` renders one SVG for each content
+   page into `_public/assets/images/qr/<type>/<slug>.svg`. The QR encodes the canonical
+   `https://lqdev.me/<type>/<slug>/` URL.
+2. On the page, the "📱 QR Code" button is the `<summary>` of a `<details>` element.
+3. Clicking it opens the panel, and the browser loads the SVG (`loading="lazy"`).
+4. The reader scans it with a phone camera. To save it, they can save the image from the
+   browser.
 
 ### Implementation
 
-**Button Generation (F#):**
+**Disclosure (F#, `Views/ComponentViews.fs`):**
 ```fsharp
 let qrCodeButton (relativeUrl: string) =
-    button [
-        _class "qr-code-btn permalink-action-btn"
-        _type "button"
-        _title "Generate QR Code"
-        attr "data-url" relativeUrl
-        attr "aria-label" "Generate QR code for this page"
-    ] [
-        tag "span" [_class "button-icon"; attr "aria-hidden" "true"] [str "📱"]
-        tag "span" [_class "button-label"] [str "QR Code"]
+    let qrPath =
+        let trimmed = relativeUrl.Trim('/')
+        "/assets/images/qr/" + trimmed + ".svg"
+    tag "details" [ _class "qr-code-disclosure" ] [
+        tag "summary" [
+            _class "qr-code-btn permalink-action-btn"
+            _title "Show QR code for this page"
+            attr "aria-label" "Show QR code for this page"
+        ] [
+            tag "span" [ _class "button-icon"; attr "aria-hidden" "true" ] [ str "📱" ]
+            tag "span" [ _class "button-label" ] [ str "QR Code" ]
+        ]
+        div [ _class "qr-code-panel" ] [
+            img [ _src qrPath; _alt "QR code linking to this page"; _class "qr-code-img"
+                  attr "loading" "lazy"; attr "decoding" "async" ]
+        ]
     ]
 ```
 
-**JavaScript Handler (`qrcode.js`):**
-```javascript
-class QRCodeManager {
-    generateQR(url) {
-        this.qrCode = new QRCodeStyling({
-            width: 256,
-            height: 256,
-            data: url,
-            dotsOptions: {
-                color: "#2C3E50",
-                type: "rounded"
-            },
-            backgroundOptions: {
-                color: "#ffffff"
-            },
-            cornersSquareOptions: {
-                type: "extra-rounded"
-            }
-        });
-        
-        this.qrCode.append(container);
-    }
-}
-```
+### QR Code Style
 
-### Modal Interface
+`Services/QRStyled.fs` draws the SVG in F#. The QR bit matrix comes from
+`Net.Codecrete.QrCodeGenerator`.
+- **Colors**: dark slate modules (`#1a2332`) and orange finder corners (`#ff6b35`) on white
+- **Shape**: rounded modules that merge with their neighbours
+- **Center image**: a small copy of the avatar, embedded as a data URI so the SVG is one file
+- **Error correction**: High, which recovers the modules hidden under the avatar
 
-**Structure:**
-```html
-<div class="qr-modal-overlay">
-    <div class="qr-modal">
-        <div class="qr-modal-header">
-            <h2>📱 Scan to Open</h2>
-            <button class="qr-modal-close">×</button>
-        </div>
-        <div class="qr-url-display">https://...</div>
-        <div class="qr-code-container">
-            <!-- QR code canvas -->
-        </div>
-        <div class="qr-modal-actions">
-            <button class="qr-copy-btn">Copy URL</button>
-            <button class="qr-download-btn">Download</button>
-        </div>
-    </div>
-</div>
-```
-
-**Features:**
-- **Close mechanisms**: X button, click outside, ESC key
-- **Copy URL**: Quick copy within modal
-- **Download**: Save QR code as PNG image
-- **Smooth animations**: Modal slide-in, spinner rotation
-- **Backdrop blur**: Focus attention on modal
-
-### QR Code Customization
-
-Generated QR codes include:
-- **Size**: 256x256 pixels (optimal for screens and printing)
-- **Style**: Rounded dots for modern appearance
-- **Colors**: Dark dots (#2C3E50) on white background
-- **Corner style**: Extra-rounded for visual appeal
-- **Error correction**: Medium level (recovers from 15% damage)
-
-### Download Functionality
-
-When user clicks "Download":
-1. QR code rendered as PNG blob
-2. Blob converted to download URL
-3. Temporary anchor element created
-4. Filename: `qr-code-[timestamp].png`
-5. Download triggered automatically
-6. Cleanup: URL revoked after download
+This replaced an earlier client-side version that loaded the `qr-code-styling` library from a CDN
+and drew the code in a modal (PR #2390).
 
 ## Accessibility Features
 
@@ -341,7 +276,6 @@ When user clicks "Download":
 All buttons are fully keyboard accessible:
 - **Tab key**: Navigate between buttons
 - **Enter/Space**: Activate button
-- **ESC key**: Close QR modal
 - **Focus indicators**: Visible outline on focus
 
 ### Screen Reader Support
@@ -354,7 +288,7 @@ All buttons are fully keyboard accessible:
 **Announcements:**
 - Success states announced ("Copied!")
 - Error states announced with helpful context
-- Modal opening/closing announced
+- The QR `<details>` element reports its open or closed state natively
 
 ### Visual Indicators
 
@@ -368,8 +302,6 @@ All buttons are fully keyboard accessible:
 
 Users with `prefers-reduced-motion: reduce` get:
 - No transform animations
-- No spinner rotation
-- No modal slide-in
 - Static transitions only
 
 ## Theme Integration
@@ -386,8 +318,6 @@ All buttons integrate with the desert theme:
 - `--accent-color`: Button border and hover background
 - `--background-color`: Button hover text color
 - `--text-color`: Default text color
-- `--card-background`: Modal background
-- `--card-border`: Modal and input borders
 
 ### Theme Switching
 
@@ -424,13 +354,11 @@ Buttons respond to theme changes:
 ### Edge Cases Handled
 
 **Long URLs:**
-- QR modal shows full URL in monospace font
-- URL wraps properly with `word-break: break-all`
 - QR code handles long URLs with proper encoding
 
 **Offline/Network Issues:**
 - Copy button works offline (clipboard API)
-- QR code generated client-side (no network needed)
+- QR code is a static image made at build time
 - Share button gracefully handles network errors
 
 **Browser Limitations:**
@@ -443,37 +371,29 @@ Buttons respond to theme changes:
 ### Bundle Size
 
 **Total JavaScript:**
-- `clipboard.js`: ~6KB
-- `share.js`: 6KB
-- `qrcode.js`: 9.4KB
-- QRCodeStyling library: ~47KB (loaded on demand)
-- **Total**: ~68KB (compressed smaller with gzip)
+- `clipboard.js` and `share.js`
+- The QR code adds no JavaScript. Each page's SVG is fetched only when its panel opens.
 
 **Total CSS:**
-- `permalink-buttons.css`: ~6KB
-- `qrcode.css`: ~8KB
-- **Total**: ~14KB
+- `permalink-buttons.css`
+- `qrcode.css`
 
 ### Loading Strategy
 
 **Eager Loading:**
 - Button CSS (small, needed immediately)
-- Clipboard JavaScript (small, common use)
+- Clipboard and share JavaScript
 
 **Lazy Loading:**
-- QRCodeStyling library (larger, loaded on first QR button click)
-- Modal created only when first QR button clicked
+- QR SVG (`loading="lazy"`, fetched when the disclosure opens)
 
 ### Optimization
 
 **DOM Efficiency:**
-- Single modal instance reused for all QR codes
 - Event delegation for button clicks
 - Minimal DOM manipulation
 
 **Memory Management:**
-- QR code instances cleaned up after modal close
-- Download URLs revoked after use
 - No memory leaks from event listeners
 
 ## Browser Compatibility
@@ -495,10 +415,6 @@ Buttons respond to theme changes:
 **No Web Share:**
 - Show error message
 - Suggest using copy button or QR code
-
-**No QR Library:**
-- Button shows helpful message
-- Link to URL still available in modal
 
 ## Troubleshooting
 
@@ -530,33 +446,17 @@ Buttons respond to theme changes:
 2. Ensure share triggered directly from user click
 3. Verify URL is absolute and valid
 
-### QR Code Not Generating
+### QR Code Image Missing
 
-**Symptoms**: Modal shows loading spinner indefinitely
-
-**Possible Causes:**
-1. QRCodeStyling library not loaded
-2. Invalid URL for QR encoding
-3. JavaScript error in console
-
-**Solutions:**
-1. Check network tab for library load
-2. Verify URL is valid and not too long
-3. Check console for error messages
-
-### Modal Won't Close
-
-**Symptoms**: Modal stuck on screen
+**Symptoms**: The QR panel opens but the image is broken
 
 **Possible Causes:**
-1. JavaScript error preventing close
-2. Event handler not attached
-3. CSS preventing interaction
+1. The page wasn't part of the unified feed passed to `buildPerPageQRs`, so no SVG was written
+2. The page URL doesn't match the `<type>/<slug>` path the SVG was written to
 
 **Solutions:**
-1. Refresh page to reset state
-2. Press ESC key (alternative close method)
-3. Check console for errors
+1. Check that `_public/assets/images/qr/<type>/<slug>.svg` exists after a build
+2. Check the build log line `📱 Generated N per-page QR SVGs`
 
 ## Future Enhancements
 
@@ -570,13 +470,10 @@ Buttons respond to theme changes:
 **Under Consideration:**
 - Email share option
 - Print-friendly QR code page
-- QR code with logo/branding
 - Analytics for share tracking
-- Batch QR generation for multiple pages
 
 **Not Planned:**
 - Complex social media integrations (OAuth)
-- Server-side QR generation
 - URL shortening service
 
 ## Related Documentation
@@ -594,7 +491,6 @@ Since implementation:
 - **Accessibility compliant**: Full WCAG 2.1 AA compliance
 - **Progressive enhancement**: Works across capability spectrum
 - **Zero regressions**: Seamless integration with existing design system
-- **Performance optimized**: Minimal bundle size impact (<70KB total)
 
 ## Summary
 

@@ -4,31 +4,28 @@ This directory contains validation and testing scripts for the website's core in
 
 ## Usage
 
-Run test scripts from the project root directory:
+Run test scripts from the project root directory. Several tests load `bin/Debug/net11.0/PersonalSite.dll` and read the generated `_public/` folder (`test-rss-generated-output.fsx` fails if `_public/` is missing), so build and generate the site first, as CI does:
 
 ```bash
-# Core Infrastructure Tests
-dotnet fsi test-scripts\test-ast-parsing.fsx        # AST parsing functionality
-dotnet fsi test-scripts\test-phase1b.fsx            # Generic builder and block renderers  
-dotnet fsi test-scripts\test-phase1c.fsx            # ITaggable and domain integration
+dotnet build
+dotnet run
 
-# Comprehensive Validation Tests
-dotnet fsi test-scripts\test-comparison-phase1d.fsx # AST vs string parsing comparison
-dotnet fsi test-scripts\test-context-validation.fsx # Custom blocks in different contexts
-dotnet fsi test-scripts\test-integration-phase1d.fsx # Integration with existing build
+# Offline regression tests (CI runs these in validate-site-upgrade.yml)
+dotnet fsi test-scripts/test-rss-generated-output.fsx # Generated feed output
+dotnet fsi test-scripts/test-rss-correctness.fsx      # RSS correctness
+dotnet fsi test-scripts/test-rss-cdata.fsx            # RSS CDATA regression guard
+dotnet fsi test-scripts/test-rss-reply-threading.fsx  # Reply threading and feed propagation
+dotnet fsi test-scripts/test-rss-semantics.fsx        # Five-kind annotations, independent consumer and compatibility
+dotnet fsi test-scripts/test-social-discovery.fsx     # SocialSpec discovery artifacts and config
+dotnet fsi test-scripts/test-atproto-response-mapping.fsx # AT Protocol response mapping
+dotnet fsi test-scripts/test-atproto-media.fsx        # AT Protocol media
+dotnet fsi test-scripts/test-follow-yaml.fsx          # Follow workflow YAML
+dotnet fsi test-scripts/test-docs-integrity.fsx       # Links, file paths, and voice in README and docs
+dotnet fsi test-scripts/test-docs-integrity.fsx --self-test # Docs integrity checks against planted problems in fixtures/docs-integrity
 
-# Content Migration Tests
-dotnet fsi test-scripts\test-snippets-migration.fsx # Snippets migration validation
-dotnet fsi test-scripts\test-wiki-migration.fsx     # Wiki migration validation
-
-# Feature Flag Tests
-dotnet fsi test-scripts\test-feature-flags.fsx      # Feature flag system validation
-dotnet fsi test-scripts\test-rss-cdata.fsx          # RSS CDATA regression guard
-dotnet fsi test-scripts\test-rss-reply-threading.fsx # Reply threading and feed propagation
-dotnet fsi test-scripts\test-rss-semantics.fsx       # Five-kind annotations, independent consumer and compatibility
-dotnet fsi test-scripts\test-social-discovery.fsx   # SocialSpec discovery artifacts and config
-dotnet fsi test-scripts\test-docs-integrity.fsx     # Links, file paths, and voice in README and docs
-dotnet fsi test-scripts\test-docs-integrity.fsx --self-test # Docs integrity checks against planted problems in fixtures/docs-integrity
+# Parser checks
+dotnet fsi test-scripts/test-ast-parsing.fsx          # AST parsing functionality
+dotnet fsi test-scripts/test-context-validation.fsx   # Custom blocks in different contexts
 ```
 
 ## RSS Semantics Compatibility
@@ -61,21 +58,14 @@ existing RSS correctness, CDATA, threading, generated-output, and social-discove
 checks intact. Live XML/reader verification remains gated on separately approved
 publication; see `docs\reference\feeds.md`.
 
-## Core Infrastructure Tests
+## Parser Checks
 
 - **`test-ast-parsing.fsx`** - Validates AST parsing, YAML front-matter parsing, and error handling
-- **`test-phase1b.fsx`** - Tests generic builder pattern and custom block renderers
-- **`test-phase1c.fsx`** - Tests ITaggable interface and domain integration
-
-## Comprehensive Validation Tests
-
-- **`test-comparison-phase1d.fsx`** - Compares new AST-based parsing with existing string-based processing
 - **`test-context-validation.fsx`** - Validates custom block parsing and rendering in different contexts (cards, feeds, pages)
-- **`test-integration-phase1d.fsx`** - Tests integration with existing build process to ensure no regressions
 
 ## Test Content
 
-The `test-content/` directory contains comprehensive test files:
+The `test-content/` directory at the repo root contains test files:
 - **`comprehensive-blocks-test.md`** - All custom block types for testing
 - **`simple-review-test.md`** - Simple test case for basic validation
 

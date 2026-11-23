@@ -1,8 +1,10 @@
-# ActivityPub Notes Azure Function Proxy
+# ActivityPub activities Function proxy
 
 ## Overview
 
-This document describes the Azure Function **HTTP proxy** implementation for ActivityPub note files, which solves a critical Content-Type header limitation in Azure Static Web Apps.
+The Azure Function in `api/activitypub-activities/` serves each ActivityPub activity file with the `application/activity+json` Content-Type, which Azure Static Web Apps can't set on static `.json` files. Read this if you change how activities are served or debug a federation fetch that gets the wrong header.
+
+The proxy was built for notes (PR #1845) in a function named `activitypub-notes`. Phase 5A replaced it with `api/activitypub-activities/` so it serves every activity type (Create, Like, Announce). Old `/activitypub/notes/*` and `/api/activitypub/notes/*` URLs 301-redirect to the `activities` paths through `staticwebapp.config.json`.
 
 **Architecture**: HTTP Proxy Pattern - Function fetches from CDN URLs and rewrites headers  
 **Deployment**: Static files remain in `_public/`, Function acts as HTTP middleware  
@@ -33,10 +35,10 @@ The original implementation used Azure Functions for note endpoints, which provi
 
 The solution leverages Azure Static Web Apps' CDN infrastructure with an Azure Function proxy for dynamic header transformation:
 
-1. **Static File Generation**: F# build continues generating note files at `_public/activitypub/notes/{hash}.json`
+1. **Static File Generation**: The F# build writes activity files to `_public/activitypub/activities/{hash}.json`
 2. **CDN Distribution**: Static files served globally via Azure Static Web Apps CDN
 3. **Function HTTP Proxy**: Azure Function fetches from CDN URLs and rewrites Content-Type headers
-4. **API Endpoint URLs**: Note IDs reference the API endpoint (`/api/activitypub/notes/{hash}`)
+4. **API Endpoint URLs**: Activity IDs reference the API endpoint (`/api/activitypub/activities/{hash}`)
 5. **Dual Caching**: Function responses cached in-memory (1 hour) + CDN caching (24 hours)
 
 ```
@@ -73,14 +75,14 @@ Azure Static Web Apps fundamentally separates static content from Azure Function
 **File System Access Limitation:**
 ```javascript
 // ❌ This FAILS in production (path doesn't exist in Functions runtime)
-const notePath = path.join(__dirname, '../../_public/activitypub/notes/noteId.json');
+const notePath = path.join(__dirname, '../../_public/activitypub/activities/activityId.json');
 const content = await fs.readFile(notePath);  // ENOENT error
 ```
 
 **HTTP Proxy Solution:**
 ```javascript
 // ✅ This WORKS (fetches from CDN where files actually exist)
-const staticUrl = `https://lqdev.me/activitypub/notes/${noteId}.json`;
+const staticUrl = `https://lqdev.me/activitypub/activities/${activityId}.json`;
 const response = await fetch(staticUrl);  // Hits Azure CDN
 const content = await response.text();
 ```
@@ -101,7 +103,7 @@ const content = await response.text();
 
 ### Alternative Approaches Considered
 
-**1. File Bundling** (Copy files to `api/data/notes/`)
+**1. File Bundling** (copy the files into the `api` directory)
 - ❌ Requires CI/CD sync step
 - ❌ Duplicates 3.1MB of data in deployment
 - ❌ Increases API bundle size
@@ -125,7 +127,7 @@ const content = await response.text();
 
 ### 1. Azure Function Configuration
 
-**File**: `api/activitypub-notes/function.json`
+**File**: `api/activitypub-activities/function.json`
 
 ```json
 {
@@ -136,7 +138,7 @@ const content = await response.text();
       "direction": "in",
       "name": "req",
       "methods": ["get", "options"],
-      "route": "activitypub/notes/{noteId}"
+      "route": "activitypub/activities/{activityId}"
     },
     {
       "type": "http",
@@ -147,22 +149,24 @@ const content = await response.text();
 }
 ```
 
-**Route**: `/api/activitypub/notes/{noteId}`
+**Route**: `/api/activitypub/activities/{activityId}`
 
 ### 2. Function Logic
 
-**File**: `api/activitypub-notes/index.js`
+**File**: `api/activitypub-activities/index.js`
 
 **Key Features**:
-- **HTTP Proxy**: Fetches content from static CDN URLs (`https://lqdev.me/activitypub/notes/{noteId}.json`)
+- **HTTP Proxy**: Fetches content from static CDN URLs (`https://lqdev.me/activitypub/activities/{activityId}.json`)
+- **Create unwrapping**: For a Create activity, returns the embedded Note or Article with its `id` set to the fetchable URL, because Mastodon's URL search accepts object types only. Like and Announce activities are returned as they are.
+- **Fragment stripping**: Removes a `#create` style fragment from the ID before lookup
 - **In-Memory Caching**: 1-hour cache for frequently accessed notes (reduces CDN hits)
 - **Header Control**: Sets proper ActivityPub Content-Type
 - **Validation**: 
-  - Validates noteId format (must be 32-character MD5 hex string)
+  - Validates activityId format (must be 32-character MD5 hex string)
   - Validates HTTP response before serving
 - **Error Handling**:
-  - 400 for invalid noteId format
-  - 404 for non-existent notes
+  - 400 for invalid activityId format
+  - 404 for non-existent activities
   - 500 for HTTP fetch failures or network errors
 - **CORS**: Full CORS support for federation
 - **Dual Caching**: In-memory (1 hour) + CDN cache headers (24 hours)
@@ -184,17 +188,15 @@ const content = await response.text();
 
 **File**: `ActivityPubBuilder.fs`
 
-**Changes**:
 ```fsharp
 module Config =
     // ... other config ...
-    let notesPath = "/api/activitypub/notes/"  // Changed from "/activitypub/notes/"
+    let activitiesPath = "/api/activitypub/activities/"
 ```
 
-**Impact**:
-- Note IDs now use API endpoint: `https://lqdev.me/api/activitypub/notes/{hash}`
-- Static file generation continues unchanged (no code changes needed)
-- Outbox references automatically use API endpoints
+- Activity IDs use the API endpoint: `https://lqdev.me/api/activitypub/activities/{hash}`
+- Static files are still written to `_public/activitypub/activities/`
+- Outbox references use the API endpoints
 
 ## Performance Characteristics
 
@@ -256,52 +258,28 @@ module Config =
 
 ### Test Suite
 
-**File**: `test-scripts/test-activitypub-notes-function.js`
-
-**Test Cases**:
-1. ✅ Valid note ID returns 200 with correct Content-Type
-2. ✅ Non-existent note returns 404
-3. ✅ Invalid note ID format returns 400
-4. ✅ OPTIONS request returns proper CORS headers
-5. ✅ Overly long note ID returns 400 (DoS prevention)
-6. ✅ Too short note ID returns 400
-
-**Running Tests**:
-```bash
-cd /home/runner/work/luisquintanilla.me/luisquintanilla.me
-node test-scripts/test-activitypub-notes-function.js
-```
-
-### Manual Testing
-
-**Local Development**:
-```bash
-# Build site to generate static notes
-dotnet run
-
-# Test function directly
-node test-scripts/test-activitypub-notes-function.js
-```
+`test-scripts/test-activitypub-notes-function.js` was written for the old notes function. It still loads the old `activitypub-notes` function, which no longer exists, so it fails until it is updated for `api/activitypub-activities/`. CI does not run it.
 
 **Production Validation**:
 ```bash
-# Test note endpoint
+# Test an activity endpoint (take a hash from the outbox)
 curl -H "Accept: application/activity+json" \
-  https://lqdev.me/api/activitypub/notes/00029d200a98327f59a82821a27b959d
+  https://lqdev.me/api/activitypub/activities/{hash}
 
 # Verify Content-Type header
 curl -I -H "Accept: application/activity+json" \
-  https://lqdev.me/api/activitypub/notes/00029d200a98327f59a82821a27b959d
+  https://lqdev.me/api/activitypub/activities/{hash}
 ```
 
 ## Migration Impact
 
 ### Backward Compatibility
 
-**Note**: Existing note URLs change from static paths to API endpoints.
+Activity IDs moved twice: from static paths to API endpoints in PR #1845, then from `notes` to `activities` in phase 5A. Both old forms redirect.
 
-**Before**: `https://lqdev.me/activitypub/notes/{hash}`  
-**After**: `https://lqdev.me/api/activitypub/notes/{hash}`
+**Original**: `https://lqdev.me/activitypub/notes/{hash}`  
+**PR #1845**: `https://lqdev.me/api/activitypub/notes/{hash}`  
+**Current**: `https://lqdev.me/api/activitypub/activities/{hash}`
 
 **Mitigation**:
 - Note IDs are regenerated on every build (content hash-based)
@@ -312,14 +290,14 @@ curl -I -H "Accept: application/activity+json" \
 
 1. **Code Deployment**: PR merged → GitHub Actions deploys to Azure
 2. **Function Activation**: Azure SWA automatically provisions function
-3. **Static Files**: Build generates notes at same location
+3. **Static Files**: Build generates activity files under `_public/activitypub/activities/`
 4. **CDN Warm-up**: First requests populate CDN cache
 5. **Verification**: Run test scripts to confirm headers
 
 ### Rollback Plan
 
 If issues arise, rollback involves:
-1. Revert F# config change (`notesPath` back to `/activitypub/notes/`)
+1. Revert F# config change (`activitiesPath` back to a static path)
 2. Redeploy site (regenerates outbox with static URLs)
 3. Remove function proxy (optional, won't be called)
 
@@ -359,7 +337,7 @@ Microsoft may eventually support reliable Content-Type overrides for file extens
 
 ### Input Validation
 
-**Note ID Format**: Function validates `noteId` matches MD5 hash pattern `[a-f0-9]{32}`
+**Activity ID Format**: Function validates `activityId` matches MD5 hash pattern `[a-f0-9]{32}`
 
 **Benefits**:
 - Prevents path traversal attacks (no file system access)
@@ -369,10 +347,10 @@ Microsoft may eventually support reliable Content-Type overrides for file extens
 
 ### HTTP Proxy Security
 
-**URL Construction**: `${baseUrl}/activitypub/notes/${noteId}.json`
+**URL Construction**: `${baseUrl}/activitypub/activities/${activityId}.json`
 
 **Safety**:
-- Validated noteId prevents URL injection
+- Validated activityId prevents URL injection
 - Base URL controlled by environment variable (no user input)
 - Only accesses designated CDN endpoint
 - No arbitrary URL fetching possible
@@ -388,7 +366,7 @@ const baseUrl = process.env.STATIC_BASE_URL || 'https://lqdev.me';
 ### Cache Poisoning Prevention
 
 **In-Memory Cache Keying**:
-- Keys: Note ID only (no user-supplied data)
+- Keys: Activity ID only (no user-supplied data)
 - No cache key injection possible
 - Cache scope: Per Function instance (isolated)
 

@@ -1,7 +1,6 @@
-# Process Read Later Workflow
+# Save a link to read later
 
-## Overview
-This workflow automatically processes "Read Later" issues, creates PRs with the changes, and automatically merges them when there are no conflicts. It also includes automatic cleanup functionality to remove entries older than 14 days.
+Open an issue with the "📖 Add to Read Later" form and the `process-read-later.yml` workflow adds the link to `Data/read-later.json`, opens a pull request, and merges it if there are no conflicts. Links are removed after 14 days, or sooner if you post a response or bookmark about them.
 
 ## Workflow Components
 
@@ -170,6 +169,14 @@ To change the 14-day period:
 - **Has old entries**: PR created with detailed statistics and auto-merged
 - **Merge conflicts**: Manual intervention required (rare)
 - **Job summary**: Always generated regardless of whether cleanup occurred
+
+## Links are removed when you post about them
+
+Once a day, the `cleanup-by-responses-bookmarks` job in `.github/workflows/process-read-later.yml` reads the `targeturl` of every post in `_src/responses/` and `_src/bookmarks/`. Any entry in `Data/read-later.json` whose `url` matches one of those URLs is removed, and the job opens a pull request and merges it. The job also runs when you start the workflow by hand.
+
+The match is exact, so `https://example.com/a` and `https://example.com/a/` count as different links. [Read-later cleanup jobs](../operations/read-later-cleanup.md) has the details.
+
+The job reads `targeturl` with `grep` and `sed`, not a YAML parser, so it doesn't remove the quotes around a quoted value. A post with `targeturl: "https://example.com/a"` doesn't match `https://example.com/a`, and the link stays on the list. The issue forms write the URL without quotes. The Emacs capture templates in `.templates/` and the VS Code snippets in `.vscode/metadata.code-snippets` write it with quotes. To have the job remove a link, leave the URL unquoted or remove the entry by hand.
 
 ## Migration Notes
 

@@ -1,6 +1,6 @@
 # Reviews schema
 
-The review pipeline now uses one shared review schema for every review type.
+Every review type uses the same `:::review` block.
 
 ## Unified review block shape
 

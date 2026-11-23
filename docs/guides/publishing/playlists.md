@@ -1,8 +1,10 @@
-# Playlist Automation Implementation
+# Publish a playlist
 
-## Overview
+Open an issue with the playlist form and paste a Spotify playlist URL. The `process-playlist-issue.yml` workflow works in three steps:
 
-This document describes the automated playlist creation system that processes Spotify playlists through GitHub Issues, fetches track information, generates YouTube links, and creates properly formatted markdown posts.
+1. It installs the external [playlist-creator](https://github.com/lqdev/playlist-creator) tool and runs it. The tool fetches the tracks from Spotify, finds a YouTube link for each one, and writes the track list as Markdown.
+2. It passes that track list to `Scripts/process-playlist-issue.fsx`. The script only checks the inputs and writes the post to `_src/playlists/`. It does not call Spotify or YouTube.
+3. A separate step uses `peter-evans/create-pull-request` to open a pull request with the new post.
 
 ## Architecture
 
@@ -177,7 +179,7 @@ The `playlist` label is automatically synced via `.github/workflows/sync-issue-l
 
 Examples:
 - Input: "Crate Finds - November 2025" → `crate-finds-november-2025.md`
-- Input: "My Awesome Playlist!!!" → `my-awesome-playlist.md`
+- Input: "My Awesome Playlist!!!" → my-awesome-playlist.md
 
 ## Default Tags
 

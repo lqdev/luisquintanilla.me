@@ -6,7 +6,7 @@ This backlog tracks open opportunities and in-flight work for the site. It is in
 
 ## 🎯 Current Status
 
-The site is a mature, production IndieWeb static site generator (.NET 10, F#, Giraffe ViewEngine, Markdig). All core architecture is complete and stable:
+The site is a mature, production IndieWeb static site generator (.NET 11, F#, Giraffe ViewEngine, Markdig). All core architecture is complete and stable:
 
 - **Unified content pipeline** — all content types flow through the `GenericBuilder` AST pattern with custom Markdig blocks.
 - **Feed architecture** — RSS/Atom/JSON + OPML across every content type, tag feeds, and an "Everything" unified feed.
@@ -16,7 +16,7 @@ The site is a mature, production IndieWeb static site generator (.NET 10, F#, Gi
 - **AI Memex** — AI-authored knowledge content type with build-time Knowledge Graph (`[[wikilinks]]`, backlinks, JSON-LD).
 - **Desert theme** — bespoke design system, Bootstrap-free, light/dark variants.
 
-`projects/active/` currently holds three **completed** ActivityPub phase docs (4A inbox handler, 5D dual-media, 6A RSVP) that are pending archival to [`archive/`](archive/); ongoing multi-PR work is otherwise tracked per session rather than as long-lived active-project files.
+Completed project docs are in [`archive/`](archive/).
 
 ## 🚧 In Flight
 
@@ -69,7 +69,7 @@ Compact pointer list — see [`../changelog.md`](../changelog.md) for full entri
 
 - **2026-02** — Review rendering: SVG star ratings, badge dedupe, gradient-ID collision fix
 - **2026-01** — ActivityPub Phases 4A (inbox handler), 5A (response semantics), 5B/5F (link attachments & pagination), 6A (RSVP); account migration; Azure SWA queue-trigger fix
-- **2025-11** — `Builder.fs` I/O helper refactoring
+- **2025-11** — I/O helper refactoring in the old Builder.fs, since split into `Builders/` and `BuildDriver.fs`
 - **2025-09** — Repository directory cleanup; untagged-content discovery system
 - **2025-08** — Azure SWA redirect migration; Azure Blob Storage migration; webmention modernization + timezone-aware date parsing; composable starter-pack system; content structure reorganization; response-type badge specificity; numerous text-only and timeline UX fixes
 

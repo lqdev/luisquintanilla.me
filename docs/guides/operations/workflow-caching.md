@@ -1,8 +1,6 @@
-# Workflow Caching Optimization
+# Workflow caching
 
-## Overview
-
-This document describes the dependency caching optimizations implemented across all GitHub Actions workflows to improve build performance and reduce workflow execution time.
+The `actions/setup-dotnet` steps in the workflows set `cache: false`, so NuGet packages aren't cached between runs. Caching was turned off in the .NET 10 upgrade (#952), when `packages.lock.json` was briefly deleted. The lock file is back, but caching wasn't turned back on. The npm steps that install the `api/` dependencies do cache. The rest of this page describes the NuGet caching set up before that change.
 
 ## Changes Made
 

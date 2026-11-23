@@ -1,12 +1,12 @@
-# How to Create Collections
+# Create a collection
 
-This guide explains how to create new collections in the Composable Starter Pack System. Collections are JSON-driven, automatically generate multiple output formats, and integrate seamlessly into the site navigation.
+A collection is a list of feeds or links. Its items live in a JSON file in `Data/` and its settings live in `Collections.fs`. The build writes a page, an OPML file, and an RSS feed for each collection.
 
 ## Quick Start
 
 Creating a new collection requires only two steps:
 
-1. **Create a JSON data file** in `_src/Data/` 
+1. **Create a JSON data file** in `Data/`
 2. **Add collection configuration** to `Collections.fs`
 
 The system automatically handles:
@@ -20,72 +20,64 @@ The system automatically handles:
 
 ### JSON Structure
 
-Create a JSON file in `_src/Data/` following this structure:
+Create a JSON file in `Data/` (at the repo root). It is an array of items, one per resource:
 
 ```json
-{
-  "title": "My Collection",
-  "htmlUrl": "https://example.com",
-  "description": "Description of this collection",
-  "language": "en-us",
-  "outlines": [
-    {
-      "text": "Resource Name",
-      "title": "Resource Title", 
-      "type": "rss",
-      "htmlUrl": "https://example.com",
-      "xmlUrl": "https://example.com/feed.xml"
-    }
-  ]
-}
+[
+  {
+    "Title": "Resource Title",
+    "Type": "rss",
+    "HtmlUrl": "https://example.com",
+    "XmlUrl": "https://example.com/feed.xml",
+    "Added": "2024-01-15"
+  }
+]
 ```
 
-### Required Fields
+`Collections.fs` reads it as a `CollectionItem array` (defined in `Domain.fs`). The collection's
+title, description and URL come from its configuration in `Collections.fs`, not from the JSON.
 
-- **title**: Collection name (displayed in navigation and page titles)
-- **htmlUrl**: Homepage URL for the collection
-- **description**: Brief description for the collection page
-- **language**: Language code (typically "en-us")
-- **outlines**: Array of resources in the collection
+### Item Fields
 
-### Resource Fields
-
-Each resource in the `outlines` array should include:
-
-- **text**: Display name for the resource
-- **title**: Full title of the resource
-- **type**: Usually "rss" for feeds
-- **htmlUrl**: Website URL
-- **xmlUrl**: RSS feed URL (if available)
+- **Title**: Display name for the resource
+- **Type**: Usually "rss" for feeds
+- **HtmlUrl**: Website URL
+- **XmlUrl**: RSS feed URL (if available)
+- **Added** (optional): Date the item was added
+- **Description**, **Tags** (optional): Extra metadata; fields left out are read as empty
 
 ## Collection Configuration
 
 ### Add to Collections.fs
 
-In the `Collections.fs` file, add your collection to the `allCollections` list:
+In the `Collections.fs` file, add your collection to the array returned by `getDefaultCollections`:
 
 ```fsharp
 {
     Id = "my-collection"
     Title = "My Collection"
-    Description = "Description matching your JSON file"
+    Description = "Description of this collection"
     CollectionType = MediumFocused "my-medium"  // or TopicFocused "my-topic"
     UrlPath = "/collections/my-collection/"
     DataFile = "my-collection.json"
     Tags = [| "tag1"; "tag2"; "tag3" |]
+    LastUpdated = DateTime.Now.ToString("yyyy-MM-dd")
+    ItemCount = None
 }
 ```
 
 ### Configuration Fields
 
 - **Id**: Unique identifier (lowercase, hyphenated)
-- **Title**: Display name (matches JSON title)
+- **Title**: Display name
 - **Description**: Brief description
 - **CollectionType**: 
   - `MediumFocused "medium"` for content-type collections (blogs, podcasts, etc.)
   - `TopicFocused "topic"` for subject-focused collections
 - **UrlPath**: URL where the collection will be accessible
-- **DataFile**: Name of your JSON file in `_src/Data/`
+- **DataFile**: Name of your JSON file in `Data/`
+- **LastUpdated**: Date string shown on the page
+- **ItemCount**: Leave as `None`; the build fills it in
 - **Tags**: Array of relevant tags for discovery
 
 ## Navigation Integration
@@ -123,23 +115,17 @@ The system automatically generates:
 
 ### Blogroll Collection
 
-**File**: `_src/Data/blogroll.json`
+**File**: `Data/blogroll.json`
 ```json
-{
-  "title": "Blogroll",
-  "htmlUrl": "https://www.luisquintanilla.me/collections/blogroll/",
-  "description": "Websites and blogs I follow regularly",
-  "language": "en-us",
-  "outlines": [
-    {
-      "text": "Julia Evans",
-      "title": "Julia Evans",
-      "type": "rss",
-      "htmlUrl": "https://jvns.ca/",
-      "xmlUrl": "https://jvns.ca/atom.xml"
-    }
-  ]
-}
+[
+  {
+    "Title": "Blogroll.org",
+    "Type": "rss",
+    "HtmlUrl": "https://blogroll.org/",
+    "XmlUrl": "https://blogroll.org/feed/",
+    "Added": "2022-08-14"
+  }
+]
 ```
 
 **Configuration**:
@@ -151,41 +137,38 @@ The system automatically generates:
     CollectionType = MediumFocused "blogs"
     UrlPath = "/collections/blogroll/"
     DataFile = "blogroll.json"
-    Tags = [| "blogs"; "websites"; "reading" |]
+    Tags = [| "blogs"; "reading"; "indieweb" |]
+    LastUpdated = DateTime.Now.ToString("yyyy-MM-dd")
+    ItemCount = None
 }
 ```
 
 ### Topic-Focused Collection
 
-**File**: `_src/Data/ai-tools.json`
+**File**: `Data/ai-starter-pack.json`
 ```json
-{
-  "title": "AI Tools Starter Pack",
-  "htmlUrl": "https://www.luisquintanilla.me/collections/ai-tools/",
-  "description": "Essential AI tools and resources for developers",
-  "language": "en-us",
-  "outlines": [
-    {
-      "text": "Hugging Face",
-      "title": "Hugging Face - The AI community building the future",
-      "type": "rss",
-      "htmlUrl": "https://huggingface.co/",
-      "xmlUrl": "https://huggingface.co/blog/feed.xml"
-    }
-  ]
-}
+[
+  {
+    "Title": "Latent Space",
+    "Type": "rss",
+    "HtmlUrl": "https://www.latent.space/",
+    "XmlUrl": "https://www.latent.space/feed/"
+  }
+]
 ```
 
 **Configuration**:
 ```fsharp
 {
-    Id = "ai-tools"
-    Title = "AI Tools Starter Pack"
-    Description = "Essential AI tools and resources for developers"
-    CollectionType = TopicFocused "artificial-intelligence"
-    UrlPath = "/collections/ai-tools/"
-    DataFile = "ai-tools.json"
-    Tags = [| "ai"; "tools"; "development"; "machine-learning" |]
+    Id = "ai"
+    Title = "AI Starter Pack"
+    Description = "Everything you need to stay informed about AI developments"
+    CollectionType = TopicFocused "ai"
+    UrlPath = "/collections/starter-packs/ai/"
+    DataFile = "ai-starter-pack.json"
+    Tags = [| "ai"; "machine-learning"; "technology" |]
+    LastUpdated = DateTime.Now.ToString("yyyy-MM-dd")
+    ItemCount = None
 }
 ```
 
@@ -269,7 +252,7 @@ The Composable Starter Pack System uses:
 
 - **Collections.fs**: Central configuration and processing logic
 - **Domain.fs**: Type definitions for type-safe collection handling
-- **Builder.fs**: Integration with main build process
+- **Builders/CollectionPages.fs**: Integration with main build process
 - **Views/**: F# ViewEngine templates for HTML generation
 - **JSON Data**: Human-readable, version-controllable collection data
 

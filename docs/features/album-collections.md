@@ -1,8 +1,6 @@
-# Album Collections Documentation
+# Album collections
 
-## Overview
-
-Album Collections are curated photo and media groupings organized by events, themes, projects, or any freeform organization. They complement the existing media timeline posts by providing a way to group related media together in a dedicated collection.
+An album is a page that groups related photos and videos. Each album is a Markdown file in `_src/albums/`.
 
 ## Architecture
 
@@ -60,7 +58,7 @@ Albums use the existing `:::media:::` block syntax for content:
 
 ### Using VS Code Snippets
 
-1. Create a new file in `_src/albums/your-album-name.md`
+1. Create a new file in `_src/albums/{slug}.md`
 2. Type `album-collection` to trigger the "Album Collection metadata" snippet (defined in `.vscode/metadata.code-snippets`)
 3. Fill in the required fields
 4. Add additional media items to the `:::media:::` block as needed
@@ -171,7 +169,7 @@ Albums are integrated into the main build pipeline:
 
 ### Naming Conventions
 
-- Use descriptive, URL-friendly filenames: `summer-vacation-2024.md`
+- Use descriptive, URL-friendly filenames, such as summer-vacation-2024.md
 - Avoid spaces, special characters, and uppercase in filenames
 - Use hyphens to separate words
 

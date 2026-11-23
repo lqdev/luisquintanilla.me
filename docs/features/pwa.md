@@ -1,8 +1,6 @@
-# Progressive Web App (PWA) Implementation
+# Progressive web app
 
-## Overview
-
-This site now includes comprehensive Progressive Web App (PWA) capabilities, enabling offline-first functionality, improved performance through intelligent caching, and the ability to install the site as a standalone application.
+The site is a progressive web app. A service worker caches pages so you can read them offline, and a web app manifest lets you install the site.
 
 ## Features Implemented
 
@@ -13,7 +11,7 @@ Implements multiple caching strategies for different content types:
 - **Static Assets** (CSS, JS, fonts): Cache-first with network fallback
 - **Content Pages** (HTML): Network-first with cache fallback for freshness
 - **Images**: Cache-first with stale-while-revalidate for optimal performance
-- **API/JSON**: Network-first with timeout (3 seconds)
+- **API and JSON requests**: Network-first with timeout (3 seconds)
 
 #### Cache Management
 - Automatic cleanup of old cache versions on activation

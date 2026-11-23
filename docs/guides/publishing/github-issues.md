@@ -1,8 +1,6 @@
-# GitHub Issue Template Posting Guide
+# Publish from a GitHub issue
 
-## Overview
-
-You can now create content for the website directly through GitHub Issues using a simple form interface. This provides better version control and review workflows for multiple content types including notes, bookmarks, responses, media, playlists, and reviews.
+You can publish notes, bookmarks, responses, media, playlists, and reviews by filling in an issue form in this repository. A workflow turns the issue into a Markdown file and opens a pull request with it.
 
 ## How to Create a Note Post
 
@@ -70,7 +68,7 @@ The content field supports full Markdown formatting:
 Files are automatically named using:
 - Slug generated from your title (lowercase, special characters removed)
 - Current date for uniqueness
-- Example: `thoughts-on-latest-tech-2025-09-14.md`
+- Example: thoughts-on-latest-tech-2025-09-14.md
 
 ## Tags
 

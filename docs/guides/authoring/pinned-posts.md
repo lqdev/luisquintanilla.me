@@ -1,8 +1,6 @@
-# Pinned Posts Feature
+# Pin a post to the timeline
 
-## Overview
-
-The Pinned Posts feature allows you to pin important content to the top of your timeline, ensuring key posts remain visible regardless of publication date. Pinned posts appear before all chronological content with a distinctive visual indicator and can be easily managed through a JSON configuration file.
+List a post in `Data/pinned-posts.json` to keep it at the top of the homepage timeline, above the posts sorted by date.
 
 ## Features
 
@@ -221,7 +219,7 @@ Change the `order` field values and rebuild:
 **Core Application:**
 - `Domain.fs` - `PinnedPost` type definition
 - `Loaders.fs` - `loadPinnedPosts()` function
-- `Builder.fs` - `buildTimelineHomePage()` with pinning logic
+- `Builders/Homepage.fs` - `buildTimelineHomePage` with pinning logic
 
 **View Layer:**
 - `Views/LayoutViews.fs` - Pin indicator rendering
@@ -363,7 +361,7 @@ cat Data/pinned-posts.json | jq '.'
 
 While not built-in, you could implement conditional pinning by:
 
-1. Creating multiple JSON files (e.g., `pinned-posts-events.json`, `pinned-posts-normal.json`)
+1. Creating several JSON files next to `Data/pinned-posts.json` (for example, one for events and one for normal use)
 2. Modifying `Loaders.fs` to load conditionally
 3. Using environment variables to switch configs
 4. Implementing date-based auto-unpinning logic

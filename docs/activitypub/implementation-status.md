@@ -1,7 +1,7 @@
 # ActivityPub Implementation Status
 
 **Last Updated**: January 23, 2026  
-**Current Phase**: Phase 4 Complete (HTTP Signature Verification) 🔒  
+**Current Phase**: Phase 5 (5A to 5D and 5F built; 5E not built)  
 **Primary Reference**: [`http-signature-verification-plan.md`](../../archive/docs/activitypub/http-signature-verification-plan.md) (archived)
 
 ---
@@ -14,7 +14,7 @@
 | **Phase 2** | ✅ **COMPLETE** | Follow/Accept Workflow & Security (Key Vault) |
 | **Phase 3** | ✅ **COMPLETE** | Outbox Automation from F# Build (1,547 items) |
 | **Phase 4** | ✅ **COMPLETE** 🔒 | HTTP Signature Verification (LIVE IN PRODUCTION) |
-| **Phase 5** | 📋 **FUTURE** | Enhanced Activity Delivery & Analytics |
+| **Phase 5** | Partly built | Fediverse-native content: response semantics (5A), bookmark links (5B), reviews (5C), media (5D), and outbox pagination (5F) are built; album collections (5E) are not |
 
 ---
 
@@ -306,7 +306,7 @@ Deliver new content activities to follower inboxes when published, with producti
 - [x] Phase 4 comprehensive research (HTTP signatures, Mastodon validation, delivery patterns)
 - [x] Follower management architecture documentation
 - [x] Phase 4 implementation plan (production-ready, Option A, phased approach)
-- [x] Azure resource provisioning script (`scripts/setup-activitypub-azure-resources.ps1`)
+- [x] Azure resource provisioning script (`Scripts/setup-activitypub-azure-resources.ps1`)
 - [ ] Execute Azure resource creation (Storage Account, Tables, Queues, App Insights)
 - [ ] Create F# service modules (HttpSignature.fs, FollowerStore.fs, ActivityQueue.fs)
 - [ ] Implement InboxHandler Azure Function (POST /api/activitypub/inbox)
@@ -581,7 +581,7 @@ Phase plans, kickoff notes, and completion summaries are in [`../../archive/docs
 **Update ActivityPub documentation**
 1. Primary updates go in `/api/ACTIVITYPUB.md`
 2. Mark outdated sections in implementation plans
-3. Update this status doc (`activitypub-implementation-status.md`)
+3. Update this status doc (`docs/activitypub/implementation-status.md`)
 4. Ensure cross-references remain accurate
 
 **Test ActivityPub functionality**
@@ -594,8 +594,9 @@ Phase plans, kickoff notes, and completion summaries are in [`../../archive/docs
 
 ## Remaining work
 
-The status table above is older than the phase 5 plan. That plan, [`phase5-fediverse-native-expansion-plan.md`](../../archive/docs/activitypub/phase5-fediverse-native-expansion-plan.md),
-last updated January 31, 2026, records phases 5A, 5B, 5C, 5D, and 5F as done and 5E as in progress.
+The phase 5 plan, [`phase5-fediverse-native-expansion-plan.md`](../../archive/docs/activitypub/phase5-fediverse-native-expansion-plan.md),
+last updated January 31, 2026, records phases 5A, 5B, 5C, 5D, and 5F as done and 5E (album collections) as in progress.
+`ActivityPubBuilder.fs` has code for 5A to 5D and 5F, and none for 5E yet.
 Research for phase 6 (RSVPs) is in [`phase6a-rsvp-research.md`](../../archive/docs/activitypub/phase6a-rsvp-research.md).
 See the archived plan for phases not yet built.
 

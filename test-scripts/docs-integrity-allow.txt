@@ -1,6 +1,12 @@
 # Tokens that look like repo paths but are examples or generated files.
 # One per line. Add a comment saying why. Do not list a real file that is missing: fix the doc.
+# Build output: KnowledgeGraph.fs writes /resources/ai-memex/graph.json; not tracked.
 graph.json
-plugin.json
-marketplace.json
-mcp.json
+# Runtime data: api/inbox/index.js writes received activities here; not tracked.
+api/data/activities/
+# Build output: ActivityPubBuilder.fs writes it; the publish workflow copies it into api/.
+api/data/outbox/index.json
+# Tag normalization examples in docs/reference/tags.md (Services/Tag.fs rewrites them).
+node.js
+next.js
+vue.js

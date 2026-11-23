@@ -372,7 +372,7 @@ az staticwebapp appsettings set `
 
 GitHub Actions will sign your outgoing ActivityPub content using Key Vault.
 
-**Sample Workflow** (`.github/workflows/publish-with-signing.yml`):
+**Sample workflow** (an example, not a file in this repo):
 
 ```yaml
 name: Publish with ActivityPub Signing

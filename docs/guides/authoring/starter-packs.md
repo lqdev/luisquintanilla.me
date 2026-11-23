@@ -1,6 +1,8 @@
-# How to Create Starter Packs
+# Create a starter pack
 
-This comprehensive guide explains how to author and publish RSS/OPML starter packs using the Starter Pack System. Starter packs are curated collections of RSS feeds that help others discover and subscribe to content across the open web.
+A starter pack is a list of RSS feeds on one topic, published as a page and an OPML file.
+
+> **Note:** This page describes `StarterPackSystem.fs`, which isn't compiled: it isn't listed in `PersonalSite.fsproj`. The starter packs on the site are `TopicFocused` collections in `Collections.fs`. To add one, follow [Create a collection](collections.md).
 
 ## What Are Starter Packs?
 
@@ -119,7 +121,7 @@ The current system uses F# configuration in `StarterPackSystem.fs`. To add a new
 
 ### Method 2: Registry File Configuration (Future Enhancement)
 
-The system supports loading from `Data/starter-packs-registry.json` if the file exists, but currently uses hardcoded configuration for simplicity.
+`StarterPackSystem.fs` has code to load a registry file named starter-packs-registry.json from `Data/`, but no such file exists and the code isn't compiled (see the note at the top of this page).
 
 #### Configuration Fields Explained
 

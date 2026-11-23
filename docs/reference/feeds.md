@@ -1,8 +1,6 @@
-# RSS Feed Architecture Documentation
+# Feeds
 
-## Overview
-
-The website implements a comprehensive RSS feed system providing multiple types of feeds for content discovery and syndication. All feeds follow RSS 2.0 specification with proper category metadata for filtering and organization. **Historical date accuracy** ensures all feeds display creation/publication dates from Git history instead of current date fallbacks.
+The site publishes RSS 2.0 feeds: one with everything, and one for each content type. This page lists them and the rules they follow.
 
 ## Feed Quality Standards
 
